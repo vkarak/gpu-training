@@ -18,7 +18,6 @@ void fill_gpu(T *v, T value, int n);
 
 void write_to_file(int nx, int ny, double* data);
 
-// TODO also make shared memory version
 __global__
 void diffusion(double *x0, double *x1, int nx, int ny, double dt) {
     auto i = threadIdx.x + blockIdx.x*blockDim.x;
@@ -35,12 +34,50 @@ void diffusion(double *x0, double *x1, int nx, int ny, double dt) {
     }
 }
 
+__global__
+void diffusion_shared(double *x0, double *x1, int nx, int ny, double dt) {
+    extern __shared__ double buffer[];
+
+    auto i = threadIdx.x + blockIdx.x*blockDim.x;
+    auto j = threadIdx.y + blockIdx.y*blockDim.y;
+
+    if(i<nx && j<ny) {
+        auto width = nx+2;
+        auto shared_width = blockDim.x+2;
+
+        auto pos = (i+1) + (j+1)*width;
+        auto shared_pos = (threadIdx.x+1) + (threadIdx.y+1)*shared_width;
+
+        buffer[shared_pos] = x0[pos];
+        if(threadIdx.x==0) {
+            buffer[shared_pos-1] = x0[pos-1];
+        }
+        if(threadIdx.x==blockDim.x-1) {
+            buffer[shared_pos+1] = x0[pos+1];
+        }
+        if(threadIdx.y==0) {
+            buffer[shared_pos-shared_width] = x0[pos-width];
+        }
+        if(threadIdx.y==blockDim.y-1) {
+            buffer[shared_pos+shared_width] = x0[pos+width];
+        }
+
+        __syncthreads();
+
+        x1[pos] = buffer[shared_pos] + dt * (-4.*buffer[shared_pos]
+                + buffer[shared_pos-shared_width] + buffer[shared_pos+shared_width]
+                + buffer[shared_pos-1]  + buffer[shared_pos+1]);
+    }
+}
+
 int main(int argc, char** argv) {
     // set up parameters
     // first argument is the y dimension = 2^arg
     size_t pow    = read_arg(argc, argv, 1, 8);
     // second argument is the number of time steps
     size_t nsteps = read_arg(argc, argv, 2, 100);
+    // third argument is nonzero if shared memory version is to be used
+    bool use_shared = read_arg(argc, argv, 3, 0);
 
     // set domain size
     size_t nx = 128+2;
@@ -81,7 +118,15 @@ int main(int argc, char** argv) {
 
     // time stepping loop
     for(auto step=0; step<nsteps; ++step) {
-        diffusion<<<grid_dim, block_dim>>>(x0, x1, nx-2, ny-2, dt);
+        if(use_shared) {
+            auto shared_size = (block_dim.x+2)*(block_dim.y+2)*sizeof(double);
+            diffusion_shared<<<grid_dim, block_dim, shared_size>>>
+                (x0, x1, nx-2, ny-2, dt);
+        }
+        else {
+            diffusion<<<grid_dim, block_dim>>>
+                (x0, x1, nx-2, ny-2, dt);
+        }
 
         std::swap(x0, x1);
     }

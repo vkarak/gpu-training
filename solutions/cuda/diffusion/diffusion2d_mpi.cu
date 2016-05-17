@@ -25,7 +25,18 @@ void fill_gpu(T *v, T value, int n);
 
 __global__
 void diffusion(double *x0, double *x1, int nx, int ny, double dt) {
-    // TODO : copy stencil implemented in diffusion2d.cu
+    auto i = threadIdx.x + blockIdx.x*blockDim.x;
+    auto j = threadIdx.y + blockIdx.y*blockDim.y;
+
+    if(i<nx && j<ny) {
+        auto width = nx+2;
+        auto pos = (i+1) + (j+1)*width;
+
+        x1[pos] = x0[pos] + dt * (-4.*x0[pos]
+                + x0[pos-width] + x0[pos+width]
+                + x0[pos-1]  + x0[pos+1]);
+
+    }
 }
 
 int main(int argc, char** argv) {
@@ -93,16 +104,49 @@ int main(int argc, char** argv) {
     CudaStream copy_stream(true);
     auto start_event = stream.enqueue_event();
 
+    dim3 block_dim(8, 8);
+    dim3 grid_dim(
+        (nx-2+block_dim.x-1)/block_dim.x,
+        (ny-2+block_dim.y-1)/block_dim.y
+    );
+
+    int south = mpi_rank - 1;
+    int north = mpi_rank + 1;
+
     // time stepping loop
     for(auto step=0; step<nsteps; ++step) {
-
         // TODO perform halo exchange
-        // x0(:, 0)    <- south
-        // x0(:, 1)    -> south
-        // x0(:, ny-1) <- north
-        // x0(:, ny-2) -> north
+        MPI_Request requests[4];
+        MPI_Status statuses[4];
+        auto num_requests = 0;
+
+        // exchange with south
+        if(south>=0) {
+            // x0(:, 0)    <- south
+            MPI_Irecv(x0,    nx, MPI_DOUBLE, south, 0, MPI_COMM_WORLD, &requests[0]);
+            // x0(:, 1)    -> south
+            MPI_Isend(x0+nx, nx, MPI_DOUBLE, south, 0, MPI_COMM_WORLD, &requests[1]);
+            num_requests+=2;
+        }
+
+        // exchange with north
+        if(north<mpi_size) {
+            // x0(:, ny-1) <- north
+            MPI_Irecv(
+                x0+(ny-1)*nx, nx, MPI_DOUBLE, north, 0, MPI_COMM_WORLD,
+                &requests[num_requests]);
+            // x0(:, ny-2) -> north
+            MPI_Isend(
+                x0+(ny-2)*nx, nx, MPI_DOUBLE, north, 0, MPI_COMM_WORLD,
+                &requests[num_requests+1]);
+            num_requests+=2;
+        }
+
+        MPI_Waitall(num_requests, requests, statuses);
 
         // TODO copy in the kernel launch from diffusion2d.cu
+        diffusion<<<grid_dim, block_dim>>>
+            (x0, x1, nx-2, ny-2, dt);
 
         std::swap(x0, x1);
     }
