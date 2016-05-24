@@ -5,6 +5,11 @@ PGI  ?= 0
 GCC  ?= 0
 VERBOSE ?= 0
 
+CXX     = CC
+MPI_CXX = CC
+FC      = ftn
+MPI_FC  = ftn
+
 ifeq ($(CRAY), 1)
 CXX = CC
 FC  = ftn
@@ -26,7 +31,8 @@ CXX = g++
 CXXFLAGS = -std=c++11 -O3 -fopenacc
 endif
 
-OPENACC_BENCHMARKS= diffusion2d.openacc diffusion2d.openacc.cuda diffusion2d.omp
+OPENACC_BENCHMARKS= diffusion2d.openacc diffusion2d.openacc.cuda diffusion2d.omp \
+	diffusion2d.openacc.mpi diffusion2d.openacc.cuda.mpi
 BENCHMARKS=$(OPENACC_BENCHMARKS)
 
 all: $(BENCHMARKS)
@@ -39,6 +45,12 @@ diffusion2d.openacc: diffusion2d_openacc.cpp diffusion2d.hpp
 
 diffusion2d.openacc.cuda: diffusion2d_openacc.cpp diffusion2d.hpp
 	$(CXX) $(CXXFLAGS) $< -o $@ $(LDFLAGS)
+
+diffusion2d.openacc.mpi: diffusion2d_openacc_mpi.cpp diffusion2d.hpp
+	$(MPI_CXX) $(CXXFLAGS) -DOPENACC_DATA $< -o $@ $(LDFLAGS)
+
+diffusion2d.openacc.cuda.mpi: diffusion2d_openacc_mpi.cpp diffusion2d.hpp
+	$(MPI_CXX) $(CXXFLAGS) $< -o $@ $(LDFLAGS)
 
 diffusion2d.omp: diffusion2d_omp.cpp
 	$(CXX) $(CXXFLAGS) $< -o $@ $(LDFLAGS)

@@ -56,6 +56,7 @@ int main(int argc, char** argv) {
         fill_gpu(x1+nx*(ny-1), 1., nx);
 
         // time stepping loop
+        #pragma acc wait
         start_diffusion = get_time();
         for(auto step=0; step<nsteps; ++step) {
             diffusion_gpu(x0, x1, nx-2, ny-2, dt);
@@ -66,6 +67,7 @@ int main(int argc, char** argv) {
 #endif
         }
 
+        #pragma acc wait
         time_diffusion = get_time() - start_diffusion;
     } // end of acc data
 

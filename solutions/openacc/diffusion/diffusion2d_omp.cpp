@@ -27,28 +27,6 @@ void diffusion_omp(const double *x0, double *x1, int nx, int ny, double dt)
     }
 }
 
-void diffusion_omp_tiled(const double *x0, double *x1, int nx, int ny, double dt)
-{
-    int i, j, bi, bj;
-    auto width = nx+2;
-    auto block_size = 8;
-
-    #pragma omp parallel for collapse(2), private(bi,bj,i,j)
-    for (bj = 0; bj < ny/block_size; ++bj) {
-        for (bi = 0; bi < nx/block_size; ++bi) {
-            for (j = 0; j < block_size; ++j) {
-                for (i = 0; i < block_size; ++i) {
-                    auto pos = (bi*block_size+i+1) + (bj*block_size+j+1)*width;
-                    x1[pos] = x0[pos] + dt * (-4.*x0[pos]
-                                              + x0[pos-width] + x0[pos+width]
-                                              + x0[pos-1]  + x0[pos+1]);
-
-                }
-            }
-        }
-    }
-}
-
 void write_to_file(int nx, int ny, double* data);
 
 int main(int argc, char** argv) {
