@@ -14,9 +14,9 @@ void diffusion_gpu(const double *x0, double *x1, int nx, int ny, double dt)
 #else
     #pragma acc parallel loop deviceptr(x0,x1) collapse(2) private(i,j)
 #endif
-    for (j = 0; j < ny; ++j) {
-        for (i = 0; i < nx; ++i) {
-            auto pos = (i+1) + (j+1)*width;
+    for (j = 1; j < ny+1; ++j) {
+        for (i = 1; i < nx+1; ++i) {
+            auto pos = i + j*width;
             x1[pos] = x0[pos] + dt * (-4.*x0[pos]
                                       + x0[pos-width] + x0[pos+width]
                                       + x0[pos-1]  + x0[pos+1]);

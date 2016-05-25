@@ -31,14 +31,19 @@ CXX = g++
 CXXFLAGS = -std=c++11 -O3 -fopenacc
 endif
 
-OPENACC_BENCHMARKS= diffusion2d.openacc diffusion2d.openacc.cuda diffusion2d.omp \
+CXX_BENCHMARKS = diffusion2d.openacc diffusion2d.openacc.cuda diffusion2d.omp \
 	diffusion2d.openacc.mpi diffusion2d.openacc.cuda.mpi
-BENCHMARKS=$(OPENACC_BENCHMARKS)
+FTN_BENCHMARKS = diffusion2d.openacc.fort
+
+BENCHMARKS=$(CXX_BENCHMARKS) $(FTN_BENCHMARKS)
 
 all: $(BENCHMARKS)
 
-util.mod: util.f03
-	$(FC) -c $(FCFLAGS) util.f03
+UTIL.mod: util.f03
+	$(FC) -c $(FCFLAGS) $<
+
+DIFFUSION2D.mod: diffusion2d.f03
+	$(FC) -c $(FCFLAGS) $<
 
 diffusion2d.openacc: diffusion2d_openacc.cpp diffusion2d.hpp
 	$(CXX) $(CXXFLAGS) -DOPENACC_DATA $< -o $@ $(LDFLAGS)
@@ -55,8 +60,8 @@ diffusion2d.openacc.cuda.mpi: diffusion2d_openacc_mpi.cpp diffusion2d.hpp
 diffusion2d.omp: diffusion2d_omp.cpp
 	$(CXX) $(CXXFLAGS) $< -o $@ $(LDFLAGS)
 
-diffusion2d.openacc.fort: diffusion2d_openacc.f90 util.mod
-	$(FC) $(FCFLAGS) $< util.o -o $@
+diffusion2d.openacc.fort: diffusion2d_openacc.f90 UTIL.mod DIFFUSION2D.mod
+	$(FC) $(FCFLAGS) $< util.o diffusion2d.o -o $@
 
 clean:
 	rm -f $(BENCHMARKS) *.cub *.ptx *.o *.mod
