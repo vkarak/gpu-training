@@ -33,7 +33,7 @@ endif
 
 CXX_BENCHMARKS = diffusion2d.openacc diffusion2d.openacc.cuda diffusion2d.omp \
 	diffusion2d.openacc.mpi diffusion2d.openacc.cuda.mpi
-FTN_BENCHMARKS = diffusion2d.openacc.fort
+FTN_BENCHMARKS = diffusion2d.openacc.fort diffusion2d.openacc.fort.mpi
 
 BENCHMARKS=$(CXX_BENCHMARKS) $(FTN_BENCHMARKS)
 
@@ -55,13 +55,16 @@ diffusion2d.openacc.mpi: diffusion2d_openacc_mpi.cpp diffusion2d.hpp
 	$(MPI_CXX) $(CXXFLAGS) -DOPENACC_DATA $< -o $@ $(LDFLAGS)
 
 diffusion2d.openacc.cuda.mpi: diffusion2d_openacc_mpi.cpp diffusion2d.hpp
-	$(MPI_CXX) $(CXXFLAGS) $< -o $@ $(LDFLAGS)
+	$(MPI_CXX) $(CXXFLAGS) $< -o $@
 
 diffusion2d.omp: diffusion2d_omp.cpp
 	$(CXX) $(CXXFLAGS) $< -o $@ $(LDFLAGS)
 
 diffusion2d.openacc.fort: diffusion2d_openacc.f90 UTIL.mod DIFFUSION2D.mod
 	$(FC) $(FCFLAGS) $< util.o diffusion2d.o -o $@
+
+diffusion2d.openacc.fort.mpi: diffusion2d_openacc_mpi.f90 UTIL.mod DIFFUSION2D.mod
+	$(MPI_FC) $(FCFLAGS) $< util.o diffusion2d.o -o $@
 
 clean:
 	rm -f $(BENCHMARKS) *.cub *.ptx *.o *.mod
