@@ -52,7 +52,8 @@ contains
 
     integer :: i
 
-    open(10, file='output.bin', access='stream', form='unformatted')
+    open(10, file='output.bin', status='replace', access='stream', &
+         form='unformatted')
     write(10) data
     close(10)
 

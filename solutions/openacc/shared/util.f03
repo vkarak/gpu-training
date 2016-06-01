@@ -17,14 +17,15 @@ contains
     ! get the command line argument, this is f2003
     integer read_arg
     integer,intent(in) :: nth_arg,default
-    character(len=32) :: arg
+    character(len=32) :: arg, trimmed_arg
     integer count
 
     ! but only get the first one, assuming this is convertable to integer
     count = command_argument_count()
     if (count >= nth_arg) then
        call get_command_argument(nth_arg, arg)
-       read (trim(arg),'(I10)') read_arg
+       trimmed_arg = trim(arg)
+       read(trimmed_arg, '(I10)') read_arg
     else
        read_arg = default
     endif

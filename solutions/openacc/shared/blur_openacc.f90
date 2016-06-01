@@ -16,6 +16,7 @@ subroutine blur_twice_host(nsteps, n, in, out)
   integer istep, i
   real(kind(0d0)), dimension(:), allocatable :: buffer
   real(kind(0d0)), external :: blur
+  !$acc routine(blur) seq
 
   allocate(buffer(n))
 
@@ -45,6 +46,7 @@ subroutine blur_twice_gpu_naive(nsteps, n, in, out)
   integer istep, i
   real(kind(0d0)), dimension(:), allocatable :: buffer
   real(kind(0d0)), external :: blur
+  !$acc routine(blur) seq
 
   allocate(buffer(n))
 
@@ -74,6 +76,7 @@ subroutine blur_twice_gpu_nocopies(nsteps, n, in, out)
   integer istep, i
   real(kind(0d0)), dimension(:), allocatable :: buffer
   real(kind(0d0)), external :: blur
+  !$acc routine(blur) seq
 
   allocate(buffer(n))
 

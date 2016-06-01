@@ -1,12 +1,19 @@
 #pragma once
 
-#include <chrono>
+#ifdef PGI
+#   include <cstdlib>
+#   include <omp.h>
+#   include <sstream>
+#else
+#   include <chrono>
+#endif
 #include <cmath>
 
 #ifndef NO_CUDA
 #include <cuda.h>
 #include <cuda_runtime.h>
 #include <cublas_v2.h>
+
 
 // helper for initializing cublas
 // use only for demos: not threadsafe
@@ -115,7 +122,13 @@ void copy_to_host(T* from, T* to, size_t n) {
 static size_t read_arg(int argc, char** argv, size_t index, int default_value) {
     if(argc>index) {
         try {
+#ifdef PGI
+            std::stringstream arg_n(argv[index]);
+            int n;
+            arg_n >> n;
+#else
             auto n = std::stoi(argv[index]);
+#endif
             if(n<0) {
                 return default_value;
             }
@@ -139,6 +152,13 @@ T* malloc_host(size_t N, T value=T()) {
     return ptr;
 }
 
+#ifdef PGI
+static double get_time()
+{
+    return omp_get_wtime();
+}
+
+#else
 // aliases for types used in timing host code
 using clock_type    = std::chrono::high_resolution_clock;
 using duration_type = std::chrono::duration<double>;
@@ -149,3 +169,5 @@ static double get_time() {
     static auto start_time = clock_type::now();
     return duration_type(clock_type::now()-start_time).count();
 }
+
+#endif

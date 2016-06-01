@@ -1,7 +1,5 @@
-#include <chrono>
 #include <iostream>
 
-#define NO_CUDA
 #include "util.h"
 
 void axpy(int n, double alpha, const double *x, double* y) {
@@ -26,7 +24,6 @@ int main(int argc, char** argv)
 {
     size_t pow = read_arg(argc, argv, 1, 16);
     size_t n = 1 << pow;
-    auto size_in_bytes = n * sizeof(double);
 
     std::cout << "memcopy and daxpy test of size " << n << std::endl;
 

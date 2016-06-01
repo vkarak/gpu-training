@@ -18,12 +18,18 @@ endif
 
 ifeq ($(PGI), 1)
 CXX = pgc++
-CXXFLAGS = -std=c++11 -O3 -acc
+CXXFLAGS = -DPGI -std=c++11 -O3 -acc -Minfo=accel
+FCFLAGS  = -O3 -acc -Minfo=accel
+LDFLAGS += -L$(CRAY_CUDATOOLKIT_DIR)/lib64 -lcudart
 endif
 
 ifeq ($(GCC), 1)
+# not tested
 CXX = g++
-CXXFLAGS = -std=c++11 -O3 -fopenacc
+FC  = gfortran
+CXXFLAGS = -std=c++11 -O3 -fopenmp -fopenacc -I$(CRAY_CUDATOOLKIT_DIR)/include
+FCFLAGS  = -O3 -fopenacc -fopenmp
+LDFLAGS += -L$(CRAY_CUDATOOLKIT_DIR)/lib64 -lcudart
 endif
 
 OPENACC_BENCHMARKS= axpy.openacc axpy.openacc.fort
@@ -32,11 +38,13 @@ BENCHMARKS=$(OPENACC_BENCHMARKS)
 
 all: $(BENCHMARKS)
 
+util.o: util.f03
+	$(FC) -c $(FCFLAGS) $<
+
 axpy.openacc: axpy_openacc.cpp
 	$(CXX) $(CXXFLAGS) $< -o $@
 
-axpy.openacc.fort: axpy_openacc.f90 util.f03
-	$(FC) -c $(FCFLAGS) util.f03
+axpy.openacc.fort: axpy_openacc.f90 util.o
 	$(FC) $(FCFLAGS) $< util.o -o $@
 
 clean:

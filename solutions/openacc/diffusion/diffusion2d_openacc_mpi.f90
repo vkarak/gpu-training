@@ -11,6 +11,10 @@ program main
   integer, dimension(4) :: requests
   integer, dimension(4) :: statuses(MPI_STATUS_SIZE)
 
+  call mpi_init(err)
+  call mpi_comm_rank(MPI_COMM_WORLD, mpi_rank, err)
+  call mpi_comm_size(MPI_COMM_WORLD, mpi_size, err)
+
   ! read arguments
   pow = read_arg(1, 8)
   nsteps = read_arg(2, 100)
@@ -20,9 +24,6 @@ program main
   ny = 2**pow
   dt = 0.1
 
-  call mpi_init(err)
-  call mpi_comm_rank(MPI_COMM_WORLD, mpi_rank, err)
-  call mpi_comm_size(MPI_COMM_WORLD, mpi_size, err)
   if (mod(ny, mpi_size) /= 0) then
      write(*, '(a i0 a i0)') 'error : global domain dimension ', ny, &
           'must be divisible by number of MPI ranks ', mpi_size;
@@ -108,7 +109,7 @@ program main
           real(nsteps)*(nx-2)*(ny-2) / time_diffusion, ' points/second'
      write(*, *) ''
      write(*, *) ''
-     write(*, '(a)') 'writing to output.bin/bov';
+     write(*, '(a)') 'writing to output.bin/bov'
      write(*, *) ''
   endif
 
