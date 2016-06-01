@@ -36,7 +36,7 @@ program main
 
   n = read_arg(1, 4)
 
-  print *, 'dot product of length n = ', n
+  write(*, '(a i0)') 'dot product of length n = ', n
   allocate(x(n), y(n), stat=err)
   if (err /= 0) then
      stop 'failed to allocate arrays'
@@ -52,9 +52,10 @@ program main
   call dotprod_host(n, x, y, expected)
 
   if (abs(expected - result) > 2*n*1d-14) then
-     print *, '============ FAILED: got ', result, ' expected: ', expected
+     write(*, '(a f0.6 a f0.6)') '============ FAILED: got ', result, &
+          ' expected: ', expected
   else
-     print *, '============ SUCCESS'
+     write(*, '(a)') '============ SUCCESS'
   endif
 
 end program main

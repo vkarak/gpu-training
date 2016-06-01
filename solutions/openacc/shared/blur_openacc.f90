@@ -115,8 +115,7 @@ program main
   nsteps = read_arg(2, 100)
   n      = 2**pow + 4
 
-  print *, 'dispersion 1D test of length n = ', n, &
-       ' : ', 8.*n/1024**2, 'MB'
+  write(*, '(a i0 a f0.6 a)') 'dispersion 1D test of length n = ', n, ' : ', 8.*n/1024**2, 'MB'
 
   allocate(x0(n), x1(n), stat=err)
   if (err /= 0) then
@@ -137,11 +136,11 @@ program main
   call blur_twice_gpu_nocopies(nsteps, n, x0, x1)
   time_blur = get_time() - blur_start
 
-  print *, '==== that took ', time_blur, &
+  write(*, '(a f0.6 a f0.8 a)') '==== that took ', time_blur, &
        ' seconds (', time_blur/nsteps, 's/step )'
-  print *, 'Beginning of output array:'
-  do i = 1,min(20,n)
-     print *, x1(i)
+  do i = 1, min(20,n)
+     write(*, '(f0.6 a)', advance='no') x1(i), ' '
   enddo
+  write(*,*)
 
 end program main
