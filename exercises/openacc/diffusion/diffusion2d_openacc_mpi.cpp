@@ -93,6 +93,7 @@ int main(int argc, char** argv) {
             MPI_Status  statuses[4];
             auto num_requests = 0;
 
+            // TODO: use x0, x1 on GPU for the following MPI calls
             if (south >= 0) {
                 // x0(:, 0) <- south
                 MPI_Irecv(x0,    nx, MPI_DOUBLE, south, 0, MPI_COMM_WORLD,
@@ -116,10 +117,7 @@ int main(int argc, char** argv) {
 
             MPI_Waitall(num_requests, requests, statuses);
 
-            // TODO: use x0, x1 on GPU
-            {
-                diffusion_gpu(x0, x1, nx-2, ny-2, dt);
-            }
+            diffusion_gpu(x0, x1, nx-2, ny-2, dt);
 
 #ifdef OPENACC_DATA
             copy_gpu(x0, x1, buffer_size);
