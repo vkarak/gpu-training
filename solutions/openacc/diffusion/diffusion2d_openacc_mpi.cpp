@@ -93,33 +93,33 @@ int main(int argc, char** argv) {
             MPI_Status  statuses[4];
             auto num_requests = 0;
 
-            if (south >= 0) {
-                // x0(:, 0) <- south
-                MPI_Irecv(x0,    nx, MPI_DOUBLE, south, 0, MPI_COMM_WORLD,
-                          &requests[0]);
-                // x0(:, 1) -> south
-                MPI_Isend(x0+nx, nx, MPI_DOUBLE, south, 0, MPI_COMM_WORLD,
-                          &requests[1]);
-                num_requests += 2;
-            }
+            #pragma host_data use_device(x0)
+            {
+                if (south >= 0) {
+                    // x0(:, 0) <- south
+                    MPI_Irecv(x0,    nx, MPI_DOUBLE, south, 0, MPI_COMM_WORLD,
+                              &requests[0]);
+                    // x0(:, 1) -> south
+                    MPI_Isend(x0+nx, nx, MPI_DOUBLE, south, 0, MPI_COMM_WORLD,
+                              &requests[1]);
+                    num_requests += 2;
+                }
 
-            // exchange with north
-            if(north < mpi_size) {
-                // x0(:, ny-1) <- north
-                MPI_Irecv(x0+(ny-1)*nx, nx, MPI_DOUBLE, north, 0,
-                          MPI_COMM_WORLD, &requests[num_requests]);
-                // x0(:, ny-2) -> north
-                MPI_Isend(x0+(ny-2)*nx, nx, MPI_DOUBLE, north, 0,
-                          MPI_COMM_WORLD, &requests[num_requests+1]);
-                num_requests += 2;
+                // exchange with north
+                if(north < mpi_size) {
+                    // x0(:, ny-1) <- north
+                    MPI_Irecv(x0+(ny-1)*nx, nx, MPI_DOUBLE, north, 0,
+                              MPI_COMM_WORLD, &requests[num_requests]);
+                    // x0(:, ny-2) -> north
+                    MPI_Isend(x0+(ny-2)*nx, nx, MPI_DOUBLE, north, 0,
+                              MPI_COMM_WORLD, &requests[num_requests+1]);
+                    num_requests += 2;
+                }
             }
 
             MPI_Waitall(num_requests, requests, statuses);
 
-            #pragma host_data use_device(x0, x1)
-            {
-                diffusion_gpu(x0, x1, nx-2, ny-2, dt);
-            }
+            diffusion_gpu(x0, x1, nx-2, ny-2, dt);
 
 #ifdef OPENACC_DATA
             copy_gpu(x0, x1, buffer_size);
@@ -144,10 +144,10 @@ int main(int argc, char** argv) {
                   << nsteps*(nx-2)*(ny-2)*mpi_size / time_diffusion
                   << " points/second\n\n";
 
-        std::cout << "writing to output.bin/bov" << std::endl;
+        std::cout << "writing to output.bin/bov\n";
+        write_to_file(nx, ny, x_res);
     }
 
-    write_to_file(nx, ny, x_res);
     MPI_Finalize();
     return 0;
 }

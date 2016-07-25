@@ -13,7 +13,7 @@ MPI_FC  = ftn
 ifeq ($(CRAY), 1)
 CXX = CC
 FC  = ftn
-CXXFLAGS = -hstd=c++11 -O3 -hacc -dynamic
+CXXFLAGS = -hstd=c++11 -O3 -hacc -homp -dynamic
 FCFLAGS  = -O3 -homp -hacc -dynamic
 ifeq ($(VERBOSE), 1)
 CXXFLAGS += -hmsgs
