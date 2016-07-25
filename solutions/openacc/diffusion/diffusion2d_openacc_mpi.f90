@@ -74,6 +74,7 @@ program main
   start_diffusion = get_time()
   do i = 1, nsteps
      num_requests = 0
+     !$acc host_data use_device(x0, x1)
      if (south >= 0) then
         call mpi_irecv(x0(1:), nx, MPI_DOUBLE, south, 0, MPI_COMM_WORLD, &
              requests(1), err)
@@ -89,12 +90,11 @@ program main
              MPI_COMM_WORLD, requests(num_requests+2), err)
         num_requests = num_requests + 2
      endif
+     !$acc end host_data
 
      call mpi_waitall(num_requests, requests, statuses, err)
 
-     !$acc host_data use_device(x0, x1)
      call diffusion_gpu(x0, x1, nx-2, ny-2, dt)
-     !$acc end host_data
 
      call copy_gpu(x0, x1, buffer_size)
   enddo
