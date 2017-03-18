@@ -30,11 +30,12 @@ program main
   use util
   implicit none
 
-  integer n, err
+  integer n, pow, err
   real(kind(0d0)), dimension(:), allocatable :: x, y
   real(kind(0d0)) :: result, expected
 
-  n = read_arg(1, 4)
+  pow = read_arg(1, 2)
+  n = 2**pow
 
   write(*, '(a i0)') 'dot product of length n = ', n
   allocate(x(n), y(n), stat=err)

@@ -77,8 +77,7 @@ int main(int argc, char** argv) {
     auto size_in_bytes = n * sizeof(double);
 
     std::cout << "dispersion 1D test of length n = " << n
-              << " : " << size_in_bytes/(1024.*1024.) << "MB"
-              << std::endl;
+              << " : " << size_in_bytes/(1024.*1024.) << "MB\n";
 
     auto x0 = malloc_host<double>(n+4, 0.);
     auto x1 = malloc_host<double>(n+4, 0.);
@@ -93,7 +92,7 @@ int main(int argc, char** argv) {
     blur_twice_gpu_naive(x0, x1, n, nsteps);
     auto time = get_time() - tstart;
 
-    for(auto i=0; i<std::min(decltype(n){20},n); ++i) {
+    for (size_t i = 0; i < std::min(decltype(n){20}, n); ++i) {
         std::cout << x1[i] << " ";
     }
 
