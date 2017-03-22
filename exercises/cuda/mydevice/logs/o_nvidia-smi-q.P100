@@ -1,0 +1,153 @@
+srun -C gpu -t1 -n1 nvidia-smi -q > o_nvidia-smi-q
+==============NVSMI LOG==============
+
+Timestamp                           : Wed Mar 22 08:55:24 2017
+Driver Version                      : 375.39
+
+Attached GPUs                       : 1
+GPU 0000:02:00.0
+    Product Name                    : Tesla P100-PCIE-16GB
+    Product Brand                   : Tesla
+    Display Mode                    : Enabled
+    Display Active                  : Disabled
+    Persistence Mode                : Enabled
+    Accounting Mode                 : Disabled
+    Accounting Mode Buffer Size     : 1920
+    Driver Model
+        Current                     : N/A
+        Pending                     : N/A
+    Serial Number                   : 0323216087541
+    GPU UUID                        : GPU-fa0e2111-1d40-428a-4e8f-75e1fec87abb
+    Minor Number                    : 0
+    VBIOS Version                   : 86.00.3A.00.03
+    MultiGPU Board                  : No
+    Board ID                        : 0x200
+    GPU Part Number                 : 900-2H400-3800-000
+    Inforom Version
+        Image Version               : H400.0201.00.06
+        OEM Object                  : 1.1
+        ECC Object                  : 4.1
+        Power Management Object     : N/A
+    GPU Operation Mode
+        Current                     : N/A
+        Pending                     : N/A
+    GPU Virtualization Mode
+        Virtualization mode         : None
+    PCI
+        Bus                         : 0x02
+        Device                      : 0x00
+        Domain                      : 0x0000
+        Device Id                   : 0x15F810DE
+        Bus Id                      : 0000:02:00.0
+        Sub System Id               : 0x118F10DE
+        GPU Link Info
+            PCIe Generation
+                Max                 : 3
+                Current             : 3
+            Link Width
+                Max                 : 16x
+                Current             : 16x
+        Bridge Chip
+            Type                    : N/A
+            Firmware                : N/A
+        Replays since reset         : 0
+        Tx Throughput               : 0 KB/s
+        Rx Throughput               : 0 KB/s
+    Fan Speed                       : N/A
+    Performance State               : P0
+    Clocks Throttle Reasons
+        Idle                        : Active
+        Applications Clocks Setting : Not Active
+        SW Power Cap                : Not Active
+        HW Slowdown                 : Not Active
+        Sync Boost                  : Not Active
+        Unknown                     : Not Active
+    FB Memory Usage
+        Total                       : 16276 MiB
+        Used                        : 0 MiB
+        Free                        : 16276 MiB
+    BAR1 Memory Usage
+        Total                       : 16384 MiB
+        Used                        : 2 MiB
+        Free                        : 16382 MiB
+    Compute Mode                    : Exclusive_Process
+    Utilization
+        Gpu                         : 0 %
+        Memory                      : 0 %
+        Encoder                     : 0 %
+        Decoder                     : 0 %
+    Ecc Mode
+        Current                     : Enabled
+        Pending                     : Enabled
+    ECC Errors
+        Volatile
+            Single Bit            
+                Device Memory       : 0
+                Register File       : 0
+                L1 Cache            : N/A
+                L2 Cache            : 0
+                Texture Memory      : 0
+                Texture Shared      : 0
+                Total               : 0
+            Double Bit            
+                Device Memory       : 0
+                Register File       : 0
+                L1 Cache            : N/A
+                L2 Cache            : 0
+                Texture Memory      : 0
+                Texture Shared      : 0
+                Total               : 0
+        Aggregate
+            Single Bit            
+                Device Memory       : 0
+                Register File       : 0
+                L1 Cache            : N/A
+                L2 Cache            : 0
+                Texture Memory      : 0
+                Texture Shared      : 0
+                Total               : 0
+            Double Bit            
+                Device Memory       : 0
+                Register File       : 0
+                L1 Cache            : N/A
+                L2 Cache            : 0
+                Texture Memory      : 0
+                Texture Shared      : 0
+                Total               : 0
+    Retired Pages
+        Single Bit ECC              : 0
+        Double Bit ECC              : 0
+        Pending                     : No
+    Temperature
+        GPU Current Temp            : 31 C
+        GPU Shutdown Temp           : 85 C
+        GPU Slowdown Temp           : 82 C
+    Power Readings
+        Power Management            : Supported
+        Power Draw                  : 25.90 W
+        Power Limit                 : 250.00 W
+        Default Power Limit         : 250.00 W
+        Enforced Power Limit        : 250.00 W
+        Min Power Limit             : 125.00 W
+        Max Power Limit             : 250.00 W
+    Clocks
+        Graphics                    : 405 MHz
+        SM                          : 405 MHz
+        Memory                      : 715 MHz
+        Video                       : 835 MHz
+    Applications Clocks
+        Graphics                    : 1189 MHz
+        Memory                      : 715 MHz
+    Default Applications Clocks
+        Graphics                    : 1189 MHz
+        Memory                      : 715 MHz
+    Max Clocks
+        Graphics                    : 1328 MHz
+        SM                          : 1328 MHz
+        Memory                      : 715 MHz
+        Video                       : 1328 MHz
+    Clock Policy
+        Auto Boost                  : N/A
+        Auto Boost Default          : N/A
+    Processes                       : None
+

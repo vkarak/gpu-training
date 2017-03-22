@@ -44,27 +44,25 @@ int main(int argc, char *argv[])
         fputs ( gpu_str, stdout ); 
     }
     fclose(file);
-    printf("  More infos with : srun -C gpu -t1 -n1 nvidia-smi -q\n");
 
     MPI_Finalize();
 
     return 0;
 }
 
-// srun -C gpu -t1 -n1 ./exe.dom 
-//
+// srun -C gpu -t1 -n1 -c1 --hint=nomultithread ./exe.dom
+// 
 // === get_gpu_info ===
-// Process 0 on nid00000 out of 1 Device 0 (Tesla P100-PCIE-16GB)
+// Process 0 on nid00001 out of 1 Device 0 (Tesla P100-PCIE-16GB)
 // 
 // === get_more_gpu_info ===
 // Device 0: "Tesla P100-PCIE-16GB"
 //   CUDA Driver Version / Runtime Version     8.0 / 8.0
 //   CUDA Capability Major/Minor version number:    6.0
+//   (56) Multiprocessors, ( 64) CUDA Cores/MP:     3584 CUDA Cores
 //   Maximum number of threads per multiprocessor:  2048
+//   Peak number of threads:                        114688 threads
 //   Maximum number of threads per block:           1024
-//   Maximum sizes of each dimension of a block:    1024 x 1024 x 64
 // 
 // === /proc/driver/nvidia/version ===
 // NVRM version: NVIDIA UNIX x86_64 Kernel Module  375.39  Tue Jan 31 20:47:00 PST 2017
-// 
-//   More infos with : srun -C gpu -t1 -n1 nvidia-smi -q

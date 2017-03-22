@@ -6,8 +6,8 @@
 HH 	    := $(shell uname -n |cut -c1-3 )
 CC      := cc
 NVCC    := nvcc
-CFLAGS  := -g
-CUFLAGS := -G
+CFLAGS  := -g -I./include
+# CUFLAGS := -G -I./include
 LDFLAGS := $(CFLAGS)
 OBJ     := mpic.o mpicu.o
 EXECUTABLE := exe.$(HH)
