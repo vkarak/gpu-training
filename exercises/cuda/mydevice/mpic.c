@@ -1,7 +1,9 @@
 // --- CSCS (Swiss National Supercomputing Center) ---
 
 #include <stdio.h>
+#ifdef _MPI
 #include <mpi.h>
+#endif
 #include <unistd.h>
 #include <stdlib.h>
 
@@ -17,11 +19,15 @@ int main(int argc, char *argv[])
 {
     int rank=0, size=0, namelen;
     char gpu_str[256] = "";
+#ifdef _MPI
     char processor_name[MPI_MAX_PROCESSOR_NAME];
     MPI_Init (&argc, &argv);
     MPI_Comm_rank (MPI_COMM_WORLD, &rank);  
     MPI_Comm_size (MPI_COMM_WORLD, &size);  
     MPI_Get_processor_name(processor_name, &namelen);
+#else
+    char processor_name[1] = "";
+#endif
     int dev = rank % DEVS_PER_NODE;
     set_gpu(dev);
 
@@ -35,7 +41,9 @@ int main(int argc, char *argv[])
     get_more_gpu_info(dev); 
 
     // step3: /proc/driver/nvidia
+#ifdef _MPI
     MPI_Barrier(MPI_COMM_WORLD);
+#endif
     printf("\n=== /proc/driver/nvidia/version ===\n");
     static const char filename[] = "/proc/driver/nvidia/version";
     FILE *file = fopen ( filename, "r" );
@@ -45,7 +53,9 @@ int main(int argc, char *argv[])
     }
     fclose(file);
 
+#ifdef _MPI
     MPI_Finalize();
+#endif
 
     return 0;
 }

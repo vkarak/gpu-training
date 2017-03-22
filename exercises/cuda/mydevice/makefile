@@ -6,7 +6,7 @@
 HH 	    := $(shell uname -n |cut -c1-3 )
 CC      := cc
 NVCC    := nvcc
-CFLAGS  := -g -I./include
+CFLAGS  := -g -I./include # -D_MPI
 # CUFLAGS := -G -I./include
 LDFLAGS := $(CFLAGS)
 OBJ     := mpic.o mpicu.o

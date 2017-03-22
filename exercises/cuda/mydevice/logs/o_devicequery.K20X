@@ -1,3 +1,23 @@
+ piccinal@greina17:~/openacc-training.gitjg/exercises/cuda/mydevice$ CUDATOOLKIT_HOME=x PE_ENV=GNU mm LDFLAGS="-lcuda -lcudart"
+ piccinal@greina17:~/openacc-training.gitjg/exercises/cuda/mydevice$ ./exe.gre
+=== get_gpu_info ===
+Process 0 on  out of 0 Device 0 (Tesla K20Xm)
+
+=== get_more_gpu_info ===
+Device 0: "Tesla K20Xm"
+  CUDA Driver Version / Runtime Version     8.0 / 8.0
+  CUDA Capability Major/Minor version number:    3.5
+  (14) Multiprocessors, (192) CUDA Cores/MP:     2688 CUDA Cores
+  Maximum number of threads per multiprocessor:  2048
+  Peak number of threads:                        28672 threads
+  Maximum number of threads per block:           1024
+
+=== /proc/driver/nvidia/version ===
+NVRM version: NVIDIA UNIX x86_64 Kernel Module  367.48  Sat Sep  3 18:21:08 PDT 2016
+
+
+
+
  piccinal@greina17:~$ cuda/cuda8061/samples/bin/x86_64/linux/release/deviceQuery
 cuda/cuda8061/samples/bin/x86_64/linux/release/deviceQuery Starting...
 
