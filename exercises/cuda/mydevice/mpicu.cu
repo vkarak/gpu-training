@@ -43,7 +43,7 @@ void get_more_gpu_info(int dev)
 
   printf("  GPU Max Clock rate:                            %.0f MHz (%0.2f GHz)\n", 
     deviceProp.clockRate * 1e-3f, deviceProp.clockRate * 1e-6f);
-  printf("        Peak per GPU:                            %.0f Gflop/s\n",
+  printf("  Theoretical peak performance per GPU:          %.0f Gflop/s\n",
     deviceProp.clockRate *1e-6f 
     *_ConvertSMVer2Cores(deviceProp.major, deviceProp.minor)
     *deviceProp.multiProcessorCount);

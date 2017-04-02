@@ -28,6 +28,27 @@ subroutine axpy_gpu(n, alpha, x, y)
 
 end subroutine axpy_gpu
 
+subroutine print_versions()
+
+    integer :: omp_get_num_threads
+!$      character (len=3) :: ompnumthreads0=""
+!$      integer :: cscs_omp_v=0, ompnumthreads1
+!$      cscs_omp_v = _OPENMP
+!$      call getenv("OMP_NUM_THREADS", ompnumthreads0)
+!$omp parallel private(ompnumthreads1)
+!$      ompnumthreads1 = omp_get_num_threads()
+!$omp   master
+!$      print *, "OPENMP version:", cscs_omp_v, &
+!$            ompnumthreads0, ompnumthreads1
+!$omp   end master
+!$omp end parallel
+
+#ifdef _OPENACC
+    print *, "OPENACC version:", _OPENACC
+#endif
+
+end subroutine print_versions
+
 program main
   use util
   implicit none
@@ -37,6 +58,7 @@ program main
   real(kind(0d0)) :: axpy_start, copyin_start, copyout_start, time_axpy_omp, &
        time_axpy_gpu, time_copyin, time_copyout
 
+  call print_versions
   pow = read_arg(1, 16)
   n = 2**pow
   print *, 'memcopy and daxpy test of size', n
