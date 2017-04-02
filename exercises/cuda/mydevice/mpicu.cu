@@ -1,4 +1,5 @@
 // --- CSCS (Swiss National Supercomputing Center) ---
+// samples/1_Utilities/deviceQuery/deviceQuery.cpp
 
 #include <stdio.h>
 #include <helper_cuda.h>
@@ -39,6 +40,13 @@ void get_more_gpu_info(int dev)
   _ConvertSMVer2Cores(deviceProp.major, deviceProp.minor),
   _ConvertSMVer2Cores(deviceProp.major, deviceProp.minor) 
                             * deviceProp.multiProcessorCount);
+
+  printf("  GPU Max Clock rate:                            %.0f MHz (%0.2f GHz)\n", 
+    deviceProp.clockRate * 1e-3f, deviceProp.clockRate * 1e-6f);
+  printf("        Peak per GPU:                            %.0f Gflop/s\n",
+    deviceProp.clockRate *1e-6f 
+    *_ConvertSMVer2Cores(deviceProp.major, deviceProp.minor)
+    *deviceProp.multiProcessorCount);
 
   printf("  Maximum number of threads per multiprocessor:  %d\n", 
     deviceProp.maxThreadsPerMultiProcessor);

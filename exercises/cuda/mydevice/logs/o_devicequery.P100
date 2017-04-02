@@ -1,3 +1,57 @@
+srun -C gpu -t1 -n1 -c1 --hint=nomultithread ./exe.dom
+
+=== get_gpu_info ===
+Process 0 on  out of 0 Device 0 (Tesla P100-PCIE-16GB)
+
+=== get_more_gpu_info ===
+Device 0: "Tesla P100-PCIE-16GB"
+  CUDA Driver Version / Runtime Version     8.0 / 8.0
+  CUDA Capability Major/Minor version number:    6.0
+  (56) Multiprocessors, ( 64) CUDA Cores/MP:     3584 CUDA Cores
+  GPU Max Clock rate:                            1329 MHz (1.33 GHz)
+        Peak per GPU:                            4761 Gflop/s
+  Maximum number of threads per multiprocessor:  2048
+  Peak number of threads:                        114688 threads
+  Maximum number of threads per block:           1024
+
+=== /proc/driver/nvidia/version ===
+NVRM version: NVIDIA UNIX x86_64 Kernel Module  375.39  Tue Jan 31 20:47:00 PST 2017
+
+
+
+
+
+
+
+
+
+
+ piccinal@openpower01:~/openacc-training.gitjg/exercises/cuda/mydevice$master ./exe.ope
+=== get_gpu_info ===
+Process 0 on  out of 0 Device 0 (Tesla P100-SXM2-16GB)
+
+=== get_more_gpu_info ===
+Device 0: "Tesla P100-SXM2-16GB"
+  CUDA Driver Version / Runtime Version     8.0 / 8.0
+  CUDA Capability Major/Minor version number:    6.0
+  (56) Multiprocessors, ( 64) CUDA Cores/MP:     3584 CUDA Cores
+  Maximum number of threads per multiprocessor:  2048
+  Peak number of threads:                        114688 threads
+  Maximum number of threads per block:           1024
+
+=== /proc/driver/nvidia/version ===
+NVRM version: NVIDIA UNIX ppc64le Kernel Module  375.39  Tue Jan 31 18:44:46 PST 2017
+
+
+
+
+
+
+
+
+
+
+
 piccinal@dom101:/apps/common/UES/sandbox/jgp/cuda.nvidia/8.0.61/samples/1_Utilities/deviceQuery$
 
 srun -C gpu -t1 -n1 -c1 --hint=nomultithread ./deviceQuery
