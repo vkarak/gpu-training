@@ -1,0 +1,12 @@
+ OPENMP version:       200805 2              2
+ OPENACC version:       201306
+ memcopy and daxpy test of size        65536
+ -------
+ timings
+ -------
+ axpy (omp) :    9.2029571533203125E-005 s
+ axpy (gpu) :    6.6041946411132813E-005 s
+ copyin     :    0.3066079616546631      s
+ copyout    :    1.8596649169921875E-004 s
+ TOTAL      :    0.3068599700927734      s
+ ============ PASSED
