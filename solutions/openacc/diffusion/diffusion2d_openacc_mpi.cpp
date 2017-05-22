@@ -93,7 +93,9 @@ int main(int argc, char** argv) {
             MPI_Status  statuses[4];
             auto num_requests = 0;
 
-            #pragma acc host_data use_device(x0)
+#ifdef OPENACC_DATA
+            #pragma acc host_data use_device(x0, x1)
+#endif
             {
                 if (south >= 0) {
                     // x0(:, 0) <- south
