@@ -19,7 +19,7 @@ endif
 ifeq ($(PGI), 1)
 CXX = pgc++
 CXXFLAGS = -DPGI -std=c++11 -O3 -acc -Minfo=accel -ta=tesla:cuda8.0
-FCFLAGS  = -O3 -acc -Minfo=accel -ta=tesla:cuda8.0
+FCFLAGS  = -O3 -acc -Minfo=accel -ta=tesla:cuda8.0 -mp
 LDFLAGS += -L$(CRAY_CUDATOOLKIT_DIR)/lib64 -lcudart
 endif
 
@@ -44,7 +44,7 @@ util.o: util.f03
 axpy.openacc: axpy_openacc.cpp
 	$(CXX) $(CXXFLAGS) $< -o $@ $(LDFLAGS)
 
-axpy.openacc.fort: axpy_openacc.f90 util.o
+axpy.openacc.fort: axpy_openacc.F90 util.o
 	$(FC) $(FCFLAGS) $< util.o -o $@ $(LDFLAGS)
 
 clean:

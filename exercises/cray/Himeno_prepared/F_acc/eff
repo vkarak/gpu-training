@@ -1,0 +1,3 @@
+export PGI_ACC_TIME=1
+export PGI_ACC_NOTIFY=2
+

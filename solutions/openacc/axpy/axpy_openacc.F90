@@ -13,6 +13,7 @@ subroutine axpy(n, alpha, x, y)
 
 end subroutine axpy
 
+! OpenACC implementation of axpy kernel
 subroutine axpy_gpu(n, alpha, x, y)
   integer, intent(in) :: n
   real(kind(0d0)), intent(in) :: alpha
@@ -28,15 +29,39 @@ subroutine axpy_gpu(n, alpha, x, y)
 
 end subroutine axpy_gpu
 
+subroutine print_versions()
+
+    integer :: omp_get_num_threads
+!$      character (len=3) :: ompnumthreads0=""
+!$      integer :: cscs_omp_v=0, ompnumthreads1
+!$      cscs_omp_v = _OPENMP
+!$      call getenv("OMP_NUM_THREADS", ompnumthreads0)
+!$omp parallel private(ompnumthreads1)
+!$      ompnumthreads1 = omp_get_num_threads()
+!$omp   master
+!$      print *, "OPENMP version:", cscs_omp_v, &
+!$            ompnumthreads0, ompnumthreads1
+!$omp   end master
+!$omp end parallel
+
+#ifdef _OPENACC
+    print *, "OPENACC version:", _OPENACC
+#endif
+
+! call MPI_Get_version(version, subversion, iErr)
+
+end subroutine print_versions
+
 program main
   use util
   implicit none
 
   integer pow, n, err, i
   real(kind(0d0)), dimension(:), allocatable :: x, x_, y, y_
-  real(kind(0d0)) :: axpy_start, copyin_start, copyout_start, time_axpy_omp, &
-       time_axpy_gpu, time_copyin, time_copyout
+  real(kind(0d0)) :: axpy_start, copyin_start, copyout_start, & 
+        time_axpy_omp, time_axpy_gpu, time_copyin, time_copyout
 
+  call print_versions
   pow = read_arg(1, 16)
   n = 2**pow
   print *, 'memcopy and daxpy test of size', n
@@ -49,18 +74,23 @@ program main
   y(:)  = 3.0d0
   x_(:) = 1.5d0
   y_(:) = 3.0d0
+
+  ! openmp version:
   axpy_start = get_time()
   call axpy(n, 2d0, x_, y_)
   time_axpy_omp = get_time() - axpy_start
 
+  ! openacc data region start
   copyin_start = get_time()
   !$acc data copyin(x) copy(y)
   time_copyin = get_time() - copyin_start
 
+  ! openacc version:
   axpy_start = get_time()
   call axpy_gpu(n, 2d0, x, y)
   time_axpy_gpu = get_time() - axpy_start
 
+  ! openacc data region end
   copyout_start = get_time()
   !$acc end data
   time_copyout = get_time() - copyout_start
@@ -68,8 +98,9 @@ program main
   print *, '-------'
   print *, 'timings'
   print *, '-------'
-  print *, 'axpy (omp) : ', time_axpy_omp, 's'
-  print *, 'axpy (gpu) : ', time_axpy_gpu, 's'
+  print *, 'axpy (openmp, openacc): ', time_axpy_omp, " ", time_axpy_gpu, 'seconds'
+  !print *, 'axpy (openmp) : ', time_axpy_omp, 's'
+  !print *, 'axpy (openacc) : ', time_axpy_gpu, 's'
   print *, 'copyin     : ', time_copyin, 's'
   print *, 'copyout    : ', time_copyout, 's'
   print *, 'TOTAL      : ', time_axpy_gpu + time_copyin + time_copyout, 's'

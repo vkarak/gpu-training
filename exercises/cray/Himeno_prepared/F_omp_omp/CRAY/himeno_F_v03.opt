@@ -1,0 +1,545 @@
+       !        
+       !        Cray Inc. Decompilation
+       !        Notice - This output is provided for information only.
+       !        
+       !        Cray Inc. reserves the right to change the format of this
+       !        information at any time and does not guarantee the
+       !        readability or accuracy of this information.
+       !        
+       !        This information may not be compilable and corresponds to
+       !        the internal representation of the program during the
+       !        optimization phase of the compilation process.
+       !        
+       !        Source                :  himeno_F_v03.F90
+       !        File                  :  /apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_omp_omp/CRAY/himeno_F_v03.opt
+       !        Network               :  Aries interconnect
+       !        Target                :  Heterogeneous
+       !              Cpu             :  X86 :: haswell, avx2, fma
+       !              Accel           :  NVIDIA, fma
+       !        
+   82.       
+   82.       real*8
+   82.       function gettime
+   90.       $ir_S0 = irtc_rate_i8
+   90.       $Flat_S1 = _rtc
+   94.       gettime = ( real( $Flat_S1, 8 ) * 1.0/( real( $ir_S0, 8 ) ) )
+   94.       return
+   94.       end
+   94.       
+   39.       
+   39.       module himeno_include
+   97.       return
+   97.       end
+   97.       
+  195.       
+  195.       program main
+  116.       $snt_T0 = _data_region( 1, _mt_pinfo( _mt_rw_list(...), .true., 0 ), _acc_kernel_info( Null_Arg, _acc_lists( _acc_list_entry( _acc_alloc( $_acc_wrk2_T4(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), wrk2(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_alloc( $_acc_bnd_T6(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), bnd(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_alloc( $_acc_wrk1_T8(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), wrk1(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_alloc( $_acc_p_T10(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), p(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_alloc( $_acc_c_T12(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 3, 1 )), c(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 3, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_alloc( $_acc_b_T14(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 3, 1 )), b(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 3, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_alloc( $_acc_a_T16(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 4, 1 )), a(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 4, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), Null_Arg ) ) ) ) ) ) ), Null_Arg, Null_Arg ), _acc_control_info( _annot( Null_Arg, Null_Arg ), Null_Arg, Null_Arg ) ) )
+  117.       omega = 8.0000000000000004e-1
+  118.       imax = 256
+  119.       jmax = 128
+  120.       kmax = 128
+  123.       call initmt
+  125.       _fwrite( _clist( 0, 0, 3, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, 0, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg ), Null_Arg )
+  127.       _fwrite( _clist( 0, 0, 3, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, 0, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg ), _iolist( _iotype( 'Double precision', 0x800600000000L ) ) )
+  132.       _fwrite( _clist( 0, 0, 3, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, 0, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg ), Null_Arg )
+  133.       _fwrite( _clist( 0, 0, 3, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, 0, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg ), _iolist( _iotype( 'PROBLEM_SIZE : ', 0x800600000000L ), _iotype( 3, 0x2000200000000L ) ) )
+  134.       _fwrite( _clist( 0, 0, 3, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, 0, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg ), _iolist( _iotype( '  mimax = ', 0x800600000000L ), _iotype( 257, 0x2000200000000L ), _iotype( ' mjmax = ', 0x800600000000L ), _iotype( 129, 0x2000200000000L ), _iotype( ' mkmax = ', 0x800600000000L ), _iotype( 129, 0x2000200000000L ) ) )
+  135.       _fwrite( _clist( 0, 0, 3, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, 0, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg ), _iolist( _iotype( '  imax = ', 0x800600000000L ), _iotype( imax, 0x2000200000000L ), _iotype( ' jmax = ', 0x800600000000L ), _iotype( jmax, 0x2000200000000L ), _iotype( ' kmax = ', 0x800600000000L ), _iotype( kmax, 0x2000200000000L ) ) )
+  144.       _fwrite( _clist( 0, 0, 3, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, 0, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg ), Null_Arg )
+  145.       _fwrite( _clist( 0, 0, 3, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, 0, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg ), _iolist( _iotype( 'Using OpenMP', 0x800600000000L ) ) )
+  146.       $snt_T2 = _parallel( 2, _mt_pinfo( _mt_rw_list(...), .true., 0 ), Null_Arg )
+  147.       nthreads = omp_get_num_threads
+  148.       $snt_T2 = _endparallel( 2, _mt_pinfo( _mt_rw_list(...), .true., 0 ), $snt_T2 )
+  149.       _fwrite( _clist( 0, 0, 3, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, 0, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg ), _iolist( _iotype( '  OMP_NUM_THREADS : ', 0x800600000000L ), _iotype( nthreads, 0x2000200000000L ) ) )
+  153.       nn = 3
+  156.       $cpu0_S0 = gettime
+  157.       call jacobi_clone_108117_1( nn, gosa )
+  158.       $cpu1_S1 = gettime
+  159.       cpu1 = $cpu1_S1 + -$cpu0_S0
+  163.       xmflops2 = 9.9999999999999995e-7 * ( ( real( -2 + jmax ) * ( -2 + imax ) * real( -2 + kmax ) * 102.0 ) * 1.0/( $cpu1_S1 + -$cpu0_S0 ) )
+  165.       _fwrite( _clist( 0, 0, 3, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, 0, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg ), Null_Arg )
+  166.       _fwrite( _clist( 0, 0, 3, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, 0, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg ), _iolist( _iotype( 'Iterations  : ', 0x800600000000L ), _iotype( nn, 0x2000200000000L ) ) )
+  167.       _fwrite( _clist( 0, 0, 3, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, 0, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg ), _iolist( _iotype( 'Time (secs) : ', 0x800600000000L ), _iotype( cpu1, 0x804060300000000L ) ) )
+  168.       _fwrite( _clist( 0, 0, 3, Null_Arg, Null_Arg, Null_Arg, t$26,  _substr(t$25,1,29), Null_Arg, Null_Arg, Null_Arg, Null_Arg, 0, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg ), _iolist( _iotype( gosa, 0x804060300000000L ) ) )
+  169.       _fwrite( _clist( 0, 0, 3, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, 0, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg ), _iolist( _iotype( 'MFLOPS      : ', 0x800600000000L ), _iotype( xmflops2, 0x804060300000000L ) ) )
+  174.       nn = 100
+  177.       $cpu0_S2 = gettime
+  178.       call jacobi_clone_108117_2( nn, gosa )
+  179.       $cpu1_S3 = gettime
+  180.       cpu1 = $cpu1_S3 + -$cpu0_S2
+  184.       xmflops2 = 9.9999999999999995e-7 * ( ( real( -2 + jmax ) * ( -2 + imax ) * real( -2 + kmax ) * 3400.0 ) * 1.0/( $cpu1_S3 + -$cpu0_S2 ) )
+  185.       score = ( 1.2071463061323031e-8 * ( ( real( -2 + jmax ) * ( -2 + imax ) * real( -2 + kmax ) * 3400.0 ) * 1.0/( $cpu1_S3 + -$cpu0_S2 ) ) )
+  187.       _fwrite( _clist( 0, 0, 3, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, 0, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg ), Null_Arg )
+  188.       _fwrite( _clist( 0, 0, 3, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, 0, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg ), _iolist( _iotype( 'Iterations  : ', 0x800600000000L ), _iotype( nn, 0x2000200000000L ) ) )
+  189.       _fwrite( _clist( 0, 0, 3, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, 0, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg ), _iolist( _iotype( 'Time (secs) : ', 0x800600000000L ), _iotype( cpu1, 0x804060300000000L ) ) )
+  190.       _fwrite( _clist( 0, 0, 3, Null_Arg, Null_Arg, Null_Arg, t$28,  _substr(t$27,1,29), Null_Arg, Null_Arg, Null_Arg, Null_Arg, 0, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg ), _iolist( _iotype( gosa, 0x804060300000000L ) ) )
+  191.       _fwrite( _clist( 0, 0, 3, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, 0, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg ), _iolist( _iotype( 'MFLOPS      : ', 0x800600000000L ), _iotype( xmflops2, 0x804060300000000L ) ) )
+  192.       _fwrite( _clist( 0, 0, 3, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, 0, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg, Null_Arg ), _iolist( _iotype( 'Score based on Pentium III 600MHz :', 0x800600000000L ), _iotype( score, 0x804060300000000L ) ) )
+  193.       $snt_T0 = _acc_end_data_region( 1, _mt_pinfo( _mt_rw_list(...), .true., 0 ), _acc_kernel_info( $snt_T0, _acc_lists( _acc_list_entry( _acc_free( wrk2(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), $_acc_wrk2_T4(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_free( bnd(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), $_acc_bnd_T6(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_free( wrk1(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), $_acc_wrk1_T8(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_free( p(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), $_acc_p_T10(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_free( c(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 3, 1 )), $_acc_c_T12(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 3, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_free( b(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 3, 1 )), $_acc_b_T14(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 3, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_free( a(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 4, 1 )), $_acc_a_T16(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 4, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), Null_Arg ) ) ) ) ) ) ), Null_Arg, Null_Arg ), _acc_control_info( _annot( Null_Arg, Null_Arg ), Null_Arg, Null_Arg ) ) )
+  195.       call _end
+  195.       return
+  195.       end
+  195.       
+  157.       
+  157.       subroutine jacobi_clone_108117_1( nn, gosa )
+  157.       $snt_T0 = _data_region( 1, _mt_pinfo( _mt_rw_list(...), .true., 0 ), _acc_kernel_info( Null_Arg, _acc_lists( _acc_list_entry( _acc_alloc_copy_in( $_acc_p_T25(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), p(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_alloc_copy_in( $_acc_wrk1_T27(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), wrk1(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_alloc_copy_in( $_acc_bnd_T29(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), bnd(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_alloc_copy_in( $_acc_c_T31(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 3, 1 )), c(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 3, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_alloc_copy_in( $_acc_b_T33(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 3, 1 )), b(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 3, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_alloc_copy_in( $_acc_a_T35(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 4, 1 )), a(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 4, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_alloc( $_acc_wrk2_T37(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), wrk2(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), Null_Arg ) ) ) ) ) ) ), Null_Arg, Null_Arg ), _acc_control_info( _annot( Null_Arg, Null_Arg ), Null_Arg, Null_Arg ) ) )
+  157.       $snt_T2 = _parallel( 2, _mt_pinfo( _mt_rw_list(...), .true., 0 ), Null_Arg )
+  157.       $I_L157_157 = 0
+  157.       do
+  157.          _mt_barrier( 3, _mt_rw_list(...) )
+  157.          $snt_T3 = _mt_master( 4, _mt_rw_list(...) )
+  157.          gosa = 0.0
+  157.          $snt_T3 = _mt_endmaster( 4, _mt_rw_list(...), $snt_T3 )
+  157.          $$_gosa1 = 0.0
+  157.          $snt_T5 = _parallel( 5, _mt_pinfo( _mt_rw_list(...), .true., 0 ), Null_Arg )
+  157.          $snt_T7 = _parallel( 6, _mt_pinfo( _mt_rw_list(...), .true., 0 ), Null_Arg )
+  157.          $_pvt3_gosa1_T20 = 0.0
+  157.          if ( -3 + kmax >= 0 ) then
+  157.             if ( -3 + jmax < 0 ) then
+  157.                $I_L157_139 = 0
+  157. !$omp distribute dist_schedule(auto)
+  157.                do
+  157.                   $I_L157_139 = 1 + $I_L157_139
+  305.                   if ( $I_L157_139 >= -2 + kmax ) exit
+  305.                enddo
+  305.             else if ( -3 + imax >= 0 ) then
+  157.                $I_L157_155 = 0
+  157. !$omp distribute dist_schedule(auto)
+  157. !dir$ blocking_size( 1, 1 )
+  157.                do
+  157.                   $I_L157_153 = 0
+  157.                   do
+  157.                      $snt_T38 = _parallel( 18, _mt_pinfo( _mt_rw_list(...), .true., 0 ), Null_Arg )
+  157.                      $I_L157_147 = 0
+  157. !dir$  autothread partition(static,1)
+  157. !dir$ loop_info (automatic) cache_nt( wrk1, bnd, c, b, a, wrk2 )
+  157. !dir$ blocking_size( 1, 1 )
+  157.                      do
+  157.                         $I_L157_134 = 0
+  157. !dir$ shortloop32
+  157. !dir$ blocking_size( 8, 8 )
+  157.                         do
+  157.                            $_pvt4_pvt3_s0_T16_T44 = $_acc_a_T35(2 + $I_L157_147, $I_L157_134 + 8 * $I_L157_153 + 2, 2 + $I_L157_155, 1) * $_acc_p_T25(3 + $I_L157_147, $I_L157_134 + 8 * $I_L157_153 + 2, 2 + $I_L157_155) + $_acc_a_T35(2 + $I_L157_147, $I_L157_134 + 8 * $I_L157_153 + 2, 2 + $I_L157_155, 2) * $_acc_p_T25(2 + $I_L157_147, $I_L157_134 + 8 * $I_L157_153 + 3, 2 + $I_L157_155) + $_acc_a_T35(2 + $I_L157_147, $I_L157_134 + 8 * $I_L157_153 + 2, 2 + $I_L157_155, 3) * $_acc_p_T25(2 + $I_L157_147, $I_L157_134 + 8 * $I_L157_153 + 2, 3 + $I_L157_155) + $_acc_b_T33(2 + $I_L157_147, $I_L157_134 + 8 * $I_L157_153 + 2, 2 + $I_L157_155, 1) * ( $_acc_p_T25(3 + $I_L157_147, $I_L157_134 + 8 * $I_L157_153 + 3, 2 + $I_L157_155) + -$_acc_p_T25(3 + $I_L157_147, $I_L157_134 + 8 * $I_L157_153 + 1, 2 + $I_L157_155) + -$_acc_p_T25(1 + $I_L157_147, $I_L157_134 + 8 * $I_L157_153 + 3, 2 + $I_L157_155) + $_acc_p_T25(1 + $I_L157_147, $I_L157_134 + 8 * $I_L157_153 + 1, 2 + $I_L157_155) ) + $_acc_b_T33(2 + $I_L157_147, $I_L157_134 + 8 * $I_L157_153 + 2, 2 + $I_L157_155, 2) * ( $_acc_p_T25(2 + $I_L157_147, $I_L157_134 + 8 * $I_L157_153 + 3, 3 + $I_L157_155) + -$_acc_p_T25(2 + $I_L157_147, $I_L157_134 + 8 * $I_L157_153 + 1, 3 + $I_L157_155) + -$_acc_p_T25(2 + $I_L157_147, $I_L157_134 + 8 * $I_L157_153 + 3, 1 + $I_L157_155) + $_acc_p_T25(2 + $I_L157_147, $I_L157_134 + 8 * $I_L157_153 + 1, 1 + $I_L157_155) ) + $_acc_b_T33(2 + $I_L157_147, $I_L157_134 + 8 * $I_L157_153 + 2, 2 + $I_L157_155, 3) * ( $_acc_p_T25(3 + $I_L157_147, $I_L157_134 + 8 * $I_L157_153 + 2, 3 + $I_L157_155) + -$_acc_p_T25(1 + $I_L157_147, $I_L157_134 + 8 * $I_L157_153 + 2, 3 + $I_L157_155) + -$_acc_p_T25(3 + $I_L157_147, $I_L157_134 + 8 * $I_L157_153 + 2, 1 + $I_L157_155) + $_acc_p_T25(1 + $I_L157_147, $I_L157_134 + 8 * $I_L157_153 + 2, 1 + $I_L157_155) ) + $_acc_c_T31(2 + $I_L157_147, $I_L157_134 + 8 * $I_L157_153 + 2, 2 + $I_L157_155, 1) * $_acc_p_T25(1 + $I_L157_147, $I_L157_134 + 8 * $I_L157_153 + 2, 2 + $I_L157_155) + $_acc_c_T31(2 + $I_L157_147, $I_L157_134 + 8 * $I_L157_153 + 2, 2 + $I_L157_155, 2) * $_acc_p_T25(2 + $I_L157_147, $I_L157_134 + 8 * $I_L157_153 + 1, 2 + $I_L157_155) + $_acc_c_T31(2 + $I_L157_147, $I_L157_134 + 8 * $I_L157_153 + 2, 2 + $I_L157_155, 3) * $_acc_p_T25(2 + $I_L157_147, $I_L157_134 + 8 * $I_L157_153 + 2, 1 + $I_L157_155) + $_acc_wrk1_T27(2 + $I_L157_147, $I_L157_134 + 8 * $I_L157_153 + 2, 2 + $I_L157_155)
+  157.                            $_pvt4_pvt3_ss_T15_T45 = ( $_pvt4_pvt3_s0_T16_T44 * $_acc_a_T35(2 + $I_L157_147, $I_L157_134 + 8 * $I_L157_153 + 2, 2 + $I_L157_155, 4) + -$_acc_p_T25(2 + $I_L157_147, $I_L157_134 + 8 * $I_L157_153 + 2, 2 + $I_L157_155) ) * $_acc_bnd_T29(2 + $I_L157_147, $I_L157_134 + 8 * $I_L157_153 + 2, 2 + $I_L157_155)
+  157.                            $_pvt3_gosa1_T20 = _mt_reduc( 16, op(+), _annot( $_pvt3_gosa1_T20, $_pvt4_pvt3_ss_T15_T45 * $_pvt4_pvt3_ss_T15_T45 ) )
+  157.                            $_acc_wrk2_T37(2 + $I_L157_147, $I_L157_134 + 8 * $I_L157_153 + 2, 2 + $I_L157_155) = $_acc_p_T25(2 + $I_L157_147, $I_L157_134 + 8 * $I_L157_153 + 2, 2 + $I_L157_155) + omega * $_pvt4_pvt3_ss_T15_T45
+  157.                            $I_L157_134 = 1 + $I_L157_134
+  304.                            if ( $I_L157_134 >= min( -2 + jmax, 8 + 8 * $I_L157_153 ) + -8 * $I_L157_153 ) exit
+  304.                         enddo
+  157.                         $I_L157_147 = 1 + $I_L157_147
+  303.                         if ( $I_L157_147 >= -2 + imax ) exit
+  303.                      enddo
+  303.                      $snt_T38 = _endparallel( 18, _mt_pinfo( _mt_rw_list(...), .true., 0 ), $snt_T38 )
+  157.                      $I_L157_153 = 1 + $I_L157_153
+  304.                      if ( $I_L157_153 >= 1 + max( 0, -1 + _rsh( 5 + jmax, 3 ) ) ) exit
+  304.                   enddo
+  157.                   $I_L157_155 = 1 + $I_L157_155
+  305.                   if ( $I_L157_155 >= -2 + kmax ) exit
+  305.                enddo
+  305.             else
+  157.                $I_L157_143 = 0
+  157. !$omp distribute dist_schedule(auto)
+  157.                do
+  157.                   $I_L157_143 = 1 + $I_L157_143
+  305.                   if ( $I_L157_143 >= -2 + kmax ) exit
+  305.                enddo
+  305.             endif
+  305.          endif
+  157.          $$_gosa1 = _mt_fold_reduc( 6, op(+), _annot( $$_gosa1, $_pvt3_gosa1_T20 ) )
+  157.          $snt_T7 = _endparallel( 6, _mt_pinfo( _mt_rw_list(...), .true., 0 ), $snt_T7 )
+  157.          $snt_T5 = _endparallel( 5, _mt_pinfo( _mt_rw_list(...), .true., 0 ), $snt_T5 )
+  157.          $snt_T10 = _parallel( 8, _mt_pinfo( _mt_rw_list(...), .true., 0 ), Null_Arg )
+  157.          $snt_T12 = _parallel( 9, _mt_pinfo( _mt_rw_list(...), .true., 0 ), Null_Arg )
+  157.          if ( -3 + kmax >= 0 ) then
+  157.             if ( -3 + jmax < 0 ) then
+  157.                $I_L157_141 = 0
+  157. !$omp distribute dist_schedule(auto)
+  157.                do
+  157.                   $I_L157_141 = 1 + $I_L157_141
+  315.                   if ( $I_L157_141 >= -2 + kmax ) exit
+  315.                enddo
+  315.             else if ( -3 + imax >= 0 ) then
+  157.                $I_L157_151 = 0
+  157. !$omp distribute dist_schedule(auto)
+  157.                do
+  157.                   $I_L157_149 = 0
+  157.                   do
+  157.                      $snt_T40 = _parallel( 19, _mt_pinfo( _mt_rw_list(...), .true., 0 ), Null_Arg )
+  157.                      $I_L157_137 = 0
+  157. !dir$  autothread partition(static,1)
+  157. !dir$ loop_info (automatic) cache_nt( wrk2, p )
+  157.                      do
+  157.                         $_acc_p_T25(2 + $I_L157_137, 2 + $I_L157_149, 2 + $I_L157_151) = $_acc_wrk2_T37(2 + $I_L157_137, 2 + $I_L157_149, 2 + $I_L157_151)
+  157.                         $I_L157_137 = 1 + $I_L157_137
+  313.                         if ( $I_L157_137 >= -2 + imax ) exit
+  313.                      enddo
+  313.                      $snt_T40 = _endparallel( 19, _mt_pinfo( _mt_rw_list(...), .true., 0 ), $snt_T40 )
+  157.                      $I_L157_149 = 1 + $I_L157_149
+  314.                      if ( $I_L157_149 >= -2 + jmax ) exit
+  314.                   enddo
+  157.                   $I_L157_151 = 1 + $I_L157_151
+  315.                   if ( $I_L157_151 >= -2 + kmax ) exit
+  315.                enddo
+  315.             else
+  157.                $I_L157_145 = 0
+  157. !$omp distribute dist_schedule(auto)
+  157.                do
+  157.                   $I_L157_145 = 1 + $I_L157_145
+  315.                   if ( $I_L157_145 >= -2 + kmax ) exit
+  315.                enddo
+  315.             endif
+  315.          endif
+  157.          $snt_T12 = _endparallel( 9, _mt_pinfo( _mt_rw_list(...), .true., 0 ), $snt_T12 )
+  157.          $snt_T10 = _endparallel( 8, _mt_pinfo( _mt_rw_list(...), .true., 0 ), $snt_T10 )
+  157.          $snt_T14 = _mt_critical( 11, _mt_rw_list(...) )
+  157.          gosa = gosa + $$_gosa1
+  157.          $snt_T14 = _mt_endcritical( 11, _mt_rw_list(...), $snt_T14 )
+  157.          $I_L157_157 = 1 + $I_L157_157
+  322.          if ( $I_L157_157 >= 3 ) exit
+  322.       enddo
+  157.       $snt_T2 = _endparallel( 2, _mt_pinfo( _mt_rw_list(...), .true., 0 ), $snt_T2 )
+  157.       $snt_T0 = _acc_end_data_region( 1, _mt_pinfo( _mt_rw_list(...), .true., 0 ), _acc_kernel_info( $snt_T0, _acc_lists( _acc_list_entry( _acc_copy_out_free( p(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), $_acc_p_T25(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_free( wrk1(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), $_acc_wrk1_T27(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_free( bnd(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), $_acc_bnd_T29(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_free( c(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 3, 1 )), $_acc_c_T31(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 3, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_free( b(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 3, 1 )), $_acc_b_T33(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 3, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_free( a(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 4, 1 )), $_acc_a_T35(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 4, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_free( wrk2(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), $_acc_wrk2_T37(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), Null_Arg ) ) ) ) ) ) ), Null_Arg, Null_Arg ), _acc_control_info( _annot( Null_Arg, Null_Arg ), Null_Arg, Null_Arg ) ) )
+  157.       return
+  157.       end
+  157.       
+  178.       
+  178.       subroutine jacobi_clone_108117_2( nn, gosa )
+  178.       $snt_T0 = _data_region( 1, _mt_pinfo( _mt_rw_list(...), .true., 0 ), _acc_kernel_info( Null_Arg, _acc_lists( _acc_list_entry( _acc_alloc_copy_in( $_acc_p_T25(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), p(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_alloc_copy_in( $_acc_wrk1_T27(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), wrk1(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_alloc_copy_in( $_acc_bnd_T29(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), bnd(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_alloc_copy_in( $_acc_c_T31(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 3, 1 )), c(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 3, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_alloc_copy_in( $_acc_b_T33(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 3, 1 )), b(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 3, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_alloc_copy_in( $_acc_a_T35(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 4, 1 )), a(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 4, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_alloc( $_acc_wrk2_T37(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), wrk2(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), Null_Arg ) ) ) ) ) ) ), Null_Arg, Null_Arg ), _acc_control_info( _annot( Null_Arg, Null_Arg ), Null_Arg, Null_Arg ) ) )
+  178.       $snt_T2 = _parallel( 2, _mt_pinfo( _mt_rw_list(...), .true., 0 ), Null_Arg )
+  178.       $I_L178_157 = 0
+  178.       do
+  178.          _mt_barrier( 3, _mt_rw_list(...) )
+  178.          $snt_T3 = _mt_master( 4, _mt_rw_list(...) )
+  178.          gosa = 0.0
+  178.          $snt_T3 = _mt_endmaster( 4, _mt_rw_list(...), $snt_T3 )
+  178.          $$_gosa1 = 0.0
+  178.          $snt_T5 = _parallel( 5, _mt_pinfo( _mt_rw_list(...), .true., 0 ), Null_Arg )
+  178.          $snt_T7 = _parallel( 6, _mt_pinfo( _mt_rw_list(...), .true., 0 ), Null_Arg )
+  178.          $_pvt3_gosa1_T20 = 0.0
+  178.          if ( -3 + kmax >= 0 ) then
+  178.             if ( -3 + jmax < 0 ) then
+  178.                $I_L178_139 = 0
+  178. !$omp distribute dist_schedule(auto)
+  178.                do
+  178.                   $I_L178_139 = 1 + $I_L178_139
+  305.                   if ( $I_L178_139 >= -2 + kmax ) exit
+  305.                enddo
+  305.             else if ( -3 + imax >= 0 ) then
+  178.                $I_L178_155 = 0
+  178. !$omp distribute dist_schedule(auto)
+  178. !dir$ blocking_size( 1, 1 )
+  178.                do
+  178.                   $I_L178_153 = 0
+  178.                   do
+  178.                      $snt_T38 = _parallel( 18, _mt_pinfo( _mt_rw_list(...), .true., 0 ), Null_Arg )
+  178.                      $I_L178_147 = 0
+  178. !dir$  autothread partition(static,1)
+  178. !dir$ loop_info (automatic) cache_nt( wrk1, bnd, c, b, a, wrk2 )
+  178. !dir$ blocking_size( 1, 1 )
+  178.                      do
+  178.                         $I_L178_134 = 0
+  178. !dir$ shortloop32
+  178. !dir$ blocking_size( 8, 8 )
+  178.                         do
+  178.                            $_pvt4_pvt3_s0_T16_T44 = $_acc_a_T35(2 + $I_L178_147, $I_L178_134 + 8 * $I_L178_153 + 2, 2 + $I_L178_155, 1) * $_acc_p_T25(3 + $I_L178_147, $I_L178_134 + 8 * $I_L178_153 + 2, 2 + $I_L178_155) + $_acc_a_T35(2 + $I_L178_147, $I_L178_134 + 8 * $I_L178_153 + 2, 2 + $I_L178_155, 2) * $_acc_p_T25(2 + $I_L178_147, $I_L178_134 + 8 * $I_L178_153 + 3, 2 + $I_L178_155) + $_acc_a_T35(2 + $I_L178_147, $I_L178_134 + 8 * $I_L178_153 + 2, 2 + $I_L178_155, 3) * $_acc_p_T25(2 + $I_L178_147, $I_L178_134 + 8 * $I_L178_153 + 2, 3 + $I_L178_155) + $_acc_b_T33(2 + $I_L178_147, $I_L178_134 + 8 * $I_L178_153 + 2, 2 + $I_L178_155, 1) * ( $_acc_p_T25(3 + $I_L178_147, $I_L178_134 + 8 * $I_L178_153 + 3, 2 + $I_L178_155) + -$_acc_p_T25(3 + $I_L178_147, $I_L178_134 + 8 * $I_L178_153 + 1, 2 + $I_L178_155) + -$_acc_p_T25(1 + $I_L178_147, $I_L178_134 + 8 * $I_L178_153 + 3, 2 + $I_L178_155) + $_acc_p_T25(1 + $I_L178_147, $I_L178_134 + 8 * $I_L178_153 + 1, 2 + $I_L178_155) ) + $_acc_b_T33(2 + $I_L178_147, $I_L178_134 + 8 * $I_L178_153 + 2, 2 + $I_L178_155, 2) * ( $_acc_p_T25(2 + $I_L178_147, $I_L178_134 + 8 * $I_L178_153 + 3, 3 + $I_L178_155) + -$_acc_p_T25(2 + $I_L178_147, $I_L178_134 + 8 * $I_L178_153 + 1, 3 + $I_L178_155) + -$_acc_p_T25(2 + $I_L178_147, $I_L178_134 + 8 * $I_L178_153 + 3, 1 + $I_L178_155) + $_acc_p_T25(2 + $I_L178_147, $I_L178_134 + 8 * $I_L178_153 + 1, 1 + $I_L178_155) ) + $_acc_b_T33(2 + $I_L178_147, $I_L178_134 + 8 * $I_L178_153 + 2, 2 + $I_L178_155, 3) * ( $_acc_p_T25(3 + $I_L178_147, $I_L178_134 + 8 * $I_L178_153 + 2, 3 + $I_L178_155) + -$_acc_p_T25(1 + $I_L178_147, $I_L178_134 + 8 * $I_L178_153 + 2, 3 + $I_L178_155) + -$_acc_p_T25(3 + $I_L178_147, $I_L178_134 + 8 * $I_L178_153 + 2, 1 + $I_L178_155) + $_acc_p_T25(1 + $I_L178_147, $I_L178_134 + 8 * $I_L178_153 + 2, 1 + $I_L178_155) ) + $_acc_c_T31(2 + $I_L178_147, $I_L178_134 + 8 * $I_L178_153 + 2, 2 + $I_L178_155, 1) * $_acc_p_T25(1 + $I_L178_147, $I_L178_134 + 8 * $I_L178_153 + 2, 2 + $I_L178_155) + $_acc_c_T31(2 + $I_L178_147, $I_L178_134 + 8 * $I_L178_153 + 2, 2 + $I_L178_155, 2) * $_acc_p_T25(2 + $I_L178_147, $I_L178_134 + 8 * $I_L178_153 + 1, 2 + $I_L178_155) + $_acc_c_T31(2 + $I_L178_147, $I_L178_134 + 8 * $I_L178_153 + 2, 2 + $I_L178_155, 3) * $_acc_p_T25(2 + $I_L178_147, $I_L178_134 + 8 * $I_L178_153 + 2, 1 + $I_L178_155) + $_acc_wrk1_T27(2 + $I_L178_147, $I_L178_134 + 8 * $I_L178_153 + 2, 2 + $I_L178_155)
+  178.                            $_pvt4_pvt3_ss_T15_T45 = ( $_pvt4_pvt3_s0_T16_T44 * $_acc_a_T35(2 + $I_L178_147, $I_L178_134 + 8 * $I_L178_153 + 2, 2 + $I_L178_155, 4) + -$_acc_p_T25(2 + $I_L178_147, $I_L178_134 + 8 * $I_L178_153 + 2, 2 + $I_L178_155) ) * $_acc_bnd_T29(2 + $I_L178_147, $I_L178_134 + 8 * $I_L178_153 + 2, 2 + $I_L178_155)
+  178.                            $_pvt3_gosa1_T20 = _mt_reduc( 16, op(+), _annot( $_pvt3_gosa1_T20, $_pvt4_pvt3_ss_T15_T45 * $_pvt4_pvt3_ss_T15_T45 ) )
+  178.                            $_acc_wrk2_T37(2 + $I_L178_147, $I_L178_134 + 8 * $I_L178_153 + 2, 2 + $I_L178_155) = $_acc_p_T25(2 + $I_L178_147, $I_L178_134 + 8 * $I_L178_153 + 2, 2 + $I_L178_155) + omega * $_pvt4_pvt3_ss_T15_T45
+  178.                            $I_L178_134 = 1 + $I_L178_134
+  304.                            if ( $I_L178_134 >= min( -2 + jmax, 8 + 8 * $I_L178_153 ) + -8 * $I_L178_153 ) exit
+  304.                         enddo
+  178.                         $I_L178_147 = 1 + $I_L178_147
+  303.                         if ( $I_L178_147 >= -2 + imax ) exit
+  303.                      enddo
+  303.                      $snt_T38 = _endparallel( 18, _mt_pinfo( _mt_rw_list(...), .true., 0 ), $snt_T38 )
+  178.                      $I_L178_153 = 1 + $I_L178_153
+  304.                      if ( $I_L178_153 >= 1 + max( 0, -1 + _rsh( 5 + jmax, 3 ) ) ) exit
+  304.                   enddo
+  178.                   $I_L178_155 = 1 + $I_L178_155
+  305.                   if ( $I_L178_155 >= -2 + kmax ) exit
+  305.                enddo
+  305.             else
+  178.                $I_L178_143 = 0
+  178. !$omp distribute dist_schedule(auto)
+  178.                do
+  178.                   $I_L178_143 = 1 + $I_L178_143
+  305.                   if ( $I_L178_143 >= -2 + kmax ) exit
+  305.                enddo
+  305.             endif
+  305.          endif
+  178.          $$_gosa1 = _mt_fold_reduc( 6, op(+), _annot( $$_gosa1, $_pvt3_gosa1_T20 ) )
+  178.          $snt_T7 = _endparallel( 6, _mt_pinfo( _mt_rw_list(...), .true., 0 ), $snt_T7 )
+  178.          $snt_T5 = _endparallel( 5, _mt_pinfo( _mt_rw_list(...), .true., 0 ), $snt_T5 )
+  178.          $snt_T10 = _parallel( 8, _mt_pinfo( _mt_rw_list(...), .true., 0 ), Null_Arg )
+  178.          $snt_T12 = _parallel( 9, _mt_pinfo( _mt_rw_list(...), .true., 0 ), Null_Arg )
+  178.          if ( -3 + kmax >= 0 ) then
+  178.             if ( -3 + jmax < 0 ) then
+  178.                $I_L178_141 = 0
+  178. !$omp distribute dist_schedule(auto)
+  178.                do
+  178.                   $I_L178_141 = 1 + $I_L178_141
+  315.                   if ( $I_L178_141 >= -2 + kmax ) exit
+  315.                enddo
+  315.             else if ( -3 + imax >= 0 ) then
+  178.                $I_L178_151 = 0
+  178. !$omp distribute dist_schedule(auto)
+  178.                do
+  178.                   $I_L178_149 = 0
+  178.                   do
+  178.                      $snt_T40 = _parallel( 19, _mt_pinfo( _mt_rw_list(...), .true., 0 ), Null_Arg )
+  178.                      $I_L178_137 = 0
+  178. !dir$  autothread partition(static,1)
+  178. !dir$ loop_info (automatic) cache_nt( wrk2, p )
+  178.                      do
+  178.                         $_acc_p_T25(2 + $I_L178_137, 2 + $I_L178_149, 2 + $I_L178_151) = $_acc_wrk2_T37(2 + $I_L178_137, 2 + $I_L178_149, 2 + $I_L178_151)
+  178.                         $I_L178_137 = 1 + $I_L178_137
+  313.                         if ( $I_L178_137 >= -2 + imax ) exit
+  313.                      enddo
+  313.                      $snt_T40 = _endparallel( 19, _mt_pinfo( _mt_rw_list(...), .true., 0 ), $snt_T40 )
+  178.                      $I_L178_149 = 1 + $I_L178_149
+  314.                      if ( $I_L178_149 >= -2 + jmax ) exit
+  314.                   enddo
+  178.                   $I_L178_151 = 1 + $I_L178_151
+  315.                   if ( $I_L178_151 >= -2 + kmax ) exit
+  315.                enddo
+  315.             else
+  178.                $I_L178_145 = 0
+  178. !$omp distribute dist_schedule(auto)
+  178.                do
+  178.                   $I_L178_145 = 1 + $I_L178_145
+  315.                   if ( $I_L178_145 >= -2 + kmax ) exit
+  315.                enddo
+  315.             endif
+  315.          endif
+  178.          $snt_T12 = _endparallel( 9, _mt_pinfo( _mt_rw_list(...), .true., 0 ), $snt_T12 )
+  178.          $snt_T10 = _endparallel( 8, _mt_pinfo( _mt_rw_list(...), .true., 0 ), $snt_T10 )
+  178.          $snt_T14 = _mt_critical( 11, _mt_rw_list(...) )
+  178.          gosa = gosa + $$_gosa1
+  178.          $snt_T14 = _mt_endcritical( 11, _mt_rw_list(...), $snt_T14 )
+  178.          $I_L178_157 = 1 + $I_L178_157
+  322.          if ( $I_L178_157 >= 100 ) exit
+  322.       enddo
+  178.       $snt_T2 = _endparallel( 2, _mt_pinfo( _mt_rw_list(...), .true., 0 ), $snt_T2 )
+  178.       $snt_T0 = _acc_end_data_region( 1, _mt_pinfo( _mt_rw_list(...), .true., 0 ), _acc_kernel_info( $snt_T0, _acc_lists( _acc_list_entry( _acc_copy_out_free( p(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), $_acc_p_T25(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_free( wrk1(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), $_acc_wrk1_T27(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_free( bnd(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), $_acc_bnd_T29(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_free( c(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 3, 1 )), $_acc_c_T31(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 3, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_free( b(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 3, 1 )), $_acc_b_T33(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 3, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_free( a(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 4, 1 )), $_acc_a_T35(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 4, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_free( wrk2(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), $_acc_wrk2_T37(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), Null_Arg ) ) ) ) ) ) ), Null_Arg, Null_Arg ), _acc_control_info( _annot( Null_Arg, Null_Arg ), Null_Arg, Null_Arg ) ) )
+  178.       return
+  178.       end
+  178.       
+  198.       
+  198.       subroutine initmt
+  207.       $snt_T1 = _parallel( 1, _mt_pinfo( _mt_rw_list(...), .true., 0 ), Null_Arg )
+  208.       $snt_T3 = _parallel( 2, _mt_pinfo( _mt_rw_list(...), .true., 0 ), _acc_kernel_info( Null_Arg, _acc_lists( _acc_list_entry( _acc_alloc_copy_in( $_pvt2_acc_a_T18(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 4, 1 )), a(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 4, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_alloc_copy_in( $_pvt2_acc_b_T19(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 3, 1 )), b(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 3, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_alloc_copy_in( $_pvt2_acc_c_T20(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 3, 1 )), c(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 3, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_alloc_copy_in( $_pvt2_acc_p_T21(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), p(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_alloc_copy_in( $_pvt2_acc_wrk1_T22(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), wrk1(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_alloc_copy_in( $_pvt2_acc_bnd_T23(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), bnd(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), Null_Arg ) ) ) ) ) ), Null_Arg, Null_Arg ), Null_Arg ) )
+  208.       $snt_T5 = _parallel( 3, _mt_pinfo( _mt_rw_list(...), .true., 0 ), Null_Arg )
+  209.       $I_L209_126 = 0
+  209. !$omp distribute dist_schedule(auto)
+  209.       do
+  211.          $snt_T30 = _parallel( 12, _mt_pinfo( _mt_rw_list(...), .true., 0 ), Null_Arg )
+  211.          $I_L211_118 = 0
+  211. !dir$  autothread partition(static,1)
+  211. !dir$ loop_info (automatic) cache_nt( bnd, wrk1, p, c, b, a )
+  211.          do
+  212.             $_pvt2_acc_a_T18(1 + $I_L211_118, 1, 1 + $I_L209_126, 1) = 0.0
+  213.             $_pvt2_acc_a_T18(1 + $I_L211_118, 1, 1 + $I_L209_126, 2) = 0.0
+  214.             $_pvt2_acc_a_T18(1 + $I_L211_118, 1, 1 + $I_L209_126, 3) = 0.0
+  215.             $_pvt2_acc_a_T18(1 + $I_L211_118, 1, 1 + $I_L209_126, 4) = 0.0
+  216.             $_pvt2_acc_b_T19(1 + $I_L211_118, 1, 1 + $I_L209_126, 1) = 0.0
+  217.             $_pvt2_acc_b_T19(1 + $I_L211_118, 1, 1 + $I_L209_126, 2) = 0.0
+  218.             $_pvt2_acc_b_T19(1 + $I_L211_118, 1, 1 + $I_L209_126, 3) = 0.0
+  219.             $_pvt2_acc_c_T20(1 + $I_L211_118, 1, 1 + $I_L209_126, 1) = 0.0
+  220.             $_pvt2_acc_c_T20(1 + $I_L211_118, 1, 1 + $I_L209_126, 2) = 0.0
+  221.             $_pvt2_acc_c_T20(1 + $I_L211_118, 1, 1 + $I_L209_126, 3) = 0.0
+  222.             $_pvt2_acc_p_T21(1 + $I_L211_118, 1, 1 + $I_L209_126) = 0.0
+  223.             $_pvt2_acc_wrk1_T22(1 + $I_L211_118, 1, 1 + $I_L209_126) = 0.0
+  224.             $_pvt2_acc_bnd_T23(1 + $I_L211_118, 1, 1 + $I_L209_126) = 0.0
+  225.             $I_L211_118 = 1 + $I_L211_118
+  225.             if ( $I_L211_118 >= 33153 ) exit
+  225.          enddo
+  225.          $snt_T30 = _endparallel( 12, _mt_pinfo( _mt_rw_list(...), .true., 0 ), $snt_T30 )
+  227.          $I_L209_126 = 1 + $I_L209_126
+  227.          if ( $I_L209_126 >= 129 ) exit
+  227.       enddo
+  228.       $snt_T5 = _endparallel( 3, _mt_pinfo( _mt_rw_list(...), .true., 0 ), $snt_T5 )
+  228.       $snt_T3 = _endparallel( 2, _mt_pinfo( _mt_rw_list(...), .true., 0 ), _acc_kernel_info( $snt_T3, _acc_lists( _acc_list_entry( _acc_copy_out_free( a(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 4, 1 )), $_pvt2_acc_a_T18(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 4, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_copy_out_free( b(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 3, 1 )), $_pvt2_acc_b_T19(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 3, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_copy_out_free( c(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 3, 1 )), $_pvt2_acc_c_T20(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 3, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_copy_out_free( p(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), $_pvt2_acc_p_T21(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_copy_out_free( wrk1(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), $_pvt2_acc_wrk1_T22(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_copy_out_free( bnd(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), $_pvt2_acc_bnd_T23(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), Null_Arg ) ) ) ) ) ), Null_Arg, Null_Arg ), Null_Arg ) )
+  230.       $snt_T8 = _parallel( 5, _mt_pinfo( _mt_rw_list(...), .true., 0 ), _acc_kernel_info( Null_Arg, _acc_lists( _acc_list_entry( _acc_alloc_copy_in( $_pvt2_acc_a_T24(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 4, 1 )), a(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 4, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_alloc_copy_in( $_pvt2_acc_b_T25(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 3, 1 )), b(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 3, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_alloc_copy_in( $_pvt2_acc_c_T26(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 3, 1 )), c(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 3, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_alloc_copy_in( $_pvt2_acc_p_T27(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), p(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_alloc_copy_in( $_pvt2_acc_wrk1_T28(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), wrk1(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_alloc_copy_in( $_pvt2_acc_bnd_T29(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), bnd(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), Null_Arg ) ) ) ) ) ), Null_Arg, Null_Arg ), Null_Arg ) )
+  230.       $snt_T10 = _parallel( 6, _mt_pinfo( _mt_rw_list(...), .true., 0 ), Null_Arg )
+  231.       if ( kmax > 0 ) then
+  232.          if ( jmax <= 0 ) then
+  231.             $I_L231_122 = 0
+  231. !$omp distribute dist_schedule(auto)
+  231.             do
+  249.                $I_L231_122 = 1 + $I_L231_122
+  249.                if ( $I_L231_122 >= kmax ) exit
+  249.             enddo
+  249.          else if ( imax > 0 ) then
+  231.             $I_L231_130 = 0
+  231. !$omp distribute dist_schedule(auto)
+  231.             do
+  232.                $I_L232_128 = 0
+  232.                do
+  233.                   $snt_T32 = _parallel( 13, _mt_pinfo( _mt_rw_list(...), .true., 0 ), Null_Arg )
+  233.                   $I_L233_120 = 0
+  233. !dir$  autothread partition(static,1)
+  233. !dir$ loop_info (automatic) cache_nt( bnd, wrk1, p, c, b, a )
+  233.                   do
+  234.                      $_pvt2_acc_a_T24(1 + $I_L233_120, 1 + $I_L232_128, 1 + $I_L231_130, 1) = 1.0
+  235.                      $_pvt2_acc_a_T24(1 + $I_L233_120, 1 + $I_L232_128, 1 + $I_L231_130, 2) = 1.0
+  236.                      $_pvt2_acc_a_T24(1 + $I_L233_120, 1 + $I_L232_128, 1 + $I_L231_130, 3) = 1.0
+  237.                      $_pvt2_acc_a_T24(1 + $I_L233_120, 1 + $I_L232_128, 1 + $I_L231_130, 4) = 1.6666666666666666e-1
+  238.                      $_pvt2_acc_b_T25(1 + $I_L233_120, 1 + $I_L232_128, 1 + $I_L231_130, 1) = 0.0
+  239.                      $_pvt2_acc_b_T25(1 + $I_L233_120, 1 + $I_L232_128, 1 + $I_L231_130, 2) = 0.0
+  240.                      $_pvt2_acc_b_T25(1 + $I_L233_120, 1 + $I_L232_128, 1 + $I_L231_130, 3) = 0.0
+  241.                      $_pvt2_acc_c_T26(1 + $I_L233_120, 1 + $I_L232_128, 1 + $I_L231_130, 1) = 1.0
+  242.                      $_pvt2_acc_c_T26(1 + $I_L233_120, 1 + $I_L232_128, 1 + $I_L231_130, 2) = 1.0
+  243.                      $_pvt2_acc_c_T26(1 + $I_L233_120, 1 + $I_L232_128, 1 + $I_L231_130, 3) = 1.0
+  244.                      $_pvt2_acc_p_T27(1 + $I_L233_120, 1 + $I_L232_128, 1 + $I_L231_130) = ( $I_L231_130 * $I_L231_130 * 1.0/( real( ( -1 + kmax ) * ( -1 + kmax ), 8 ) ) )
+  245.                      $_pvt2_acc_wrk1_T28(1 + $I_L233_120, 1 + $I_L232_128, 1 + $I_L231_130) = 0.0
+  246.                      $_pvt2_acc_bnd_T29(1 + $I_L233_120, 1 + $I_L232_128, 1 + $I_L231_130) = 1.0
+  247.                      $I_L233_120 = 1 + $I_L233_120
+  247.                      if ( $I_L233_120 >= imax ) exit
+  247.                   enddo
+  247.                   $snt_T32 = _endparallel( 13, _mt_pinfo( _mt_rw_list(...), .true., 0 ), $snt_T32 )
+  248.                   $I_L232_128 = 1 + $I_L232_128
+  248.                   if ( $I_L232_128 >= jmax ) exit
+  248.                enddo
+  249.                $I_L231_130 = 1 + $I_L231_130
+  249.                if ( $I_L231_130 >= kmax ) exit
+  249.             enddo
+  249.          else
+  231.             $I_L231_124 = 0
+  231. !$omp distribute dist_schedule(auto)
+  231.             do
+  249.                $I_L231_124 = 1 + $I_L231_124
+  249.                if ( $I_L231_124 >= kmax ) exit
+  249.             enddo
+  249.          endif
+  249.       endif
+  250.       $snt_T10 = _endparallel( 6, _mt_pinfo( _mt_rw_list(...), .true., 0 ), $snt_T10 )
+  250.       $snt_T8 = _endparallel( 5, _mt_pinfo( _mt_rw_list(...), .true., 0 ), _acc_kernel_info( $snt_T8, _acc_lists( _acc_list_entry( _acc_copy_out_free( a(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 4, 1 )), $_pvt2_acc_a_T24(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 4, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_copy_out_free( b(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 3, 1 )), $_pvt2_acc_b_T25(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 3, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_copy_out_free( c(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 3, 1 )), $_pvt2_acc_c_T26(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 3, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_copy_out_free( p(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), $_pvt2_acc_p_T27(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_copy_out_free( wrk1(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), $_pvt2_acc_wrk1_T28(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_copy_out_free( bnd(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), $_pvt2_acc_bnd_T29(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), Null_Arg ) ) ) ) ) ), Null_Arg, Null_Arg ), Null_Arg ) )
+  251.       $snt_T1 = _endparallel( 1, _mt_pinfo( _mt_rw_list(...), .true., 0 ), $snt_T1 )
+  253.       return
+  253.       end
+  253.       
+  256.       
+  256.       subroutine jacobi( nn, gosa )
+  270.       $snt_T0 = _data_region( 1, _mt_pinfo( _mt_rw_list(...), .true., 0 ), _acc_kernel_info( Null_Arg, _acc_lists( _acc_list_entry( _acc_alloc_copy_in( $_acc_p_T25(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), p(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_alloc_copy_in( $_acc_wrk1_T27(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), wrk1(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_alloc_copy_in( $_acc_bnd_T29(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), bnd(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_alloc_copy_in( $_acc_c_T31(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 3, 1 )), c(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 3, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_alloc_copy_in( $_acc_b_T33(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 3, 1 )), b(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 3, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_alloc_copy_in( $_acc_a_T35(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 4, 1 )), a(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 4, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_alloc( $_acc_wrk2_T37(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), wrk2(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), Null_Arg ) ) ) ) ) ) ), Null_Arg, Null_Arg ), _acc_control_info( _annot( Null_Arg, Null_Arg ), Null_Arg, Null_Arg ) ) )
+  272.       $snt_T2 = _parallel( 2, _mt_pinfo( _mt_rw_list(...), .true., 0 ), Null_Arg )
+  273.       $t_S7 = nn
+  273.       if ( nn > 0 ) then
+  273.          $I_L273_157 = 0
+  273.          do
+  274.             _mt_barrier( 3, _mt_rw_list(...) )
+  275.             $snt_T3 = _mt_master( 4, _mt_rw_list(...) )
+  276.             gosa = 0.0
+  277.             $snt_T3 = _mt_endmaster( 4, _mt_rw_list(...), $snt_T3 )
+  279.             $$_gosa1 = 0.0
+  281.             $snt_T5 = _parallel( 5, _mt_pinfo( _mt_rw_list(...), .true., 0 ), Null_Arg )
+  281.             $snt_T7 = _parallel( 6, _mt_pinfo( _mt_rw_list(...), .true., 0 ), Null_Arg )
+  281.             $_pvt3_gosa1_T20 = 0.0
+  283.             if ( -3 + kmax >= 0 ) then
+  284.                if ( -3 + jmax < 0 ) then
+  283.                   $I_L283_139 = 0
+  283. !$omp distribute dist_schedule(auto)
+  283.                   do
+  305.                      $I_L283_139 = 1 + $I_L283_139
+  305.                      if ( $I_L283_139 >= -2 + kmax ) exit
+  305.                   enddo
+  305.                else if ( -3 + imax >= 0 ) then
+  283.                   $I_L283_155 = 0
+  283. !$omp distribute dist_schedule(auto)
+  283. !dir$ blocking_size( 1, 1 )
+  283.                   do
+  284.                      $I_L284_153 = 0
+  284.                      do
+  285.                         $snt_T38 = _parallel( 18, _mt_pinfo( _mt_rw_list(...), .true., 0 ), Null_Arg )
+  285.                         $I_L285_147 = 0
+  285. !dir$  autothread partition(static,1)
+  285. !dir$ loop_info (automatic) cache_nt( wrk1, c, bnd, b, a, wrk2 )
+  285. !dir$ blocking_size( 1, 1 )
+  285.                         do
+  284.                            $I_L284_134 = 0
+  284. !dir$ shortloop32
+  284. !dir$ blocking_size( 8, 8 )
+  284.                            do
+  286.                               $_pvt4_pvt3_s0_T16_T44 = $_acc_a_T35(2 + $I_L285_147, $I_L284_134 + 8 * $I_L284_153 + 2, 2 + $I_L283_155, 1) * $_acc_p_T25(3 + $I_L285_147, $I_L284_134 + 8 * $I_L284_153 + 2, 2 + $I_L283_155) + $_acc_a_T35(2 + $I_L285_147, $I_L284_134 + 8 * $I_L284_153 + 2, 2 + $I_L283_155, 2) * $_acc_p_T25(2 + $I_L285_147, $I_L284_134 + 8 * $I_L284_153 + 3, 2 + $I_L283_155) + $_acc_a_T35(2 + $I_L285_147, $I_L284_134 + 8 * $I_L284_153 + 2, 2 + $I_L283_155, 3) * $_acc_p_T25(2 + $I_L285_147, $I_L284_134 + 8 * $I_L284_153 + 2, 3 + $I_L283_155) + $_acc_b_T33(2 + $I_L285_147, $I_L284_134 + 8 * $I_L284_153 + 2, 2 + $I_L283_155, 1) * ( $_acc_p_T25(3 + $I_L285_147, $I_L284_134 + 8 * $I_L284_153 + 3, 2 + $I_L283_155) + -$_acc_p_T25(3 + $I_L285_147, $I_L284_134 + 8 * $I_L284_153 + 1, 2 + $I_L283_155) + -$_acc_p_T25(1 + $I_L285_147, $I_L284_134 + 8 * $I_L284_153 + 3, 2 + $I_L283_155) + $_acc_p_T25(1 + $I_L285_147, $I_L284_134 + 8 * $I_L284_153 + 1, 2 + $I_L283_155) ) + $_acc_b_T33(2 + $I_L285_147, $I_L284_134 + 8 * $I_L284_153 + 2, 2 + $I_L283_155, 2) * ( $_acc_p_T25(2 + $I_L285_147, $I_L284_134 + 8 * $I_L284_153 + 3, 3 + $I_L283_155) + -$_acc_p_T25(2 + $I_L285_147, $I_L284_134 + 8 * $I_L284_153 + 1, 3 + $I_L283_155) + -$_acc_p_T25(2 + $I_L285_147, $I_L284_134 + 8 * $I_L284_153 + 3, 1 + $I_L283_155) + $_acc_p_T25(2 + $I_L285_147, $I_L284_134 + 8 * $I_L284_153 + 1, 1 + $I_L283_155) ) + $_acc_b_T33(2 + $I_L285_147, $I_L284_134 + 8 * $I_L284_153 + 2, 2 + $I_L283_155, 3) * ( $_acc_p_T25(3 + $I_L285_147, $I_L284_134 + 8 * $I_L284_153 + 2, 3 + $I_L283_155) + -$_acc_p_T25(1 + $I_L285_147, $I_L284_134 + 8 * $I_L284_153 + 2, 3 + $I_L283_155) + -$_acc_p_T25(3 + $I_L285_147, $I_L284_134 + 8 * $I_L284_153 + 2, 1 + $I_L283_155) + $_acc_p_T25(1 + $I_L285_147, $I_L284_134 + 8 * $I_L284_153 + 2, 1 + $I_L283_155) ) + $_acc_c_T31(2 + $I_L285_147, $I_L284_134 + 8 * $I_L284_153 + 2, 2 + $I_L283_155, 1) * $_acc_p_T25(1 + $I_L285_147, $I_L284_134 + 8 * $I_L284_153 + 2, 2 + $I_L283_155) + $_acc_c_T31(2 + $I_L285_147, $I_L284_134 + 8 * $I_L284_153 + 2, 2 + $I_L283_155, 2) * $_acc_p_T25(2 + $I_L285_147, $I_L284_134 + 8 * $I_L284_153 + 1, 2 + $I_L283_155) + $_acc_c_T31(2 + $I_L285_147, $I_L284_134 + 8 * $I_L284_153 + 2, 2 + $I_L283_155, 3) * $_acc_p_T25(2 + $I_L285_147, $I_L284_134 + 8 * $I_L284_153 + 2, 1 + $I_L283_155) + $_acc_wrk1_T27(2 + $I_L285_147, $I_L284_134 + 8 * $I_L284_153 + 2, 2 + $I_L283_155)
+  300.                               $_pvt4_pvt3_ss_T15_T45 = ( $_pvt4_pvt3_s0_T16_T44 * $_acc_a_T35(2 + $I_L285_147, $I_L284_134 + 8 * $I_L284_153 + 2, 2 + $I_L283_155, 4) + -$_acc_p_T25(2 + $I_L285_147, $I_L284_134 + 8 * $I_L284_153 + 2, 2 + $I_L283_155) ) * $_acc_bnd_T29(2 + $I_L285_147, $I_L284_134 + 8 * $I_L284_153 + 2, 2 + $I_L283_155)
+  301.                               $_pvt3_gosa1_T20 = _mt_reduc( 16, op(+), _annot( $_pvt3_gosa1_T20, $_pvt4_pvt3_ss_T15_T45 * $_pvt4_pvt3_ss_T15_T45 ) )
+  302.                               $_acc_wrk2_T37(2 + $I_L285_147, $I_L284_134 + 8 * $I_L284_153 + 2, 2 + $I_L283_155) = $_acc_p_T25(2 + $I_L285_147, $I_L284_134 + 8 * $I_L284_153 + 2, 2 + $I_L283_155) + omega * $_pvt4_pvt3_ss_T15_T45
+  284.                               $I_L284_134 = 1 + $I_L284_134
+  304.                               if ( $I_L284_134 >= min( -2 + jmax, 8 + 8 * $I_L284_153 ) + -8 * $I_L284_153 ) exit
+  304.                            enddo
+  303.                            $I_L285_147 = 1 + $I_L285_147
+  303.                            if ( $I_L285_147 >= -2 + imax ) exit
+  303.                         enddo
+  303.                         $snt_T38 = _endparallel( 18, _mt_pinfo( _mt_rw_list(...), .true., 0 ), $snt_T38 )
+  284.                         $I_L284_153 = 1 + $I_L284_153
+  304.                         if ( $I_L284_153 >= 1 + max( 0, -1 + _rsh( 5 + jmax, 3 ) ) ) exit
+  304.                      enddo
+  305.                      $I_L283_155 = 1 + $I_L283_155
+  305.                      if ( $I_L283_155 >= -2 + kmax ) exit
+  305.                   enddo
+  305.                else
+  283.                   $I_L283_143 = 0
+  283. !$omp distribute dist_schedule(auto)
+  283.                   do
+  305.                      $I_L283_143 = 1 + $I_L283_143
+  305.                      if ( $I_L283_143 >= -2 + kmax ) exit
+  305.                   enddo
+  305.                endif
+  305.             endif
+  281.             $$_gosa1 = _mt_fold_reduc( 6, op(+), _annot( $$_gosa1, $_pvt3_gosa1_T20 ) )
+  306.             $snt_T7 = _endparallel( 6, _mt_pinfo( _mt_rw_list(...), .true., 0 ), $snt_T7 )
+  306.             $snt_T5 = _endparallel( 5, _mt_pinfo( _mt_rw_list(...), .true., 0 ), $snt_T5 )
+  308.             $snt_T10 = _parallel( 8, _mt_pinfo( _mt_rw_list(...), .true., 0 ), Null_Arg )
+  308.             $snt_T12 = _parallel( 9, _mt_pinfo( _mt_rw_list(...), .true., 0 ), Null_Arg )
+  309.             if ( -3 + kmax >= 0 ) then
+  310.                if ( -3 + jmax < 0 ) then
+  309.                   $I_L309_141 = 0
+  309. !$omp distribute dist_schedule(auto)
+  309.                   do
+  315.                      $I_L309_141 = 1 + $I_L309_141
+  315.                      if ( $I_L309_141 >= -2 + kmax ) exit
+  315.                   enddo
+  315.                else if ( -3 + imax >= 0 ) then
+  309.                   $I_L309_151 = 0
+  309. !$omp distribute dist_schedule(auto)
+  309.                   do
+  310.                      $I_L310_149 = 0
+  310.                      do
+  311.                         $snt_T40 = _parallel( 19, _mt_pinfo( _mt_rw_list(...), .true., 0 ), Null_Arg )
+  311.                         $I_L311_137 = 0
+  311. !dir$  autothread partition(static,1)
+  311. !dir$ loop_info (automatic) cache_nt( wrk2, p )
+  311.                         do
+  312.                            $_acc_p_T25(2 + $I_L311_137, 2 + $I_L310_149, 2 + $I_L309_151) = $_acc_wrk2_T37(2 + $I_L311_137, 2 + $I_L310_149, 2 + $I_L309_151)
+  313.                            $I_L311_137 = 1 + $I_L311_137
+  313.                            if ( $I_L311_137 >= -2 + imax ) exit
+  313.                         enddo
+  313.                         $snt_T40 = _endparallel( 19, _mt_pinfo( _mt_rw_list(...), .true., 0 ), $snt_T40 )
+  314.                         $I_L310_149 = 1 + $I_L310_149
+  314.                         if ( $I_L310_149 >= -2 + jmax ) exit
+  314.                      enddo
+  315.                      $I_L309_151 = 1 + $I_L309_151
+  315.                      if ( $I_L309_151 >= -2 + kmax ) exit
+  315.                   enddo
+  315.                else
+  309.                   $I_L309_145 = 0
+  309. !$omp distribute dist_schedule(auto)
+  309.                   do
+  315.                      $I_L309_145 = 1 + $I_L309_145
+  315.                      if ( $I_L309_145 >= -2 + kmax ) exit
+  315.                   enddo
+  315.                endif
+  315.             endif
+  316.             $snt_T12 = _endparallel( 9, _mt_pinfo( _mt_rw_list(...), .true., 0 ), $snt_T12 )
+  316.             $snt_T10 = _endparallel( 8, _mt_pinfo( _mt_rw_list(...), .true., 0 ), $snt_T10 )
+  318.             $snt_T14 = _mt_critical( 11, _mt_rw_list(...) )
+  319.             gosa = gosa + $$_gosa1
+  320.             $snt_T14 = _mt_endcritical( 11, _mt_rw_list(...), $snt_T14 )
+  322.             $I_L273_157 = 1 + $I_L273_157
+  322.             if ( $I_L273_157 >= $t_S7 ) exit
+  322.          enddo
+  322.       endif
+  323.       $snt_T2 = _endparallel( 2, _mt_pinfo( _mt_rw_list(...), .true., 0 ), $snt_T2 )
+  324.       $snt_T0 = _acc_end_data_region( 1, _mt_pinfo( _mt_rw_list(...), .true., 0 ), _acc_kernel_info( $snt_T0, _acc_lists( _acc_list_entry( _acc_copy_out_free( p(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), $_acc_p_T25(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_free( wrk1(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), $_acc_wrk1_T27(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_free( bnd(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), $_acc_bnd_T29(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_free( c(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 3, 1 )), $_acc_c_T31(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 3, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_free( b(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 3, 1 )), $_acc_b_T33(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 3, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_free( a(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 4, 1 )), $_acc_a_T35(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 ), +:( 1, 4, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), _acc_list_entry( _acc_free( wrk2(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), $_acc_wrk2_T37(+:( 1, 257, 1 ), +:( 1, 129, 1 ), +:( 1, 129, 1 )), _acc_transfer_flags( Null_Arg, 1 ) ), Null_Arg ) ) ) ) ) ) ), Null_Arg, Null_Arg ), _acc_control_info( _annot( Null_Arg, Null_Arg ), Null_Arg, Null_Arg ) ) )
+  326.       return
+  326.       end
+  326.       
