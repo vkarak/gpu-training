@@ -1,3 +1,5 @@
+#!/bin/bash
+
 loglist=$(ls $1/*/*.log)
 
 for log in $loglist
