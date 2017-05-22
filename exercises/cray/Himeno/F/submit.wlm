@@ -1,0 +1,24 @@
+#!/bin/bash
+#SBATCH --namer= himeno_v00
+#SBATCH --ntasks=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --time=00:03:00
+#SBATCH --output=himeno_v00.log
+#SBATCH --constraint=gpu
+##SBATCH --reservation=...
+
+cat $0
+
+# Load appropriate programming environment
+#   So appropriate runtime libraries are found
+module load craype-accel-nvidia60
+
+# Uncomment this line for runtime commentary
+#export CRAY_ACC_DEBUG=2
+# Uncomment this line for basic profiling
+#export COMPUTE_PROFILE=1
+
+# Execute the code, inheriting the job parameters from PBS
+export OMP_NUM_THREADS=1
+/usr/bin/time -p srun himeno_v00.x
+
