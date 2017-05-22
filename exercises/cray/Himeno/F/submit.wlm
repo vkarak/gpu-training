@@ -1,19 +1,17 @@
 #!/bin/bash
-#PBS -N himeno_v00
-#PBS -l nodes=1:ppn=1
-#PBS -l walltime=00:03:00
-#PBS -j oe
-#PBS -o himeno_$PBS_JOBID.log
-#PBS -q gpu_nodes 
+#SBATCH --namer= himeno_v00
+#SBATCH --ntasks=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --time=00:03:00
+#SBATCH --output=himeno_v00.log
+#SBATCH --constraint=gpu
+##SBATCH --reservation=...
 
 cat $0
-# Make sure we are in the correct directory
-cd $PBS_O_WORKDIR
-pwd
+
 # Load appropriate programming environment
 #   So appropriate runtime libraries are found
-module switch craype-broadwell craype-ivybridge
-module load craype-accel-nvidia35
+module load craype-accel-nvidia60
 
 # Uncomment this line for runtime commentary
 #export CRAY_ACC_DEBUG=2
@@ -22,5 +20,5 @@ module load craype-accel-nvidia35
 
 # Execute the code, inheriting the job parameters from PBS
 export OMP_NUM_THREADS=1
-/usr/bin/time -p aprun -n 1 -N 1 ./himeno_v00.x
+/usr/bin/time -p srun himeno_v00.x
 
