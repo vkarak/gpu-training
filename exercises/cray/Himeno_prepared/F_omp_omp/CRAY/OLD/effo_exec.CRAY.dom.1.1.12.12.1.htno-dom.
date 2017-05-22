@@ -1,0 +1,88 @@
+# -----------------------------------------------
+# core file size          (blocks, -c) unlimited
+# data seg size           (kbytes, -d) unlimited
+# scheduling priority             (-e) 0
+# file size               (blocks, -f) unlimited
+# pending signals                 (-i) 511579
+# max locked memory       (kbytes, -l) 64
+# max memory size         (kbytes, -m) 65986560
+# open files                      (-n) 16384
+# pipe size            (512 bytes, -p) 8
+# POSIX message queues     (bytes, -q) 819200
+# real-time priority              (-r) 0
+# stack size              (kbytes, -s) unlimited
+# cpu time               (seconds, -t) unlimited
+# max user processes              (-u) 511579
+# virtual memory          (kbytes, -v) unlimited
+# file locks                      (-x) unlimited
+# -----------------------------------------------
+# -----------------------------------------------
+# SLURM_JOB_NODELIST = nid00039
+# SLURM_JOB_NUM_NODES = 1
+# SLURM_JOB_ID = 655816
+# SLURM_JOBID = 655816
+# SLURM_NTASKS = 1 / -n --ntasks
+# SLURM_NTASKS_PER_NODE = 1 / -N --ntasks-per-node
+# SLURM_CPUS_PER_TASK = 12 / -d-c --cpus-per-task
+# OMP_NUM_THREADS = 12 / -d-c 
+# SLURM_NTASKS_PER_CORE = 1 / -j1 --ntasks-per-core
+# -----------------------------------------------
+# -----------------------------------------------
+# SLURM_CPUS_ON_NODE = 12
+# SLURM_LOCALID = 0
+# SLURM_NNODES = 1
+# SLURM_NODEID = 0
+# SLURM_PROCID = 0
+# SLURM_NPROCS = 1
+# SLURM_OVERCOMMIT = 
+# nodeid:0 taskid:0 localid:0
+# 
+# -----------------------------------------------
+Wed Apr 26 17:29:37 CEST 2017
++ echo CRAY_CUDA_MPS=
+CRAY_CUDA_MPS=
++ echo HUGETLB_DEFAULT_PAGE_SIZE=
+HUGETLB_DEFAULT_PAGE_SIZE=
++ echo HUGETLB_MORECORE=
+HUGETLB_MORECORE=
++ /usr/bin/time -p srun --unbuffered --ntasks=1 --ntasks-per-node=1 --cpus-per-task=12 --ntasks-per-core=1 --hint=nomultithread --cpu_bind=rank --bcast=/tmp/exec.CRAY.dom ./exec.CRAY.dom
+[CCE OMP: host=nid00039 pid=17166 tid=17166 id=0] thread 0 affinity:  0
+[CCE OMP: host=nid00039 pid=17166 tid=17185 id=0] thread 1 affinity:  0
+WARNING: Requested total thread count and/or thread affinity may result in
+oversubscription of available CPU resources!  Performance may be degraded.
+Set OMP_WAIT_POLICY=PASSIVE to reduce resource consumption of idle threads.
+Set CRAY_OMP_CHECK_AFFINITY=TRUE to print detailed thread-affinity messages.
+WARNING: thread 1 increases the expected utilization of processor 0 to 200.00%
+[CCE OMP: host=nid00039 pid=17166 tid=17186 id=0] thread 2 affinity:  0
+WARNING: thread 2 increases the expected utilization of processor 0 to 300.00%
+[CCE OMP: host=nid00039 pid=17166 tid=17187 id=0] thread 3 affinity:  0
+WARNING: thread 3 increases the expected utilization of processor 0 to 400.00%
+[CCE OMP: host=nid00039 pid=17166 tid=17188 id=0] thread 4 affinity:  0
+WARNING: thread 4 increases the expected utilization of processor 0 to 500.00%
+[CCE OMP: host=nid00039 pid=17166 tid=17189 id=0] thread 5 affinity:  0
+WARNING: thread 5 increases the expected utilization of processor 0 to 600.00%
+[CCE OMP: host=nid00039 pid=17166 tid=17190 id=0] thread 6 affinity:  0
+WARNING: thread 6 increases the expected utilization of processor 0 to 700.00%
+[CCE OMP: host=nid00039 pid=17166 tid=17191 id=0] thread 7 affinity:  0
+WARNING: thread 7 increases the expected utilization of processor 0 to 800.00%
+[CCE OMP: host=nid00039 pid=17166 tid=17192 id=0] thread 8 affinity:  0
+WARNING: thread 8 increases the expected utilization of processor 0 to 900.00%
+[CCE OMP: host=nid00039 pid=17166 tid=17193 id=0] thread 9 affinity:  0
+WARNING: thread 9 increases the expected utilization of processor 0 to 1000.00%
+[CCE OMP: host=nid00039 pid=17166 tid=17194 id=0] thread 10 affinity:  0
+WARNING: thread 10 increases the expected utilization of processor 0 to 1100.00%
+[CCE OMP: host=nid00039 pid=17166 tid=17195 id=0] thread 11 affinity:  0
+WARNING: thread 11 increases the expected utilization of processor 0 to 1200.00%
+OPENMP version: 201307 num_threads=12 OMP_NUM_THREADS=12
+OPENACC version: 201306
+memcopy and daxpy test of size 65536
+-------
+timings
+-------
+axpy (openmp, openacc) in seconds: 0.11538 2.7071
+
+============ PASSED
+real 5.95
+user 1.16
+sys 0.14
++ set +x

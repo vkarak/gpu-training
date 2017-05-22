@@ -1,0 +1,64 @@
+# -----------------------------------------------
+# core file size          (blocks, -c) unlimited
+# data seg size           (kbytes, -d) unlimited
+# scheduling priority             (-e) 0
+# file size               (blocks, -f) unlimited
+# pending signals                 (-i) 511579
+# max locked memory       (kbytes, -l) 64
+# max memory size         (kbytes, -m) 65986560
+# open files                      (-n) 16384
+# pipe size            (512 bytes, -p) 8
+# POSIX message queues     (bytes, -q) 819200
+# real-time priority              (-r) 0
+# stack size              (kbytes, -s) unlimited
+# cpu time               (seconds, -t) unlimited
+# max user processes              (-u) 511579
+# virtual memory          (kbytes, -v) unlimited
+# file locks                      (-x) unlimited
+# -----------------------------------------------
+# -----------------------------------------------
+# SLURM_JOB_NODELIST = nid00039
+# SLURM_JOB_NUM_NODES = 1
+# SLURM_JOB_ID = 655834
+# SLURM_JOBID = 655834
+# SLURM_NTASKS = 1 / -n --ntasks
+# SLURM_NTASKS_PER_NODE = 1 / -N --ntasks-per-node
+# SLURM_CPUS_PER_TASK = 4 / -d-c --cpus-per-task
+# OMP_NUM_THREADS = 4 / -d-c 
+# SLURM_NTASKS_PER_CORE = 1 / -j1 --ntasks-per-core
+# -----------------------------------------------
+# -----------------------------------------------
+# SLURM_CPUS_ON_NODE = 12
+# SLURM_LOCALID = 0
+# SLURM_NNODES = 1
+# SLURM_NODEID = 0
+# SLURM_PROCID = 0
+# SLURM_NPROCS = 1
+# SLURM_OVERCOMMIT = 
+# nodeid:0 taskid:0 localid:0
+# 
+# -----------------------------------------------
+Wed Apr 26 17:33:03 CEST 2017
++ echo CRAY_CUDA_MPS=
+CRAY_CUDA_MPS=
++ echo HUGETLB_DEFAULT_PAGE_SIZE=
+HUGETLB_DEFAULT_PAGE_SIZE=
++ echo HUGETLB_MORECORE=
+HUGETLB_MORECORE=
++ /usr/bin/time -p srun --unbuffered --ntasks=1 --ntasks-per-node=1 --cpus-per-task=4 --ntasks-per-core=1 --hint=nomultithread --cpu_bind=rank --bcast=/tmp/exef.PGI.dom ./exef.PGI.dom 10
+ OPENMP version:       200805 4              4
+ OPENACC version:       201306
+ memcopy and daxpy test of size         1024
+ -------
+ timings
+ -------
+ axpy (openmp, openacc):    1.8004894256591797E-002     5.1021575927734375E-005
+  seconds
+ copyin     :     1.053538084030151      s
+ copyout    :    3.4093856811523438E-005 s
+ TOTAL      :     1.053623199462891      s
+ ============ PASSED
+real 2.69
+user 0.36
+sys 0.09
++ set +x

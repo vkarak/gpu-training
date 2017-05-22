@@ -1,6 +1,8 @@
 #include <iostream>
-
 #include "util.h"
+#ifdef _OPENMP
+#include <omp.h>
+#endif
 
 void axpy(int n, double alpha, const double *x, double* y) {
 
@@ -20,11 +22,44 @@ void axpy_gpu(int n, double alpha, const double *x, double* y) {
     }
 }
 
+// version informations
+void print_versions(void) {
+
+#ifdef _OPENMP
+    int cscs_omp_v, ompnumthreadid, ompnumthreads1;
+    cscs_omp_v = _OPENMP;
+    char* ompnumthreads2 = getenv ("OMP_NUM_THREADS");
+
+    #pragma omp parallel private(ompnumthreadid) shared(ompnumthreads1)
+    {
+        ompnumthreadid = omp_get_thread_num();
+        // #pragma omp barrier
+        #pragma omp master
+        {
+            ompnumthreads1 = omp_get_num_threads();
+            std::cout << "OPENMP version: " << cscs_omp_v
+                      << " num_threads=" << ompnumthreads1
+                      << " OMP_NUM_THREADS=" << ompnumthreads2
+                      << std::endl; 
+        }
+    }
+#endif
+
+#ifdef _OPENACC
+    std::cout << "OPENACC version: " << _OPENACC << std::endl;
+#endif
+
+// MPI_Get_version()
+
+
+}
+
 int main(int argc, char** argv)
 {
     size_t pow = read_arg(argc, argv, 1, 16);
     size_t n = 1 << pow;
 
+    print_versions();
     std::cout << "memcopy and daxpy test of size " << n << "\n";
 
     double* x = malloc_host<double>(n, 1.5);
@@ -34,17 +69,25 @@ int main(int argc, char** argv)
     // interpret use 1<<24 to ensure that cache is completely purged for all n
     double* x_ = malloc_host<double>(n, 1.5);
     double* y_ = malloc_host<double>(n, 3.0);
+
+    // openmp version:
     auto start = get_time();
     axpy(n, 2.0, x_, y_);
     auto time_axpy_omp = get_time() - start;
 
+    // openacc version:
     start = get_time();
     axpy_gpu(n, 2.0, x, y);
     auto time_axpy_gpu = get_time() - start;
 
     std::cout << "-------\ntimings\n-------\n";
-    std::cout << "axpy omp: " << time_axpy_omp << " s\n";
-    std::cout << "axpy gpu: " << time_axpy_gpu << " s\n";
+    std::cout.precision(5);
+    std::cout << "axpy (openmp, openacc) in seconds: "  
+              << time_axpy_omp << " " 
+              << time_axpy_gpu
+              << std::endl;
+    //std::cout << "axpy (openmp): "  << time_axpy_omp << " s\n";
+    //std::cout << "axpy (openacc): " << time_axpy_gpu << " s\n";
 
     // check for errors
     auto errors = 0;

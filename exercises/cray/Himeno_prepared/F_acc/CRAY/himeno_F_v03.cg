@@ -1,0 +1,2520 @@
+       !        
+       !        Cray Inc. Decompilation
+       !        Notice - This output is provided for information only.
+       !        
+       !        Cray Inc. reserves the right to change the format of this
+       !        information at any time and does not guarantee the
+       !        readability or accuracy of this information.
+       !        
+       !        This information may not be compilable and corresponds to
+       !        the internal representation of the program during the
+       !        optimization phase of the compilation process.
+       !        
+       !        Source                :  himeno_F_v03.F90
+       !        File                  :  /apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/CRAY/himeno_F_v03.cg
+       !        Network               :  Aries interconnect
+       !        Target                :  Heterogeneous
+       !              Cpu             :  X86 :: haswell, avx2, fma
+       !              Accel           :  NVIDIA, fma
+       !        
+   82.       
+   82.       real*8
+   82.       function gettime
+   90.       $ir_S0 = irtc_rate_i8
+   90.       $Flat_S1 = _rtc
+   94.       gettime = real( $Flat_S1, 8 ) / real( $ir_S0, 8 )
+   94.       return
+   94.       end
+   94.       
+   39.       
+   39.       module himeno_include
+   97.       return
+   97.       end
+   97.       
+   99.       
+   99.       program main
+  116.       if ( int( __pat_tp_acc_data_enter == 0 ) == 0 ) then
+  116.          __pat_tp_acc_data_enter( acc_get_device_num( 2 ) )
+  116.       endif
+  116.       $_tran_a_T186[0] = 1
+  116.       (1,$_tran_a_T186)[0] = 10
+  116.       (2,$_tran_a_T186)[0].L = 136855584
+  116.       (1,$_tran_a_T186)[0].L = 2049
+  116.       $GCS_a_3 = loc( a[0].L )
+  116.       (3,$_tran_a_T186)[0].L = cri_pointer( $GCS_a_3 )
+  116.       (4,$_tran_a_T186)[0].L = cri_pointer( 0 )
+  116.       (5,$_tran_a_T186)[0].L = cri_pointer( 0 )
+  116.       (6,$_tran_a_T186)[0].L = cri_pointer( loc( $_Text_Y0 ) )
+  116.       $_tran_b_T187[0] = 1
+  116.       (1,$_tran_b_T187)[0] = 10
+  116.       (2,$_tran_b_T187)[0].L = 102641688
+  116.       (1,$_tran_b_T187)[0].L = 2049
+  116.       $GCS_b_8 = loc( b[0].L )
+  116.       (3,$_tran_b_T187)[0].L = cri_pointer( $GCS_b_8 )
+  116.       (4,$_tran_b_T187)[0].L = cri_pointer( 0 )
+  116.       (5,$_tran_b_T187)[0].L = cri_pointer( 0 )
+  116.       (6,$_tran_b_T187)[0].L = cri_pointer( loc( $_Text_Y1 ) )
+  116.       $_tran_bnd_T188[0] = 1
+  116.       (1,$_tran_bnd_T188)[0] = 10
+  116.       (2,$_tran_bnd_T188)[0].L = 34213896
+  116.       (1,$_tran_bnd_T188)[0].L = 2049
+  116.       $GCS_bnd_7 = loc( bnd[0].L )
+  116.       (3,$_tran_bnd_T188)[0].L = cri_pointer( $GCS_bnd_7 )
+  116.       (4,$_tran_bnd_T188)[0].L = cri_pointer( 0 )
+  116.       (5,$_tran_bnd_T188)[0].L = cri_pointer( 0 )
+  116.       (6,$_tran_bnd_T188)[0].L = cri_pointer( loc( $_Text_Y2 ) )
+  116.       $_tran_c_T189[0] = 1
+  116.       (1,$_tran_c_T189)[0] = 10
+  116.       (2,$_tran_c_T189)[0].L = 102641688
+  116.       (1,$_tran_c_T189)[0].L = 2049
+  116.       $GCS_c_9 = loc( c[0].L )
+  116.       (3,$_tran_c_T189)[0].L = cri_pointer( $GCS_c_9 )
+  116.       (4,$_tran_c_T189)[0].L = cri_pointer( 0 )
+  116.       (5,$_tran_c_T189)[0].L = cri_pointer( 0 )
+  116.       (6,$_tran_c_T189)[0].L = cri_pointer( loc( $_Text_Y3 ) )
+  116.       $_tran_p_T190[0] = 1
+  116.       (1,$_tran_p_T190)[0] = 10
+  116.       (2,$_tran_p_T190)[0].L = 34213896
+  116.       (1,$_tran_p_T190)[0].L = 2049
+  116.       $GCS_p_4 = loc( p[0].L )
+  116.       (3,$_tran_p_T190)[0].L = cri_pointer( $GCS_p_4 )
+  116.       (4,$_tran_p_T190)[0].L = cri_pointer( 0 )
+  116.       (5,$_tran_p_T190)[0].L = cri_pointer( 0 )
+  116.       (6,$_tran_p_T190)[0].L = cri_pointer( loc( $_Text_Y4 ) )
+  116.       $_tran_wrk1_T191[0] = 1
+  116.       (1,$_tran_wrk1_T191)[0] = 10
+  116.       (2,$_tran_wrk1_T191)[0].L = 34213896
+  116.       (1,$_tran_wrk1_T191)[0].L = 2049
+  116.       $GCS_wrk1_2 = loc( wrk1[0].L )
+  116.       (3,$_tran_wrk1_T191)[0].L = cri_pointer( $GCS_wrk1_2 )
+  116.       (4,$_tran_wrk1_T191)[0].L = cri_pointer( 0 )
+  116.       (5,$_tran_wrk1_T191)[0].L = cri_pointer( 0 )
+  116.       (6,$_tran_wrk1_T191)[0].L = cri_pointer( loc( $_Text_Y5 ) )
+  116.       $_tran_wrk2_T192[0] = 1
+  116.       (1,$_tran_wrk2_T192)[0] = 10
+  116.       (2,$_tran_wrk2_T192)[0].L = 34213896
+  116.       (1,$_tran_wrk2_T192)[0].L = 2049
+  116.       $GCS_wrk2_5 = loc( wrk2[0].L )
+  116.       (3,$_tran_wrk2_T192)[0].L = cri_pointer( $GCS_wrk2_5 )
+  116.       (4,$_tran_wrk2_T192)[0].L = cri_pointer( 0 )
+  116.       (5,$_tran_wrk2_T192)[0].L = cri_pointer( 0 )
+  116.       (6,$_tran_wrk2_T192)[0].L = cri_pointer( loc( $_Text_Y6 ) )
+  116.       if ( int( __pat_tp_acc_transfer_enter == 0 ) == 0 ) then
+  116.          __pat_tp_acc_transfer_enter( acc_get_device_num( 2 ) )
+  116.       endif
+  116.       $_tlst_T381[0].L = loc( $_tran_a_T186 )
+  116.       (1,$_tlst_T381)[0].L = loc( $_tran_b_T187 )
+  116.       (2,$_tlst_T381)[0].L = loc( $_tran_bnd_T188 )
+  116.       (3,$_tlst_T381)[0].L = loc( $_tran_c_T189 )
+  116.       (4,$_tlst_T381)[0].L = loc( $_tran_p_T190 )
+  116.       (5,$_tlst_T381)[0].L = loc( $_tran_wrk1_T191 )
+  116.       (6,$_tlst_T381)[0].L = loc( $_tran_wrk2_T192 )
+  116.       $_trans_T382[0] = 1
+  116.       (1,$_trans_T382)[0] = 11
+  116.       (1,$_trans_T382)[0].L = 2
+  116.       (2,$_trans_T382)[0].L = 7
+  116.       (3,$_trans_T382)[0].L = loc( $_tlst_T381[0].L )
+  116.       (4,$_trans_T382)[0].L = cri_pointer( 0 )
+  116.       (7,$_trans_T382)[0].L = 0
+  116.       (8,$_trans_T382)[0].L = 116
+  116.       (9,$_trans_T382)[0].L = cri_pointer( loc( $_Text_Y7 ) )
+  116.       (10,$_trans_T382)[0].L = cri_pointer( 0 )
+  116.       cray_acc_transfer_list( $_trans_T382 )
+  116.       if ( int( __pat_tp_acc_transfer_exit_with_time == 0 ) == 0 ) then
+  116.          __pat_tp_acc_transfer_exit_with_time( acc_get_device_num( 2 ), (5,$_trans_T382)[0].L, (6,$_trans_T382)[0].L, (7,$_trans_T382)[0].L )
+  116.       else if ( int( __pat_tp_acc_transfer_exit == 0 ) == 0 ) then
+  116.          __pat_tp_acc_transfer_exit( acc_get_device_num( 2 ), (5,$_trans_T382)[0].L, (6,$_trans_T382)[0].L )
+  116.       endif
+  116.       $_ptr_acc_a_T45 = int( (4,$_tran_a_T186)[0].L, 8 )
+  116.       $_ptr_acc_b_T43 = int( (4,$_tran_b_T187)[0].L, 8 )
+  116.       $_ptr_acc_bnd_T35 = int( (4,$_tran_bnd_T188)[0].L, 8 )
+  116.       $_ptr_acc_c_T41 = int( (4,$_tran_c_T189)[0].L, 8 )
+  116.       $_ptr_acc_p_T39 = int( (4,$_tran_p_T190)[0].L, 8 )
+  116.       $_ptr_acc_wrk1_T37 = int( (4,$_tran_wrk1_T191)[0].L, 8 )
+  116.       $_ptr_acc_wrk2_T33 = int( (4,$_tran_wrk2_T192)[0].L, 8 )
+  117.       omega = 8.0000000000000004e-1
+  118.       imax = 256
+  119.       jmax = 128
+  120.       kmax = 128
+  123.       call initmt
+  125.       $GCS_IO_Lib_Stack_6 = pointer to integer*8( loc( $_IO_Lib_Stack_O2 ) )
+  125.       _fwf( pointer to integer*8( loc( $_StaticCntrl_O0 ) ), pointer to integer*8( loc( $StaticIolist_O1[0].L ) ), $GCS_IO_Lib_Stack_6 )
+  127.       _fwf( pointer to integer*8( loc( $_StaticCntrl_O3 ) ), pointer to integer*8( loc( $_StaticIolist_O4[0].L ) ), $GCS_IO_Lib_Stack_6 )
+  132.       _fwf( pointer to integer*8( loc( $_StaticCntrl_O6 ) ), pointer to integer*8( loc( $StaticIolist_O7[0].L ) ), $GCS_IO_Lib_Stack_6 )
+  133.       _fwf( pointer to integer*8( loc( $_StaticCntrl_O8 ) ), pointer to integer*8( loc( $_StaticIolist_O9[0].L ) ), $GCS_IO_Lib_Stack_6 )
+  134.       _fwf( pointer to integer*8( loc( $_StaticCntrl_O12 ) ), pointer to integer*8( loc( $_StaticIolist_O13[0].L ) ), $GCS_IO_Lib_Stack_6 )
+  135.       _fwf( pointer to integer*8( loc( $_StaticCntrl_O20 ) ), pointer to integer*8( loc( $_StaticIolist_O21[0].L ) ), $GCS_IO_Lib_Stack_6 )
+  138.       _fwf( pointer to integer*8( loc( $_StaticCntrl_O25 ) ), pointer to integer*8( loc( $StaticIolist_O26[0].L ) ), $GCS_IO_Lib_Stack_6 )
+  139.       _fwf( pointer to integer*8( loc( $_StaticCntrl_O27 ) ), pointer to integer*8( loc( $_StaticIolist_O28[0].L ) ), $GCS_IO_Lib_Stack_6 )
+  140.       _fwf( pointer to integer*8( loc( $_StaticCntrl_O30 ) ), pointer to integer*8( loc( $_StaticIolist_O31[0].L ) ), $GCS_IO_Lib_Stack_6 )
+  153.       nn = 3
+  156.       $cpu0_S7 = gettime
+  157.       if ( int( __pat_tp_acc_data_enter == 0 ) == 0 ) then
+  157.          __pat_tp_acc_data_enter( acc_get_device_num( 2 ) )
+  157.       endif
+  157.       $_tran_a_T193[0] = 1
+  157.       (1,$_tran_a_T193)[0] = 10
+  157.       (2,$_tran_a_T193)[0].L = 136855584
+  157.       (1,$_tran_a_T193)[0].L = 2560
+  157.       (3,$_tran_a_T193)[0].L = cri_pointer( $GCS_a_3 )
+  157.       (4,$_tran_a_T193)[0].L = cri_pointer( 0 )
+  157.       (5,$_tran_a_T193)[0].L = cri_pointer( 0 )
+  157.       (6,$_tran_a_T193)[0].L = cri_pointer( loc( $_Text_Y0 ) )
+  157.       $_tran_b_T194[0] = 1
+  157.       (1,$_tran_b_T194)[0] = 10
+  157.       (2,$_tran_b_T194)[0].L = 102641688
+  157.       (1,$_tran_b_T194)[0].L = 2560
+  157.       (3,$_tran_b_T194)[0].L = cri_pointer( $GCS_b_8 )
+  157.       (4,$_tran_b_T194)[0].L = cri_pointer( 0 )
+  157.       (5,$_tran_b_T194)[0].L = cri_pointer( 0 )
+  157.       (6,$_tran_b_T194)[0].L = cri_pointer( loc( $_Text_Y1 ) )
+  157.       $_tran_bnd_T195[0] = 1
+  157.       (1,$_tran_bnd_T195)[0] = 10
+  157.       (2,$_tran_bnd_T195)[0].L = 34213896
+  157.       (1,$_tran_bnd_T195)[0].L = 2560
+  157.       (3,$_tran_bnd_T195)[0].L = cri_pointer( $GCS_bnd_7 )
+  157.       (4,$_tran_bnd_T195)[0].L = cri_pointer( 0 )
+  157.       (5,$_tran_bnd_T195)[0].L = cri_pointer( 0 )
+  157.       (6,$_tran_bnd_T195)[0].L = cri_pointer( loc( $_Text_Y2 ) )
+  157.       $_tran_c_T196[0] = 1
+  157.       (1,$_tran_c_T196)[0] = 10
+  157.       (2,$_tran_c_T196)[0].L = 102641688
+  157.       (1,$_tran_c_T196)[0].L = 2560
+  157.       (3,$_tran_c_T196)[0].L = cri_pointer( $GCS_c_9 )
+  157.       (4,$_tran_c_T196)[0].L = cri_pointer( 0 )
+  157.       (5,$_tran_c_T196)[0].L = cri_pointer( 0 )
+  157.       (6,$_tran_c_T196)[0].L = cri_pointer( loc( $_Text_Y3 ) )
+  157.       $_tran_p_T197[0] = 1
+  157.       (1,$_tran_p_T197)[0] = 10
+  157.       (2,$_tran_p_T197)[0].L = 34213896
+  157.       (1,$_tran_p_T197)[0].L = 2560
+  157.       (3,$_tran_p_T197)[0].L = cri_pointer( $GCS_p_4 )
+  157.       (4,$_tran_p_T197)[0].L = cri_pointer( 0 )
+  157.       (5,$_tran_p_T197)[0].L = cri_pointer( 0 )
+  157.       (6,$_tran_p_T197)[0].L = cri_pointer( loc( $_Text_Y4 ) )
+  157.       $_tran_wrk1_T198[0] = 1
+  157.       (1,$_tran_wrk1_T198)[0] = 10
+  157.       (2,$_tran_wrk1_T198)[0].L = 34213896
+  157.       (1,$_tran_wrk1_T198)[0].L = 2560
+  157.       (3,$_tran_wrk1_T198)[0].L = cri_pointer( $GCS_wrk1_2 )
+  157.       (4,$_tran_wrk1_T198)[0].L = cri_pointer( 0 )
+  157.       (5,$_tran_wrk1_T198)[0].L = cri_pointer( 0 )
+  157.       (6,$_tran_wrk1_T198)[0].L = cri_pointer( loc( $_Text_Y5 ) )
+  157.       $_tran_wrk2_T199[0] = 1
+  157.       (1,$_tran_wrk2_T199)[0] = 10
+  157.       (2,$_tran_wrk2_T199)[0].L = 34213896
+  157.       (1,$_tran_wrk2_T199)[0].L = 2560
+  157.       (3,$_tran_wrk2_T199)[0].L = cri_pointer( $GCS_wrk2_5 )
+  157.       (4,$_tran_wrk2_T199)[0].L = cri_pointer( 0 )
+  157.       (5,$_tran_wrk2_T199)[0].L = cri_pointer( 0 )
+  157.       (6,$_tran_wrk2_T199)[0].L = cri_pointer( loc( $_Text_Y6 ) )
+  157.       if ( int( __pat_tp_acc_transfer_enter == 0 ) == 0 ) then
+  157.          __pat_tp_acc_transfer_enter( acc_get_device_num( 2 ) )
+  157.       endif
+  157.       $_tlst_T385[0].L = loc( $_tran_a_T193 )
+  157.       (1,$_tlst_T385)[0].L = loc( $_tran_b_T194 )
+  157.       (2,$_tlst_T385)[0].L = loc( $_tran_bnd_T195 )
+  157.       (3,$_tlst_T385)[0].L = loc( $_tran_c_T196 )
+  157.       (4,$_tlst_T385)[0].L = loc( $_tran_p_T197 )
+  157.       (5,$_tlst_T385)[0].L = loc( $_tran_wrk1_T198 )
+  157.       (6,$_tlst_T385)[0].L = loc( $_tran_wrk2_T199 )
+  157.       $_trans_T386[0] = 1
+  157.       (1,$_trans_T386)[0] = 11
+  157.       (1,$_trans_T386)[0].L = 2
+  157.       (2,$_trans_T386)[0].L = 7
+  157.       (3,$_trans_T386)[0].L = loc( $_tlst_T385[0].L )
+  157.       (4,$_trans_T386)[0].L = cri_pointer( 0 )
+  157.       (7,$_trans_T386)[0].L = 0
+  157.       (8,$_trans_T386)[0].L = 157
+  157.       (9,$_trans_T386)[0].L = cri_pointer( loc( $_Text_Y7 ) )
+  157.       (10,$_trans_T386)[0].L = cri_pointer( 0 )
+  157.       cray_acc_transfer_list( $_trans_T386 )
+  157.       if ( int( __pat_tp_acc_transfer_exit_with_time == 0 ) == 0 ) then
+  157.          __pat_tp_acc_transfer_exit_with_time( acc_get_device_num( 2 ), (5,$_trans_T386)[0].L, (6,$_trans_T386)[0].L, (7,$_trans_T386)[0].L )
+  157.       else if ( int( __pat_tp_acc_transfer_exit == 0 ) == 0 ) then
+  157.          __pat_tp_acc_transfer_exit( acc_get_device_num( 2 ), (5,$_trans_T386)[0].L, (6,$_trans_T386)[0].L )
+  157.       endif
+  157.       $_ptr_acc_a_T57 = int( (4,$_tran_a_T193)[0].L, 8 )
+  157.       $_ptr_acc_b_T55 = int( (4,$_tran_b_T194)[0].L, 8 )
+  157.       $_ptr_acc_bnd_T51 = int( (4,$_tran_bnd_T195)[0].L, 8 )
+  157.       $_ptr_acc_c_T53 = int( (4,$_tran_c_T196)[0].L, 8 )
+  157.       $_ptr_acc_p_T59 = int( (4,$_tran_p_T197)[0].L, 8 )
+  157.       $_ptr_acc_wrk1_T49 = int( (4,$_tran_wrk1_T198)[0].L, 8 )
+  157.       $_ptr_acc_wrk2_T47 = int( (4,$_tran_wrk2_T199)[0].L, 8 )
+  157.       $I_L157_268 = 0
+  157.       do
+  157.          gosa1 = 0.0
+  157.          if ( int( __pat_tp_acc_region_enter == 0 ) == 0 ) then
+  157.             __pat_tp_acc_region_enter( acc_get_device_num( 2 ) )
+  157.          endif
+  157.          $GCS_kmax_1 = kmax
+  157.          $GCS_0 = min( 128, -2 + $GCS_kmax_1 )
+  157.          reduc_ctl_C4 = 0
+  157.          $$_hshare_T153[0].L = 0.0
+  157.          $_acc_imax_T149 = imax
+  157.          $_acc_jmax_T150 = jmax
+  157.          $_acc_kmax_T151 = $GCS_kmax_1
+  157.          $_acc_omega_T152 = omega
+  157.          $_tran_accshare_T200[0] = 2
+  157.          (1,$_tran_accshare_T200)[0] = 10
+  157.          (2,$_tran_accshare_T200)[0].L = 8
+  157.          (1,$_tran_accshare_T200)[0].L = 13
+  157.          (3,$_tran_accshare_T200)[0].L = cri_pointer( loc( $$_hshare_T153 ) )
+  157.          (4,$_tran_accshare_T200)[0].L = cri_pointer( 0 )
+  157.          (5,$_tran_accshare_T200)[0].L = cri_pointer( 0 )
+  157.          (6,$_tran_accshare_T200)[0].L = cri_pointer( 0 )
+  157.          $_tran_reduc_ctl_T201[0] = 2
+  157.          (1,$_tran_reduc_ctl_T201)[0] = 10
+  157.          (2,$_tran_reduc_ctl_T201)[0].L = 4
+  157.          (1,$_tran_reduc_ctl_T201)[0].L = 45
+  157.          (3,$_tran_reduc_ctl_T201)[0].L = cri_pointer( loc( reduc_ctl_C4 ) )
+  157.          (4,$_tran_reduc_ctl_T201)[0].L = cri_pointer( 0 )
+  157.          (5,$_tran_reduc_ctl_T201)[0].L = cri_pointer( 0 )
+  157.          (6,$_tran_reduc_ctl_T201)[0].L = cri_pointer( 0 )
+  157.          $_tran_reduc_val_T202[0] = 2
+  157.          (1,$_tran_reduc_val_T202)[0] = 10
+  157.          (2,$_tran_reduc_val_T202)[0].L = _lsh( $GCS_0, 3 )
+  157.          (1,$_tran_reduc_val_T202)[0].L = 5
+  157.          (3,$_tran_reduc_val_T202)[0].L = cri_pointer( 0 )
+  157.          (4,$_tran_reduc_val_T202)[0].L = cri_pointer( 0 )
+  157.          (5,$_tran_reduc_val_T202)[0].L = cri_pointer( 0 )
+  157.          (6,$_tran_reduc_val_T202)[0].L = cri_pointer( 0 )
+  157.          if ( int( __pat_tp_acc_transfer_enter == 0 ) == 0 ) then
+  157.             __pat_tp_acc_transfer_enter( acc_get_device_num( 2 ) )
+  157.          endif
+  157.          $_tlst_T389[0].L = loc( $_tran_accshare_T200 )
+  157.          (1,$_tlst_T389)[0].L = loc( $_tran_reduc_ctl_T201 )
+  157.          (2,$_tlst_T389)[0].L = loc( $_tran_reduc_val_T202 )
+  157.          $_trans_T390[0] = 1
+  157.          (1,$_trans_T390)[0] = 11
+  157.          (1,$_trans_T390)[0].L = 2
+  157.          (2,$_trans_T390)[0].L = 3
+  157.          (3,$_trans_T390)[0].L = loc( $_tlst_T389[0].L )
+  157.          (4,$_trans_T390)[0].L = cri_pointer( 0 )
+  157.          (7,$_trans_T390)[0].L = 0
+  157.          (8,$_trans_T390)[0].L = 157
+  157.          (9,$_trans_T390)[0].L = cri_pointer( loc( $_Text_Y7 ) )
+  157.          (10,$_trans_T390)[0].L = cri_pointer( 0 )
+  157.          cray_acc_transfer_list( $_trans_T390 )
+  157.          if ( int( __pat_tp_acc_transfer_exit_with_time == 0 ) == 0 ) then
+  157.             __pat_tp_acc_transfer_exit_with_time( acc_get_device_num( 2 ), (5,$_trans_T390)[0].L, (6,$_trans_T390)[0].L, (7,$_trans_T390)[0].L )
+  157.          else if ( int( __pat_tp_acc_transfer_exit == 0 ) == 0 ) then
+  157.             __pat_tp_acc_transfer_exit( acc_get_device_num( 2 ), (5,$_trans_T390)[0].L, (6,$_trans_T390)[0].L )
+  157.          endif
+  157.          $ptr_accshare_T154 = int( (4,$_tran_accshare_T200)[0].L, 8 )
+  157.          $ptr_reduc_ctl_T108 = int( (4,$_tran_reduc_ctl_T201)[0].L, 8 )
+  157.          $ptr_reduc_val_T112 = int( (4,$_tran_reduc_val_T202)[0].L, 8 )
+  157.          $numth_T175 = $GCS_0
+  157.          $async_event_T413 = 0
+  157.          if ( int( __pat_tp_acc_async_kernel_enter == 0 ) == 0 ) then
+  157.             $async_event_T413 = __pat_tp_acc_async_kernel_enter( acc_get_device_num( 2 ) )
+  157.          endif
+  157.          0[loc( $$_argb_T405 ),0,a8].L = $_ptr_acc_wrk2_T33
+  157.          1[loc( $$_argb_T405 ),0,a8].L = $_ptr_acc_bnd_T35
+  157.          2[loc( $$_argb_T405 ),0,a8].L = $_ptr_acc_wrk1_T37
+  157.          3[loc( $$_argb_T405 ),0,a8].L = $_ptr_acc_p_T39
+  157.          4[loc( $$_argb_T405 ),0,a8].L = $_ptr_acc_c_T41
+  157.          5[loc( $$_argb_T405 ),0,a8].L = $_ptr_acc_b_T43
+  157.          6[loc( $$_argb_T405 ),0,a8].L = $_ptr_acc_a_T45
+  157.          7[loc( $$_argb_T405 ),0,a8].L = $ptr_reduc_ctl_T108
+  157.          8[loc( $$_argb_T405 ),0,a8].L = $ptr_reduc_val_T112
+  157.          18[loc( $$_argb_T405 ),0,a4] = $_acc_imax_T149
+  157.          19[loc( $$_argb_T405 ),0,a4] = $_acc_jmax_T150
+  157.          20[loc( $$_argb_T405 ),0,a4] = $_acc_kmax_T151
+  157.          11[loc( $$_argb_T405 ),0,a8].L = $_acc_omega_T152
+  157.          12[loc( $$_argb_T405 ),0,a8].L = $ptr_accshare_T154
+  157.          $_args_T416[0] = 1
+  157.          (1,$_args_T416)[0] = 100
+  157.          (1,$_args_T416)[0].L = 104
+  157.          (2,$_args_T416)[0].L = cri_pointer( loc( $$_argb_T405 ) )
+  157.          $$_kinfo_T406[0] = 1
+  157.          (1,$$_kinfo_T406)[0] = 10
+  157.          (1,$$_kinfo_T406)[0].L = 540
+  157.          (2,$$_kinfo_T406)[0].L = cri_pointer( loc( $_$kern3$_main__T414 ) )
+  157.          (4,$$_kinfo_T406)[0].L = cri_pointer( loc( $cray$_local_cuda_module_data ) )
+  157.          (5,$$_kinfo_T406)[0].L = $cray$_local_cuda_module_data_size
+  157.          (6,$$_kinfo_T406)[0].L = cri_pointer( loc( $cray$_local_cuda_module_cache ) )
+  157.          (3,$$_kinfo_T406)[0].L = cri_pointer( loc( $$fcache3$_main__T415 ) )
+  157.          (7,$$_kinfo_T406)[0].L = $numth_T175
+  157.          (8,$$_kinfo_T406)[0].L = 1
+  157.          (9,$$_kinfo_T406)[0].L = 1
+  157.          (10,$$_kinfo_T406)[0].L = 128
+  157.          (11,$$_kinfo_T406)[0].L = 1
+  157.          (12,$$_kinfo_T406)[0].L = 1
+  157.          (13,$$_kinfo_T406)[0].L = 0
+  157.          (14,$$_kinfo_T406)[0].L = cri_pointer( loc( $_args_T416 ) )
+  157.          (15,$$_kinfo_T406)[0].L = $async_event_T413
+  157.          (16,$$_kinfo_T406)[0].L = cri_pointer( 0 )
+  157.          (17,$$_kinfo_T406)[0].L = 157
+  157.          (18,$$_kinfo_T406)[0].L = cri_pointer( loc( $_Text_Y7 ) )
+  157.          (19,$$_kinfo_T406)[0].L = cri_pointer( 0 )
+  157.          cray_start_acc_kernel( $$_kinfo_T406 )
+  157.          if ( int( __pat_tp_acc_async_kernel_exit == 0 ) == 0 ) then
+  157.             __pat_tp_acc_async_kernel_exit( acc_get_device_num( 2 ) )
+  157.          endif
+  157.          $_sync_T402[0] = 1
+  157.          (1,$_sync_T402)[0] = 12
+  157.          (1,$_sync_T402)[0].L = 1
+  157.          (2,$_sync_T402)[0].L = cri_pointer( 0 )
+  157.          (3,$_sync_T402)[0].L = 157
+  157.          (4,$_sync_T402)[0].L = cri_pointer( loc( $_Text_Y7 ) )
+  157.          (5,$_sync_T402)[0].L = cri_pointer( 0 )
+  157.          if ( int( __pat_tp_acc_sync_enter == 0 ) == 0 ) then
+  157.             __pat_tp_acc_sync_enter( acc_get_device_num( 2 ) )
+  157.          endif
+  157.          _cray_acc_wait( $_sync_T402 )
+  157.          if ( int( __pat_tp_acc_sync_exit == 0 ) == 0 ) then
+  157.             __pat_tp_acc_sync_exit( acc_get_device_num( 2 ) )
+  157.          endif
+  157.          $_tran_accshare_T200[0] = 2
+  157.          (1,$_tran_accshare_T200)[0] = 10
+  157.          (2,$_tran_accshare_T200)[0].L = 8
+  157.          (1,$_tran_accshare_T200)[0].L = 22
+  157.          (3,$_tran_accshare_T200)[0].L = cri_pointer( loc( $$_hshare_T153 ) )
+  157.          (4,$_tran_accshare_T200)[0].L = cri_pointer( $ptr_accshare_T154 )
+  157.          (5,$_tran_accshare_T200)[0].L = cri_pointer( 0 )
+  157.          (6,$_tran_accshare_T200)[0].L = cri_pointer( 0 )
+  157.          $_tran_reduc_ctl_T201[0] = 2
+  157.          (1,$_tran_reduc_ctl_T201)[0] = 10
+  157.          (2,$_tran_reduc_ctl_T201)[0].L = 4
+  157.          (1,$_tran_reduc_ctl_T201)[0].L = 38
+  157.          (3,$_tran_reduc_ctl_T201)[0].L = cri_pointer( loc( reduc_ctl_C4 ) )
+  157.          (4,$_tran_reduc_ctl_T201)[0].L = cri_pointer( $ptr_reduc_ctl_T108 )
+  157.          (5,$_tran_reduc_ctl_T201)[0].L = cri_pointer( 0 )
+  157.          (6,$_tran_reduc_ctl_T201)[0].L = cri_pointer( 0 )
+  157.          $_tran_reduc_val_T202[0] = 2
+  157.          (1,$_tran_reduc_val_T202)[0] = 10
+  157.          (2,$_tran_reduc_val_T202)[0].L = 0
+  157.          (1,$_tran_reduc_val_T202)[0].L = 6
+  157.          (3,$_tran_reduc_val_T202)[0].L = cri_pointer( 0 )
+  157.          (4,$_tran_reduc_val_T202)[0].L = cri_pointer( $ptr_reduc_val_T112 )
+  157.          (5,$_tran_reduc_val_T202)[0].L = cri_pointer( 0 )
+  157.          (6,$_tran_reduc_val_T202)[0].L = cri_pointer( 0 )
+  157.          if ( int( __pat_tp_acc_transfer_enter == 0 ) == 0 ) then
+  157.             __pat_tp_acc_transfer_enter( acc_get_device_num( 2 ) )
+  157.          endif
+  157.          $_tlst_T391[0].L = loc( $_tran_accshare_T200 )
+  157.          (1,$_tlst_T391)[0].L = loc( $_tran_reduc_ctl_T201 )
+  157.          (2,$_tlst_T391)[0].L = loc( $_tran_reduc_val_T202 )
+  157.          $_trans_T392[0] = 1
+  157.          (1,$_trans_T392)[0] = 11
+  157.          (1,$_trans_T392)[0].L = 2
+  157.          (2,$_trans_T392)[0].L = 3
+  157.          (3,$_trans_T392)[0].L = loc( $_tlst_T391[0].L )
+  157.          (4,$_trans_T392)[0].L = cri_pointer( 0 )
+  157.          (7,$_trans_T392)[0].L = 0
+  157.          (8,$_trans_T392)[0].L = 157
+  157.          (9,$_trans_T392)[0].L = cri_pointer( loc( $_Text_Y7 ) )
+  157.          (10,$_trans_T392)[0].L = cri_pointer( 0 )
+  157.          cray_acc_transfer_list( $_trans_T392 )
+  157.          if ( int( __pat_tp_acc_transfer_exit_with_time == 0 ) == 0 ) then
+  157.             __pat_tp_acc_transfer_exit_with_time( acc_get_device_num( 2 ), (5,$_trans_T392)[0].L, (6,$_trans_T392)[0].L, (7,$_trans_T392)[0].L )
+  157.          else if ( int( __pat_tp_acc_transfer_exit == 0 ) == 0 ) then
+  157.             __pat_tp_acc_transfer_exit( acc_get_device_num( 2 ), (5,$_trans_T392)[0].L, (6,$_trans_T392)[0].L )
+  157.          endif
+  157.          $ptr_accshare_T154 = 0
+  157.          $ptr_reduc_ctl_T108 = 0
+  157.          $ptr_reduc_val_T112 = 0
+  157.          gosa1 = $$_hshare_T153[0].L
+  157.          if ( int( __pat_tp_acc_region_exit == 0 ) == 0 ) then
+  157.             __pat_tp_acc_region_exit( acc_get_device_num( 2 ) )
+  157.          endif
+  157.          if ( int( __pat_tp_acc_region_enter == 0 ) == 0 ) then
+  157.             __pat_tp_acc_region_enter( acc_get_device_num( 2 ) )
+  157.          endif
+  157.          $_acc_imax_T156 = imax
+  157.          $_acc_jmax_T157 = jmax
+  157.          $GCS_kmax_10 = kmax
+  157.          $_acc_kmax_T158 = $GCS_kmax_10
+  157.          $numth_T176 = -2 + $GCS_kmax_10
+  157.          $async_event_T417 = 0
+  157.          if ( int( __pat_tp_acc_async_kernel_enter == 0 ) == 0 ) then
+  157.             $async_event_T417 = __pat_tp_acc_async_kernel_enter( acc_get_device_num( 2 ) )
+  157.          endif
+  157.          0[loc( $$_argb_T407 ),0,a8].L = $_ptr_acc_wrk2_T33
+  157.          1[loc( $$_argb_T407 ),0,a8].L = $_ptr_acc_p_T39
+  157.          4[loc( $$_argb_T407 ),0,a4] = $_acc_imax_T156
+  157.          5[loc( $$_argb_T407 ),0,a4] = $_acc_jmax_T157
+  157.          6[loc( $$_argb_T407 ),0,a4] = $_acc_kmax_T158
+  157.          $_args_T420[0] = 1
+  157.          (1,$_args_T420)[0] = 100
+  157.          (1,$_args_T420)[0].L = 28
+  157.          (2,$_args_T420)[0].L = cri_pointer( loc( $$_argb_T407 ) )
+  157.          $$_kinfo_T408[0] = 1
+  157.          (1,$$_kinfo_T408)[0] = 10
+  157.          (1,$$_kinfo_T408)[0].L = 524
+  157.          (2,$$_kinfo_T408)[0].L = cri_pointer( loc( $_$kern5$_main__T418 ) )
+  157.          (4,$$_kinfo_T408)[0].L = cri_pointer( loc( $cray$_local_cuda_module_data ) )
+  157.          (5,$$_kinfo_T408)[0].L = $cray$_local_cuda_module_data_size
+  157.          (6,$$_kinfo_T408)[0].L = cri_pointer( loc( $cray$_local_cuda_module_cache ) )
+  157.          (3,$$_kinfo_T408)[0].L = cri_pointer( loc( $$fcache5$_main__T419 ) )
+  157.          (7,$$_kinfo_T408)[0].L = $numth_T176
+  157.          (8,$$_kinfo_T408)[0].L = 1
+  157.          (9,$$_kinfo_T408)[0].L = 1
+  157.          (10,$$_kinfo_T408)[0].L = 128
+  157.          (11,$$_kinfo_T408)[0].L = 1
+  157.          (12,$$_kinfo_T408)[0].L = 1
+  157.          (13,$$_kinfo_T408)[0].L = 0
+  157.          (14,$$_kinfo_T408)[0].L = cri_pointer( loc( $_args_T420 ) )
+  157.          (15,$$_kinfo_T408)[0].L = $async_event_T417
+  157.          (16,$$_kinfo_T408)[0].L = cri_pointer( 0 )
+  157.          (17,$$_kinfo_T408)[0].L = 157
+  157.          (18,$$_kinfo_T408)[0].L = cri_pointer( loc( $_Text_Y7 ) )
+  157.          (19,$$_kinfo_T408)[0].L = cri_pointer( 0 )
+  157.          cray_start_acc_kernel( $$_kinfo_T408 )
+  157.          if ( int( __pat_tp_acc_async_kernel_exit == 0 ) == 0 ) then
+  157.             __pat_tp_acc_async_kernel_exit( acc_get_device_num( 2 ) )
+  157.          endif
+  157.          if ( int( __pat_tp_acc_region_exit == 0 ) == 0 ) then
+  157.             __pat_tp_acc_region_exit( acc_get_device_num( 2 ) )
+  157.          endif
+  157.          $I_L157_268 = 1 + $I_L157_268
+  157.          if ( $I_L157_268 >= 3 ) exit
+  157.       enddo
+  157.       gosa = gosa1
+  157.       $_tran_a_T193[0] = 1
+  157.       (1,$_tran_a_T193)[0] = 10
+  157.       (2,$_tran_a_T193)[0].L = 136855584
+  157.       (1,$_tran_a_T193)[0].L = 3072
+  157.       $GCS_a_21 = loc( a[0].L )
+  157.       (3,$_tran_a_T193)[0].L = cri_pointer( $GCS_a_21 )
+  157.       (4,$_tran_a_T193)[0].L = cri_pointer( $_ptr_acc_a_T57 )
+  157.       (5,$_tran_a_T193)[0].L = cri_pointer( 0 )
+  157.       (6,$_tran_a_T193)[0].L = cri_pointer( loc( $_Text_Y0 ) )
+  157.       $_tran_b_T194[0] = 1
+  157.       (1,$_tran_b_T194)[0] = 10
+  157.       (2,$_tran_b_T194)[0].L = 102641688
+  157.       (1,$_tran_b_T194)[0].L = 3072
+  157.       $GCS_b_20 = loc( b[0].L )
+  157.       (3,$_tran_b_T194)[0].L = cri_pointer( $GCS_b_20 )
+  157.       (4,$_tran_b_T194)[0].L = cri_pointer( $_ptr_acc_b_T55 )
+  157.       (5,$_tran_b_T194)[0].L = cri_pointer( 0 )
+  157.       (6,$_tran_b_T194)[0].L = cri_pointer( loc( $_Text_Y1 ) )
+  157.       $_tran_bnd_T195[0] = 1
+  157.       (1,$_tran_bnd_T195)[0] = 10
+  157.       (2,$_tran_bnd_T195)[0].L = 34213896
+  157.       (1,$_tran_bnd_T195)[0].L = 3072
+  157.       $GCS_bnd_19 = loc( bnd[0].L )
+  157.       (3,$_tran_bnd_T195)[0].L = cri_pointer( $GCS_bnd_19 )
+  157.       (4,$_tran_bnd_T195)[0].L = cri_pointer( $_ptr_acc_bnd_T51 )
+  157.       (5,$_tran_bnd_T195)[0].L = cri_pointer( 0 )
+  157.       (6,$_tran_bnd_T195)[0].L = cri_pointer( loc( $_Text_Y2 ) )
+  157.       $_tran_c_T196[0] = 1
+  157.       (1,$_tran_c_T196)[0] = 10
+  157.       (2,$_tran_c_T196)[0].L = 102641688
+  157.       (1,$_tran_c_T196)[0].L = 3072
+  157.       $GCS_c_18 = loc( c[0].L )
+  157.       (3,$_tran_c_T196)[0].L = cri_pointer( $GCS_c_18 )
+  157.       (4,$_tran_c_T196)[0].L = cri_pointer( $_ptr_acc_c_T53 )
+  157.       (5,$_tran_c_T196)[0].L = cri_pointer( 0 )
+  157.       (6,$_tran_c_T196)[0].L = cri_pointer( loc( $_Text_Y3 ) )
+  157.       $_tran_p_T197[0] = 1
+  157.       (1,$_tran_p_T197)[0] = 10
+  157.       (2,$_tran_p_T197)[0].L = 34213896
+  157.       (1,$_tran_p_T197)[0].L = 3072
+  157.       $GCS_p_17 = loc( p[0].L )
+  157.       (3,$_tran_p_T197)[0].L = cri_pointer( $GCS_p_17 )
+  157.       (4,$_tran_p_T197)[0].L = cri_pointer( $_ptr_acc_p_T59 )
+  157.       (5,$_tran_p_T197)[0].L = cri_pointer( 0 )
+  157.       (6,$_tran_p_T197)[0].L = cri_pointer( loc( $_Text_Y4 ) )
+  157.       $_tran_wrk1_T198[0] = 1
+  157.       (1,$_tran_wrk1_T198)[0] = 10
+  157.       (2,$_tran_wrk1_T198)[0].L = 34213896
+  157.       (1,$_tran_wrk1_T198)[0].L = 3072
+  157.       $GCS_wrk1_16 = loc( wrk1[0].L )
+  157.       (3,$_tran_wrk1_T198)[0].L = cri_pointer( $GCS_wrk1_16 )
+  157.       (4,$_tran_wrk1_T198)[0].L = cri_pointer( $_ptr_acc_wrk1_T49 )
+  157.       (5,$_tran_wrk1_T198)[0].L = cri_pointer( 0 )
+  157.       (6,$_tran_wrk1_T198)[0].L = cri_pointer( loc( $_Text_Y5 ) )
+  157.       $_tran_wrk2_T199[0] = 1
+  157.       (1,$_tran_wrk2_T199)[0] = 10
+  157.       (2,$_tran_wrk2_T199)[0].L = 34213896
+  157.       (1,$_tran_wrk2_T199)[0].L = 3072
+  157.       $GCS_wrk2_15 = loc( wrk2[0].L )
+  157.       (3,$_tran_wrk2_T199)[0].L = cri_pointer( $GCS_wrk2_15 )
+  157.       (4,$_tran_wrk2_T199)[0].L = cri_pointer( $_ptr_acc_wrk2_T47 )
+  157.       (5,$_tran_wrk2_T199)[0].L = cri_pointer( 0 )
+  157.       (6,$_tran_wrk2_T199)[0].L = cri_pointer( loc( $_Text_Y6 ) )
+  157.       if ( int( __pat_tp_acc_transfer_enter == 0 ) == 0 ) then
+  157.          __pat_tp_acc_transfer_enter( acc_get_device_num( 2 ) )
+  157.       endif
+  157.       $_tlst_T387[0].L = loc( $_tran_a_T193 )
+  157.       (1,$_tlst_T387)[0].L = loc( $_tran_b_T194 )
+  157.       (2,$_tlst_T387)[0].L = loc( $_tran_bnd_T195 )
+  157.       (3,$_tlst_T387)[0].L = loc( $_tran_c_T196 )
+  157.       (4,$_tlst_T387)[0].L = loc( $_tran_p_T197 )
+  157.       (5,$_tlst_T387)[0].L = loc( $_tran_wrk1_T198 )
+  157.       (6,$_tlst_T387)[0].L = loc( $_tran_wrk2_T199 )
+  157.       $_trans_T388[0] = 1
+  157.       (1,$_trans_T388)[0] = 11
+  157.       (1,$_trans_T388)[0].L = 2
+  157.       (2,$_trans_T388)[0].L = 7
+  157.       (3,$_trans_T388)[0].L = loc( $_tlst_T387[0].L )
+  157.       (4,$_trans_T388)[0].L = cri_pointer( 0 )
+  157.       (7,$_trans_T388)[0].L = 0
+  157.       (8,$_trans_T388)[0].L = 157
+  157.       (9,$_trans_T388)[0].L = cri_pointer( loc( $_Text_Y7 ) )
+  157.       (10,$_trans_T388)[0].L = cri_pointer( 0 )
+  157.       cray_acc_transfer_list( $_trans_T388 )
+  157.       if ( int( __pat_tp_acc_transfer_exit_with_time == 0 ) == 0 ) then
+  157.          __pat_tp_acc_transfer_exit_with_time( acc_get_device_num( 2 ), (5,$_trans_T388)[0].L, (6,$_trans_T388)[0].L, (7,$_trans_T388)[0].L )
+  157.       else if ( int( __pat_tp_acc_transfer_exit == 0 ) == 0 ) then
+  157.          __pat_tp_acc_transfer_exit( acc_get_device_num( 2 ), (5,$_trans_T388)[0].L, (6,$_trans_T388)[0].L )
+  157.       endif
+  157.       $_ptr_acc_a_T57 = 0
+  157.       $_ptr_acc_b_T55 = 0
+  157.       $_ptr_acc_bnd_T51 = 0
+  157.       $_ptr_acc_c_T53 = 0
+  157.       $_ptr_acc_p_T59 = 0
+  157.       $_ptr_acc_wrk1_T49 = 0
+  157.       $_ptr_acc_wrk2_T47 = 0
+  157.       if ( int( __pat_tp_acc_data_exit == 0 ) == 0 ) then
+  157.          __pat_tp_acc_data_exit( acc_get_device_num( 2 ) )
+  157.       endif
+  158.       $cpu1_S8 = gettime
+  159.       $GCS_cpu1_14 = $cpu1_S8 - $cpu0_S7
+  159.       cpu1 = $GCS_cpu1_14
+  163.       xmflops2 = 9.9999999999999995e-7 * ( ( 102.0 * real( real( -2 + jmax ) * real( -2 + imax ) * real( -2 + kmax ), 8 ) ) / $GCS_cpu1_14 )
+  165.       $GCS_IO_Lib_Stack_13 = pointer to integer*8( loc( $_IO_Lib_Stack_O2 ) )
+  165.       _fwf( pointer to integer*8( loc( $_StaticCntrl_O34 ) ), pointer to integer*8( loc( $StaticIolist_O35[0].L ) ), $GCS_IO_Lib_Stack_13 )
+  166.       _fwf( pointer to integer*8( loc( $_StaticCntrl_O36 ) ), pointer to integer*8( loc( $_StaticIolist_O37[0].L ) ), $GCS_IO_Lib_Stack_13 )
+  167.       _fwf( pointer to integer*8( loc( $_StaticCntrl_O39 ) ), pointer to integer*8( loc( $_StaticIolist_O40[0].L ) ), $GCS_IO_Lib_Stack_13 )
+  168.       _fwf( pointer to integer*8( loc( $_StaticCntrl_O42 ) ), pointer to integer*8( loc( $_StaticIolist_O43[0].L ) ), $GCS_IO_Lib_Stack_13 )
+  169.       _fwf( pointer to integer*8( loc( $_StaticCntrl_O44 ) ), pointer to integer*8( loc( $_StaticIolist_O45[0].L ) ), $GCS_IO_Lib_Stack_13 )
+  174.       nn = 100
+  177.       $cpu0_S16 = gettime
+  178.       if ( int( __pat_tp_acc_data_enter == 0 ) == 0 ) then
+  178.          __pat_tp_acc_data_enter( acc_get_device_num( 2 ) )
+  178.       endif
+  178.       $_tran_a_T203[0] = 1
+  178.       (1,$_tran_a_T203)[0] = 10
+  178.       (2,$_tran_a_T203)[0].L = 136855584
+  178.       (1,$_tran_a_T203)[0].L = 2560
+  178.       (3,$_tran_a_T203)[0].L = cri_pointer( $GCS_a_21 )
+  178.       (4,$_tran_a_T203)[0].L = cri_pointer( 0 )
+  178.       (5,$_tran_a_T203)[0].L = cri_pointer( 0 )
+  178.       (6,$_tran_a_T203)[0].L = cri_pointer( loc( $_Text_Y0 ) )
+  178.       $_tran_b_T204[0] = 1
+  178.       (1,$_tran_b_T204)[0] = 10
+  178.       (2,$_tran_b_T204)[0].L = 102641688
+  178.       (1,$_tran_b_T204)[0].L = 2560
+  178.       (3,$_tran_b_T204)[0].L = cri_pointer( $GCS_b_20 )
+  178.       (4,$_tran_b_T204)[0].L = cri_pointer( 0 )
+  178.       (5,$_tran_b_T204)[0].L = cri_pointer( 0 )
+  178.       (6,$_tran_b_T204)[0].L = cri_pointer( loc( $_Text_Y1 ) )
+  178.       $_tran_bnd_T205[0] = 1
+  178.       (1,$_tran_bnd_T205)[0] = 10
+  178.       (2,$_tran_bnd_T205)[0].L = 34213896
+  178.       (1,$_tran_bnd_T205)[0].L = 2560
+  178.       (3,$_tran_bnd_T205)[0].L = cri_pointer( $GCS_bnd_19 )
+  178.       (4,$_tran_bnd_T205)[0].L = cri_pointer( 0 )
+  178.       (5,$_tran_bnd_T205)[0].L = cri_pointer( 0 )
+  178.       (6,$_tran_bnd_T205)[0].L = cri_pointer( loc( $_Text_Y2 ) )
+  178.       $_tran_c_T206[0] = 1
+  178.       (1,$_tran_c_T206)[0] = 10
+  178.       (2,$_tran_c_T206)[0].L = 102641688
+  178.       (1,$_tran_c_T206)[0].L = 2560
+  178.       (3,$_tran_c_T206)[0].L = cri_pointer( $GCS_c_18 )
+  178.       (4,$_tran_c_T206)[0].L = cri_pointer( 0 )
+  178.       (5,$_tran_c_T206)[0].L = cri_pointer( 0 )
+  178.       (6,$_tran_c_T206)[0].L = cri_pointer( loc( $_Text_Y3 ) )
+  178.       $_tran_p_T207[0] = 1
+  178.       (1,$_tran_p_T207)[0] = 10
+  178.       (2,$_tran_p_T207)[0].L = 34213896
+  178.       (1,$_tran_p_T207)[0].L = 2560
+  178.       (3,$_tran_p_T207)[0].L = cri_pointer( $GCS_p_17 )
+  178.       (4,$_tran_p_T207)[0].L = cri_pointer( 0 )
+  178.       (5,$_tran_p_T207)[0].L = cri_pointer( 0 )
+  178.       (6,$_tran_p_T207)[0].L = cri_pointer( loc( $_Text_Y4 ) )
+  178.       $_tran_wrk1_T208[0] = 1
+  178.       (1,$_tran_wrk1_T208)[0] = 10
+  178.       (2,$_tran_wrk1_T208)[0].L = 34213896
+  178.       (1,$_tran_wrk1_T208)[0].L = 2560
+  178.       (3,$_tran_wrk1_T208)[0].L = cri_pointer( $GCS_wrk1_16 )
+  178.       (4,$_tran_wrk1_T208)[0].L = cri_pointer( 0 )
+  178.       (5,$_tran_wrk1_T208)[0].L = cri_pointer( 0 )
+  178.       (6,$_tran_wrk1_T208)[0].L = cri_pointer( loc( $_Text_Y5 ) )
+  178.       $_tran_wrk2_T209[0] = 1
+  178.       (1,$_tran_wrk2_T209)[0] = 10
+  178.       (2,$_tran_wrk2_T209)[0].L = 34213896
+  178.       (1,$_tran_wrk2_T209)[0].L = 2560
+  178.       (3,$_tran_wrk2_T209)[0].L = cri_pointer( $GCS_wrk2_15 )
+  178.       (4,$_tran_wrk2_T209)[0].L = cri_pointer( 0 )
+  178.       (5,$_tran_wrk2_T209)[0].L = cri_pointer( 0 )
+  178.       (6,$_tran_wrk2_T209)[0].L = cri_pointer( loc( $_Text_Y6 ) )
+  178.       if ( int( __pat_tp_acc_transfer_enter == 0 ) == 0 ) then
+  178.          __pat_tp_acc_transfer_enter( acc_get_device_num( 2 ) )
+  178.       endif
+  178.       $_tlst_T393[0].L = loc( $_tran_a_T203 )
+  178.       (1,$_tlst_T393)[0].L = loc( $_tran_b_T204 )
+  178.       (2,$_tlst_T393)[0].L = loc( $_tran_bnd_T205 )
+  178.       (3,$_tlst_T393)[0].L = loc( $_tran_c_T206 )
+  178.       (4,$_tlst_T393)[0].L = loc( $_tran_p_T207 )
+  178.       (5,$_tlst_T393)[0].L = loc( $_tran_wrk1_T208 )
+  178.       (6,$_tlst_T393)[0].L = loc( $_tran_wrk2_T209 )
+  178.       $_trans_T394[0] = 1
+  178.       (1,$_trans_T394)[0] = 11
+  178.       (1,$_trans_T394)[0].L = 2
+  178.       (2,$_trans_T394)[0].L = 7
+  178.       (3,$_trans_T394)[0].L = loc( $_tlst_T393[0].L )
+  178.       (4,$_trans_T394)[0].L = cri_pointer( 0 )
+  178.       (7,$_trans_T394)[0].L = 0
+  178.       (8,$_trans_T394)[0].L = 178
+  178.       (9,$_trans_T394)[0].L = cri_pointer( loc( $_Text_Y7 ) )
+  178.       (10,$_trans_T394)[0].L = cri_pointer( 0 )
+  178.       cray_acc_transfer_list( $_trans_T394 )
+  178.       if ( int( __pat_tp_acc_transfer_exit_with_time == 0 ) == 0 ) then
+  178.          __pat_tp_acc_transfer_exit_with_time( acc_get_device_num( 2 ), (5,$_trans_T394)[0].L, (6,$_trans_T394)[0].L, (7,$_trans_T394)[0].L )
+  178.       else if ( int( __pat_tp_acc_transfer_exit == 0 ) == 0 ) then
+  178.          __pat_tp_acc_transfer_exit( acc_get_device_num( 2 ), (5,$_trans_T394)[0].L, (6,$_trans_T394)[0].L )
+  178.       endif
+  178.       $_ptr_acc_a_T71 = int( (4,$_tran_a_T203)[0].L, 8 )
+  178.       $_ptr_acc_b_T69 = int( (4,$_tran_b_T204)[0].L, 8 )
+  178.       $_ptr_acc_bnd_T65 = int( (4,$_tran_bnd_T205)[0].L, 8 )
+  178.       $_ptr_acc_c_T67 = int( (4,$_tran_c_T206)[0].L, 8 )
+  178.       $_ptr_acc_p_T73 = int( (4,$_tran_p_T207)[0].L, 8 )
+  178.       $_ptr_acc_wrk1_T63 = int( (4,$_tran_wrk1_T208)[0].L, 8 )
+  178.       $_ptr_acc_wrk2_T61 = int( (4,$_tran_wrk2_T209)[0].L, 8 )
+  178.       $I_L178_270 = 0
+  178.       do
+  178.          gosa1 = 0.0
+  178.          if ( int( __pat_tp_acc_region_enter == 0 ) == 0 ) then
+  178.             __pat_tp_acc_region_enter( acc_get_device_num( 2 ) )
+  178.          endif
+  178.          $GCS_kmax_12 = kmax
+  178.          $GCS_11 = min( 128, -2 + $GCS_kmax_12 )
+  178.          reduc_ctl_C9 = 0
+  178.          $$_hshare_T163[0].L = 0.0
+  178.          $_acc_imax_T159 = imax
+  178.          $_acc_jmax_T160 = jmax
+  178.          $_acc_kmax_T161 = $GCS_kmax_12
+  178.          $_acc_omega_T162 = omega
+  178.          $_tran_accshare_T210[0] = 2
+  178.          (1,$_tran_accshare_T210)[0] = 10
+  178.          (2,$_tran_accshare_T210)[0].L = 8
+  178.          (1,$_tran_accshare_T210)[0].L = 13
+  178.          (3,$_tran_accshare_T210)[0].L = cri_pointer( loc( $$_hshare_T163 ) )
+  178.          (4,$_tran_accshare_T210)[0].L = cri_pointer( 0 )
+  178.          (5,$_tran_accshare_T210)[0].L = cri_pointer( 0 )
+  178.          (6,$_tran_accshare_T210)[0].L = cri_pointer( 0 )
+  178.          $_tran_reduc_ctl_T211[0] = 2
+  178.          (1,$_tran_reduc_ctl_T211)[0] = 10
+  178.          (2,$_tran_reduc_ctl_T211)[0].L = 4
+  178.          (1,$_tran_reduc_ctl_T211)[0].L = 45
+  178.          (3,$_tran_reduc_ctl_T211)[0].L = cri_pointer( loc( reduc_ctl_C9 ) )
+  178.          (4,$_tran_reduc_ctl_T211)[0].L = cri_pointer( 0 )
+  178.          (5,$_tran_reduc_ctl_T211)[0].L = cri_pointer( 0 )
+  178.          (6,$_tran_reduc_ctl_T211)[0].L = cri_pointer( 0 )
+  178.          $_tran_reduc_val_T212[0] = 2
+  178.          (1,$_tran_reduc_val_T212)[0] = 10
+  178.          (2,$_tran_reduc_val_T212)[0].L = _lsh( $GCS_11, 3 )
+  178.          (1,$_tran_reduc_val_T212)[0].L = 5
+  178.          (3,$_tran_reduc_val_T212)[0].L = cri_pointer( 0 )
+  178.          (4,$_tran_reduc_val_T212)[0].L = cri_pointer( 0 )
+  178.          (5,$_tran_reduc_val_T212)[0].L = cri_pointer( 0 )
+  178.          (6,$_tran_reduc_val_T212)[0].L = cri_pointer( 0 )
+  178.          if ( int( __pat_tp_acc_transfer_enter == 0 ) == 0 ) then
+  178.             __pat_tp_acc_transfer_enter( acc_get_device_num( 2 ) )
+  178.          endif
+  178.          $_tlst_T397[0].L = loc( $_tran_accshare_T210 )
+  178.          (1,$_tlst_T397)[0].L = loc( $_tran_reduc_ctl_T211 )
+  178.          (2,$_tlst_T397)[0].L = loc( $_tran_reduc_val_T212 )
+  178.          $_trans_T398[0] = 1
+  178.          (1,$_trans_T398)[0] = 11
+  178.          (1,$_trans_T398)[0].L = 2
+  178.          (2,$_trans_T398)[0].L = 3
+  178.          (3,$_trans_T398)[0].L = loc( $_tlst_T397[0].L )
+  178.          (4,$_trans_T398)[0].L = cri_pointer( 0 )
+  178.          (7,$_trans_T398)[0].L = 0
+  178.          (8,$_trans_T398)[0].L = 178
+  178.          (9,$_trans_T398)[0].L = cri_pointer( loc( $_Text_Y7 ) )
+  178.          (10,$_trans_T398)[0].L = cri_pointer( 0 )
+  178.          cray_acc_transfer_list( $_trans_T398 )
+  178.          if ( int( __pat_tp_acc_transfer_exit_with_time == 0 ) == 0 ) then
+  178.             __pat_tp_acc_transfer_exit_with_time( acc_get_device_num( 2 ), (5,$_trans_T398)[0].L, (6,$_trans_T398)[0].L, (7,$_trans_T398)[0].L )
+  178.          else if ( int( __pat_tp_acc_transfer_exit == 0 ) == 0 ) then
+  178.             __pat_tp_acc_transfer_exit( acc_get_device_num( 2 ), (5,$_trans_T398)[0].L, (6,$_trans_T398)[0].L )
+  178.          endif
+  178.          $ptr_accshare_T164 = int( (4,$_tran_accshare_T210)[0].L, 8 )
+  178.          $ptr_reduc_ctl_T130 = int( (4,$_tran_reduc_ctl_T211)[0].L, 8 )
+  178.          $ptr_reduc_val_T134 = int( (4,$_tran_reduc_val_T212)[0].L, 8 )
+  178.          $numth_T181 = $GCS_11
+  178.          $async_event_T421 = 0
+  178.          if ( int( __pat_tp_acc_async_kernel_enter == 0 ) == 0 ) then
+  178.             $async_event_T421 = __pat_tp_acc_async_kernel_enter( acc_get_device_num( 2 ) )
+  178.          endif
+  178.          0[loc( $$_argb_T409 ),0,a8].L = $_ptr_acc_wrk2_T33
+  178.          1[loc( $$_argb_T409 ),0,a8].L = $_ptr_acc_bnd_T35
+  178.          2[loc( $$_argb_T409 ),0,a8].L = $_ptr_acc_wrk1_T37
+  178.          3[loc( $$_argb_T409 ),0,a8].L = $_ptr_acc_p_T39
+  178.          4[loc( $$_argb_T409 ),0,a8].L = $_ptr_acc_c_T41
+  178.          5[loc( $$_argb_T409 ),0,a8].L = $_ptr_acc_b_T43
+  178.          6[loc( $$_argb_T409 ),0,a8].L = $_ptr_acc_a_T45
+  178.          7[loc( $$_argb_T409 ),0,a8].L = $ptr_reduc_ctl_T130
+  178.          8[loc( $$_argb_T409 ),0,a8].L = $ptr_reduc_val_T134
+  178.          18[loc( $$_argb_T409 ),0,a4] = $_acc_imax_T159
+  178.          19[loc( $$_argb_T409 ),0,a4] = $_acc_jmax_T160
+  178.          20[loc( $$_argb_T409 ),0,a4] = $_acc_kmax_T161
+  178.          11[loc( $$_argb_T409 ),0,a8].L = $_acc_omega_T162
+  178.          12[loc( $$_argb_T409 ),0,a8].L = $ptr_accshare_T164
+  178.          $_args_T424[0] = 1
+  178.          (1,$_args_T424)[0] = 100
+  178.          (1,$_args_T424)[0].L = 104
+  178.          (2,$_args_T424)[0].L = cri_pointer( loc( $$_argb_T409 ) )
+  178.          $$_kinfo_T410[0] = 1
+  178.          (1,$$_kinfo_T410)[0] = 10
+  178.          (1,$$_kinfo_T410)[0].L = 540
+  178.          (2,$$_kinfo_T410)[0].L = cri_pointer( loc( $_$kern8$_main__T422 ) )
+  178.          (4,$$_kinfo_T410)[0].L = cri_pointer( loc( $cray$_local_cuda_module_data ) )
+  178.          (5,$$_kinfo_T410)[0].L = $cray$_local_cuda_module_data_size
+  178.          (6,$$_kinfo_T410)[0].L = cri_pointer( loc( $cray$_local_cuda_module_cache ) )
+  178.          (3,$$_kinfo_T410)[0].L = cri_pointer( loc( $$fcache8$_main__T423 ) )
+  178.          (7,$$_kinfo_T410)[0].L = $numth_T181
+  178.          (8,$$_kinfo_T410)[0].L = 1
+  178.          (9,$$_kinfo_T410)[0].L = 1
+  178.          (10,$$_kinfo_T410)[0].L = 128
+  178.          (11,$$_kinfo_T410)[0].L = 1
+  178.          (12,$$_kinfo_T410)[0].L = 1
+  178.          (13,$$_kinfo_T410)[0].L = 0
+  178.          (14,$$_kinfo_T410)[0].L = cri_pointer( loc( $_args_T424 ) )
+  178.          (15,$$_kinfo_T410)[0].L = $async_event_T421
+  178.          (16,$$_kinfo_T410)[0].L = cri_pointer( 0 )
+  178.          (17,$$_kinfo_T410)[0].L = 178
+  178.          (18,$$_kinfo_T410)[0].L = cri_pointer( loc( $_Text_Y7 ) )
+  178.          (19,$$_kinfo_T410)[0].L = cri_pointer( 0 )
+  178.          cray_start_acc_kernel( $$_kinfo_T410 )
+  178.          if ( int( __pat_tp_acc_async_kernel_exit == 0 ) == 0 ) then
+  178.             __pat_tp_acc_async_kernel_exit( acc_get_device_num( 2 ) )
+  178.          endif
+  178.          $_sync_T403[0] = 1
+  178.          (1,$_sync_T403)[0] = 12
+  178.          (1,$_sync_T403)[0].L = 1
+  178.          (2,$_sync_T403)[0].L = cri_pointer( 0 )
+  178.          (3,$_sync_T403)[0].L = 178
+  178.          (4,$_sync_T403)[0].L = cri_pointer( loc( $_Text_Y7 ) )
+  178.          (5,$_sync_T403)[0].L = cri_pointer( 0 )
+  178.          if ( int( __pat_tp_acc_sync_enter == 0 ) == 0 ) then
+  178.             __pat_tp_acc_sync_enter( acc_get_device_num( 2 ) )
+  178.          endif
+  178.          _cray_acc_wait( $_sync_T403 )
+  178.          if ( int( __pat_tp_acc_sync_exit == 0 ) == 0 ) then
+  178.             __pat_tp_acc_sync_exit( acc_get_device_num( 2 ) )
+  178.          endif
+  178.          $_tran_accshare_T210[0] = 2
+  178.          (1,$_tran_accshare_T210)[0] = 10
+  178.          (2,$_tran_accshare_T210)[0].L = 8
+  178.          (1,$_tran_accshare_T210)[0].L = 22
+  178.          (3,$_tran_accshare_T210)[0].L = cri_pointer( loc( $$_hshare_T163 ) )
+  178.          (4,$_tran_accshare_T210)[0].L = cri_pointer( $ptr_accshare_T164 )
+  178.          (5,$_tran_accshare_T210)[0].L = cri_pointer( 0 )
+  178.          (6,$_tran_accshare_T210)[0].L = cri_pointer( 0 )
+  178.          $_tran_reduc_ctl_T211[0] = 2
+  178.          (1,$_tran_reduc_ctl_T211)[0] = 10
+  178.          (2,$_tran_reduc_ctl_T211)[0].L = 4
+  178.          (1,$_tran_reduc_ctl_T211)[0].L = 38
+  178.          (3,$_tran_reduc_ctl_T211)[0].L = cri_pointer( loc( reduc_ctl_C9 ) )
+  178.          (4,$_tran_reduc_ctl_T211)[0].L = cri_pointer( $ptr_reduc_ctl_T130 )
+  178.          (5,$_tran_reduc_ctl_T211)[0].L = cri_pointer( 0 )
+  178.          (6,$_tran_reduc_ctl_T211)[0].L = cri_pointer( 0 )
+  178.          $_tran_reduc_val_T212[0] = 2
+  178.          (1,$_tran_reduc_val_T212)[0] = 10
+  178.          (2,$_tran_reduc_val_T212)[0].L = 0
+  178.          (1,$_tran_reduc_val_T212)[0].L = 6
+  178.          (3,$_tran_reduc_val_T212)[0].L = cri_pointer( 0 )
+  178.          (4,$_tran_reduc_val_T212)[0].L = cri_pointer( $ptr_reduc_val_T134 )
+  178.          (5,$_tran_reduc_val_T212)[0].L = cri_pointer( 0 )
+  178.          (6,$_tran_reduc_val_T212)[0].L = cri_pointer( 0 )
+  178.          if ( int( __pat_tp_acc_transfer_enter == 0 ) == 0 ) then
+  178.             __pat_tp_acc_transfer_enter( acc_get_device_num( 2 ) )
+  178.          endif
+  178.          $_tlst_T399[0].L = loc( $_tran_accshare_T210 )
+  178.          (1,$_tlst_T399)[0].L = loc( $_tran_reduc_ctl_T211 )
+  178.          (2,$_tlst_T399)[0].L = loc( $_tran_reduc_val_T212 )
+  178.          $_trans_T400[0] = 1
+  178.          (1,$_trans_T400)[0] = 11
+  178.          (1,$_trans_T400)[0].L = 2
+  178.          (2,$_trans_T400)[0].L = 3
+  178.          (3,$_trans_T400)[0].L = loc( $_tlst_T399[0].L )
+  178.          (4,$_trans_T400)[0].L = cri_pointer( 0 )
+  178.          (7,$_trans_T400)[0].L = 0
+  178.          (8,$_trans_T400)[0].L = 178
+  178.          (9,$_trans_T400)[0].L = cri_pointer( loc( $_Text_Y7 ) )
+  178.          (10,$_trans_T400)[0].L = cri_pointer( 0 )
+  178.          cray_acc_transfer_list( $_trans_T400 )
+  178.          if ( int( __pat_tp_acc_transfer_exit_with_time == 0 ) == 0 ) then
+  178.             __pat_tp_acc_transfer_exit_with_time( acc_get_device_num( 2 ), (5,$_trans_T400)[0].L, (6,$_trans_T400)[0].L, (7,$_trans_T400)[0].L )
+  178.          else if ( int( __pat_tp_acc_transfer_exit == 0 ) == 0 ) then
+  178.             __pat_tp_acc_transfer_exit( acc_get_device_num( 2 ), (5,$_trans_T400)[0].L, (6,$_trans_T400)[0].L )
+  178.          endif
+  178.          $ptr_accshare_T164 = 0
+  178.          $ptr_reduc_ctl_T130 = 0
+  178.          $ptr_reduc_val_T134 = 0
+  178.          gosa1 = $$_hshare_T163[0].L
+  178.          if ( int( __pat_tp_acc_region_exit == 0 ) == 0 ) then
+  178.             __pat_tp_acc_region_exit( acc_get_device_num( 2 ) )
+  178.          endif
+  178.          if ( int( __pat_tp_acc_region_enter == 0 ) == 0 ) then
+  178.             __pat_tp_acc_region_enter( acc_get_device_num( 2 ) )
+  178.          endif
+  178.          $_acc_imax_T166 = imax
+  178.          $_acc_jmax_T167 = jmax
+  178.          $GCS_kmax_22 = kmax
+  178.          $_acc_kmax_T168 = $GCS_kmax_22
+  178.          $numth_T182 = -2 + $GCS_kmax_22
+  178.          $async_event_T425 = 0
+  178.          if ( int( __pat_tp_acc_async_kernel_enter == 0 ) == 0 ) then
+  178.             $async_event_T425 = __pat_tp_acc_async_kernel_enter( acc_get_device_num( 2 ) )
+  178.          endif
+  178.          0[loc( $$_argb_T411 ),0,a8].L = $_ptr_acc_wrk2_T33
+  178.          1[loc( $$_argb_T411 ),0,a8].L = $_ptr_acc_p_T39
+  178.          4[loc( $$_argb_T411 ),0,a4] = $_acc_imax_T166
+  178.          5[loc( $$_argb_T411 ),0,a4] = $_acc_jmax_T167
+  178.          6[loc( $$_argb_T411 ),0,a4] = $_acc_kmax_T168
+  178.          $_args_T428[0] = 1
+  178.          (1,$_args_T428)[0] = 100
+  178.          (1,$_args_T428)[0].L = 28
+  178.          (2,$_args_T428)[0].L = cri_pointer( loc( $$_argb_T411 ) )
+  178.          $$_kinfo_T412[0] = 1
+  178.          (1,$$_kinfo_T412)[0] = 10
+  178.          (1,$$_kinfo_T412)[0].L = 524
+  178.          (2,$$_kinfo_T412)[0].L = cri_pointer( loc( $_$kern10$_main__T426 ) )
+  178.          (4,$$_kinfo_T412)[0].L = cri_pointer( loc( $cray$_local_cuda_module_data ) )
+  178.          (5,$$_kinfo_T412)[0].L = $cray$_local_cuda_module_data_size
+  178.          (6,$$_kinfo_T412)[0].L = cri_pointer( loc( $cray$_local_cuda_module_cache ) )
+  178.          (3,$$_kinfo_T412)[0].L = cri_pointer( loc( $$fcache10$_main__T427 ) )
+  178.          (7,$$_kinfo_T412)[0].L = $numth_T182
+  178.          (8,$$_kinfo_T412)[0].L = 1
+  178.          (9,$$_kinfo_T412)[0].L = 1
+  178.          (10,$$_kinfo_T412)[0].L = 128
+  178.          (11,$$_kinfo_T412)[0].L = 1
+  178.          (12,$$_kinfo_T412)[0].L = 1
+  178.          (13,$$_kinfo_T412)[0].L = 0
+  178.          (14,$$_kinfo_T412)[0].L = cri_pointer( loc( $_args_T428 ) )
+  178.          (15,$$_kinfo_T412)[0].L = $async_event_T425
+  178.          (16,$$_kinfo_T412)[0].L = cri_pointer( 0 )
+  178.          (17,$$_kinfo_T412)[0].L = 178
+  178.          (18,$$_kinfo_T412)[0].L = cri_pointer( loc( $_Text_Y7 ) )
+  178.          (19,$$_kinfo_T412)[0].L = cri_pointer( 0 )
+  178.          cray_start_acc_kernel( $$_kinfo_T412 )
+  178.          if ( int( __pat_tp_acc_async_kernel_exit == 0 ) == 0 ) then
+  178.             __pat_tp_acc_async_kernel_exit( acc_get_device_num( 2 ) )
+  178.          endif
+  178.          if ( int( __pat_tp_acc_region_exit == 0 ) == 0 ) then
+  178.             __pat_tp_acc_region_exit( acc_get_device_num( 2 ) )
+  178.          endif
+  178.          $I_L178_270 = 1 + $I_L178_270
+  178.          if ( $I_L178_270 >= 100 ) exit
+  178.       enddo
+  178.       gosa = gosa1
+  178.       $_tran_a_T203[0] = 1
+  178.       (1,$_tran_a_T203)[0] = 10
+  178.       (2,$_tran_a_T203)[0].L = 136855584
+  178.       (1,$_tran_a_T203)[0].L = 3072
+  178.       $GCS_a_32 = loc( a[0].L )
+  178.       (3,$_tran_a_T203)[0].L = cri_pointer( $GCS_a_32 )
+  178.       (4,$_tran_a_T203)[0].L = cri_pointer( $_ptr_acc_a_T71 )
+  178.       (5,$_tran_a_T203)[0].L = cri_pointer( 0 )
+  178.       (6,$_tran_a_T203)[0].L = cri_pointer( loc( $_Text_Y0 ) )
+  178.       $_tran_b_T204[0] = 1
+  178.       (1,$_tran_b_T204)[0] = 10
+  178.       (2,$_tran_b_T204)[0].L = 102641688
+  178.       (1,$_tran_b_T204)[0].L = 3072
+  178.       $GCS_b_31 = loc( b[0].L )
+  178.       (3,$_tran_b_T204)[0].L = cri_pointer( $GCS_b_31 )
+  178.       (4,$_tran_b_T204)[0].L = cri_pointer( $_ptr_acc_b_T69 )
+  178.       (5,$_tran_b_T204)[0].L = cri_pointer( 0 )
+  178.       (6,$_tran_b_T204)[0].L = cri_pointer( loc( $_Text_Y1 ) )
+  178.       $_tran_bnd_T205[0] = 1
+  178.       (1,$_tran_bnd_T205)[0] = 10
+  178.       (2,$_tran_bnd_T205)[0].L = 34213896
+  178.       (1,$_tran_bnd_T205)[0].L = 3072
+  178.       $GCS_bnd_30 = loc( bnd[0].L )
+  178.       (3,$_tran_bnd_T205)[0].L = cri_pointer( $GCS_bnd_30 )
+  178.       (4,$_tran_bnd_T205)[0].L = cri_pointer( $_ptr_acc_bnd_T65 )
+  178.       (5,$_tran_bnd_T205)[0].L = cri_pointer( 0 )
+  178.       (6,$_tran_bnd_T205)[0].L = cri_pointer( loc( $_Text_Y2 ) )
+  178.       $_tran_c_T206[0] = 1
+  178.       (1,$_tran_c_T206)[0] = 10
+  178.       (2,$_tran_c_T206)[0].L = 102641688
+  178.       (1,$_tran_c_T206)[0].L = 3072
+  178.       $GCS_c_29 = loc( c[0].L )
+  178.       (3,$_tran_c_T206)[0].L = cri_pointer( $GCS_c_29 )
+  178.       (4,$_tran_c_T206)[0].L = cri_pointer( $_ptr_acc_c_T67 )
+  178.       (5,$_tran_c_T206)[0].L = cri_pointer( 0 )
+  178.       (6,$_tran_c_T206)[0].L = cri_pointer( loc( $_Text_Y3 ) )
+  178.       $_tran_p_T207[0] = 1
+  178.       (1,$_tran_p_T207)[0] = 10
+  178.       (2,$_tran_p_T207)[0].L = 34213896
+  178.       (1,$_tran_p_T207)[0].L = 3072
+  178.       $GCS_p_28 = loc( p[0].L )
+  178.       (3,$_tran_p_T207)[0].L = cri_pointer( $GCS_p_28 )
+  178.       (4,$_tran_p_T207)[0].L = cri_pointer( $_ptr_acc_p_T73 )
+  178.       (5,$_tran_p_T207)[0].L = cri_pointer( 0 )
+  178.       (6,$_tran_p_T207)[0].L = cri_pointer( loc( $_Text_Y4 ) )
+  178.       $_tran_wrk1_T208[0] = 1
+  178.       (1,$_tran_wrk1_T208)[0] = 10
+  178.       (2,$_tran_wrk1_T208)[0].L = 34213896
+  178.       (1,$_tran_wrk1_T208)[0].L = 3072
+  178.       $GCS_wrk1_27 = loc( wrk1[0].L )
+  178.       (3,$_tran_wrk1_T208)[0].L = cri_pointer( $GCS_wrk1_27 )
+  178.       (4,$_tran_wrk1_T208)[0].L = cri_pointer( $_ptr_acc_wrk1_T63 )
+  178.       (5,$_tran_wrk1_T208)[0].L = cri_pointer( 0 )
+  178.       (6,$_tran_wrk1_T208)[0].L = cri_pointer( loc( $_Text_Y5 ) )
+  178.       $_tran_wrk2_T209[0] = 1
+  178.       (1,$_tran_wrk2_T209)[0] = 10
+  178.       (2,$_tran_wrk2_T209)[0].L = 34213896
+  178.       (1,$_tran_wrk2_T209)[0].L = 3072
+  178.       $GCS_wrk2_26 = loc( wrk2[0].L )
+  178.       (3,$_tran_wrk2_T209)[0].L = cri_pointer( $GCS_wrk2_26 )
+  178.       (4,$_tran_wrk2_T209)[0].L = cri_pointer( $_ptr_acc_wrk2_T61 )
+  178.       (5,$_tran_wrk2_T209)[0].L = cri_pointer( 0 )
+  178.       (6,$_tran_wrk2_T209)[0].L = cri_pointer( loc( $_Text_Y6 ) )
+  178.       if ( int( __pat_tp_acc_transfer_enter == 0 ) == 0 ) then
+  178.          __pat_tp_acc_transfer_enter( acc_get_device_num( 2 ) )
+  178.       endif
+  178.       $_tlst_T395[0].L = loc( $_tran_a_T203 )
+  178.       (1,$_tlst_T395)[0].L = loc( $_tran_b_T204 )
+  178.       (2,$_tlst_T395)[0].L = loc( $_tran_bnd_T205 )
+  178.       (3,$_tlst_T395)[0].L = loc( $_tran_c_T206 )
+  178.       (4,$_tlst_T395)[0].L = loc( $_tran_p_T207 )
+  178.       (5,$_tlst_T395)[0].L = loc( $_tran_wrk1_T208 )
+  178.       (6,$_tlst_T395)[0].L = loc( $_tran_wrk2_T209 )
+  178.       $_trans_T396[0] = 1
+  178.       (1,$_trans_T396)[0] = 11
+  178.       (1,$_trans_T396)[0].L = 2
+  178.       (2,$_trans_T396)[0].L = 7
+  178.       (3,$_trans_T396)[0].L = loc( $_tlst_T395[0].L )
+  178.       (4,$_trans_T396)[0].L = cri_pointer( 0 )
+  178.       (7,$_trans_T396)[0].L = 0
+  178.       (8,$_trans_T396)[0].L = 178
+  178.       (9,$_trans_T396)[0].L = cri_pointer( loc( $_Text_Y7 ) )
+  178.       (10,$_trans_T396)[0].L = cri_pointer( 0 )
+  178.       cray_acc_transfer_list( $_trans_T396 )
+  178.       if ( int( __pat_tp_acc_transfer_exit_with_time == 0 ) == 0 ) then
+  178.          __pat_tp_acc_transfer_exit_with_time( acc_get_device_num( 2 ), (5,$_trans_T396)[0].L, (6,$_trans_T396)[0].L, (7,$_trans_T396)[0].L )
+  178.       else if ( int( __pat_tp_acc_transfer_exit == 0 ) == 0 ) then
+  178.          __pat_tp_acc_transfer_exit( acc_get_device_num( 2 ), (5,$_trans_T396)[0].L, (6,$_trans_T396)[0].L )
+  178.       endif
+  178.       if ( int( __pat_tp_acc_data_exit == 0 ) == 0 ) then
+  178.          __pat_tp_acc_data_exit( acc_get_device_num( 2 ) )
+  178.       endif
+  179.       $cpu1_S17 = gettime
+  180.       $GCS_cpu1_25 = $cpu1_S17 - $cpu0_S16
+  180.       cpu1 = $GCS_cpu1_25
+  184.       $GCS_23 = ( 3400.0 * real( real( -2 + jmax ) * real( -2 + imax ) * real( -2 + kmax ), 8 ) ) / $GCS_cpu1_25
+  184.       xmflops2 = 9.9999999999999995e-7 * $GCS_23
+  185.       score = ( 1.2071463061323031e-8 * $GCS_23 )
+  187.       $GCS_IO_Lib_Stack_24 = pointer to integer*8( loc( $_IO_Lib_Stack_O2 ) )
+  187.       _fwf( pointer to integer*8( loc( $_StaticCntrl_O47 ) ), pointer to integer*8( loc( $StaticIolist_O48[0].L ) ), $GCS_IO_Lib_Stack_24 )
+  188.       _fwf( pointer to integer*8( loc( $_StaticCntrl_O49 ) ), pointer to integer*8( loc( $_StaticIolist_O50[0].L ) ), $GCS_IO_Lib_Stack_24 )
+  189.       _fwf( pointer to integer*8( loc( $_StaticCntrl_O52 ) ), pointer to integer*8( loc( $_StaticIolist_O53[0].L ) ), $GCS_IO_Lib_Stack_24 )
+  190.       _fwf( pointer to integer*8( loc( $_StaticCntrl_O55 ) ), pointer to integer*8( loc( $_StaticIolist_O56[0].L ) ), $GCS_IO_Lib_Stack_24 )
+  191.       _fwf( pointer to integer*8( loc( $_StaticCntrl_O57 ) ), pointer to integer*8( loc( $_StaticIolist_O58[0].L ) ), $GCS_IO_Lib_Stack_24 )
+  192.       _fwf( pointer to integer*8( loc( $_StaticCntrl_O60 ) ), pointer to integer*8( loc( $_StaticIolist_O61[0].L ) ), $GCS_IO_Lib_Stack_24 )
+  194.       $_sync_T401[0] = 1
+  194.       (1,$_sync_T401)[0] = 12
+  194.       (1,$_sync_T401)[0].L = 1
+  194.       (2,$_sync_T401)[0].L = cri_pointer( 0 )
+  194.       (3,$_sync_T401)[0].L = 194
+  194.       (4,$_sync_T401)[0].L = cri_pointer( loc( $_Text_Y7 ) )
+  194.       (5,$_sync_T401)[0].L = cri_pointer( 0 )
+  194.       if ( int( __pat_tp_acc_sync_enter == 0 ) == 0 ) then
+  194.          __pat_tp_acc_sync_enter( acc_get_device_num( 2 ) )
+  194.       endif
+  194.       _cray_acc_wait( $_sync_T401 )
+  194.       if ( int( __pat_tp_acc_sync_exit == 0 ) == 0 ) then
+  194.          __pat_tp_acc_sync_exit( acc_get_device_num( 2 ) )
+  194.       endif
+  194.       $_tran_a_T186[0] = 1
+  194.       (1,$_tran_a_T186)[0] = 10
+  194.       (2,$_tran_a_T186)[0].L = 136855584
+  194.       (1,$_tran_a_T186)[0].L = 2050
+  194.       (3,$_tran_a_T186)[0].L = cri_pointer( $GCS_a_32 )
+  194.       (4,$_tran_a_T186)[0].L = cri_pointer( $_ptr_acc_a_T45 )
+  194.       (5,$_tran_a_T186)[0].L = cri_pointer( 0 )
+  194.       (6,$_tran_a_T186)[0].L = cri_pointer( loc( $_Text_Y0 ) )
+  194.       $_tran_b_T187[0] = 1
+  194.       (1,$_tran_b_T187)[0] = 10
+  194.       (2,$_tran_b_T187)[0].L = 102641688
+  194.       (1,$_tran_b_T187)[0].L = 2050
+  194.       (3,$_tran_b_T187)[0].L = cri_pointer( $GCS_b_31 )
+  194.       (4,$_tran_b_T187)[0].L = cri_pointer( $_ptr_acc_b_T43 )
+  194.       (5,$_tran_b_T187)[0].L = cri_pointer( 0 )
+  194.       (6,$_tran_b_T187)[0].L = cri_pointer( loc( $_Text_Y1 ) )
+  194.       $_tran_bnd_T188[0] = 1
+  194.       (1,$_tran_bnd_T188)[0] = 10
+  194.       (2,$_tran_bnd_T188)[0].L = 34213896
+  194.       (1,$_tran_bnd_T188)[0].L = 2050
+  194.       (3,$_tran_bnd_T188)[0].L = cri_pointer( $GCS_bnd_30 )
+  194.       (4,$_tran_bnd_T188)[0].L = cri_pointer( $_ptr_acc_bnd_T35 )
+  194.       (5,$_tran_bnd_T188)[0].L = cri_pointer( 0 )
+  194.       (6,$_tran_bnd_T188)[0].L = cri_pointer( loc( $_Text_Y2 ) )
+  194.       $_tran_c_T189[0] = 1
+  194.       (1,$_tran_c_T189)[0] = 10
+  194.       (2,$_tran_c_T189)[0].L = 102641688
+  194.       (1,$_tran_c_T189)[0].L = 2050
+  194.       (3,$_tran_c_T189)[0].L = cri_pointer( $GCS_c_29 )
+  194.       (4,$_tran_c_T189)[0].L = cri_pointer( $_ptr_acc_c_T41 )
+  194.       (5,$_tran_c_T189)[0].L = cri_pointer( 0 )
+  194.       (6,$_tran_c_T189)[0].L = cri_pointer( loc( $_Text_Y3 ) )
+  194.       $_tran_p_T190[0] = 1
+  194.       (1,$_tran_p_T190)[0] = 10
+  194.       (2,$_tran_p_T190)[0].L = 34213896
+  194.       (1,$_tran_p_T190)[0].L = 2050
+  194.       (3,$_tran_p_T190)[0].L = cri_pointer( $GCS_p_28 )
+  194.       (4,$_tran_p_T190)[0].L = cri_pointer( $_ptr_acc_p_T39 )
+  194.       (5,$_tran_p_T190)[0].L = cri_pointer( 0 )
+  194.       (6,$_tran_p_T190)[0].L = cri_pointer( loc( $_Text_Y4 ) )
+  194.       $_tran_wrk1_T191[0] = 1
+  194.       (1,$_tran_wrk1_T191)[0] = 10
+  194.       (2,$_tran_wrk1_T191)[0].L = 34213896
+  194.       (1,$_tran_wrk1_T191)[0].L = 2050
+  194.       (3,$_tran_wrk1_T191)[0].L = cri_pointer( $GCS_wrk1_27 )
+  194.       (4,$_tran_wrk1_T191)[0].L = cri_pointer( $_ptr_acc_wrk1_T37 )
+  194.       (5,$_tran_wrk1_T191)[0].L = cri_pointer( 0 )
+  194.       (6,$_tran_wrk1_T191)[0].L = cri_pointer( loc( $_Text_Y5 ) )
+  194.       $_tran_wrk2_T192[0] = 1
+  194.       (1,$_tran_wrk2_T192)[0] = 10
+  194.       (2,$_tran_wrk2_T192)[0].L = 34213896
+  194.       (1,$_tran_wrk2_T192)[0].L = 2050
+  194.       (3,$_tran_wrk2_T192)[0].L = cri_pointer( $GCS_wrk2_26 )
+  194.       (4,$_tran_wrk2_T192)[0].L = cri_pointer( $_ptr_acc_wrk2_T33 )
+  194.       (5,$_tran_wrk2_T192)[0].L = cri_pointer( 0 )
+  194.       (6,$_tran_wrk2_T192)[0].L = cri_pointer( loc( $_Text_Y6 ) )
+  194.       if ( int( __pat_tp_acc_transfer_enter == 0 ) == 0 ) then
+  194.          __pat_tp_acc_transfer_enter( acc_get_device_num( 2 ) )
+  194.       endif
+  194.       $_tlst_T383[0].L = loc( $_tran_a_T186 )
+  194.       (1,$_tlst_T383)[0].L = loc( $_tran_b_T187 )
+  194.       (2,$_tlst_T383)[0].L = loc( $_tran_bnd_T188 )
+  194.       (3,$_tlst_T383)[0].L = loc( $_tran_c_T189 )
+  194.       (4,$_tlst_T383)[0].L = loc( $_tran_p_T190 )
+  194.       (5,$_tlst_T383)[0].L = loc( $_tran_wrk1_T191 )
+  194.       (6,$_tlst_T383)[0].L = loc( $_tran_wrk2_T192 )
+  194.       $_trans_T384[0] = 1
+  194.       (1,$_trans_T384)[0] = 11
+  194.       (1,$_trans_T384)[0].L = 2
+  194.       (2,$_trans_T384)[0].L = 7
+  194.       (3,$_trans_T384)[0].L = loc( $_tlst_T383[0].L )
+  194.       (4,$_trans_T384)[0].L = cri_pointer( 0 )
+  194.       (7,$_trans_T384)[0].L = 0
+  194.       (8,$_trans_T384)[0].L = 194
+  194.       (9,$_trans_T384)[0].L = cri_pointer( loc( $_Text_Y7 ) )
+  194.       (10,$_trans_T384)[0].L = cri_pointer( 0 )
+  194.       cray_acc_transfer_list( $_trans_T384 )
+  194.       if ( int( __pat_tp_acc_transfer_exit_with_time == 0 ) == 0 ) then
+  194.          __pat_tp_acc_transfer_exit_with_time( acc_get_device_num( 2 ), (5,$_trans_T384)[0].L, (6,$_trans_T384)[0].L, (7,$_trans_T384)[0].L )
+  194.       else if ( int( __pat_tp_acc_transfer_exit == 0 ) == 0 ) then
+  194.          __pat_tp_acc_transfer_exit( acc_get_device_num( 2 ), (5,$_trans_T384)[0].L, (6,$_trans_T384)[0].L )
+  194.       endif
+  194.       if ( int( __pat_tp_acc_data_exit == 0 ) == 0 ) then
+  194.          __pat_tp_acc_data_exit( acc_get_device_num( 2 ) )
+  194.       endif
+  196.       call _end
+  196.       return
+  196.       end
+  196.       
+  196.       
+  157.       accelerator_kernel main_$ck_l157_1( $$arg_ptr_acc_wrk2_t33_t343, $$arg_ptr_acc_bnd_t35_t344, $$arg_ptr_acc_wrk1_t37_t345, $$arg_ptr_acc_p_t39_t346, $$arg_ptr_acc_c_t41_t347, $$arg_ptr_acc_b_t43_t348, $$arg_ptr_acc_a_t45_t349, $$arg_ptr_reduc_ctl_t108_t350, $$arg_ptr_reduc_val_t112_t351, $$_arg_acc_imax_t149_t352, $$_arg_acc_jmax_t150_t353, $$_arg_acc_kmax_t151_t354, $$_arg_acc_omega_t152_t355, $$arg_ptr_accshare_t154_t356 )
+  157.       _acc_kernel_start( 3, Null_Arg )
+  157.       $$gcs_kmax_35_t321 = $$_arg_acc_kmax_t151_t354
+  157.       if ( -3 + $$gcs_kmax_35_t321 >= 0 ) then
+  157.          $$_gosa1_t15 = 0.0
+  157.          $$numthrds_t105 = _acc_read_hw_reg(%nctaid.x)
+  157.          $$id_t106 = _acc_read_hw_reg(%ctaid.x)
+  157.          $$i_l157_288_t249 = $$id_t106
+  157.          $$gcs_2_33_t319 = -2 + $$gcs_kmax_35_t321
+  157.          if ( $$id_t106 < $$gcs_2_33_t319 ) then
+  157.             $$gcs_jmax_36_t322 = $$_arg_acc_jmax_t150_t353
+  157.             if ( -3 + $$gcs_jmax_36_t322 >= 0 ) then
+  157.                $$gcs_imax_37_t323 = $$_arg_acc_imax_t149_t352
+  157.                if ( -3 + $$gcs_imax_37_t323 >= 0 ) then
+  157.                   $$sr_e2_t253 = 33153 * $$id_t106
+  157.                   $$gcs_2_34_t320 = -2 + $$gcs_imax_37_t323
+  157.                   $$lis_b6_t260 = $$gcs_2_34_t320
+  157.                   $$lis_b8_t262 = $$gcs_2_33_t319
+  157.                   $$lis_b7_t261 = 33153 * $$numthrds_t105
+  157.                   $$lis_b4_t258 = _acc_read_hw_reg(%ntid.x)
+  157.                   $$lis_b5_t259 = _acc_read_hw_reg(%tid.x)
+  157.                   $$lis_b3_t257 = -2 + $$gcs_jmax_36_t322
+  157.                   $$lis_b1_t255 = $$gcs_2_34_t320
+  157.                   $$lis_b0_t254 = $$_arg_acc_omega_t152_t355
+  157.                   $$lis_b35_t341 = $$lis_b5_t259 >= $$lis_b6_t260
+  157.                   $$lis_b36_t342 = -$$lis_b3_t257
+  157.                   $$lis_b33_t339 = _acc_read_hw_reg(%tid.x)
+  157.                   $$lis_b34_t340 = _acc_read_hw_reg(%tid.x) >= 32
+  157.                   $$lis_b32_t338 = _acc_read_hw_reg(%tid.x)
+  157.                   do
+  157.                      $sc_gosa1_i2 = $$_gosa1_t15
+  157.                      $$sr_e1_t252 = $$sr_e2_t253
+  157.                      $$lis_b2_t256 = $$lis_b35_t341
+  157.                      $$induc02_j0_t318 = $$lis_b36_t342
+  157.                      do
+  157.                         $$i_l157_272_t248 = $$lis_b5_t259
+  157.                         $$_gosa1_t15_t103 = 0.0
+  157.                         if ( $$lis_b2_t256 == 0 ) then
+  157. !dir$ loop_info (automatic) cache_nt( wrk1, c, bnd, b, a, wrk2 )
+  157. !dir$ blocking_size( 1, 1 )
+  157.                            do
+  157.                               $$gcs_39_t325 = $$sr_e1_t252 + $$i_l157_272_t248
+  157.                               $sc_s0_i0 = 33411[$$arg_ptr_acc_wrk1_t37_t345,$$gcs_39_t325,ex].L + _fmadd( 8586885[$$arg_ptr_acc_c_t41_t347,$$gcs_39_t325,ex].L, 258[$$arg_ptr_acc_p_t39_t346,$$gcs_39_t325,ex].L, _fmadd( 4310148[$$arg_ptr_acc_c_t41_t347,$$gcs_39_t325,ex].L, 33154[$$arg_ptr_acc_p_t39_t346,$$gcs_39_t325,ex].L, _fmadd( 33411[$$arg_ptr_acc_c_t41_t347,$$gcs_39_t325,ex].L, 33410[$$arg_ptr_acc_p_t39_t346,$$gcs_39_t325,ex].L, _fmadd( 8586885[$$arg_ptr_acc_b_t43_t348,$$gcs_39_t325,ex].L, 257[$$arg_ptr_acc_p_t39_t346,$$gcs_39_t325,ex].L + 66565[$$arg_ptr_acc_p_t39_t346,$$gcs_39_t325,ex].L - ( 66563[$$arg_ptr_acc_p_t39_t346,$$gcs_39_t325,ex].L + 259[$$arg_ptr_acc_p_t39_t346,$$gcs_39_t325,ex].L ), _fmadd( 4310148[$$arg_ptr_acc_b_t43_t348,$$gcs_39_t325,ex].L, 1[$$arg_ptr_acc_p_t39_t346,$$gcs_39_t325,ex].L + 66821[$$arg_ptr_acc_p_t39_t346,$$gcs_39_t325,ex].L - ( 66307[$$arg_ptr_acc_p_t39_t346,$$gcs_39_t325,ex].L + 515[$$arg_ptr_acc_p_t39_t346,$$gcs_39_t325,ex].L ), _fmadd( 33411[$$arg_ptr_acc_b_t43_t348,$$gcs_39_t325,ex].L, 33153[$$arg_ptr_acc_p_t39_t346,$$gcs_39_t325,ex].L + 33669[$$arg_ptr_acc_p_t39_t346,$$gcs_39_t325,ex].L - ( 33155[$$arg_ptr_acc_p_t39_t346,$$gcs_39_t325,ex].L + 33667[$$arg_ptr_acc_p_t39_t346,$$gcs_39_t325,ex].L ), _fmadd( 8586885[$$arg_ptr_acc_a_t45_t349,$$gcs_39_t325,ex].L, 66564[$$arg_ptr_acc_p_t39_t346,$$gcs_39_t325,ex].L, _fmadd( 33411[$$arg_ptr_acc_a_t45_t349,$$gcs_39_t325,ex].L, 33412[$$arg_ptr_acc_p_t39_t346,$$gcs_39_t325,ex].L, 4310148[$$arg_ptr_acc_a_t45_t349,$$gcs_39_t325,ex].L * 33668[$$arg_ptr_acc_p_t39_t346,$$gcs_39_t325,ex].L ) ) ) ) ) ) ) )
+  157.                               $$gcs_p_38_t324 = 33411[$$arg_ptr_acc_p_t39_t346,$$gcs_39_t325,ex].L
+  157.                               $sc_ss_i1 = ( _fmadd( $sc_s0_i0, 12863622[$$arg_ptr_acc_a_t45_t349,$$gcs_39_t325,ex].L, -$$gcs_p_38_t324 ) ) * 33411[$$arg_ptr_acc_bnd_t35_t344,$$gcs_39_t325,ex].L
+  157.                               $$_gosa1_t15_t103 = _fmadd( $sc_ss_i1, $sc_ss_i1, $$_gosa1_t15_t103 )
+  157.                               33411[$$arg_ptr_acc_wrk2_t33_t343,$$gcs_39_t325,nt].L = _fmadd( $$lis_b0_t254, $sc_ss_i1, $$gcs_p_38_t324 )
+  157.                               $$i_l157_272_t248 = $$lis_b4_t258 + $$i_l157_272_t248
+  157.                               if ( $$i_l157_272_t248 >= $$lis_b1_t255 ) exit
+  157.                            enddo
+  157.                         endif
+  157.                         $$lcs_0_t329 = $$lis_b32_t338
+  157.                         0[loc( $$_redfold_t267 ),$$lcs_0_t329].L = $$_gosa1_t15_t103
+  157.                         _acc_thread_bar( 0, Null_Arg )
+  157.                         $redfold_left_temp_t268 = 0[loc( $$_redfold_t267 ),$$lis_b33_t339].L
+  157.                         if ( $$lcs_0_t329 < 64 ) then
+  157.                            $$lcs_1_t330 = $$lis_b32_t338
+  157.                            $redfold_right_temp_t269 = 64[loc( $$_redfold_t267 ),$$lcs_1_t330].L
+  157.                            $redfold_left_temp_t268 = $redfold_left_temp_t268 + $redfold_right_temp_t269
+  157.                            0[loc( $$_redfold_t267 ),$$lcs_1_t330].L = $redfold_left_temp_t268
+  157.                         endif
+  157.                         _acc_thread_bar( 0, Null_Arg )
+  157.                         if ( $$lis_b34_t340 == 0 ) then
+  157.                            $$lcs_3_t332 = $$lis_b32_t338
+  157.                            $redfold_right_temp_t269 = 32[loc( $$_redfold_t267 ),$$lcs_3_t332].L
+  157.                            $redfold_left_temp_t268 = $redfold_left_temp_t268 + $redfold_right_temp_t269
+  157.                            $$lcs_2_t331 = $$lcs_3_t332
+  157.                            0[loc( $$_redfold_t267 ),$$lcs_2_t331].L = $redfold_left_temp_t268
+  157.                            $redfold_right_temp_t269 = 16[loc( $$_redfold_t267 ),$$lcs_3_t332].L
+  157.                            $redfold_left_temp_t268 = $redfold_left_temp_t268 + $redfold_right_temp_t269
+  157.                            0[loc( $$_redfold_t267 ),$$lcs_2_t331].L = $redfold_left_temp_t268
+  157.                            $redfold_right_temp_t269 = 8[loc( $$_redfold_t267 ),$$lcs_3_t332].L
+  157.                            $redfold_left_temp_t268 = $redfold_left_temp_t268 + $redfold_right_temp_t269
+  157.                            0[loc( $$_redfold_t267 ),$$lcs_2_t331].L = $redfold_left_temp_t268
+  157.                            $redfold_right_temp_t269 = 4[loc( $$_redfold_t267 ),$$lcs_3_t332].L
+  157.                            $redfold_left_temp_t268 = $redfold_left_temp_t268 + $redfold_right_temp_t269
+  157.                            0[loc( $$_redfold_t267 ),$$lcs_2_t331].L = $redfold_left_temp_t268
+  157.                            $redfold_right_temp_t269 = 2[loc( $$_redfold_t267 ),$$lcs_3_t332].L
+  157.                            $redfold_left_temp_t268 = $redfold_left_temp_t268 + $redfold_right_temp_t269
+  157.                            0[loc( $$_redfold_t267 ),$$lcs_2_t331].L = $redfold_left_temp_t268
+  157.                            $redfold_right_temp_t269 = 1[loc( $$_redfold_t267 ),$$lcs_3_t332].L
+  157.                            $redfold_left_temp_t268 = $redfold_left_temp_t268 + $redfold_right_temp_t269
+  157.                            0[loc( $$_redfold_t267 ),$$lcs_2_t331].L = $redfold_left_temp_t268
+  157.                         endif
+  157.                         _acc_thread_bar( 0, Null_Arg )
+  157.                         $redfinal_t270 = 0[loc( $$_redfold_t267 ),0].L
+  157.                         _acc_thread_bar( 0, Null_Arg )
+  157.                         $sc_gosa1_i2 = $sc_gosa1_i2 + $redfinal_t270
+  157.                         _acc_thread_bar( 0, Null_Arg )
+  157.                         $$sr_e1_t252 = 257 + $$sr_e1_t252
+  157.                         $$induc02_j0_t318 = 1 + $$induc02_j0_t318
+  157.                         if ( $$induc02_j0_t318 >= 0 ) exit
+  157.                      enddo
+  157.                      $$_gosa1_t15 = $sc_gosa1_i2
+  157.                      $$sr_e2_t253 = $$sr_e2_t253 + $$lis_b7_t261
+  157.                      $$i_l157_288_t249 = $$numthrds_t105 + $$i_l157_288_t249
+  157.                      if ( $$i_l157_288_t249 >= $$lis_b8_t262 ) exit
+  157.                   enddo
+  157.                endif
+  157.             endif
+  157.          endif
+  157.          if ( _acc_read_hw_reg(%tid.x) == 0 ) then
+  157.             0[$$arg_ptr_reduc_val_t112_t351,_acc_read_hw_reg(%ctaid.x)].L = $$_gosa1_t15
+  157.          endif
+  157.          _order_memory
+  157.          if ( _acc_read_hw_reg(%tid.x) == 0 ) then
+  157.             $$gcs_40_t326 = merge( 1 - _acc_read_hw_reg(%nctaid.x), 1, _acc_read_hw_reg(%ctaid.x) == 0 )
+  157.             $$snap_amo_p30_t337 = _lamo_afadd( loc( 0[$$arg_ptr_reduc_ctl_t108_t350,0] ), $$gcs_40_t326 )
+  157.             reduc_share_ctl_c4 = $$gcs_40_t326 + $$snap_amo_p30_t337
+  157.          endif
+  157.          _acc_thread_bar( 0, Null_Arg )
+  157.          if ( reduc_share_ctl_c4 == 0 ) then
+  157.             $$reduc_pvt_t111 = 0.0
+  157.             $$gcs_42_t328 = _acc_read_hw_reg(%tid.x)
+  157.             $$induc_p28_t250 = $$gcs_42_t328
+  157.             $$gcs_41_t327 = _acc_read_hw_reg(%nctaid.x)
+  157.             if ( $$induc_p28_t250 < $$gcs_41_t327 ) then
+  157.                $$lis_b11_t265 = _acc_read_hw_reg(%ntid.x)
+  157.                $$lis_b12_t266 = $$gcs_41_t327
+  157.                do
+  157.                   $$reduc_pvt_t111 = $$reduc_pvt_t111 + 0[$$arg_ptr_reduc_val_t112_t351,$$induc_p28_t250].L
+  157.                   $$induc_p28_t250 = ( $$induc_p28_t250 + $$lis_b11_t265 )
+  157.                   if ( $$induc_p28_t250 >= $$lis_b12_t266 ) exit
+  157.                enddo
+  157.             endif
+  157.             $$lcs_4_t333 = _acc_read_hw_reg(%tid.x)
+  157.             0[loc( $$_redfold_t267 ),$$lcs_4_t333].L = $$reduc_pvt_t111
+  157.             _acc_thread_bar( 0, Null_Arg )
+  157.             $redfold_left_temp_t271 = 0[loc( $$_redfold_t267 ),_acc_read_hw_reg(%tid.x)].L
+  157.             if ( $$lcs_4_t333 < 64 ) then
+  157.                $$lcs_5_t334 = _acc_read_hw_reg(%tid.x)
+  157.                $redfold_right_temp_t272 = 64[loc( $$_redfold_t267 ),$$lcs_5_t334].L
+  157.                $redfold_left_temp_t271 = $redfold_left_temp_t271 + $redfold_right_temp_t272
+  157.                0[loc( $$_redfold_t267 ),$$lcs_5_t334].L = $redfold_left_temp_t271
+  157.             endif
+  157.             _acc_thread_bar( 0, Null_Arg )
+  157.             if ( _acc_read_hw_reg(%tid.x) < 32 ) then
+  157.                $$lcs_7_t336 = _acc_read_hw_reg(%tid.x)
+  157.                $redfold_right_temp_t272 = 32[loc( $$_redfold_t267 ),$$lcs_7_t336].L
+  157.                $redfold_left_temp_t271 = $redfold_left_temp_t271 + $redfold_right_temp_t272
+  157.                $$lcs_6_t335 = $$lcs_7_t336
+  157.                0[loc( $$_redfold_t267 ),$$lcs_6_t335].L = $redfold_left_temp_t271
+  157.                $redfold_right_temp_t272 = 16[loc( $$_redfold_t267 ),$$lcs_7_t336].L
+  157.                $redfold_left_temp_t271 = $redfold_left_temp_t271 + $redfold_right_temp_t272
+  157.                0[loc( $$_redfold_t267 ),$$lcs_6_t335].L = $redfold_left_temp_t271
+  157.                $redfold_right_temp_t272 = 8[loc( $$_redfold_t267 ),$$lcs_7_t336].L
+  157.                $redfold_left_temp_t271 = $redfold_left_temp_t271 + $redfold_right_temp_t272
+  157.                0[loc( $$_redfold_t267 ),$$lcs_6_t335].L = $redfold_left_temp_t271
+  157.                $redfold_right_temp_t272 = 4[loc( $$_redfold_t267 ),$$lcs_7_t336].L
+  157.                $redfold_left_temp_t271 = $redfold_left_temp_t271 + $redfold_right_temp_t272
+  157.                0[loc( $$_redfold_t267 ),$$lcs_6_t335].L = $redfold_left_temp_t271
+  157.                $redfold_right_temp_t272 = 2[loc( $$_redfold_t267 ),$$lcs_7_t336].L
+  157.                $redfold_left_temp_t271 = $redfold_left_temp_t271 + $redfold_right_temp_t272
+  157.                0[loc( $$_redfold_t267 ),$$lcs_6_t335].L = $redfold_left_temp_t271
+  157.                $redfold_right_temp_t272 = 1[loc( $$_redfold_t267 ),$$lcs_7_t336].L
+  157.                $redfold_left_temp_t271 = $redfold_left_temp_t271 + $redfold_right_temp_t272
+  157.                0[loc( $$_redfold_t267 ),$$lcs_6_t335].L = $redfold_left_temp_t271
+  157.             endif
+  157.             _acc_thread_bar( 0, Null_Arg )
+  157.             $redfinal_t273 = 0[loc( $$_redfold_t267 ),0].L
+  157.             _acc_thread_bar( 0, Null_Arg )
+  157.             $$reduc_pvt_t111 = $redfinal_t273
+  157.             if ( $$gcs_42_t328 == 0 ) then
+  157.                0[$$arg_ptr_accshare_t154_t356,0].L = 0[$$arg_ptr_accshare_t154_t356,0].L + $redfinal_t273
+  157.             endif
+  157.          endif
+  157.       endif
+  157.       return
+  157.       end
+  157.       
+  157.       
+  157.       accelerator_kernel main_$ck_l157_2( $$arg_ptr_acc_wrk2_t33_t357, $$arg_ptr_acc_p_t39_t358, $$_arg_acc_imax_t156_t359, $$_arg_acc_jmax_t157_t360, $$_arg_acc_kmax_t158_t361 )
+  157.       _acc_kernel_start( 5, Null_Arg )
+  157.       $$gcs_kmax_46_t316 = $$_arg_acc_kmax_t158_t361
+  157.       if ( -3 + $$gcs_kmax_46_t316 >= 0 ) then
+  157.          $$gcs_jmax_45_t315 = $$_arg_acc_jmax_t157_t360
+  157.          if ( -3 + $$gcs_jmax_45_t315 >= 0 ) then
+  157.             $$gcs_imax_44_t314 = $$_arg_acc_imax_t156_t359
+  157.             if ( -3 + $$gcs_imax_44_t314 >= 0 ) then
+  157.                $$id_t120 = _acc_read_hw_reg(%ctaid.x)
+  157.                if ( $$id_t120 < -2 + $$gcs_kmax_46_t316 ) then
+  157.                   $$numthrds_t121 = _acc_read_hw_reg(%ntid.x)
+  157.                   $$id_t122 = _acc_read_hw_reg(%tid.x)
+  157.                   $$sr_e4_t243 = 33153 * $$id_t120
+  157.                   $$gcs_2_43_t313 = -2 + $$gcs_imax_44_t314
+  157.                   $$lis_b14_t245 = $$id_t122 >= $$gcs_2_43_t313
+  157.                   $$lis_b15_t246 = -2 + $$gcs_jmax_45_t315
+  157.                   $$lis_b13_t244 = $$gcs_2_43_t313
+  157.                   $$induc02_j1_t312 = -$$lis_b15_t246
+  157.                   do
+  157.                      $$i_l157_274_t241 = $$id_t122
+  157.                      if ( $$lis_b14_t245 == 0 ) then
+  157. !dir$ loop_info (automatic) cache_nt( wrk2, p )
+  157.                         do
+  157.                            $$gcs_47_t317 = $$sr_e4_t243 + $$i_l157_274_t241
+  157.                            33411[$$arg_ptr_acc_p_t39_t358,$$gcs_47_t317,nt].L = 33411[$$arg_ptr_acc_wrk2_t33_t357,$$gcs_47_t317,ex].L
+  157.                            $$i_l157_274_t241 = $$numthrds_t121 + $$i_l157_274_t241
+  157.                            if ( $$i_l157_274_t241 >= $$lis_b13_t244 ) exit
+  157.                         enddo
+  157.                      endif
+  157.                      _acc_thread_bar( 0, Null_Arg )
+  157.                      $$sr_e4_t243 = 257 + $$sr_e4_t243
+  157.                      $$induc02_j1_t312 = 1 + $$induc02_j1_t312
+  157.                      if ( $$induc02_j1_t312 >= 0 ) exit
+  157.                   enddo
+  157.                endif
+  157.             endif
+  157.          endif
+  157.       endif
+  157.       return
+  157.       end
+  157.       
+  157.       
+  178.       accelerator_kernel main_$ck_l178_3( $$arg_ptr_acc_wrk2_t33_t362, $$arg_ptr_acc_bnd_t35_t363, $$arg_ptr_acc_wrk1_t37_t364, $$arg_ptr_acc_p_t39_t365, $$arg_ptr_acc_c_t41_t366, $$arg_ptr_acc_b_t43_t367, $$arg_ptr_acc_a_t45_t368, $$arg_ptr_reduc_ctl_t130_t369, $$arg_ptr_reduc_val_t134_t370, $$_arg_acc_imax_t159_t371, $$_arg_acc_jmax_t160_t372, $$_arg_acc_kmax_t161_t373, $$_arg_acc_omega_t162_t374, $$arg_ptr_accshare_t164_t375 )
+  178.       _acc_kernel_start( 8, Null_Arg )
+  178.       $$gcs_kmax_50_t290 = $$_arg_acc_kmax_t161_t373
+  178.       if ( -3 + $$gcs_kmax_50_t290 >= 0 ) then
+  178.          $$_gosa1_t16 = 0.0
+  178.          $$numthrds_t127 = _acc_read_hw_reg(%nctaid.x)
+  178.          $$id_t128 = _acc_read_hw_reg(%ctaid.x)
+  178.          $$i_l178_292_t222 = $$id_t128
+  178.          $$gcs_2_48_t288 = -2 + $$gcs_kmax_50_t290
+  178.          if ( $$id_t128 < $$gcs_2_48_t288 ) then
+  178.             $$gcs_jmax_51_t291 = $$_arg_acc_jmax_t160_t372
+  178.             if ( -3 + $$gcs_jmax_51_t291 >= 0 ) then
+  178.                $$gcs_imax_52_t292 = $$_arg_acc_imax_t159_t371
+  178.                if ( -3 + $$gcs_imax_52_t292 >= 0 ) then
+  178.                   $$sr_e7_t226 = 33153 * $$id_t128
+  178.                   $$gcs_2_49_t289 = -2 + $$gcs_imax_52_t292
+  178.                   $$lis_b22_t233 = $$gcs_2_49_t289
+  178.                   $$lis_b24_t235 = $$gcs_2_48_t288
+  178.                   $$lis_b23_t234 = 33153 * $$numthrds_t127
+  178.                   $$lis_b20_t231 = _acc_read_hw_reg(%ntid.x)
+  178.                   $$lis_b21_t232 = _acc_read_hw_reg(%tid.x)
+  178.                   $$lis_b19_t230 = -2 + $$gcs_jmax_51_t291
+  178.                   $$lis_b17_t228 = $$gcs_2_49_t289
+  178.                   $$lis_b16_t227 = $$_arg_acc_omega_t162_t374
+  178.                   $$lis_b40_t310 = $$lis_b21_t232 >= $$lis_b22_t233
+  178.                   $$lis_b41_t311 = -$$lis_b19_t230
+  178.                   $$lis_b38_t308 = _acc_read_hw_reg(%tid.x)
+  178.                   $$lis_b39_t309 = _acc_read_hw_reg(%tid.x) >= 32
+  178.                   $$lis_b37_t307 = _acc_read_hw_reg(%tid.x)
+  178.                   do
+  178.                      $sc_gosa1_i5 = $$_gosa1_t16
+  178.                      $$sr_e6_t225 = $$sr_e7_t226
+  178.                      $$lis_b18_t229 = $$lis_b40_t310
+  178.                      $$induc02_j2_t287 = $$lis_b41_t311
+  178.                      do
+  178.                         $$i_l178_276_t221 = $$lis_b21_t232
+  178.                         $$_gosa1_t16_t104 = 0.0
+  178.                         if ( $$lis_b18_t229 == 0 ) then
+  178. !dir$ loop_info (automatic) cache_nt( wrk1, c, bnd, b, a, wrk2 )
+  178. !dir$ blocking_size( 1, 1 )
+  178.                            do
+  178.                               $$gcs_54_t294 = $$sr_e6_t225 + $$i_l178_276_t221
+  178.                               $sc_s0_i3 = 33411[$$arg_ptr_acc_wrk1_t37_t364,$$gcs_54_t294,ex].L + _fmadd( 8586885[$$arg_ptr_acc_c_t41_t366,$$gcs_54_t294,ex].L, 258[$$arg_ptr_acc_p_t39_t365,$$gcs_54_t294,ex].L, _fmadd( 4310148[$$arg_ptr_acc_c_t41_t366,$$gcs_54_t294,ex].L, 33154[$$arg_ptr_acc_p_t39_t365,$$gcs_54_t294,ex].L, _fmadd( 33411[$$arg_ptr_acc_c_t41_t366,$$gcs_54_t294,ex].L, 33410[$$arg_ptr_acc_p_t39_t365,$$gcs_54_t294,ex].L, _fmadd( 8586885[$$arg_ptr_acc_b_t43_t367,$$gcs_54_t294,ex].L, 257[$$arg_ptr_acc_p_t39_t365,$$gcs_54_t294,ex].L + 66565[$$arg_ptr_acc_p_t39_t365,$$gcs_54_t294,ex].L - ( 66563[$$arg_ptr_acc_p_t39_t365,$$gcs_54_t294,ex].L + 259[$$arg_ptr_acc_p_t39_t365,$$gcs_54_t294,ex].L ), _fmadd( 4310148[$$arg_ptr_acc_b_t43_t367,$$gcs_54_t294,ex].L, 1[$$arg_ptr_acc_p_t39_t365,$$gcs_54_t294,ex].L + 66821[$$arg_ptr_acc_p_t39_t365,$$gcs_54_t294,ex].L - ( 66307[$$arg_ptr_acc_p_t39_t365,$$gcs_54_t294,ex].L + 515[$$arg_ptr_acc_p_t39_t365,$$gcs_54_t294,ex].L ), _fmadd( 33411[$$arg_ptr_acc_b_t43_t367,$$gcs_54_t294,ex].L, 33153[$$arg_ptr_acc_p_t39_t365,$$gcs_54_t294,ex].L + 33669[$$arg_ptr_acc_p_t39_t365,$$gcs_54_t294,ex].L - ( 33155[$$arg_ptr_acc_p_t39_t365,$$gcs_54_t294,ex].L + 33667[$$arg_ptr_acc_p_t39_t365,$$gcs_54_t294,ex].L ), _fmadd( 8586885[$$arg_ptr_acc_a_t45_t368,$$gcs_54_t294,ex].L, 66564[$$arg_ptr_acc_p_t39_t365,$$gcs_54_t294,ex].L, _fmadd( 33411[$$arg_ptr_acc_a_t45_t368,$$gcs_54_t294,ex].L, 33412[$$arg_ptr_acc_p_t39_t365,$$gcs_54_t294,ex].L, 4310148[$$arg_ptr_acc_a_t45_t368,$$gcs_54_t294,ex].L * 33668[$$arg_ptr_acc_p_t39_t365,$$gcs_54_t294,ex].L ) ) ) ) ) ) ) )
+  178.                               $$gcs_p_53_t293 = 33411[$$arg_ptr_acc_p_t39_t365,$$gcs_54_t294,ex].L
+  178.                               $sc_ss_i4 = ( _fmadd( $sc_s0_i3, 12863622[$$arg_ptr_acc_a_t45_t368,$$gcs_54_t294,ex].L, -$$gcs_p_53_t293 ) ) * 33411[$$arg_ptr_acc_bnd_t35_t363,$$gcs_54_t294,ex].L
+  178.                               $$_gosa1_t16_t104 = _fmadd( $sc_ss_i4, $sc_ss_i4, $$_gosa1_t16_t104 )
+  178.                               33411[$$arg_ptr_acc_wrk2_t33_t362,$$gcs_54_t294,nt].L = _fmadd( $$lis_b16_t227, $sc_ss_i4, $$gcs_p_53_t293 )
+  178.                               $$i_l178_276_t221 = $$lis_b20_t231 + $$i_l178_276_t221
+  178.                               if ( $$i_l178_276_t221 >= $$lis_b17_t228 ) exit
+  178.                            enddo
+  178.                         endif
+  178.                         $$lcs_8_t298 = $$lis_b37_t307
+  178.                         0[loc( $$_redfold_t274 ),$$lcs_8_t298].L = $$_gosa1_t16_t104
+  178.                         _acc_thread_bar( 0, Null_Arg )
+  178.                         $redfold_left_temp_t275 = 0[loc( $$_redfold_t274 ),$$lis_b38_t308].L
+  178.                         if ( $$lcs_8_t298 < 64 ) then
+  178.                            $$lcs_9_t299 = $$lis_b37_t307
+  178.                            $redfold_right_temp_t276 = 64[loc( $$_redfold_t274 ),$$lcs_9_t299].L
+  178.                            $redfold_left_temp_t275 = $redfold_left_temp_t275 + $redfold_right_temp_t276
+  178.                            0[loc( $$_redfold_t274 ),$$lcs_9_t299].L = $redfold_left_temp_t275
+  178.                         endif
+  178.                         _acc_thread_bar( 0, Null_Arg )
+  178.                         if ( $$lis_b39_t309 == 0 ) then
+  178.                            $$lcs_11_t301 = $$lis_b37_t307
+  178.                            $redfold_right_temp_t276 = 32[loc( $$_redfold_t274 ),$$lcs_11_t301].L
+  178.                            $redfold_left_temp_t275 = $redfold_left_temp_t275 + $redfold_right_temp_t276
+  178.                            $$lcs_10_t300 = $$lcs_11_t301
+  178.                            0[loc( $$_redfold_t274 ),$$lcs_10_t300].L = $redfold_left_temp_t275
+  178.                            $redfold_right_temp_t276 = 16[loc( $$_redfold_t274 ),$$lcs_11_t301].L
+  178.                            $redfold_left_temp_t275 = $redfold_left_temp_t275 + $redfold_right_temp_t276
+  178.                            0[loc( $$_redfold_t274 ),$$lcs_10_t300].L = $redfold_left_temp_t275
+  178.                            $redfold_right_temp_t276 = 8[loc( $$_redfold_t274 ),$$lcs_11_t301].L
+  178.                            $redfold_left_temp_t275 = $redfold_left_temp_t275 + $redfold_right_temp_t276
+  178.                            0[loc( $$_redfold_t274 ),$$lcs_10_t300].L = $redfold_left_temp_t275
+  178.                            $redfold_right_temp_t276 = 4[loc( $$_redfold_t274 ),$$lcs_11_t301].L
+  178.                            $redfold_left_temp_t275 = $redfold_left_temp_t275 + $redfold_right_temp_t276
+  178.                            0[loc( $$_redfold_t274 ),$$lcs_10_t300].L = $redfold_left_temp_t275
+  178.                            $redfold_right_temp_t276 = 2[loc( $$_redfold_t274 ),$$lcs_11_t301].L
+  178.                            $redfold_left_temp_t275 = $redfold_left_temp_t275 + $redfold_right_temp_t276
+  178.                            0[loc( $$_redfold_t274 ),$$lcs_10_t300].L = $redfold_left_temp_t275
+  178.                            $redfold_right_temp_t276 = 1[loc( $$_redfold_t274 ),$$lcs_11_t301].L
+  178.                            $redfold_left_temp_t275 = $redfold_left_temp_t275 + $redfold_right_temp_t276
+  178.                            0[loc( $$_redfold_t274 ),$$lcs_10_t300].L = $redfold_left_temp_t275
+  178.                         endif
+  178.                         _acc_thread_bar( 0, Null_Arg )
+  178.                         $redfinal_t277 = 0[loc( $$_redfold_t274 ),0].L
+  178.                         _acc_thread_bar( 0, Null_Arg )
+  178.                         $sc_gosa1_i5 = $sc_gosa1_i5 + $redfinal_t277
+  178.                         _acc_thread_bar( 0, Null_Arg )
+  178.                         $$sr_e6_t225 = 257 + $$sr_e6_t225
+  178.                         $$induc02_j2_t287 = 1 + $$induc02_j2_t287
+  178.                         if ( $$induc02_j2_t287 >= 0 ) exit
+  178.                      enddo
+  178.                      $$_gosa1_t16 = $sc_gosa1_i5
+  178.                      $$sr_e7_t226 = $$sr_e7_t226 + $$lis_b23_t234
+  178.                      $$i_l178_292_t222 = $$numthrds_t127 + $$i_l178_292_t222
+  178.                      if ( $$i_l178_292_t222 >= $$lis_b24_t235 ) exit
+  178.                   enddo
+  178.                endif
+  178.             endif
+  178.          endif
+  178.          if ( _acc_read_hw_reg(%tid.x) == 0 ) then
+  178.             0[$$arg_ptr_reduc_val_t134_t370,_acc_read_hw_reg(%ctaid.x)].L = $$_gosa1_t16
+  178.          endif
+  178.          _order_memory
+  178.          if ( _acc_read_hw_reg(%tid.x) == 0 ) then
+  178.             $$gcs_55_t295 = merge( 1 - _acc_read_hw_reg(%nctaid.x), 1, _acc_read_hw_reg(%ctaid.x) == 0 )
+  178.             $$snap_amo_p31_t306 = _lamo_afadd( loc( 0[$$arg_ptr_reduc_ctl_t130_t369,0] ), $$gcs_55_t295 )
+  178.             reduc_share_ctl_c9 = $$gcs_55_t295 + $$snap_amo_p31_t306
+  178.          endif
+  178.          _acc_thread_bar( 0, Null_Arg )
+  178.          if ( reduc_share_ctl_c9 == 0 ) then
+  178.             $$reduc_pvt_t133 = 0.0
+  178.             $$gcs_57_t297 = _acc_read_hw_reg(%tid.x)
+  178.             $$induc_p29_t223 = $$gcs_57_t297
+  178.             $$gcs_56_t296 = _acc_read_hw_reg(%nctaid.x)
+  178.             if ( $$induc_p29_t223 < $$gcs_56_t296 ) then
+  178.                $$lis_b27_t238 = _acc_read_hw_reg(%ntid.x)
+  178.                $$lis_b28_t239 = $$gcs_56_t296
+  178.                do
+  178.                   $$reduc_pvt_t133 = $$reduc_pvt_t133 + 0[$$arg_ptr_reduc_val_t134_t370,$$induc_p29_t223].L
+  178.                   $$induc_p29_t223 = ( $$induc_p29_t223 + $$lis_b27_t238 )
+  178.                   if ( $$induc_p29_t223 >= $$lis_b28_t239 ) exit
+  178.                enddo
+  178.             endif
+  178.             $$lcs_12_t302 = _acc_read_hw_reg(%tid.x)
+  178.             0[loc( $$_redfold_t274 ),$$lcs_12_t302].L = $$reduc_pvt_t133
+  178.             _acc_thread_bar( 0, Null_Arg )
+  178.             $redfold_left_temp_t278 = 0[loc( $$_redfold_t274 ),_acc_read_hw_reg(%tid.x)].L
+  178.             if ( $$lcs_12_t302 < 64 ) then
+  178.                $$lcs_13_t303 = _acc_read_hw_reg(%tid.x)
+  178.                $redfold_right_temp_t279 = 64[loc( $$_redfold_t274 ),$$lcs_13_t303].L
+  178.                $redfold_left_temp_t278 = $redfold_left_temp_t278 + $redfold_right_temp_t279
+  178.                0[loc( $$_redfold_t274 ),$$lcs_13_t303].L = $redfold_left_temp_t278
+  178.             endif
+  178.             _acc_thread_bar( 0, Null_Arg )
+  178.             if ( _acc_read_hw_reg(%tid.x) < 32 ) then
+  178.                $$lcs_15_t305 = _acc_read_hw_reg(%tid.x)
+  178.                $redfold_right_temp_t279 = 32[loc( $$_redfold_t274 ),$$lcs_15_t305].L
+  178.                $redfold_left_temp_t278 = $redfold_left_temp_t278 + $redfold_right_temp_t279
+  178.                $$lcs_14_t304 = $$lcs_15_t305
+  178.                0[loc( $$_redfold_t274 ),$$lcs_14_t304].L = $redfold_left_temp_t278
+  178.                $redfold_right_temp_t279 = 16[loc( $$_redfold_t274 ),$$lcs_15_t305].L
+  178.                $redfold_left_temp_t278 = $redfold_left_temp_t278 + $redfold_right_temp_t279
+  178.                0[loc( $$_redfold_t274 ),$$lcs_14_t304].L = $redfold_left_temp_t278
+  178.                $redfold_right_temp_t279 = 8[loc( $$_redfold_t274 ),$$lcs_15_t305].L
+  178.                $redfold_left_temp_t278 = $redfold_left_temp_t278 + $redfold_right_temp_t279
+  178.                0[loc( $$_redfold_t274 ),$$lcs_14_t304].L = $redfold_left_temp_t278
+  178.                $redfold_right_temp_t279 = 4[loc( $$_redfold_t274 ),$$lcs_15_t305].L
+  178.                $redfold_left_temp_t278 = $redfold_left_temp_t278 + $redfold_right_temp_t279
+  178.                0[loc( $$_redfold_t274 ),$$lcs_14_t304].L = $redfold_left_temp_t278
+  178.                $redfold_right_temp_t279 = 2[loc( $$_redfold_t274 ),$$lcs_15_t305].L
+  178.                $redfold_left_temp_t278 = $redfold_left_temp_t278 + $redfold_right_temp_t279
+  178.                0[loc( $$_redfold_t274 ),$$lcs_14_t304].L = $redfold_left_temp_t278
+  178.                $redfold_right_temp_t279 = 1[loc( $$_redfold_t274 ),$$lcs_15_t305].L
+  178.                $redfold_left_temp_t278 = $redfold_left_temp_t278 + $redfold_right_temp_t279
+  178.                0[loc( $$_redfold_t274 ),$$lcs_14_t304].L = $redfold_left_temp_t278
+  178.             endif
+  178.             _acc_thread_bar( 0, Null_Arg )
+  178.             $redfinal_t280 = 0[loc( $$_redfold_t274 ),0].L
+  178.             _acc_thread_bar( 0, Null_Arg )
+  178.             $$reduc_pvt_t133 = $redfinal_t280
+  178.             if ( $$gcs_57_t297 == 0 ) then
+  178.                0[$$arg_ptr_accshare_t164_t375,0].L = 0[$$arg_ptr_accshare_t164_t375,0].L + $redfinal_t280
+  178.             endif
+  178.          endif
+  178.       endif
+  178.       return
+  178.       end
+  178.       
+  178.       
+  178.       accelerator_kernel main_$ck_l178_4( $$arg_ptr_acc_wrk2_t33_t376, $$arg_ptr_acc_p_t39_t377, $$_arg_acc_imax_t166_t378, $$_arg_acc_jmax_t167_t379, $$_arg_acc_kmax_t168_t380 )
+  178.       _acc_kernel_start( 10, Null_Arg )
+  178.       $$gcs_kmax_61_t285 = $$_arg_acc_kmax_t168_t380
+  178.       if ( -3 + $$gcs_kmax_61_t285 >= 0 ) then
+  178.          $$gcs_jmax_60_t284 = $$_arg_acc_jmax_t167_t379
+  178.          if ( -3 + $$gcs_jmax_60_t284 >= 0 ) then
+  178.             $$gcs_imax_59_t283 = $$_arg_acc_imax_t166_t378
+  178.             if ( -3 + $$gcs_imax_59_t283 >= 0 ) then
+  178.                $$id_t142 = _acc_read_hw_reg(%ctaid.x)
+  178.                if ( $$id_t142 < -2 + $$gcs_kmax_61_t285 ) then
+  178.                   $$numthrds_t143 = _acc_read_hw_reg(%ntid.x)
+  178.                   $$id_t144 = _acc_read_hw_reg(%tid.x)
+  178.                   $$sr_e9_t216 = 33153 * $$id_t142
+  178.                   $$gcs_2_58_t282 = -2 + $$gcs_imax_59_t283
+  178.                   $$lis_b30_t218 = $$id_t144 >= $$gcs_2_58_t282
+  178.                   $$lis_b31_t219 = -2 + $$gcs_jmax_60_t284
+  178.                   $$lis_b29_t217 = $$gcs_2_58_t282
+  178.                   $$induc02_j3_t281 = -$$lis_b31_t219
+  178.                   do
+  178.                      $$i_l178_278_t214 = $$id_t144
+  178.                      if ( $$lis_b30_t218 == 0 ) then
+  178. !dir$ loop_info (automatic) cache_nt( wrk2, p )
+  178.                         do
+  178.                            $$gcs_62_t286 = $$sr_e9_t216 + $$i_l178_278_t214
+  178.                            33411[$$arg_ptr_acc_p_t39_t377,$$gcs_62_t286,nt].L = 33411[$$arg_ptr_acc_wrk2_t33_t376,$$gcs_62_t286,ex].L
+  178.                            $$i_l178_278_t214 = $$numthrds_t143 + $$i_l178_278_t214
+  178.                            if ( $$i_l178_278_t214 >= $$lis_b29_t217 ) exit
+  178.                         enddo
+  178.                      endif
+  178.                      _acc_thread_bar( 0, Null_Arg )
+  178.                      $$sr_e9_t216 = 257 + $$sr_e9_t216
+  178.                      $$induc02_j3_t281 = 1 + $$induc02_j3_t281
+  178.                      if ( $$induc02_j3_t281 >= 0 ) exit
+  178.                   enddo
+  178.                endif
+  178.             endif
+  178.          endif
+  178.       endif
+  178.       return
+  178.       end
+  178.       
+  199.       
+  199.       subroutine initmt
+  208.       if ( int( __pat_tp_acc_data_enter == 0 ) == 0 ) then
+  208.          __pat_tp_acc_data_enter( acc_get_device_num( 2 ) )
+  208.       endif
+  208.       $_tran_a_T53[0] = 1
+  208.       (1,$_tran_a_T53)[0] = 10
+  208.       (2,$_tran_a_T53)[0].L = 136855584
+  208.       (1,$_tran_a_T53)[0].L = 2560
+  208.       (3,$_tran_a_T53)[0].L = cri_pointer( loc( a[0].L ) )
+  208.       (4,$_tran_a_T53)[0].L = cri_pointer( 0 )
+  208.       (5,$_tran_a_T53)[0].L = cri_pointer( 0 )
+  208.       (6,$_tran_a_T53)[0].L = cri_pointer( loc( $_Text_Y0 ) )
+  208.       $_tran_b_T54[0] = 1
+  208.       (1,$_tran_b_T54)[0] = 10
+  208.       (2,$_tran_b_T54)[0].L = 102641688
+  208.       (1,$_tran_b_T54)[0].L = 2560
+  208.       (3,$_tran_b_T54)[0].L = cri_pointer( loc( b[0].L ) )
+  208.       (4,$_tran_b_T54)[0].L = cri_pointer( 0 )
+  208.       (5,$_tran_b_T54)[0].L = cri_pointer( 0 )
+  208.       (6,$_tran_b_T54)[0].L = cri_pointer( loc( $_Text_Y1 ) )
+  208.       $_tran_bnd_T55[0] = 1
+  208.       (1,$_tran_bnd_T55)[0] = 10
+  208.       (2,$_tran_bnd_T55)[0].L = 34213896
+  208.       (1,$_tran_bnd_T55)[0].L = 2560
+  208.       (3,$_tran_bnd_T55)[0].L = cri_pointer( loc( bnd[0].L ) )
+  208.       (4,$_tran_bnd_T55)[0].L = cri_pointer( 0 )
+  208.       (5,$_tran_bnd_T55)[0].L = cri_pointer( 0 )
+  208.       (6,$_tran_bnd_T55)[0].L = cri_pointer( loc( $_Text_Y2 ) )
+  208.       $_tran_c_T56[0] = 1
+  208.       (1,$_tran_c_T56)[0] = 10
+  208.       (2,$_tran_c_T56)[0].L = 102641688
+  208.       (1,$_tran_c_T56)[0].L = 2560
+  208.       (3,$_tran_c_T56)[0].L = cri_pointer( loc( c[0].L ) )
+  208.       (4,$_tran_c_T56)[0].L = cri_pointer( 0 )
+  208.       (5,$_tran_c_T56)[0].L = cri_pointer( 0 )
+  208.       (6,$_tran_c_T56)[0].L = cri_pointer( loc( $_Text_Y3 ) )
+  208.       $_tran_p_T57[0] = 1
+  208.       (1,$_tran_p_T57)[0] = 10
+  208.       (2,$_tran_p_T57)[0].L = 34213896
+  208.       (1,$_tran_p_T57)[0].L = 2560
+  208.       (3,$_tran_p_T57)[0].L = cri_pointer( loc( p[0].L ) )
+  208.       (4,$_tran_p_T57)[0].L = cri_pointer( 0 )
+  208.       (5,$_tran_p_T57)[0].L = cri_pointer( 0 )
+  208.       (6,$_tran_p_T57)[0].L = cri_pointer( loc( $_Text_Y4 ) )
+  208.       $_tran_wrk1_T58[0] = 1
+  208.       (1,$_tran_wrk1_T58)[0] = 10
+  208.       (2,$_tran_wrk1_T58)[0].L = 34213896
+  208.       (1,$_tran_wrk1_T58)[0].L = 2560
+  208.       (3,$_tran_wrk1_T58)[0].L = cri_pointer( loc( wrk1[0].L ) )
+  208.       (4,$_tran_wrk1_T58)[0].L = cri_pointer( 0 )
+  208.       (5,$_tran_wrk1_T58)[0].L = cri_pointer( 0 )
+  208.       (6,$_tran_wrk1_T58)[0].L = cri_pointer( loc( $_Text_Y5 ) )
+  208.       if ( int( __pat_tp_acc_transfer_enter == 0 ) == 0 ) then
+  208.          __pat_tp_acc_transfer_enter( acc_get_device_num( 2 ) )
+  208.       endif
+  208.       $_tlst_T94[0].L = loc( $_tran_a_T53 )
+  208.       (1,$_tlst_T94)[0].L = loc( $_tran_b_T54 )
+  208.       (2,$_tlst_T94)[0].L = loc( $_tran_bnd_T55 )
+  208.       (3,$_tlst_T94)[0].L = loc( $_tran_c_T56 )
+  208.       (4,$_tlst_T94)[0].L = loc( $_tran_p_T57 )
+  208.       (5,$_tlst_T94)[0].L = loc( $_tran_wrk1_T58 )
+  208.       $_trans_T95[0] = 1
+  208.       (1,$_trans_T95)[0] = 11
+  208.       (1,$_trans_T95)[0].L = 2
+  208.       (2,$_trans_T95)[0].L = 6
+  208.       (3,$_trans_T95)[0].L = loc( $_tlst_T94[0].L )
+  208.       (4,$_trans_T95)[0].L = cri_pointer( 0 )
+  208.       (7,$_trans_T95)[0].L = 0
+  208.       (8,$_trans_T95)[0].L = 208
+  208.       (9,$_trans_T95)[0].L = cri_pointer( loc( $_Text_Y6 ) )
+  208.       (10,$_trans_T95)[0].L = cri_pointer( 0 )
+  208.       cray_acc_transfer_list( $_trans_T95 )
+  208.       if ( int( __pat_tp_acc_transfer_exit_with_time == 0 ) == 0 ) then
+  208.          __pat_tp_acc_transfer_exit_with_time( acc_get_device_num( 2 ), (5,$_trans_T95)[0].L, (6,$_trans_T95)[0].L, (7,$_trans_T95)[0].L )
+  208.       else if ( int( __pat_tp_acc_transfer_exit == 0 ) == 0 ) then
+  208.          __pat_tp_acc_transfer_exit( acc_get_device_num( 2 ), (5,$_trans_T95)[0].L, (6,$_trans_T95)[0].L )
+  208.       endif
+  208.       $_ptr_acc_a_T23 = int( (4,$_tran_a_T53)[0].L, 8 )
+  208.       $_ptr_acc_b_T21 = int( (4,$_tran_b_T54)[0].L, 8 )
+  208.       $_ptr_acc_bnd_T13 = int( (4,$_tran_bnd_T55)[0].L, 8 )
+  208.       $_ptr_acc_c_T19 = int( (4,$_tran_c_T56)[0].L, 8 )
+  208.       $_ptr_acc_p_T17 = int( (4,$_tran_p_T57)[0].L, 8 )
+  208.       $_ptr_acc_wrk1_T15 = int( (4,$_tran_wrk1_T58)[0].L, 8 )
+  210.       if ( int( __pat_tp_acc_region_enter == 0 ) == 0 ) then
+  210.          __pat_tp_acc_region_enter( acc_get_device_num( 2 ) )
+  210.       endif
+  210.       $async_event_T103 = 0
+  210.       if ( int( __pat_tp_acc_async_kernel_enter == 0 ) == 0 ) then
+  210.          $async_event_T103 = __pat_tp_acc_async_kernel_enter( acc_get_device_num( 2 ) )
+  210.       endif
+  210.       0[loc( $$_argb_T99 ),0,a8].L = $_ptr_acc_bnd_T13
+  210.       1[loc( $$_argb_T99 ),0,a8].L = $_ptr_acc_wrk1_T15
+  210.       2[loc( $$_argb_T99 ),0,a8].L = $_ptr_acc_p_T17
+  210.       3[loc( $$_argb_T99 ),0,a8].L = $_ptr_acc_c_T19
+  210.       4[loc( $$_argb_T99 ),0,a8].L = $_ptr_acc_b_T21
+  210.       5[loc( $$_argb_T99 ),0,a8].L = $_ptr_acc_a_T23
+  210.       $_args_T106[0] = 1
+  210.       (1,$_args_T106)[0] = 100
+  210.       (1,$_args_T106)[0].L = 48
+  210.       (2,$_args_T106)[0].L = cri_pointer( loc( $$_argb_T99 ) )
+  210.       $$_kinfo_T100[0] = 1
+  210.       (1,$$_kinfo_T100)[0] = 10
+  210.       (1,$$_kinfo_T100)[0].L = 524
+  210.       (2,$$_kinfo_T100)[0].L = cri_pointer( loc( $_$kern2$_initmt__T104 ) )
+  210.       (4,$$_kinfo_T100)[0].L = cri_pointer( loc( $cray$_local_cuda_module_data ) )
+  210.       (5,$$_kinfo_T100)[0].L = $cray$_local_cuda_module_data_size
+  210.       (6,$$_kinfo_T100)[0].L = cri_pointer( loc( $cray$_local_cuda_module_cache ) )
+  210.       (3,$$_kinfo_T100)[0].L = cri_pointer( loc( $$fcache2$_initmt__T105 ) )
+  210.       (7,$$_kinfo_T100)[0].L = 129
+  210.       (8,$$_kinfo_T100)[0].L = 1
+  210.       (9,$$_kinfo_T100)[0].L = 1
+  210.       (10,$$_kinfo_T100)[0].L = 128
+  210.       (11,$$_kinfo_T100)[0].L = 1
+  210.       (12,$$_kinfo_T100)[0].L = 1
+  210.       (13,$$_kinfo_T100)[0].L = 0
+  210.       (14,$$_kinfo_T100)[0].L = cri_pointer( loc( $_args_T106 ) )
+  210.       (15,$$_kinfo_T100)[0].L = $async_event_T103
+  210.       (16,$$_kinfo_T100)[0].L = cri_pointer( 0 )
+  210.       (17,$$_kinfo_T100)[0].L = 210
+  210.       (18,$$_kinfo_T100)[0].L = cri_pointer( loc( $_Text_Y6 ) )
+  210.       (19,$$_kinfo_T100)[0].L = cri_pointer( 0 )
+  210.       cray_start_acc_kernel( $$_kinfo_T100 )
+  232.       if ( int( __pat_tp_acc_async_kernel_exit == 0 ) == 0 ) then
+  232.          __pat_tp_acc_async_kernel_exit( acc_get_device_num( 2 ) )
+  232.       endif
+  232.       if ( int( __pat_tp_acc_region_exit == 0 ) == 0 ) then
+  232.          __pat_tp_acc_region_exit( acc_get_device_num( 2 ) )
+  232.       endif
+  233.       if ( int( __pat_tp_acc_region_enter == 0 ) == 0 ) then
+  233.          __pat_tp_acc_region_enter( acc_get_device_num( 2 ) )
+  233.       endif
+  233.       $_acc_imax_T47 = imax
+  233.       $_acc_jmax_T48 = jmax
+  233.       $GCS_kmax_0 = kmax
+  233.       $_acc_kmax_T49 = $GCS_kmax_0
+  233.       $numth_T52 = $GCS_kmax_0
+  233.       $async_event_T107 = 0
+  233.       if ( int( __pat_tp_acc_async_kernel_enter == 0 ) == 0 ) then
+  233.          $async_event_T107 = __pat_tp_acc_async_kernel_enter( acc_get_device_num( 2 ) )
+  233.       endif
+  233.       0[loc( $$_argb_T101 ),0,a8].L = $_ptr_acc_bnd_T13
+  233.       1[loc( $$_argb_T101 ),0,a8].L = $_ptr_acc_wrk1_T15
+  233.       2[loc( $$_argb_T101 ),0,a8].L = $_ptr_acc_p_T17
+  233.       3[loc( $$_argb_T101 ),0,a8].L = $_ptr_acc_c_T19
+  233.       4[loc( $$_argb_T101 ),0,a8].L = $_ptr_acc_b_T21
+  233.       5[loc( $$_argb_T101 ),0,a8].L = $_ptr_acc_a_T23
+  233.       12[loc( $$_argb_T101 ),0,a4] = $_acc_imax_T47
+  233.       13[loc( $$_argb_T101 ),0,a4] = $_acc_jmax_T48
+  233.       14[loc( $$_argb_T101 ),0,a4] = $_acc_kmax_T49
+  233.       $_args_T110[0] = 1
+  233.       (1,$_args_T110)[0] = 100
+  233.       (1,$_args_T110)[0].L = 60
+  233.       (2,$_args_T110)[0].L = cri_pointer( loc( $$_argb_T101 ) )
+  233.       $$_kinfo_T102[0] = 1
+  233.       (1,$$_kinfo_T102)[0] = 10
+  233.       (1,$$_kinfo_T102)[0].L = 524
+  233.       (2,$$_kinfo_T102)[0].L = cri_pointer( loc( $_$kern4$_initmt__T108 ) )
+  233.       (4,$$_kinfo_T102)[0].L = cri_pointer( loc( $cray$_local_cuda_module_data ) )
+  233.       (5,$$_kinfo_T102)[0].L = $cray$_local_cuda_module_data_size
+  233.       (6,$$_kinfo_T102)[0].L = cri_pointer( loc( $cray$_local_cuda_module_cache ) )
+  233.       (3,$$_kinfo_T102)[0].L = cri_pointer( loc( $$fcache4$_initmt__T109 ) )
+  233.       (7,$$_kinfo_T102)[0].L = $numth_T52
+  233.       (8,$$_kinfo_T102)[0].L = 1
+  233.       (9,$$_kinfo_T102)[0].L = 1
+  233.       (10,$$_kinfo_T102)[0].L = 128
+  233.       (11,$$_kinfo_T102)[0].L = 1
+  233.       (12,$$_kinfo_T102)[0].L = 1
+  233.       (13,$$_kinfo_T102)[0].L = 0
+  233.       (14,$$_kinfo_T102)[0].L = cri_pointer( loc( $_args_T110 ) )
+  233.       (15,$$_kinfo_T102)[0].L = $async_event_T107
+  233.       (16,$$_kinfo_T102)[0].L = cri_pointer( 0 )
+  233.       (17,$$_kinfo_T102)[0].L = 233
+  233.       (18,$$_kinfo_T102)[0].L = cri_pointer( loc( $_Text_Y6 ) )
+  233.       (19,$$_kinfo_T102)[0].L = cri_pointer( 0 )
+  233.       cray_start_acc_kernel( $$_kinfo_T102 )
+  255.       if ( int( __pat_tp_acc_async_kernel_exit == 0 ) == 0 ) then
+  255.          __pat_tp_acc_async_kernel_exit( acc_get_device_num( 2 ) )
+  255.       endif
+  255.       if ( int( __pat_tp_acc_region_exit == 0 ) == 0 ) then
+  255.          __pat_tp_acc_region_exit( acc_get_device_num( 2 ) )
+  255.       endif
+  257.       $_tran_a_T53[0] = 1
+  257.       (1,$_tran_a_T53)[0] = 10
+  257.       (2,$_tran_a_T53)[0].L = 136855584
+  257.       (1,$_tran_a_T53)[0].L = 3072
+  257.       (3,$_tran_a_T53)[0].L = cri_pointer( loc( a[0].L ) )
+  257.       (4,$_tran_a_T53)[0].L = cri_pointer( $_ptr_acc_a_T23 )
+  257.       (5,$_tran_a_T53)[0].L = cri_pointer( 0 )
+  257.       (6,$_tran_a_T53)[0].L = cri_pointer( loc( $_Text_Y0 ) )
+  257.       $_tran_b_T54[0] = 1
+  257.       (1,$_tran_b_T54)[0] = 10
+  257.       (2,$_tran_b_T54)[0].L = 102641688
+  257.       (1,$_tran_b_T54)[0].L = 3072
+  257.       (3,$_tran_b_T54)[0].L = cri_pointer( loc( b[0].L ) )
+  257.       (4,$_tran_b_T54)[0].L = cri_pointer( $_ptr_acc_b_T21 )
+  257.       (5,$_tran_b_T54)[0].L = cri_pointer( 0 )
+  257.       (6,$_tran_b_T54)[0].L = cri_pointer( loc( $_Text_Y1 ) )
+  257.       $_tran_bnd_T55[0] = 1
+  257.       (1,$_tran_bnd_T55)[0] = 10
+  257.       (2,$_tran_bnd_T55)[0].L = 34213896
+  257.       (1,$_tran_bnd_T55)[0].L = 3072
+  257.       (3,$_tran_bnd_T55)[0].L = cri_pointer( loc( bnd[0].L ) )
+  257.       (4,$_tran_bnd_T55)[0].L = cri_pointer( $_ptr_acc_bnd_T13 )
+  257.       (5,$_tran_bnd_T55)[0].L = cri_pointer( 0 )
+  257.       (6,$_tran_bnd_T55)[0].L = cri_pointer( loc( $_Text_Y2 ) )
+  257.       $_tran_c_T56[0] = 1
+  257.       (1,$_tran_c_T56)[0] = 10
+  257.       (2,$_tran_c_T56)[0].L = 102641688
+  257.       (1,$_tran_c_T56)[0].L = 3072
+  257.       (3,$_tran_c_T56)[0].L = cri_pointer( loc( c[0].L ) )
+  257.       (4,$_tran_c_T56)[0].L = cri_pointer( $_ptr_acc_c_T19 )
+  257.       (5,$_tran_c_T56)[0].L = cri_pointer( 0 )
+  257.       (6,$_tran_c_T56)[0].L = cri_pointer( loc( $_Text_Y3 ) )
+  257.       $_tran_p_T57[0] = 1
+  257.       (1,$_tran_p_T57)[0] = 10
+  257.       (2,$_tran_p_T57)[0].L = 34213896
+  257.       (1,$_tran_p_T57)[0].L = 3072
+  257.       (3,$_tran_p_T57)[0].L = cri_pointer( loc( p[0].L ) )
+  257.       (4,$_tran_p_T57)[0].L = cri_pointer( $_ptr_acc_p_T17 )
+  257.       (5,$_tran_p_T57)[0].L = cri_pointer( 0 )
+  257.       (6,$_tran_p_T57)[0].L = cri_pointer( loc( $_Text_Y4 ) )
+  257.       $_tran_wrk1_T58[0] = 1
+  257.       (1,$_tran_wrk1_T58)[0] = 10
+  257.       (2,$_tran_wrk1_T58)[0].L = 34213896
+  257.       (1,$_tran_wrk1_T58)[0].L = 3072
+  257.       (3,$_tran_wrk1_T58)[0].L = cri_pointer( loc( wrk1[0].L ) )
+  257.       (4,$_tran_wrk1_T58)[0].L = cri_pointer( $_ptr_acc_wrk1_T15 )
+  257.       (5,$_tran_wrk1_T58)[0].L = cri_pointer( 0 )
+  257.       (6,$_tran_wrk1_T58)[0].L = cri_pointer( loc( $_Text_Y5 ) )
+  257.       if ( int( __pat_tp_acc_transfer_enter == 0 ) == 0 ) then
+  257.          __pat_tp_acc_transfer_enter( acc_get_device_num( 2 ) )
+  257.       endif
+  257.       $_tlst_T96[0].L = loc( $_tran_a_T53 )
+  257.       (1,$_tlst_T96)[0].L = loc( $_tran_b_T54 )
+  257.       (2,$_tlst_T96)[0].L = loc( $_tran_bnd_T55 )
+  257.       (3,$_tlst_T96)[0].L = loc( $_tran_c_T56 )
+  257.       (4,$_tlst_T96)[0].L = loc( $_tran_p_T57 )
+  257.       (5,$_tlst_T96)[0].L = loc( $_tran_wrk1_T58 )
+  257.       $_trans_T97[0] = 1
+  257.       (1,$_trans_T97)[0] = 11
+  257.       (1,$_trans_T97)[0].L = 2
+  257.       (2,$_trans_T97)[0].L = 6
+  257.       (3,$_trans_T97)[0].L = loc( $_tlst_T96[0].L )
+  257.       (4,$_trans_T97)[0].L = cri_pointer( 0 )
+  257.       (7,$_trans_T97)[0].L = 0
+  257.       (8,$_trans_T97)[0].L = 257
+  257.       (9,$_trans_T97)[0].L = cri_pointer( loc( $_Text_Y6 ) )
+  257.       (10,$_trans_T97)[0].L = cri_pointer( 0 )
+  257.       cray_acc_transfer_list( $_trans_T97 )
+  257.       if ( int( __pat_tp_acc_transfer_exit_with_time == 0 ) == 0 ) then
+  257.          __pat_tp_acc_transfer_exit_with_time( acc_get_device_num( 2 ), (5,$_trans_T97)[0].L, (6,$_trans_T97)[0].L, (7,$_trans_T97)[0].L )
+  257.       else if ( int( __pat_tp_acc_transfer_exit == 0 ) == 0 ) then
+  257.          __pat_tp_acc_transfer_exit( acc_get_device_num( 2 ), (5,$_trans_T97)[0].L, (6,$_trans_T97)[0].L )
+  257.       endif
+  257.       if ( int( __pat_tp_acc_data_exit == 0 ) == 0 ) then
+  257.          __pat_tp_acc_data_exit( acc_get_device_num( 2 ) )
+  257.       endif
+  259.       return
+  259.       end
+  259.       
+  259.       
+  210.       accelerator_kernel initmt_$ck_l210_9( $$arg_ptr_acc_bnd_t13_t79, $$arg_ptr_acc_wrk1_t15_t80, $$arg_ptr_acc_p_t17_t81, $$arg_ptr_acc_c_t19_t82, $$arg_ptr_acc_b_t21_t83, $$arg_ptr_acc_a_t23_t84 )
+  210.       _acc_kernel_start( 2, Null_Arg )
+  212.       $$id_t36 = _acc_read_hw_reg(%ctaid.x)
+  212.       if ( $$id_t36 < 129 ) then
+  214.          $$numthrds_t37 = _acc_read_hw_reg(%ntid.x)
+  214.          $$id_t38 = _acc_read_hw_reg(%tid.x)
+  214.          $$i_l214_132_t69 = $$id_t38
+  214.          if ( $$id_t38 < 33153 ) then
+  215.             $$lis_b0_t70 = 33153 * $$id_t36
+  214. !dir$ loop_info (automatic) cache_nt( bnd, wrk1, p, c, b, a )
+  214.             do
+  215.                $$gcs_1_t78 = $$i_l214_132_t69 + $$lis_b0_t70
+  215.                0[$$arg_ptr_acc_a_t23_t84,$$gcs_1_t78,nt].L = 0.0
+  216.                4276737[$$arg_ptr_acc_a_t23_t84,$$gcs_1_t78,nt].L = 0.0
+  217.                8553474[$$arg_ptr_acc_a_t23_t84,$$gcs_1_t78,nt].L = 0.0
+  218.                12830211[$$arg_ptr_acc_a_t23_t84,$$gcs_1_t78,nt].L = 0.0
+  219.                0[$$arg_ptr_acc_b_t21_t83,$$gcs_1_t78,nt].L = 0.0
+  220.                4276737[$$arg_ptr_acc_b_t21_t83,$$gcs_1_t78,nt].L = 0.0
+  221.                8553474[$$arg_ptr_acc_b_t21_t83,$$gcs_1_t78,nt].L = 0.0
+  222.                0[$$arg_ptr_acc_c_t19_t82,$$gcs_1_t78,nt].L = 0.0
+  223.                4276737[$$arg_ptr_acc_c_t19_t82,$$gcs_1_t78,nt].L = 0.0
+  224.                8553474[$$arg_ptr_acc_c_t19_t82,$$gcs_1_t78,nt].L = 0.0
+  225.                0[$$arg_ptr_acc_p_t17_t81,$$gcs_1_t78,nt].L = 0.0
+  226.                0[$$arg_ptr_acc_wrk1_t15_t80,$$gcs_1_t78,nt].L = 0.0
+  227.                0[$$arg_ptr_acc_bnd_t13_t79,$$gcs_1_t78,nt].L = 0.0
+  228.                $$i_l214_132_t69 = $$numthrds_t37 + $$i_l214_132_t69
+  228.                if ( $$i_l214_132_t69 >= 33153 ) exit
+  228.             enddo
+  228.          endif
+  228.          _acc_thread_bar( 0, Null_Arg )
+  228.       endif
+  232.       return
+  232.       end
+  232.       
+  232.       
+  233.       accelerator_kernel initmt_$ck_l233_10( $$arg_ptr_acc_bnd_t13_t85, $$arg_ptr_acc_wrk1_t15_t86, $$arg_ptr_acc_p_t17_t87, $$arg_ptr_acc_c_t19_t88, $$arg_ptr_acc_b_t21_t89, $$arg_ptr_acc_a_t23_t90, $$_arg_acc_imax_t47_t91, $$_arg_acc_jmax_t48_t92, $$_arg_acc_kmax_t49_t93 )
+  233.       _acc_kernel_start( 4, Null_Arg )
+  235.       $$gcs_kmax_6_t76 = $$_arg_acc_kmax_t49_t93
+  235.       if ( $$gcs_kmax_6_t76 > 0 ) then
+  236.          $$gcs_jmax_4_t74 = $$_arg_acc_jmax_t48_t92
+  236.          if ( $$gcs_jmax_4_t74 > 0 ) then
+  237.             $$gcs_imax_3_t73 = $$_arg_acc_imax_t47_t91
+  237.             if ( $$gcs_imax_3_t73 > 0 ) then
+  235.                $$id_t40 = _acc_read_hw_reg(%ctaid.x)
+  235.                if ( $$id_t40 < $$gcs_kmax_6_t76 ) then
+  237.                   $$numthrds_t41 = _acc_read_hw_reg(%ntid.x)
+  237.                   $$id_t42 = _acc_read_hw_reg(%tid.x)
+  238.                   $$sr_e1_t62 = 33153 * $$id_t40
+  237.                   $$gcs_imax_2_t72 = $$gcs_imax_3_t73
+  237.                   $$lis_b5_t67 = $$id_t42 >= $$gcs_imax_2_t72
+  252.                   $$lis_b6_t68 = $$gcs_jmax_4_t74
+  251.                   $$lis_b4_t66 = $$gcs_imax_2_t72
+  248.                   $$gcs_kmax_5_t75 = -1 + $$gcs_kmax_6_t76
+  248.                   $$lis_b3_t65 = real( $$id_t40 * $$id_t40, 8 ) / real( $$gcs_kmax_5_t75 * $$gcs_kmax_5_t75, 8 )
+  238.                   $$lis_b1_t63 = 1.0
+  241.                   $$lis_b2_t64 = 1.6666666666666666e-1
+  236.                   $$induc02_j0_t71 = -$$lis_b6_t68
+  236.                   do
+  237.                      $$i_l237_134_t60 = $$id_t42
+  237.                      if ( $$lis_b5_t67 == 0 ) then
+  237. !dir$ loop_info (automatic) cache_nt( bnd, wrk1, p, c, b, a )
+  237.                         do
+  238.                            $$gcs_7_t77 = $$sr_e1_t62 + $$i_l237_134_t60
+  238.                            0[$$arg_ptr_acc_a_t23_t90,$$gcs_7_t77,nt].L = $$lis_b1_t63
+  239.                            4276737[$$arg_ptr_acc_a_t23_t90,$$gcs_7_t77,nt].L = $$lis_b1_t63
+  240.                            8553474[$$arg_ptr_acc_a_t23_t90,$$gcs_7_t77,nt].L = $$lis_b1_t63
+  241.                            12830211[$$arg_ptr_acc_a_t23_t90,$$gcs_7_t77,nt].L = $$lis_b2_t64
+  242.                            0[$$arg_ptr_acc_b_t21_t89,$$gcs_7_t77,nt].L = 0.0
+  243.                            4276737[$$arg_ptr_acc_b_t21_t89,$$gcs_7_t77,nt].L = 0.0
+  244.                            8553474[$$arg_ptr_acc_b_t21_t89,$$gcs_7_t77,nt].L = 0.0
+  245.                            0[$$arg_ptr_acc_c_t19_t88,$$gcs_7_t77,nt].L = $$lis_b1_t63
+  246.                            4276737[$$arg_ptr_acc_c_t19_t88,$$gcs_7_t77,nt].L = $$lis_b1_t63
+  247.                            8553474[$$arg_ptr_acc_c_t19_t88,$$gcs_7_t77,nt].L = $$lis_b1_t63
+  248.                            0[$$arg_ptr_acc_p_t17_t87,$$gcs_7_t77,nt].L = $$lis_b3_t65
+  249.                            0[$$arg_ptr_acc_wrk1_t15_t86,$$gcs_7_t77,nt].L = 0.0
+  250.                            0[$$arg_ptr_acc_bnd_t13_t85,$$gcs_7_t77,nt].L = $$lis_b1_t63
+  251.                            $$i_l237_134_t60 = $$numthrds_t41 + $$i_l237_134_t60
+  251.                            if ( $$i_l237_134_t60 >= $$lis_b4_t66 ) exit
+  251.                         enddo
+  251.                      endif
+  251.                      _acc_thread_bar( 0, Null_Arg )
+  238.                      $$sr_e1_t62 = 257 + $$sr_e1_t62
+  236.                      $$induc02_j0_t71 = 1 + $$induc02_j0_t71
+  252.                      if ( $$induc02_j0_t71 >= 0 ) exit
+  252.                   enddo
+  252.                endif
+  252.             endif
+  252.          endif
+  252.       endif
+  255.       return
+  255.       end
+  255.       
+  262.       
+  262.       subroutine jacobi( nn, gosa )
+  277.       if ( int( __pat_tp_acc_data_enter == 0 ) == 0 ) then
+  277.          __pat_tp_acc_data_enter( acc_get_device_num( 2 ) )
+  277.       endif
+  277.       $_tran_a_T84[0] = 1
+  277.       (1,$_tran_a_T84)[0] = 10
+  277.       (2,$_tran_a_T84)[0].L = 136855584
+  277.       (1,$_tran_a_T84)[0].L = 2560
+  277.       (3,$_tran_a_T84)[0].L = cri_pointer( loc( a[0].L ) )
+  277.       (4,$_tran_a_T84)[0].L = cri_pointer( 0 )
+  277.       (5,$_tran_a_T84)[0].L = cri_pointer( 0 )
+  277.       (6,$_tran_a_T84)[0].L = cri_pointer( loc( $_Text_Y0 ) )
+  277.       $_tran_b_T85[0] = 1
+  277.       (1,$_tran_b_T85)[0] = 10
+  277.       (2,$_tran_b_T85)[0].L = 102641688
+  277.       (1,$_tran_b_T85)[0].L = 2560
+  277.       (3,$_tran_b_T85)[0].L = cri_pointer( loc( b[0].L ) )
+  277.       (4,$_tran_b_T85)[0].L = cri_pointer( 0 )
+  277.       (5,$_tran_b_T85)[0].L = cri_pointer( 0 )
+  277.       (6,$_tran_b_T85)[0].L = cri_pointer( loc( $_Text_Y1 ) )
+  277.       $_tran_bnd_T86[0] = 1
+  277.       (1,$_tran_bnd_T86)[0] = 10
+  277.       (2,$_tran_bnd_T86)[0].L = 34213896
+  277.       (1,$_tran_bnd_T86)[0].L = 2560
+  277.       (3,$_tran_bnd_T86)[0].L = cri_pointer( loc( bnd[0].L ) )
+  277.       (4,$_tran_bnd_T86)[0].L = cri_pointer( 0 )
+  277.       (5,$_tran_bnd_T86)[0].L = cri_pointer( 0 )
+  277.       (6,$_tran_bnd_T86)[0].L = cri_pointer( loc( $_Text_Y2 ) )
+  277.       $_tran_c_T87[0] = 1
+  277.       (1,$_tran_c_T87)[0] = 10
+  277.       (2,$_tran_c_T87)[0].L = 102641688
+  277.       (1,$_tran_c_T87)[0].L = 2560
+  277.       (3,$_tran_c_T87)[0].L = cri_pointer( loc( c[0].L ) )
+  277.       (4,$_tran_c_T87)[0].L = cri_pointer( 0 )
+  277.       (5,$_tran_c_T87)[0].L = cri_pointer( 0 )
+  277.       (6,$_tran_c_T87)[0].L = cri_pointer( loc( $_Text_Y3 ) )
+  277.       $_tran_p_T88[0] = 1
+  277.       (1,$_tran_p_T88)[0] = 10
+  277.       (2,$_tran_p_T88)[0].L = 34213896
+  277.       (1,$_tran_p_T88)[0].L = 2560
+  277.       (3,$_tran_p_T88)[0].L = cri_pointer( loc( p[0].L ) )
+  277.       (4,$_tran_p_T88)[0].L = cri_pointer( 0 )
+  277.       (5,$_tran_p_T88)[0].L = cri_pointer( 0 )
+  277.       (6,$_tran_p_T88)[0].L = cri_pointer( loc( $_Text_Y4 ) )
+  277.       $_tran_wrk1_T89[0] = 1
+  277.       (1,$_tran_wrk1_T89)[0] = 10
+  277.       (2,$_tran_wrk1_T89)[0].L = 34213896
+  277.       (1,$_tran_wrk1_T89)[0].L = 2560
+  277.       (3,$_tran_wrk1_T89)[0].L = cri_pointer( loc( wrk1[0].L ) )
+  277.       (4,$_tran_wrk1_T89)[0].L = cri_pointer( 0 )
+  277.       (5,$_tran_wrk1_T89)[0].L = cri_pointer( 0 )
+  277.       (6,$_tran_wrk1_T89)[0].L = cri_pointer( loc( $_Text_Y5 ) )
+  277.       $_tran_wrk2_T90[0] = 1
+  277.       (1,$_tran_wrk2_T90)[0] = 10
+  277.       (2,$_tran_wrk2_T90)[0].L = 34213896
+  277.       (1,$_tran_wrk2_T90)[0].L = 2560
+  277.       (3,$_tran_wrk2_T90)[0].L = cri_pointer( loc( wrk2[0].L ) )
+  277.       (4,$_tran_wrk2_T90)[0].L = cri_pointer( 0 )
+  277.       (5,$_tran_wrk2_T90)[0].L = cri_pointer( 0 )
+  277.       (6,$_tran_wrk2_T90)[0].L = cri_pointer( loc( $_Text_Y6 ) )
+  277.       if ( int( __pat_tp_acc_transfer_enter == 0 ) == 0 ) then
+  277.          __pat_tp_acc_transfer_enter( acc_get_device_num( 2 ) )
+  277.       endif
+  277.       $_tlst_T173[0].L = loc( $_tran_a_T84 )
+  277.       (1,$_tlst_T173)[0].L = loc( $_tran_b_T85 )
+  277.       (2,$_tlst_T173)[0].L = loc( $_tran_bnd_T86 )
+  277.       (3,$_tlst_T173)[0].L = loc( $_tran_c_T87 )
+  277.       (4,$_tlst_T173)[0].L = loc( $_tran_p_T88 )
+  277.       (5,$_tlst_T173)[0].L = loc( $_tran_wrk1_T89 )
+  277.       (6,$_tlst_T173)[0].L = loc( $_tran_wrk2_T90 )
+  277.       $_trans_T174[0] = 1
+  277.       (1,$_trans_T174)[0] = 11
+  277.       (1,$_trans_T174)[0].L = 2
+  277.       (2,$_trans_T174)[0].L = 7
+  277.       (3,$_trans_T174)[0].L = loc( $_tlst_T173[0].L )
+  277.       (4,$_trans_T174)[0].L = cri_pointer( 0 )
+  277.       (7,$_trans_T174)[0].L = 0
+  277.       (8,$_trans_T174)[0].L = 277
+  277.       (9,$_trans_T174)[0].L = cri_pointer( loc( $_Text_Y7 ) )
+  277.       (10,$_trans_T174)[0].L = cri_pointer( 0 )
+  277.       cray_acc_transfer_list( $_trans_T174 )
+  277.       if ( int( __pat_tp_acc_transfer_exit_with_time == 0 ) == 0 ) then
+  277.          __pat_tp_acc_transfer_exit_with_time( acc_get_device_num( 2 ), (5,$_trans_T174)[0].L, (6,$_trans_T174)[0].L, (7,$_trans_T174)[0].L )
+  277.       else if ( int( __pat_tp_acc_transfer_exit == 0 ) == 0 ) then
+  277.          __pat_tp_acc_transfer_exit( acc_get_device_num( 2 ), (5,$_trans_T174)[0].L, (6,$_trans_T174)[0].L )
+  277.       endif
+  277.       $_ptr_acc_a_T26 = int( (4,$_tran_a_T84)[0].L, 8 )
+  277.       $_ptr_acc_b_T24 = int( (4,$_tran_b_T85)[0].L, 8 )
+  277.       $_ptr_acc_bnd_T20 = int( (4,$_tran_bnd_T86)[0].L, 8 )
+  277.       $_ptr_acc_c_T22 = int( (4,$_tran_c_T87)[0].L, 8 )
+  277.       $_ptr_acc_p_T28 = int( (4,$_tran_p_T88)[0].L, 8 )
+  277.       $_ptr_acc_wrk1_T18 = int( (4,$_tran_wrk1_T89)[0].L, 8 )
+  277.       $_ptr_acc_wrk2_T16 = int( (4,$_tran_wrk2_T90)[0].L, 8 )
+  280.       if ( 0[loc( nn ),0] > 0 ) then
+  280.          $I_L280_134 = 0
+  333.          $LIS_b16 = loc( nn )
+  280.          do
+  286.             gosa1 = 0.0
+  288.             if ( int( __pat_tp_acc_region_enter == 0 ) == 0 ) then
+  288.                __pat_tp_acc_region_enter( acc_get_device_num( 2 ) )
+  288.             endif
+  288.             $GCS_kmax_16 = kmax
+  288.             $GCS_15 = min( 128, -2 + $GCS_kmax_16 )
+  288.             reduc_ctl_C3 = 0
+  288.             $$_hshare_T71[0].L = 0.0
+  288.             $_acc_imax_T67 = imax
+  288.             $_acc_jmax_T68 = jmax
+  288.             $_acc_kmax_T69 = $GCS_kmax_16
+  288.             $_acc_omega_T70 = omega
+  288.             $_tran_accshare_T91[0] = 2
+  288.             (1,$_tran_accshare_T91)[0] = 10
+  288.             (2,$_tran_accshare_T91)[0].L = 8
+  288.             (1,$_tran_accshare_T91)[0].L = 13
+  288.             (3,$_tran_accshare_T91)[0].L = cri_pointer( loc( $$_hshare_T71 ) )
+  288.             (4,$_tran_accshare_T91)[0].L = cri_pointer( 0 )
+  288.             (5,$_tran_accshare_T91)[0].L = cri_pointer( 0 )
+  288.             (6,$_tran_accshare_T91)[0].L = cri_pointer( 0 )
+  288.             $_tran_reduc_ctl_T92[0] = 2
+  288.             (1,$_tran_reduc_ctl_T92)[0] = 10
+  288.             (2,$_tran_reduc_ctl_T92)[0].L = 4
+  288.             (1,$_tran_reduc_ctl_T92)[0].L = 45
+  288.             (3,$_tran_reduc_ctl_T92)[0].L = cri_pointer( loc( reduc_ctl_C3 ) )
+  288.             (4,$_tran_reduc_ctl_T92)[0].L = cri_pointer( 0 )
+  288.             (5,$_tran_reduc_ctl_T92)[0].L = cri_pointer( 0 )
+  288.             (6,$_tran_reduc_ctl_T92)[0].L = cri_pointer( 0 )
+  288.             $_tran_reduc_val_T93[0] = 2
+  288.             (1,$_tran_reduc_val_T93)[0] = 10
+  288.             (2,$_tran_reduc_val_T93)[0].L = _lsh( $GCS_15, 3 )
+  288.             (1,$_tran_reduc_val_T93)[0].L = 5
+  288.             (3,$_tran_reduc_val_T93)[0].L = cri_pointer( 0 )
+  288.             (4,$_tran_reduc_val_T93)[0].L = cri_pointer( 0 )
+  288.             (5,$_tran_reduc_val_T93)[0].L = cri_pointer( 0 )
+  288.             (6,$_tran_reduc_val_T93)[0].L = cri_pointer( 0 )
+  288.             if ( int( __pat_tp_acc_transfer_enter == 0 ) == 0 ) then
+  288.                __pat_tp_acc_transfer_enter( acc_get_device_num( 2 ) )
+  288.             endif
+  288.             $_tlst_T177[0].L = loc( $_tran_accshare_T91 )
+  288.             (1,$_tlst_T177)[0].L = loc( $_tran_reduc_ctl_T92 )
+  288.             (2,$_tlst_T177)[0].L = loc( $_tran_reduc_val_T93 )
+  288.             $_trans_T178[0] = 1
+  288.             (1,$_trans_T178)[0] = 11
+  288.             (1,$_trans_T178)[0].L = 2
+  288.             (2,$_trans_T178)[0].L = 3
+  288.             (3,$_trans_T178)[0].L = loc( $_tlst_T177[0].L )
+  288.             (4,$_trans_T178)[0].L = cri_pointer( 0 )
+  288.             (7,$_trans_T178)[0].L = 0
+  288.             (8,$_trans_T178)[0].L = 288
+  288.             (9,$_trans_T178)[0].L = cri_pointer( loc( $_Text_Y7 ) )
+  288.             (10,$_trans_T178)[0].L = cri_pointer( 0 )
+  288.             cray_acc_transfer_list( $_trans_T178 )
+  288.             if ( int( __pat_tp_acc_transfer_exit_with_time == 0 ) == 0 ) then
+  288.                __pat_tp_acc_transfer_exit_with_time( acc_get_device_num( 2 ), (5,$_trans_T178)[0].L, (6,$_trans_T178)[0].L, (7,$_trans_T178)[0].L )
+  288.             else if ( int( __pat_tp_acc_transfer_exit == 0 ) == 0 ) then
+  288.                __pat_tp_acc_transfer_exit( acc_get_device_num( 2 ), (5,$_trans_T178)[0].L, (6,$_trans_T178)[0].L )
+  288.             endif
+  288.             $ptr_accshare_T72 = int( (4,$_tran_accshare_T91)[0].L, 8 )
+  288.             $ptr_reduc_ctl_T48 = int( (4,$_tran_reduc_ctl_T92)[0].L, 8 )
+  288.             $ptr_reduc_val_T52 = int( (4,$_tran_reduc_val_T93)[0].L, 8 )
+  288.             $numth_T81 = $GCS_15
+  288.             $async_event_T187 = 0
+  288.             if ( int( __pat_tp_acc_async_kernel_enter == 0 ) == 0 ) then
+  288.                $async_event_T187 = __pat_tp_acc_async_kernel_enter( acc_get_device_num( 2 ) )
+  288.             endif
+  288.             0[loc( $$_argb_T183 ),0,a8].L = $_ptr_acc_wrk2_T16
+  288.             1[loc( $$_argb_T183 ),0,a8].L = $_ptr_acc_wrk1_T18
+  288.             2[loc( $$_argb_T183 ),0,a8].L = $_ptr_acc_bnd_T20
+  288.             3[loc( $$_argb_T183 ),0,a8].L = $_ptr_acc_c_T22
+  288.             4[loc( $$_argb_T183 ),0,a8].L = $_ptr_acc_b_T24
+  288.             5[loc( $$_argb_T183 ),0,a8].L = $_ptr_acc_a_T26
+  288.             6[loc( $$_argb_T183 ),0,a8].L = $_ptr_acc_p_T28
+  288.             7[loc( $$_argb_T183 ),0,a8].L = $ptr_reduc_ctl_T48
+  288.             8[loc( $$_argb_T183 ),0,a8].L = $ptr_reduc_val_T52
+  288.             18[loc( $$_argb_T183 ),0,a4] = $_acc_imax_T67
+  288.             19[loc( $$_argb_T183 ),0,a4] = $_acc_jmax_T68
+  288.             20[loc( $$_argb_T183 ),0,a4] = $_acc_kmax_T69
+  288.             11[loc( $$_argb_T183 ),0,a8].L = $_acc_omega_T70
+  288.             12[loc( $$_argb_T183 ),0,a8].L = $ptr_accshare_T72
+  288.             $_args_T190[0] = 1
+  288.             (1,$_args_T190)[0] = 100
+  288.             (1,$_args_T190)[0].L = 104
+  288.             (2,$_args_T190)[0].L = cri_pointer( loc( $$_argb_T183 ) )
+  288.             $$_kinfo_T184[0] = 1
+  288.             (1,$$_kinfo_T184)[0] = 10
+  288.             (1,$$_kinfo_T184)[0].L = 540
+  288.             (2,$$_kinfo_T184)[0].L = cri_pointer( loc( $_$kern2$_jacobi__T188 ) )
+  288.             (4,$$_kinfo_T184)[0].L = cri_pointer( loc( $cray$_local_cuda_module_data ) )
+  288.             (5,$$_kinfo_T184)[0].L = $cray$_local_cuda_module_data_size
+  288.             (6,$$_kinfo_T184)[0].L = cri_pointer( loc( $cray$_local_cuda_module_cache ) )
+  288.             (3,$$_kinfo_T184)[0].L = cri_pointer( loc( $$fcache2$_jacobi__T189 ) )
+  288.             (7,$$_kinfo_T184)[0].L = $numth_T81
+  288.             (8,$$_kinfo_T184)[0].L = 1
+  288.             (9,$$_kinfo_T184)[0].L = 1
+  288.             (10,$$_kinfo_T184)[0].L = 128
+  288.             (11,$$_kinfo_T184)[0].L = 1
+  288.             (12,$$_kinfo_T184)[0].L = 1
+  288.             (13,$$_kinfo_T184)[0].L = 0
+  288.             (14,$$_kinfo_T184)[0].L = cri_pointer( loc( $_args_T190 ) )
+  288.             (15,$$_kinfo_T184)[0].L = $async_event_T187
+  288.             (16,$$_kinfo_T184)[0].L = cri_pointer( 0 )
+  288.             (17,$$_kinfo_T184)[0].L = 288
+  288.             (18,$$_kinfo_T184)[0].L = cri_pointer( loc( $_Text_Y7 ) )
+  288.             (19,$$_kinfo_T184)[0].L = cri_pointer( 0 )
+  288.             cray_start_acc_kernel( $$_kinfo_T184 )
+  315.             if ( int( __pat_tp_acc_async_kernel_exit == 0 ) == 0 ) then
+  315.                __pat_tp_acc_async_kernel_exit( acc_get_device_num( 2 ) )
+  315.             endif
+  315.             $_sync_T181[0] = 1
+  315.             (1,$_sync_T181)[0] = 12
+  315.             (1,$_sync_T181)[0].L = 1
+  315.             (2,$_sync_T181)[0].L = cri_pointer( 0 )
+  315.             (3,$_sync_T181)[0].L = 315
+  315.             (4,$_sync_T181)[0].L = cri_pointer( loc( $_Text_Y7 ) )
+  315.             (5,$_sync_T181)[0].L = cri_pointer( 0 )
+  315.             if ( int( __pat_tp_acc_sync_enter == 0 ) == 0 ) then
+  315.                __pat_tp_acc_sync_enter( acc_get_device_num( 2 ) )
+  315.             endif
+  315.             _cray_acc_wait( $_sync_T181 )
+  315.             if ( int( __pat_tp_acc_sync_exit == 0 ) == 0 ) then
+  315.                __pat_tp_acc_sync_exit( acc_get_device_num( 2 ) )
+  315.             endif
+  315.             $_tran_accshare_T91[0] = 2
+  315.             (1,$_tran_accshare_T91)[0] = 10
+  315.             (2,$_tran_accshare_T91)[0].L = 8
+  315.             (1,$_tran_accshare_T91)[0].L = 22
+  315.             (3,$_tran_accshare_T91)[0].L = cri_pointer( loc( $$_hshare_T71 ) )
+  315.             (4,$_tran_accshare_T91)[0].L = cri_pointer( $ptr_accshare_T72 )
+  315.             (5,$_tran_accshare_T91)[0].L = cri_pointer( 0 )
+  315.             (6,$_tran_accshare_T91)[0].L = cri_pointer( 0 )
+  315.             $_tran_reduc_ctl_T92[0] = 2
+  315.             (1,$_tran_reduc_ctl_T92)[0] = 10
+  315.             (2,$_tran_reduc_ctl_T92)[0].L = 4
+  315.             (1,$_tran_reduc_ctl_T92)[0].L = 38
+  315.             (3,$_tran_reduc_ctl_T92)[0].L = cri_pointer( loc( reduc_ctl_C3 ) )
+  315.             (4,$_tran_reduc_ctl_T92)[0].L = cri_pointer( $ptr_reduc_ctl_T48 )
+  315.             (5,$_tran_reduc_ctl_T92)[0].L = cri_pointer( 0 )
+  315.             (6,$_tran_reduc_ctl_T92)[0].L = cri_pointer( 0 )
+  315.             $_tran_reduc_val_T93[0] = 2
+  315.             (1,$_tran_reduc_val_T93)[0] = 10
+  315.             (2,$_tran_reduc_val_T93)[0].L = 0
+  315.             (1,$_tran_reduc_val_T93)[0].L = 6
+  315.             (3,$_tran_reduc_val_T93)[0].L = cri_pointer( 0 )
+  315.             (4,$_tran_reduc_val_T93)[0].L = cri_pointer( $ptr_reduc_val_T52 )
+  315.             (5,$_tran_reduc_val_T93)[0].L = cri_pointer( 0 )
+  315.             (6,$_tran_reduc_val_T93)[0].L = cri_pointer( 0 )
+  315.             if ( int( __pat_tp_acc_transfer_enter == 0 ) == 0 ) then
+  315.                __pat_tp_acc_transfer_enter( acc_get_device_num( 2 ) )
+  315.             endif
+  315.             $_tlst_T179[0].L = loc( $_tran_accshare_T91 )
+  315.             (1,$_tlst_T179)[0].L = loc( $_tran_reduc_ctl_T92 )
+  315.             (2,$_tlst_T179)[0].L = loc( $_tran_reduc_val_T93 )
+  315.             $_trans_T180[0] = 1
+  315.             (1,$_trans_T180)[0] = 11
+  315.             (1,$_trans_T180)[0].L = 2
+  315.             (2,$_trans_T180)[0].L = 3
+  315.             (3,$_trans_T180)[0].L = loc( $_tlst_T179[0].L )
+  315.             (4,$_trans_T180)[0].L = cri_pointer( 0 )
+  315.             (7,$_trans_T180)[0].L = 0
+  315.             (8,$_trans_T180)[0].L = 315
+  315.             (9,$_trans_T180)[0].L = cri_pointer( loc( $_Text_Y7 ) )
+  315.             (10,$_trans_T180)[0].L = cri_pointer( 0 )
+  315.             cray_acc_transfer_list( $_trans_T180 )
+  315.             if ( int( __pat_tp_acc_transfer_exit_with_time == 0 ) == 0 ) then
+  315.                __pat_tp_acc_transfer_exit_with_time( acc_get_device_num( 2 ), (5,$_trans_T180)[0].L, (6,$_trans_T180)[0].L, (7,$_trans_T180)[0].L )
+  315.             else if ( int( __pat_tp_acc_transfer_exit == 0 ) == 0 ) then
+  315.                __pat_tp_acc_transfer_exit( acc_get_device_num( 2 ), (5,$_trans_T180)[0].L, (6,$_trans_T180)[0].L )
+  315.             endif
+  315.             $ptr_accshare_T72 = 0
+  315.             $ptr_reduc_ctl_T48 = 0
+  315.             $ptr_reduc_val_T52 = 0
+  315.             gosa1 = $$_hshare_T71[0].L
+  315.             if ( int( __pat_tp_acc_region_exit == 0 ) == 0 ) then
+  315.                __pat_tp_acc_region_exit( acc_get_device_num( 2 ) )
+  315.             endif
+  317.             if ( int( __pat_tp_acc_region_enter == 0 ) == 0 ) then
+  317.                __pat_tp_acc_region_enter( acc_get_device_num( 2 ) )
+  317.             endif
+  317.             $_acc_imax_T74 = imax
+  317.             $_acc_jmax_T75 = jmax
+  317.             $GCS_kmax_17 = kmax
+  317.             $_acc_kmax_T76 = $GCS_kmax_17
+  317.             $numth_T82 = -2 + $GCS_kmax_17
+  317.             $async_event_T191 = 0
+  317.             if ( int( __pat_tp_acc_async_kernel_enter == 0 ) == 0 ) then
+  317.                $async_event_T191 = __pat_tp_acc_async_kernel_enter( acc_get_device_num( 2 ) )
+  317.             endif
+  317.             0[loc( $$_argb_T185 ),0,a8].L = $_ptr_acc_wrk2_T16
+  317.             1[loc( $$_argb_T185 ),0,a8].L = $_ptr_acc_p_T28
+  317.             4[loc( $$_argb_T185 ),0,a4] = $_acc_imax_T74
+  317.             5[loc( $$_argb_T185 ),0,a4] = $_acc_jmax_T75
+  317.             6[loc( $$_argb_T185 ),0,a4] = $_acc_kmax_T76
+  317.             $_args_T194[0] = 1
+  317.             (1,$_args_T194)[0] = 100
+  317.             (1,$_args_T194)[0].L = 28
+  317.             (2,$_args_T194)[0].L = cri_pointer( loc( $$_argb_T185 ) )
+  317.             $$_kinfo_T186[0] = 1
+  317.             (1,$$_kinfo_T186)[0] = 10
+  317.             (1,$$_kinfo_T186)[0].L = 524
+  317.             (2,$$_kinfo_T186)[0].L = cri_pointer( loc( $_$kern4$_jacobi__T192 ) )
+  317.             (4,$$_kinfo_T186)[0].L = cri_pointer( loc( $cray$_local_cuda_module_data ) )
+  317.             (5,$$_kinfo_T186)[0].L = $cray$_local_cuda_module_data_size
+  317.             (6,$$_kinfo_T186)[0].L = cri_pointer( loc( $cray$_local_cuda_module_cache ) )
+  317.             (3,$$_kinfo_T186)[0].L = cri_pointer( loc( $$fcache4$_jacobi__T193 ) )
+  317.             (7,$$_kinfo_T186)[0].L = $numth_T82
+  317.             (8,$$_kinfo_T186)[0].L = 1
+  317.             (9,$$_kinfo_T186)[0].L = 1
+  317.             (10,$$_kinfo_T186)[0].L = 128
+  317.             (11,$$_kinfo_T186)[0].L = 1
+  317.             (12,$$_kinfo_T186)[0].L = 1
+  317.             (13,$$_kinfo_T186)[0].L = 0
+  317.             (14,$$_kinfo_T186)[0].L = cri_pointer( loc( $_args_T194 ) )
+  317.             (15,$$_kinfo_T186)[0].L = $async_event_T191
+  317.             (16,$$_kinfo_T186)[0].L = cri_pointer( 0 )
+  317.             (17,$$_kinfo_T186)[0].L = 317
+  317.             (18,$$_kinfo_T186)[0].L = cri_pointer( loc( $_Text_Y7 ) )
+  317.             (19,$$_kinfo_T186)[0].L = cri_pointer( 0 )
+  317.             cray_start_acc_kernel( $$_kinfo_T186 )
+  327.             if ( int( __pat_tp_acc_async_kernel_exit == 0 ) == 0 ) then
+  327.                __pat_tp_acc_async_kernel_exit( acc_get_device_num( 2 ) )
+  327.             endif
+  327.             if ( int( __pat_tp_acc_region_exit == 0 ) == 0 ) then
+  327.                __pat_tp_acc_region_exit( acc_get_device_num( 2 ) )
+  327.             endif
+  333.             $I_L280_134 = 1 + $I_L280_134
+  333.             if ( $I_L280_134 >= 0[$LIS_b16,0] ) exit
+  333.          enddo
+  330.          0[loc( gosa ),0].L = gosa1
+  330.       endif
+  335.       $_tran_a_T84[0] = 1
+  335.       (1,$_tran_a_T84)[0] = 10
+  335.       (2,$_tran_a_T84)[0].L = 136855584
+  335.       (1,$_tran_a_T84)[0].L = 3072
+  335.       (3,$_tran_a_T84)[0].L = cri_pointer( loc( a[0].L ) )
+  335.       (4,$_tran_a_T84)[0].L = cri_pointer( $_ptr_acc_a_T26 )
+  335.       (5,$_tran_a_T84)[0].L = cri_pointer( 0 )
+  335.       (6,$_tran_a_T84)[0].L = cri_pointer( loc( $_Text_Y0 ) )
+  335.       $_tran_b_T85[0] = 1
+  335.       (1,$_tran_b_T85)[0] = 10
+  335.       (2,$_tran_b_T85)[0].L = 102641688
+  335.       (1,$_tran_b_T85)[0].L = 3072
+  335.       (3,$_tran_b_T85)[0].L = cri_pointer( loc( b[0].L ) )
+  335.       (4,$_tran_b_T85)[0].L = cri_pointer( $_ptr_acc_b_T24 )
+  335.       (5,$_tran_b_T85)[0].L = cri_pointer( 0 )
+  335.       (6,$_tran_b_T85)[0].L = cri_pointer( loc( $_Text_Y1 ) )
+  335.       $_tran_bnd_T86[0] = 1
+  335.       (1,$_tran_bnd_T86)[0] = 10
+  335.       (2,$_tran_bnd_T86)[0].L = 34213896
+  335.       (1,$_tran_bnd_T86)[0].L = 3072
+  335.       (3,$_tran_bnd_T86)[0].L = cri_pointer( loc( bnd[0].L ) )
+  335.       (4,$_tran_bnd_T86)[0].L = cri_pointer( $_ptr_acc_bnd_T20 )
+  335.       (5,$_tran_bnd_T86)[0].L = cri_pointer( 0 )
+  335.       (6,$_tran_bnd_T86)[0].L = cri_pointer( loc( $_Text_Y2 ) )
+  335.       $_tran_c_T87[0] = 1
+  335.       (1,$_tran_c_T87)[0] = 10
+  335.       (2,$_tran_c_T87)[0].L = 102641688
+  335.       (1,$_tran_c_T87)[0].L = 3072
+  335.       (3,$_tran_c_T87)[0].L = cri_pointer( loc( c[0].L ) )
+  335.       (4,$_tran_c_T87)[0].L = cri_pointer( $_ptr_acc_c_T22 )
+  335.       (5,$_tran_c_T87)[0].L = cri_pointer( 0 )
+  335.       (6,$_tran_c_T87)[0].L = cri_pointer( loc( $_Text_Y3 ) )
+  335.       $_tran_p_T88[0] = 1
+  335.       (1,$_tran_p_T88)[0] = 10
+  335.       (2,$_tran_p_T88)[0].L = 34213896
+  335.       (1,$_tran_p_T88)[0].L = 3072
+  335.       (3,$_tran_p_T88)[0].L = cri_pointer( loc( p[0].L ) )
+  335.       (4,$_tran_p_T88)[0].L = cri_pointer( $_ptr_acc_p_T28 )
+  335.       (5,$_tran_p_T88)[0].L = cri_pointer( 0 )
+  335.       (6,$_tran_p_T88)[0].L = cri_pointer( loc( $_Text_Y4 ) )
+  335.       $_tran_wrk1_T89[0] = 1
+  335.       (1,$_tran_wrk1_T89)[0] = 10
+  335.       (2,$_tran_wrk1_T89)[0].L = 34213896
+  335.       (1,$_tran_wrk1_T89)[0].L = 3072
+  335.       (3,$_tran_wrk1_T89)[0].L = cri_pointer( loc( wrk1[0].L ) )
+  335.       (4,$_tran_wrk1_T89)[0].L = cri_pointer( $_ptr_acc_wrk1_T18 )
+  335.       (5,$_tran_wrk1_T89)[0].L = cri_pointer( 0 )
+  335.       (6,$_tran_wrk1_T89)[0].L = cri_pointer( loc( $_Text_Y5 ) )
+  335.       $_tran_wrk2_T90[0] = 1
+  335.       (1,$_tran_wrk2_T90)[0] = 10
+  335.       (2,$_tran_wrk2_T90)[0].L = 34213896
+  335.       (1,$_tran_wrk2_T90)[0].L = 3072
+  335.       (3,$_tran_wrk2_T90)[0].L = cri_pointer( loc( wrk2[0].L ) )
+  335.       (4,$_tran_wrk2_T90)[0].L = cri_pointer( $_ptr_acc_wrk2_T16 )
+  335.       (5,$_tran_wrk2_T90)[0].L = cri_pointer( 0 )
+  335.       (6,$_tran_wrk2_T90)[0].L = cri_pointer( loc( $_Text_Y6 ) )
+  335.       if ( int( __pat_tp_acc_transfer_enter == 0 ) == 0 ) then
+  335.          __pat_tp_acc_transfer_enter( acc_get_device_num( 2 ) )
+  335.       endif
+  335.       $_tlst_T175[0].L = loc( $_tran_a_T84 )
+  335.       (1,$_tlst_T175)[0].L = loc( $_tran_b_T85 )
+  335.       (2,$_tlst_T175)[0].L = loc( $_tran_bnd_T86 )
+  335.       (3,$_tlst_T175)[0].L = loc( $_tran_c_T87 )
+  335.       (4,$_tlst_T175)[0].L = loc( $_tran_p_T88 )
+  335.       (5,$_tlst_T175)[0].L = loc( $_tran_wrk1_T89 )
+  335.       (6,$_tlst_T175)[0].L = loc( $_tran_wrk2_T90 )
+  335.       $_trans_T176[0] = 1
+  335.       (1,$_trans_T176)[0] = 11
+  335.       (1,$_trans_T176)[0].L = 2
+  335.       (2,$_trans_T176)[0].L = 7
+  335.       (3,$_trans_T176)[0].L = loc( $_tlst_T175[0].L )
+  335.       (4,$_trans_T176)[0].L = cri_pointer( 0 )
+  335.       (7,$_trans_T176)[0].L = 0
+  335.       (8,$_trans_T176)[0].L = 335
+  335.       (9,$_trans_T176)[0].L = cri_pointer( loc( $_Text_Y7 ) )
+  335.       (10,$_trans_T176)[0].L = cri_pointer( 0 )
+  335.       cray_acc_transfer_list( $_trans_T176 )
+  335.       if ( int( __pat_tp_acc_transfer_exit_with_time == 0 ) == 0 ) then
+  335.          __pat_tp_acc_transfer_exit_with_time( acc_get_device_num( 2 ), (5,$_trans_T176)[0].L, (6,$_trans_T176)[0].L, (7,$_trans_T176)[0].L )
+  335.       else if ( int( __pat_tp_acc_transfer_exit == 0 ) == 0 ) then
+  335.          __pat_tp_acc_transfer_exit( acc_get_device_num( 2 ), (5,$_trans_T176)[0].L, (6,$_trans_T176)[0].L )
+  335.       endif
+  335.       if ( int( __pat_tp_acc_data_exit == 0 ) == 0 ) then
+  335.          __pat_tp_acc_data_exit( acc_get_device_num( 2 ) )
+  335.       endif
+  337.       return
+  337.       end
+  337.       
+  337.       
+  288.       accelerator_kernel jacobi_$ck_l288_13( $$arg_ptr_acc_wrk2_t16_t154, $$arg_ptr_acc_wrk1_t18_t155, $$arg_ptr_acc_bnd_t20_t156, $$arg_ptr_acc_c_t22_t157, $$arg_ptr_acc_b_t24_t158, $$arg_ptr_acc_a_t26_t159, $$arg_ptr_acc_p_t28_t160, $$arg_ptr_reduc_ctl_t48_t161, $$arg_ptr_reduc_val_t52_t162, $$_arg_acc_imax_t67_t163, $$_arg_acc_jmax_t68_t164, $$_arg_acc_kmax_t69_t165, $$_arg_acc_omega_t70_t166, $$arg_ptr_accshare_t72_t167 )
+  288.       _acc_kernel_start( 2, Null_Arg )
+  291.       $$gcs_kmax_2_t137 = $$_arg_acc_kmax_t69_t165
+  291.       if ( -3 + $$gcs_kmax_2_t137 >= 0 ) then
+  289.          $$_gosa1_t7 = 0.0
+  291.          $$numthrds_t45 = _acc_read_hw_reg(%nctaid.x)
+  291.          $$id_t46 = _acc_read_hw_reg(%ctaid.x)
+  291.          $$i_l291_144_t103 = $$id_t46
+  291.          $$gcs_2_0_t135 = -2 + $$gcs_kmax_2_t137
+  291.          if ( $$id_t46 < $$gcs_2_0_t135 ) then
+  292.             $$gcs_jmax_3_t138 = $$_arg_acc_jmax_t68_t164
+  292.             if ( -3 + $$gcs_jmax_3_t138 >= 0 ) then
+  293.                $$gcs_imax_4_t139 = $$_arg_acc_imax_t67_t163
+  293.                if ( -3 + $$gcs_imax_4_t139 >= 0 ) then
+  294.                   $$sr_e2_t107 = 33153 * $$id_t46
+  293.                   $$gcs_2_1_t136 = -2 + $$gcs_imax_4_t139
+  293.                   $$lis_b6_t114 = $$gcs_2_1_t136
+  313.                   $$lis_b8_t116 = $$gcs_2_0_t135
+  294.                   $$lis_b7_t115 = 33153 * $$numthrds_t45
+  293.                   $$lis_b4_t112 = _acc_read_hw_reg(%ntid.x)
+  293.                   $$lis_b5_t113 = _acc_read_hw_reg(%tid.x)
+  312.                   $$lis_b3_t111 = -2 + $$gcs_jmax_3_t138
+  311.                   $$lis_b1_t109 = $$gcs_2_1_t136
+  310.                   $$lis_b0_t108 = $$_arg_acc_omega_t70_t166
+  291.                   do
+  311.                      $sc_gosa1_i2 = $$_gosa1_t7
+  294.                      $$sr_e1_t106 = $$sr_e2_t107
+  293.                      $$lis_b2_t110 = $$lis_b5_t113 >= $$lis_b6_t114
+  292.                      $$induc02_j0_t134 = -$$lis_b3_t111
+  292.                      do
+  293.                         $$i_l293_136_t102 = $$lis_b5_t113
+  293.                         $$_gosa1_t7_t44 = 0.0
+  293.                         if ( $$lis_b2_t110 == 0 ) then
+  293. !dir$ loop_info (automatic) cache_nt( wrk1, c, bnd, b, a, wrk2 )
+  293. !dir$ blocking_size( 1, 1 )
+  293.                            do
+  294.                               $$gcs_6_t141 = $$sr_e1_t106 + $$i_l293_136_t102
+  294.                               $sc_s0_i0 = 33411[$$arg_ptr_acc_wrk1_t18_t155,$$gcs_6_t141,ex].L + _fmadd( 8586885[$$arg_ptr_acc_c_t22_t157,$$gcs_6_t141,ex].L, 258[$$arg_ptr_acc_p_t28_t160,$$gcs_6_t141,ex].L, _fmadd( 4310148[$$arg_ptr_acc_c_t22_t157,$$gcs_6_t141,ex].L, 33154[$$arg_ptr_acc_p_t28_t160,$$gcs_6_t141,ex].L, _fmadd( 33411[$$arg_ptr_acc_c_t22_t157,$$gcs_6_t141,ex].L, 33410[$$arg_ptr_acc_p_t28_t160,$$gcs_6_t141,ex].L, _fmadd( 8586885[$$arg_ptr_acc_b_t24_t158,$$gcs_6_t141,ex].L, 257[$$arg_ptr_acc_p_t28_t160,$$gcs_6_t141,ex].L + 66565[$$arg_ptr_acc_p_t28_t160,$$gcs_6_t141,ex].L - ( 66563[$$arg_ptr_acc_p_t28_t160,$$gcs_6_t141,ex].L + 259[$$arg_ptr_acc_p_t28_t160,$$gcs_6_t141,ex].L ), _fmadd( 4310148[$$arg_ptr_acc_b_t24_t158,$$gcs_6_t141,ex].L, 1[$$arg_ptr_acc_p_t28_t160,$$gcs_6_t141,ex].L + 66821[$$arg_ptr_acc_p_t28_t160,$$gcs_6_t141,ex].L - ( 66307[$$arg_ptr_acc_p_t28_t160,$$gcs_6_t141,ex].L + 515[$$arg_ptr_acc_p_t28_t160,$$gcs_6_t141,ex].L ), _fmadd( 33411[$$arg_ptr_acc_b_t24_t158,$$gcs_6_t141,ex].L, 33153[$$arg_ptr_acc_p_t28_t160,$$gcs_6_t141,ex].L + 33669[$$arg_ptr_acc_p_t28_t160,$$gcs_6_t141,ex].L - ( 33155[$$arg_ptr_acc_p_t28_t160,$$gcs_6_t141,ex].L + 33667[$$arg_ptr_acc_p_t28_t160,$$gcs_6_t141,ex].L ), _fmadd( 8586885[$$arg_ptr_acc_a_t26_t159,$$gcs_6_t141,ex].L, 66564[$$arg_ptr_acc_p_t28_t160,$$gcs_6_t141,ex].L, _fmadd( 33411[$$arg_ptr_acc_a_t26_t159,$$gcs_6_t141,ex].L, 33412[$$arg_ptr_acc_p_t28_t160,$$gcs_6_t141,ex].L, 4310148[$$arg_ptr_acc_a_t26_t159,$$gcs_6_t141,ex].L * 33668[$$arg_ptr_acc_p_t28_t160,$$gcs_6_t141,ex].L ) ) ) ) ) ) ) )
+  308.                               $$gcs_p_5_t140 = 33411[$$arg_ptr_acc_p_t28_t160,$$gcs_6_t141,ex].L
+  308.                               $sc_ss_i1 = ( _fmadd( $sc_s0_i0, 12863622[$$arg_ptr_acc_a_t26_t159,$$gcs_6_t141,ex].L, -$$gcs_p_5_t140 ) ) * 33411[$$arg_ptr_acc_bnd_t20_t156,$$gcs_6_t141,ex].L
+  309.                               $$_gosa1_t7_t44 = _fmadd( $sc_ss_i1, $sc_ss_i1, $$_gosa1_t7_t44 )
+  310.                               33411[$$arg_ptr_acc_wrk2_t16_t154,$$gcs_6_t141,nt].L = _fmadd( $$lis_b0_t108, $sc_ss_i1, $$gcs_p_5_t140 )
+  311.                               $$i_l293_136_t102 = $$lis_b4_t112 + $$i_l293_136_t102
+  311.                               if ( $$i_l293_136_t102 >= $$lis_b1_t109 ) exit
+  311.                            enddo
+  311.                         endif
+  311.                         $$lcs_0_t145 = _acc_read_hw_reg(%tid.x)
+  311.                         0[loc( $$_redfold_t121 ),$$lcs_0_t145].L = $$_gosa1_t7_t44
+  311.                         _acc_thread_bar( 0, Null_Arg )
+  311.                         $redfold_left_temp_t122 = 0[loc( $$_redfold_t121 ),_acc_read_hw_reg(%tid.x)].L
+  311.                         if ( $$lcs_0_t145 < 64 ) then
+  311.                            $$lcs_1_t146 = _acc_read_hw_reg(%tid.x)
+  311.                            $redfold_right_temp_t123 = 64[loc( $$_redfold_t121 ),$$lcs_1_t146].L
+  311.                            $redfold_left_temp_t122 = $redfold_left_temp_t122 + $redfold_right_temp_t123
+  311.                            0[loc( $$_redfold_t121 ),$$lcs_1_t146].L = $redfold_left_temp_t122
+  311.                         endif
+  311.                         _acc_thread_bar( 0, Null_Arg )
+  311.                         if ( _acc_read_hw_reg(%tid.x) < 32 ) then
+  311.                            $$lcs_3_t148 = _acc_read_hw_reg(%tid.x)
+  311.                            $redfold_right_temp_t123 = 32[loc( $$_redfold_t121 ),$$lcs_3_t148].L
+  311.                            $redfold_left_temp_t122 = $redfold_left_temp_t122 + $redfold_right_temp_t123
+  311.                            $$lcs_2_t147 = $$lcs_3_t148
+  311.                            0[loc( $$_redfold_t121 ),$$lcs_2_t147].L = $redfold_left_temp_t122
+  311.                            $redfold_right_temp_t123 = 16[loc( $$_redfold_t121 ),$$lcs_3_t148].L
+  311.                            $redfold_left_temp_t122 = $redfold_left_temp_t122 + $redfold_right_temp_t123
+  311.                            0[loc( $$_redfold_t121 ),$$lcs_2_t147].L = $redfold_left_temp_t122
+  311.                            $redfold_right_temp_t123 = 8[loc( $$_redfold_t121 ),$$lcs_3_t148].L
+  311.                            $redfold_left_temp_t122 = $redfold_left_temp_t122 + $redfold_right_temp_t123
+  311.                            0[loc( $$_redfold_t121 ),$$lcs_2_t147].L = $redfold_left_temp_t122
+  311.                            $redfold_right_temp_t123 = 4[loc( $$_redfold_t121 ),$$lcs_3_t148].L
+  311.                            $redfold_left_temp_t122 = $redfold_left_temp_t122 + $redfold_right_temp_t123
+  311.                            0[loc( $$_redfold_t121 ),$$lcs_2_t147].L = $redfold_left_temp_t122
+  311.                            $redfold_right_temp_t123 = 2[loc( $$_redfold_t121 ),$$lcs_3_t148].L
+  311.                            $redfold_left_temp_t122 = $redfold_left_temp_t122 + $redfold_right_temp_t123
+  311.                            0[loc( $$_redfold_t121 ),$$lcs_2_t147].L = $redfold_left_temp_t122
+  311.                            $redfold_right_temp_t123 = 1[loc( $$_redfold_t121 ),$$lcs_3_t148].L
+  311.                            $redfold_left_temp_t122 = $redfold_left_temp_t122 + $redfold_right_temp_t123
+  311.                            0[loc( $$_redfold_t121 ),$$lcs_2_t147].L = $redfold_left_temp_t122
+  311.                         endif
+  311.                         _acc_thread_bar( 0, Null_Arg )
+  311.                         $redfinal_t124 = 0[loc( $$_redfold_t121 ),0].L
+  311.                         _acc_thread_bar( 0, Null_Arg )
+  311.                         $sc_gosa1_i2 = $sc_gosa1_i2 + $redfinal_t124
+  311.                         _acc_thread_bar( 0, Null_Arg )
+  294.                         $$sr_e1_t106 = 257 + $$sr_e1_t106
+  292.                         $$induc02_j0_t134 = 1 + $$induc02_j0_t134
+  312.                         if ( $$induc02_j0_t134 >= 0 ) exit
+  312.                      enddo
+  311.                      $$_gosa1_t7 = $sc_gosa1_i2
+  294.                      $$sr_e2_t107 = $$sr_e2_t107 + $$lis_b7_t115
+  313.                      $$i_l291_144_t103 = $$numthrds_t45 + $$i_l291_144_t103
+  313.                      if ( $$i_l291_144_t103 >= $$lis_b8_t116 ) exit
+  313.                   enddo
+  313.                endif
+  313.             endif
+  313.          endif
+  315.          if ( _acc_read_hw_reg(%tid.x) == 0 ) then
+  315.             0[$$arg_ptr_reduc_val_t52_t162,_acc_read_hw_reg(%ctaid.x)].L = $$_gosa1_t7
+  315.          endif
+  315.          _order_memory
+  315.          if ( _acc_read_hw_reg(%tid.x) == 0 ) then
+  315.             $$gcs_7_t142 = merge( 1 - _acc_read_hw_reg(%nctaid.x), 1, _acc_read_hw_reg(%ctaid.x) == 0 )
+  315.             $$snap_amo_p29_t153 = _lamo_afadd( loc( 0[$$arg_ptr_reduc_ctl_t48_t161,0] ), $$gcs_7_t142 )
+  315.             reduc_share_ctl_c3 = $$gcs_7_t142 + $$snap_amo_p29_t153
+  315.          endif
+  315.          _acc_thread_bar( 0, Null_Arg )
+  315.          if ( reduc_share_ctl_c3 == 0 ) then
+  315.             $$reduc_pvt_t51 = 0.0
+  315.             $$gcs_9_t144 = _acc_read_hw_reg(%tid.x)
+  315.             $$induc_p28_t104 = $$gcs_9_t144
+  315.             $$gcs_8_t143 = _acc_read_hw_reg(%nctaid.x)
+  315.             if ( $$induc_p28_t104 < $$gcs_8_t143 ) then
+  315.                $$lis_b11_t119 = _acc_read_hw_reg(%ntid.x)
+  315.                $$lis_b12_t120 = $$gcs_8_t143
+  315.                do
+  315.                   $$reduc_pvt_t51 = $$reduc_pvt_t51 + 0[$$arg_ptr_reduc_val_t52_t162,$$induc_p28_t104].L
+  315.                   $$induc_p28_t104 = ( $$induc_p28_t104 + $$lis_b11_t119 )
+  315.                   if ( $$induc_p28_t104 >= $$lis_b12_t120 ) exit
+  315.                enddo
+  315.             endif
+  315.             $$lcs_4_t149 = _acc_read_hw_reg(%tid.x)
+  315.             0[loc( $$_redfold_t121 ),$$lcs_4_t149].L = $$reduc_pvt_t51
+  315.             _acc_thread_bar( 0, Null_Arg )
+  315.             $redfold_left_temp_t125 = 0[loc( $$_redfold_t121 ),_acc_read_hw_reg(%tid.x)].L
+  315.             if ( $$lcs_4_t149 < 64 ) then
+  315.                $$lcs_5_t150 = _acc_read_hw_reg(%tid.x)
+  315.                $redfold_right_temp_t126 = 64[loc( $$_redfold_t121 ),$$lcs_5_t150].L
+  315.                $redfold_left_temp_t125 = $redfold_left_temp_t125 + $redfold_right_temp_t126
+  315.                0[loc( $$_redfold_t121 ),$$lcs_5_t150].L = $redfold_left_temp_t125
+  315.             endif
+  315.             _acc_thread_bar( 0, Null_Arg )
+  315.             if ( _acc_read_hw_reg(%tid.x) < 32 ) then
+  315.                $$lcs_7_t152 = _acc_read_hw_reg(%tid.x)
+  315.                $redfold_right_temp_t126 = 32[loc( $$_redfold_t121 ),$$lcs_7_t152].L
+  315.                $redfold_left_temp_t125 = $redfold_left_temp_t125 + $redfold_right_temp_t126
+  315.                $$lcs_6_t151 = $$lcs_7_t152
+  315.                0[loc( $$_redfold_t121 ),$$lcs_6_t151].L = $redfold_left_temp_t125
+  315.                $redfold_right_temp_t126 = 16[loc( $$_redfold_t121 ),$$lcs_7_t152].L
+  315.                $redfold_left_temp_t125 = $redfold_left_temp_t125 + $redfold_right_temp_t126
+  315.                0[loc( $$_redfold_t121 ),$$lcs_6_t151].L = $redfold_left_temp_t125
+  315.                $redfold_right_temp_t126 = 8[loc( $$_redfold_t121 ),$$lcs_7_t152].L
+  315.                $redfold_left_temp_t125 = $redfold_left_temp_t125 + $redfold_right_temp_t126
+  315.                0[loc( $$_redfold_t121 ),$$lcs_6_t151].L = $redfold_left_temp_t125
+  315.                $redfold_right_temp_t126 = 4[loc( $$_redfold_t121 ),$$lcs_7_t152].L
+  315.                $redfold_left_temp_t125 = $redfold_left_temp_t125 + $redfold_right_temp_t126
+  315.                0[loc( $$_redfold_t121 ),$$lcs_6_t151].L = $redfold_left_temp_t125
+  315.                $redfold_right_temp_t126 = 2[loc( $$_redfold_t121 ),$$lcs_7_t152].L
+  315.                $redfold_left_temp_t125 = $redfold_left_temp_t125 + $redfold_right_temp_t126
+  315.                0[loc( $$_redfold_t121 ),$$lcs_6_t151].L = $redfold_left_temp_t125
+  315.                $redfold_right_temp_t126 = 1[loc( $$_redfold_t121 ),$$lcs_7_t152].L
+  315.                $redfold_left_temp_t125 = $redfold_left_temp_t125 + $redfold_right_temp_t126
+  315.                0[loc( $$_redfold_t121 ),$$lcs_6_t151].L = $redfold_left_temp_t125
+  315.             endif
+  315.             _acc_thread_bar( 0, Null_Arg )
+  315.             $redfinal_t127 = 0[loc( $$_redfold_t121 ),0].L
+  315.             _acc_thread_bar( 0, Null_Arg )
+  315.             $$reduc_pvt_t51 = $redfinal_t127
+  315.             if ( $$gcs_9_t144 == 0 ) then
+  315.                0[$$arg_ptr_accshare_t72_t167,0].L = 0[$$arg_ptr_accshare_t72_t167,0].L + $redfinal_t127
+  315.             endif
+  315.          endif
+  315.       endif
+  315.       return
+  315.       end
+  315.       
+  315.       
+  317.       accelerator_kernel jacobi_$ck_l317_14( $$arg_ptr_acc_wrk2_t16_t168, $$arg_ptr_acc_p_t28_t169, $$_arg_acc_imax_t74_t170, $$_arg_acc_jmax_t75_t171, $$_arg_acc_kmax_t76_t172 )
+  317.       _acc_kernel_start( 4, Null_Arg )
+  319.       $$gcs_kmax_13_t132 = $$_arg_acc_kmax_t76_t172
+  319.       if ( -3 + $$gcs_kmax_13_t132 >= 0 ) then
+  320.          $$gcs_jmax_12_t131 = $$_arg_acc_jmax_t75_t171
+  320.          if ( -3 + $$gcs_jmax_12_t131 >= 0 ) then
+  321.             $$gcs_imax_11_t130 = $$_arg_acc_imax_t74_t170
+  321.             if ( -3 + $$gcs_imax_11_t130 >= 0 ) then
+  319.                $$id_t60 = _acc_read_hw_reg(%ctaid.x)
+  319.                if ( $$id_t60 < -2 + $$gcs_kmax_13_t132 ) then
+  321.                   $$numthrds_t61 = _acc_read_hw_reg(%ntid.x)
+  321.                   $$id_t62 = _acc_read_hw_reg(%tid.x)
+  322.                   $$sr_e4_t97 = 33153 * $$id_t60
+  321.                   $$gcs_2_10_t129 = -2 + $$gcs_imax_11_t130
+  321.                   $$lis_b14_t99 = $$id_t62 >= $$gcs_2_10_t129
+  324.                   $$lis_b15_t100 = -2 + $$gcs_jmax_12_t131
+  323.                   $$lis_b13_t98 = $$gcs_2_10_t129
+  320.                   $$induc02_j1_t128 = -$$lis_b15_t100
+  320.                   do
+  321.                      $$i_l321_138_t95 = $$id_t62
+  321.                      if ( $$lis_b14_t99 == 0 ) then
+  321. !dir$ loop_info (automatic) cache_nt( wrk2, p )
+  321.                         do
+  322.                            $$gcs_14_t133 = $$sr_e4_t97 + $$i_l321_138_t95
+  322.                            33411[$$arg_ptr_acc_p_t28_t169,$$gcs_14_t133,nt].L = 33411[$$arg_ptr_acc_wrk2_t16_t168,$$gcs_14_t133,ex].L
+  323.                            $$i_l321_138_t95 = $$numthrds_t61 + $$i_l321_138_t95
+  323.                            if ( $$i_l321_138_t95 >= $$lis_b13_t98 ) exit
+  323.                         enddo
+  323.                      endif
+  323.                      _acc_thread_bar( 0, Null_Arg )
+  322.                      $$sr_e4_t97 = 257 + $$sr_e4_t97
+  320.                      $$induc02_j1_t128 = 1 + $$induc02_j1_t128
+  324.                      if ( $$induc02_j1_t128 >= 0 ) exit
+  324.                   enddo
+  324.                endif
+  324.             endif
+  324.          endif
+  324.       endif
+  327.       return
+  327.       end
+  327.       
