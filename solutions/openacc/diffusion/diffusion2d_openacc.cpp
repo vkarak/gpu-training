@@ -31,9 +31,11 @@ int main(int argc, char** argv) {
     auto buffer_size = nx*ny;
 
 #ifdef OPENACC_DATA
+    // x0, x1 managed by OpenACC
     double *x0     = malloc_host_pinned<double>(buffer_size);
     double *x1     = malloc_host_pinned<double>(buffer_size);
 #else
+    // x0, x1 manually managed with CUDA
     double *x_host = malloc_host_pinned<double>(buffer_size);
     double *x0     = malloc_device<double>(buffer_size);
     double *x1     = malloc_device<double>(buffer_size);

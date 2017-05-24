@@ -74,6 +74,8 @@ program main
   start_diffusion = get_time()
   do i = 1, nsteps
      num_requests = 0
+     ! TODO: data is managed by OpenACC; you need to pass the device
+     ! pointers to the MPI calls to enable the fast data path (RDMA)
      if (south >= 0) then
         call mpi_irecv(x0(1:), nx, MPI_DOUBLE, south, 0, MPI_COMM_WORLD, &
              requests(1), err)
@@ -92,7 +94,6 @@ program main
 
      call mpi_waitall(num_requests, requests, statuses, err)
 
-     ! TODO: use x0, x1 on GPU
      call diffusion_gpu(x0, x1, nx-2, ny-2, dt)
 
      call copy_gpu(x0, x1, buffer_size)
