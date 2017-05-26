@@ -1,0 +1,1489 @@
+# -----------------------------------------------
+# core file size          (blocks, -c) unlimited
+# data seg size           (kbytes, -d) unlimited
+# scheduling priority             (-e) 0
+# file size               (blocks, -f) unlimited
+# pending signals                 (-i) 511579
+# max locked memory       (kbytes, -l) 64
+# max memory size         (kbytes, -m) 65986560
+# open files                      (-n) 16384
+# pipe size            (512 bytes, -p) 8
+# POSIX message queues     (bytes, -q) 819200
+# real-time priority              (-r) 0
+# stack size              (kbytes, -s) unlimited
+# cpu time               (seconds, -t) unlimited
+# max user processes              (-u) 511579
+# virtual memory          (kbytes, -v) unlimited
+# file locks                      (-x) unlimited
+# -----------------------------------------------
+# -----------------------------------------------
+# SLURM_JOB_NODELIST = nid00038
+# SLURM_JOB_NUM_NODES = 1
+# SLURM_JOB_ID = 657159
+# SLURM_JOBID = 657159
+# SLURM_NTASKS = 1 / -n --ntasks
+# SLURM_NTASKS_PER_NODE = 1 / -N --ntasks-per-node
+# SLURM_CPUS_PER_TASK = 1 / -d-c --cpus-per-task
+# OMP_NUM_THREADS = 1 / -d-c 
+# SLURM_NTASKS_PER_CORE = 1 / -j1 --ntasks-per-core
+# -----------------------------------------------
+# -----------------------------------------------
+# SLURM_CPUS_ON_NODE = 12
+# SLURM_LOCALID = 0
+# SLURM_NNODES = 1
+# SLURM_NODEID = 0
+# SLURM_PROCID = 0
+# SLURM_NPROCS = 1
+# SLURM_OVERCOMMIT = 
+# nodeid:0 taskid:0 localid:0
+# 
+# -----------------------------------------------
+Tue May  2 16:32:46 CEST 2017
++ echo CRAY_CUDA_MPS=
+CRAY_CUDA_MPS=
++ echo HUGETLB_DEFAULT_PAGE_SIZE=
+HUGETLB_DEFAULT_PAGE_SIZE=
++ echo HUGETLB_MORECORE=
+HUGETLB_MORECORE=
++ /usr/bin/time -p srun --unbuffered --ntasks=1 --ntasks-per-node=1 --cpus-per-task=1 --ntasks-per-core=1 --hint=nomultithread --bcast=/tmp/himeno_v03.xcce /apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/CRAY/himeno_v03.xcce
+[CCE OMP: host=nid00038 pid=8688 tid=8688 id=0] thread 0 affinity:  0
+ACC: Initialize CUDA
+ACC: Get Device 0
+ACC: Create Context
+ACC: Set Thread Context
+ACC: Start transfer 7 items from himeno_F_v03.F90:116
+ACC:       allocate 'a' (136855584 bytes)
+ACC:       allocate 'b' (102641688 bytes)
+ACC:       allocate 'bnd' (34213896 bytes)
+ACC:       allocate 'c' (102641688 bytes)
+ACC:       allocate 'p' (34213896 bytes)
+ACC:       allocate 'wrk1' (34213896 bytes)
+ACC:       allocate 'wrk2' (34213896 bytes)
+ACC: End transfer (to acc 0 bytes, to host 0 bytes)
+ACC: Start transfer 6 items from himeno_F_v03.F90:208
+ACC:       present 'a' (136855584 bytes)
+ACC:       present 'b' (102641688 bytes)
+ACC:       present 'bnd' (34213896 bytes)
+ACC:       present 'c' (102641688 bytes)
+ACC:       present 'p' (34213896 bytes)
+ACC:       present 'wrk1' (34213896 bytes)
+ACC: End transfer (to acc 0 bytes, to host 0 bytes)
+ACC: Execute kernel initmt_$ck_L210_9 blocks:129 threads:128 async(auto) from himeno_F_v03.F90:210
+ACC: Execute kernel initmt_$ck_L233_10 blocks:128 threads:128 async(auto) from himeno_F_v03.F90:233
+ACC: Start transfer 6 items from himeno_F_v03.F90:257
+ACC:       release present 'a' (136855584 bytes)
+ACC:       release present 'b' (102641688 bytes)
+ACC:       release present 'bnd' (34213896 bytes)
+ACC:       release present 'c' (102641688 bytes)
+ACC:       release present 'p' (34213896 bytes)
+ACC:       release present 'wrk1' (34213896 bytes)
+ACC: End transfer (to acc 0 bytes, to host 0 bytes)
+ 
+ Double precision
+ 
+ PROBLEM_SIZE :  3
+   mimax =  257  mjmax =  129  mkmax =  129
+   imax =  256  jmax =  128  kmax =  128
+ 
+ Using OpenACC
+   NTPB :  128
+ACC: Start transfer 7 items from himeno_F_v03.F90:157
+ACC:       present 'a' (136855584 bytes)
+ACC:       present 'b' (102641688 bytes)
+ACC:       present 'bnd' (34213896 bytes)
+ACC:       present 'c' (102641688 bytes)
+ACC:       present 'p' (34213896 bytes)
+ACC:       present 'wrk1' (34213896 bytes)
+ACC:       present 'wrk2' (34213896 bytes)
+ACC: End transfer (to acc 0 bytes, to host 0 bytes)
+ACC: Start transfer 3 items from himeno_F_v03.F90:157
+ACC:       allocate reusable, copy to acc <internal> (8 bytes)
+ACC:       allocate reusable, copy to acc <internal> (4 bytes)
+ACC:       allocate reusable <internal> (1008 bytes)
+ACC: End transfer (to acc 12 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L157_1 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:157
+ACC: Wait async(auto) from himeno_F_v03.F90:157
+ACC: Start transfer 3 items from himeno_F_v03.F90:157
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L157_2 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:157
+ACC: Start transfer 3 items from himeno_F_v03.F90:157
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L157_1 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:157
+ACC: Wait async(auto) from himeno_F_v03.F90:157
+ACC: Start transfer 3 items from himeno_F_v03.F90:157
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L157_2 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:157
+ACC: Start transfer 3 items from himeno_F_v03.F90:157
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L157_1 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:157
+ACC: Wait async(auto) from himeno_F_v03.F90:157
+ACC: Start transfer 3 items from himeno_F_v03.F90:157
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L157_2 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:157
+ACC: Start transfer 7 items from himeno_F_v03.F90:157
+ACC:       release present 'a' (136855584 bytes)
+ACC:       release present 'b' (102641688 bytes)
+ACC:       release present 'bnd' (34213896 bytes)
+ACC:       release present 'c' (102641688 bytes)
+ACC:       release present 'p' (34213896 bytes)
+ACC:       release present 'wrk1' (34213896 bytes)
+ACC:       release present 'wrk2' (34213896 bytes)
+ACC: End transfer (to acc 0 bytes, to host 0 bytes)
+ 
+ Iterations  :  3
+ Time (secs) :  6.90207537263631821E-3
+ Gosa       : 0.169217378263084766E-02 
+ MFLOPS      :  59593.004392661955
+ACC: Start transfer 7 items from himeno_F_v03.F90:178
+ACC:       present 'a' (136855584 bytes)
+ACC:       present 'b' (102641688 bytes)
+ACC:       present 'bnd' (34213896 bytes)
+ACC:       present 'c' (102641688 bytes)
+ACC:       present 'p' (34213896 bytes)
+ACC:       present 'wrk1' (34213896 bytes)
+ACC:       present 'wrk2' (34213896 bytes)
+ACC: End transfer (to acc 0 bytes, to host 0 bytes)
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       reusable acquired, copy to acc <internal> (8 bytes)
+ACC:       reusable acquired <internal> (4 bytes)
+ACC:       reusable acquired <internal> (1008 bytes)
+ACC: End transfer (to acc 8 bytes, to host 0 bytes)
+ACC: Execute kernel main_$ck_L178_3 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 3 items from himeno_F_v03.F90:178
+ACC:       copy to host, done reusable <internal> (8 bytes)
+ACC:       done reusable <internal> (4 bytes)
+ACC:       done reusable <internal> (0 bytes)
+ACC: End transfer (to acc 0 bytes, to host 8 bytes)
+ACC: Execute kernel main_$ck_L178_4 blocks:126 threads:128 async(auto) from himeno_F_v03.F90:178
+ACC: Start transfer 7 items from himeno_F_v03.F90:178
+ACC:       release present 'a' (136855584 bytes)
+ACC:       release present 'b' (102641688 bytes)
+ACC:       release present 'bnd' (34213896 bytes)
+ACC:       release present 'c' (102641688 bytes)
+ACC:       release present 'p' (34213896 bytes)
+ACC:       release present 'wrk1' (34213896 bytes)
+ACC:       release present 'wrk2' (34213896 bytes)
+ACC: End transfer (to acc 0 bytes, to host 0 bytes)
+ 
+ Iterations  :  100
+ Time (secs) :  0.14481283933855593
+ Gosa       : 0.137835972438396428E-02 
+ MFLOPS      :  94677.472402473781
+ Score based on Pentium III 600MHz : 1142.8956108458931
+ACC: Wait async(auto) from himeno_F_v03.F90:194
+ACC: Start transfer 7 items from himeno_F_v03.F90:194
+ACC:       free 'a' (136855584 bytes)
+ACC:       free 'b' (102641688 bytes)
+ACC:       free 'bnd' (34213896 bytes)
+ACC:       free 'c' (102641688 bytes)
+ACC:       free 'p' (34213896 bytes)
+ACC:       free 'wrk1' (34213896 bytes)
+ACC:       free 'wrk2' (34213896 bytes)
+ACC: End transfer (to acc 0 bytes, to host 0 bytes)
+real 2.72
+user 1.76
+sys 0.20
++ set +x

@@ -1,0 +1,62 @@
+CrayPat/X:  Version 6.4.5 Revision 87dd5b8  01/23/17 15:37:24
+ 
+ Double precision
+ 
+ PROBLEM_SIZE :             3
+   mimax =           257  mjmax =           129  mkmax =           129
+   imax =           256  jmax =           128  kmax =           128
+ 
+ Iterations  :             3
+ Time (secs) :    0.1074478000000000     
+ Gosa       : 0.169217378263085655E-02 
+ MFLOPS      :     3828.048671075629     
+ 
+ Iterations  :           100
+ Time (secs) :     3.362133000000000     
+ Gosa       : 0.137835972438430212E-02 
+ MFLOPS      :     4077.921248207611     
+ Score based on Pentium III 600MHz :    49.22647571472248     
+
+#################################################################
+#                                                               #
+#            CrayPat-lite Performance Statistics                #
+#                                                               #
+#################################################################
+
+CrayPat/X:  Version 6.4.5 Revision 87dd5b8  01/23/17 15:37:24
+Experiment:                  lite  lite/loop_profile
+Number of PEs (MPI ranks):      1
+Numbers of PEs per Node:        1
+Numbers of Threads per PE:      1
+Number of Cores per Socket:    12
+Execution start time:  Mon May  1 19:03:11 2017
+System name and speed:  dom101  2601 MHz (approx)
+Intel haswell CPU  Family:  6  Model: 63  Stepping:  2
+
+
+Avg Process Time:  3.70 secs         
+High Memory:      468.8 MBytes 468.8 MBytes per PE
+
+Table 1:  Inclusive and Exclusive Time in Loops (from -hprofile_generate)
+
+ Time |Function=/.LOOP[.]
+ (Loop |
+ Adj.) |
+
+Program invocation:  /scratch/snx2000tds/piccinal/openacc/./pgi.x
+
+For a complete report with expanded tables and notes, run:
+  pat_report /scratch/snx2000tds/piccinal/openacc/pgi.x+4880-1t.ap2
+
+For help identifying callers of particular functions:
+  pat_report -O callers+src /scratch/snx2000tds/piccinal/openacc/pgi.x+4880-1t.ap2
+To see the entire call tree:
+  pat_report -O calltree+src /scratch/snx2000tds/piccinal/openacc/pgi.x+4880-1t.ap2
+
+For interactive, graphical performance analysis, run:
+  app2 /scratch/snx2000tds/piccinal/openacc/pgi.x+4880-1t.ap2
+
+================  End of CrayPat-lite output  ==========================
+real 6.07
+user 0.59
+sys 0.20

@@ -1,0 +1,56 @@
+
+#################################################################
+#                                                               #
+#            CrayPat-lite Performance Statistics                #
+#                                                               #
+#################################################################
+
+CrayPat/X:  Version 6.4.5 Revision 87dd5b8  01/23/17 15:37:24
+Experiment:                  lite  lite/loop_profile
+Number of PEs (MPI ranks):      1
+Numbers of PEs per Node:        1
+Numbers of Threads per PE:      1
+Number of Cores per Socket:    12
+Execution start time:  Wed May  3 14:32:25 2017
+System name and speed:  nid00001  2601 MHz (approx)
+Intel haswell CPU  Family:  6  Model: 63  Stepping:  2
+
+
+Avg Process Time:  3.82 secs         
+High Memory:      491.1 MBytes 491.1 MBytes per PE
+
+Table 1:  Inclusive and Exclusive Time in Loops (from -hprofile_generate)
+
+  Loop |     Loop |     Time |  Loop Hit |  Loop |  Loop |  Loop |Function=/.LOOP[.]
+  Incl |     Incl |    (Loop |           | Trips | Trips | Trips |
+ Time% |     Time |    Adj.) |           |   Avg |   Min |   Max |
+|-----------------------------------------------------------------------------
+| 95.8% | 3.631106 | 0.000030 |         2 |  51.5 |     3 |   100 |jacobi_.LOOP.1.li.273
+| 82.4% | 3.122830 | 0.000318 |       103 | 126.0 |   126 |   126 |jacobi_.LOOP.2.li.283
+| 82.4% | 3.122511 | 0.055347 |    12,978 | 126.0 |   126 |   126 |jacobi_.LOOP.3.li.284
+| 80.9% | 3.067165 | 3.067165 | 1,635,228 | 254.0 |   254 |   254 |jacobi_.LOOP.4.li.285
+| 13.4% | 0.508246 | 0.000140 |       103 | 126.0 |   126 |   126 |jacobi_.LOOP.5.li.309
+| 13.4% | 0.508106 | 0.178058 |    12,978 | 126.0 |   126 |   126 |jacobi_.LOOP.6.li.310
+|  8.7% | 0.330048 | 0.330048 | 1,635,228 | 254.0 |   254 |   254 |jacobi_.LOOP.7.li.311
+|  3.1% | 0.119340 | 0.000003 |         1 | 129.0 |   129 |   129 |initmt_.LOOP.1.li.209
+|  3.1% | 0.119337 | 0.000211 |       129 | 129.0 |   129 |   129 |initmt_.LOOP.2.li.210
+|  3.1% | 0.119127 | 0.119127 |    16,641 | 257.0 |   257 |   257 |initmt_.LOOP.3.li.211
+|  1.0% | 0.038014 | 0.000002 |         1 | 128.0 |   128 |   128 |initmt_.LOOP.4.li.231
+|  1.0% | 0.038011 | 0.001217 |       128 | 128.0 |   128 |   128 |initmt_.LOOP.5.li.232
+|  1.0% | 0.036795 | 0.036795 |    16,384 | 256.0 |   256 |   256 |initmt_.LOOP.6.li.233
+|=============================================================================
+
+Program invocation:  /tmp/himeno_v03.xcray+ptl645loops
+
+For a complete report with expanded tables and notes, run:
+  pat_report /scratch/snx2000tds/piccinal/openacc/himeno_v03.xcray+ptl645loops+7327-1t.ap2
+
+For help identifying callers of particular functions:
+  pat_report -O callers+src /scratch/snx2000tds/piccinal/openacc/himeno_v03.xcray+ptl645loops+7327-1t.ap2
+To see the entire call tree:
+  pat_report -O calltree+src /scratch/snx2000tds/piccinal/openacc/himeno_v03.xcray+ptl645loops+7327-1t.ap2
+
+For interactive, graphical performance analysis, run:
+  app2 /scratch/snx2000tds/piccinal/openacc/himeno_v03.xcray+ptl645loops+7327-1t.ap2
+
+================  End of CrayPat-lite output  ==========================

@@ -1,0 +1,599 @@
+# -----------------------------------------------
+# core file size          (blocks, -c) unlimited
+# data seg size           (kbytes, -d) unlimited
+# scheduling priority             (-e) 0
+# file size               (blocks, -f) unlimited
+# pending signals                 (-i) 511579
+# max locked memory       (kbytes, -l) 64
+# max memory size         (kbytes, -m) 65986560
+# open files                      (-n) 16384
+# pipe size            (512 bytes, -p) 8
+# POSIX message queues     (bytes, -q) 819200
+# real-time priority              (-r) 0
+# stack size              (kbytes, -s) unlimited
+# cpu time               (seconds, -t) unlimited
+# max user processes              (-u) 511579
+# virtual memory          (kbytes, -v) unlimited
+# file locks                      (-x) unlimited
+# -----------------------------------------------
+# -----------------------------------------------
+# SLURM_JOB_NODELIST = nid00039
+# SLURM_JOB_NUM_NODES = 1
+# SLURM_JOB_ID = 657155
+# SLURM_JOBID = 657155
+# SLURM_NTASKS = 1 / -n --ntasks
+# SLURM_NTASKS_PER_NODE = 1 / -N --ntasks-per-node
+# SLURM_CPUS_PER_TASK = 1 / -d-c --cpus-per-task
+# OMP_NUM_THREADS = 1 / -d-c 
+# SLURM_NTASKS_PER_CORE = 1 / -j1 --ntasks-per-core
+# -----------------------------------------------
+# -----------------------------------------------
+# SLURM_CPUS_ON_NODE = 12
+# SLURM_LOCALID = 0
+# SLURM_NNODES = 1
+# SLURM_NODEID = 0
+# SLURM_PROCID = 0
+# SLURM_NPROCS = 1
+# SLURM_OVERCOMMIT = 
+# nodeid:0 taskid:0 localid:0
+# 
+# -----------------------------------------------
+Tue May  2 16:31:23 CEST 2017
++ echo CRAY_CUDA_MPS=
+CRAY_CUDA_MPS=
++ echo HUGETLB_DEFAULT_PAGE_SIZE=
+HUGETLB_DEFAULT_PAGE_SIZE=
++ echo HUGETLB_MORECORE=
+HUGETLB_MORECORE=
++ /usr/bin/time -p srun --unbuffered --ntasks=1 --ntasks-per-node=1 --cpus-per-task=1 --ntasks-per-core=1 --hint=nomultithread --bcast=/tmp/himeno_v03.xcce /apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/CRAY/himeno_v03.xcce
+[CCE OMP: host=nid00039 pid=20499 tid=20499 id=0] thread 0 affinity:  0
+ACC: Transfer 7 items (to acc 0 bytes, to host 0 bytes) from himeno_F_v03.F90:116
+ACC: Transfer 6 items (to acc 0 bytes, to host 0 bytes) from himeno_F_v03.F90:208
+ACC: Execute kernel initmt_$ck_L210_9 async(auto) from himeno_F_v03.F90:210
+ACC: Execute kernel initmt_$ck_L233_10 async(auto) from himeno_F_v03.F90:233
+ACC: Transfer 6 items (to acc 0 bytes, to host 0 bytes) from himeno_F_v03.F90:257
+ 
+ Double precision
+ 
+ PROBLEM_SIZE :  3
+   mimax =  257  mjmax =  129  mkmax =  129
+   imax =  256  jmax =  128  kmax =  128
+ 
+ Using OpenACC
+   NTPB :  128
+ACC: Transfer 7 items (to acc 0 bytes, to host 0 bytes) from himeno_F_v03.F90:157
+ACC: Transfer 3 items (to acc 12 bytes, to host 0 bytes) from himeno_F_v03.F90:157
+ACC: Execute kernel main_$ck_L157_1 async(auto) from himeno_F_v03.F90:157
+ACC: Wait async(auto) from himeno_F_v03.F90:157
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:157
+ACC: Execute kernel main_$ck_L157_2 async(auto) from himeno_F_v03.F90:157
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:157
+ACC: Execute kernel main_$ck_L157_1 async(auto) from himeno_F_v03.F90:157
+ACC: Wait async(auto) from himeno_F_v03.F90:157
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:157
+ACC: Execute kernel main_$ck_L157_2 async(auto) from himeno_F_v03.F90:157
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:157
+ACC: Execute kernel main_$ck_L157_1 async(auto) from himeno_F_v03.F90:157
+ACC: Wait async(auto) from himeno_F_v03.F90:157
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:157
+ACC: Execute kernel main_$ck_L157_2 async(auto) from himeno_F_v03.F90:157
+ACC: Transfer 7 items (to acc 0 bytes, to host 0 bytes) from himeno_F_v03.F90:157
+ 
+ Iterations  :  3
+ Time (secs) :  6.80010183714330196E-3
+ Gosa       : 0.169217378263084766E-02 
+ MFLOPS      :  60486.654148813766
+ACC: Transfer 7 items (to acc 0 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 8 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_3 async(auto) from himeno_F_v03.F90:178
+ACC: Wait async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 3 items (to acc 0 bytes, to host 8 bytes) from himeno_F_v03.F90:178
+ACC: Execute kernel main_$ck_L178_4 async(auto) from himeno_F_v03.F90:178
+ACC: Transfer 7 items (to acc 0 bytes, to host 0 bytes) from himeno_F_v03.F90:178
+ 
+ Iterations  :  100
+ Time (secs) :  0.14263696921989322
+ Gosa       : 0.137835972438396428E-02 
+ MFLOPS      :  96121.739511048363
+ Score based on Pentium III 600MHz : 1160.3300278977349
+ACC: Wait async(auto) from himeno_F_v03.F90:194
+ACC: Transfer 7 items (to acc 0 bytes, to host 0 bytes) from himeno_F_v03.F90:194
+real 2.92
+user 1.78
+sys 0.20
++ set +x

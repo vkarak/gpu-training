@@ -1,0 +1,127 @@
+# -----------------------------------------------
+# core file size          (blocks, -c) unlimited
+# data seg size           (kbytes, -d) unlimited
+# scheduling priority             (-e) 0
+# file size               (blocks, -f) unlimited
+# pending signals                 (-i) 511579
+# max locked memory       (kbytes, -l) 64
+# max memory size         (kbytes, -m) 65986560
+# open files                      (-n) 16384
+# pipe size            (512 bytes, -p) 8
+# POSIX message queues     (bytes, -q) 819200
+# real-time priority              (-r) 0
+# stack size              (kbytes, -s) unlimited
+# cpu time               (seconds, -t) unlimited
+# max user processes              (-u) 511579
+# virtual memory          (kbytes, -v) unlimited
+# file locks                      (-x) unlimited
+# -----------------------------------------------
+# -----------------------------------------------
+# SLURM_JOB_NODELIST = nid00038
+# SLURM_JOB_NUM_NODES = 1
+# SLURM_JOB_ID = 657475
+# SLURM_JOBID = 657475
+# SLURM_NTASKS = 1 / -n --ntasks
+# SLURM_NTASKS_PER_NODE = 1 / -N --ntasks-per-node
+# SLURM_CPUS_PER_TASK = 1 / -d-c --cpus-per-task
+# OMP_NUM_THREADS = 1 / -d-c 
+# SLURM_NTASKS_PER_CORE = 1 / -j1 --ntasks-per-core
+# -----------------------------------------------
+# -----------------------------------------------
+# SLURM_CPUS_ON_NODE = 12
+# SLURM_LOCALID = 0
+# SLURM_NNODES = 1
+# SLURM_NODEID = 0
+# SLURM_PROCID = 0
+# SLURM_NPROCS = 1
+# SLURM_OVERCOMMIT = 
+# nodeid:0 taskid:0 localid:0
+# 
+# -----------------------------------------------
+Wed May  3 16:31:28 CEST 2017
++ echo CRAY_CUDA_MPS=
+CRAY_CUDA_MPS=
++ echo HUGETLB_DEFAULT_PAGE_SIZE=
+HUGETLB_DEFAULT_PAGE_SIZE=
++ echo HUGETLB_MORECORE=
+HUGETLB_MORECORE=
++ /usr/bin/time -p srun --unbuffered --ntasks=1 --ntasks-per-node=1 --cpus-per-task=1 --ntasks-per-core=1 --hint=nomultithread --bcast=/tmp/himeno_v02.xcray+ptl645cuda /apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/CRAY/himeno_v02.xcray+ptl645cuda
+[CCE OMP: host=nid00038 pid=25259 tid=25259 id=0] thread 0 affinity:  0
+CrayPat/X:  Version 6.4.5 Revision 87dd5b8  01/23/17 15:37:24
+ 
+ Double precision
+ 
+ PROBLEM_SIZE :  3
+   mimax =  257  mjmax =  129  mkmax =  129
+   imax =  256  jmax =  128  kmax =  128
+ 
+ Using OpenACC
+   NTPB :  128
+ 
+ Iterations  :  3
+ Time (secs) :  0.31971199484542012
+ Gosa       : 0.169217378263124513E-02 
+ MFLOPS      :  1286.5185374069868
+ 
+ Iterations  :  100
+ Time (secs) :  0.19464256218634546
+ Gosa       : 0.137835972438390703E-02 
+ MFLOPS      :  70439.442668628297
+ Score based on Pentium III 600MHz : 850.3071302345279
+
+#################################################################
+#                                                               #
+#            CrayPat-lite Performance Statistics                #
+#                                                               #
+#################################################################
+
+CrayPat/X:  Version 6.4.5 Revision 87dd5b8  01/23/17 15:37:24
+Experiment:                  lite  lite/gpu
+Number of PEs (MPI ranks):      1
+Numbers of PEs per Node:        1
+Numbers of Threads per PE:      2
+Number of Cores per Socket:    12
+Execution start time:  Wed May  3 16:31:29 2017
+System name and speed:  nid00038  2601 MHz (approx)
+Intel haswell CPU  Family:  6  Model: 63  Stepping:  2
+
+
+Avg Process Time:  0.99 secs         
+High Memory:      523.3 MBytes 523.3 MBytes per PE
+
+Table 1:  Accelerator Table by Function (top 10 functions shown)
+
+   Host | Host |  Acc | Acc Copy | Acc Copy | Events |Function=[max10]
+  Time% | Time | Time |       In |      Out |        | PE=HIDE
+        |      |      | (MBytes) | (MBytes) |        |  Thread=HIDE
+       
+ 100.0% | 0.00 | 0.24 |   848.35 |    65.26 |    729 |Total
+|-----------------------------------------------------------------------------
+|  30.8% | 0.00 | 0.05 |   424.18 |    32.63 |    202 |main_.ACC_COPY@li.178
+|  20.6% | 0.00 | 0.05 |   424.18 |    32.63 |      8 |main_.ACC_COPY@li.157
+|  15.2% | 0.00 | 0.14 |       -- |       -- |    200 |main_.ACC_ASYNC_KERNEL@li.178
+|  13.2% | 0.00 |   -- |       -- |       -- |    200 |main_.ACC_REGION@li.178
+|  10.0% | 0.00 |   -- |       -- |       -- |    101 |main_.ACC_SYNC_WAIT@li.178
+|   4.2% | 0.00 |   -- |       -- |       -- |      1 |main_.ACC_DATA_REGION@li.178
+|   3.7% | 0.00 | 0.00 |       -- |       -- |      6 |main_.ACC_ASYNC_KERNEL@li.157
+|   1.4% | 0.00 |   -- |       -- |       -- |      4 |main_.ACC_SYNC_WAIT@li.157
+|=============================================================================
+
+Program invocation:  /tmp/himeno_v02.xcray+ptl645cuda
+
+For a complete report with expanded tables and notes, run:
+  pat_report /scratch/snx2000tds/piccinal/openacc/himeno_v02.xcray+ptl645cuda+25259-38t.ap2
+
+For help identifying callers of particular functions:
+  pat_report -O callers+src /scratch/snx2000tds/piccinal/openacc/himeno_v02.xcray+ptl645cuda+25259-38t.ap2
+To see the entire call tree:
+  pat_report -O calltree+src /scratch/snx2000tds/piccinal/openacc/himeno_v02.xcray+ptl645cuda+25259-38t.ap2
+
+For interactive, graphical performance analysis, run:
+  app2 /scratch/snx2000tds/piccinal/openacc/himeno_v02.xcray+ptl645cuda+25259-38t.ap2
+
+================  End of CrayPat-lite output  ==========================
+real 5.99
+user 1.79
+sys 0.21
++ set +x

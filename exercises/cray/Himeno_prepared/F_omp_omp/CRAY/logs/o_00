@@ -1,0 +1,20 @@
+ 
+ Double precision
+ 
+ PROBLEM_SIZE :  3
+   mimax =  257  mjmax =  129  mkmax =  129
+   imax =  256  jmax =  128  kmax =  128
+ 
+ Iterations  :  3
+ Time (secs) :  0.11940513912122697
+ Gosa       : 0.169217378263142337E-02 
+ MFLOPS      :  3444.7043990494321
+ 
+ Iterations  :  100
+ Time (secs) :  3.5372917808126658
+ Gosa       : 0.137835972438428217E-02 
+ MFLOPS      :  3875.9917048319135
+ Score based on Pentium III 600MHz : 46.788890690872925
+real 6.49
+user 2.42
+sys 0.21

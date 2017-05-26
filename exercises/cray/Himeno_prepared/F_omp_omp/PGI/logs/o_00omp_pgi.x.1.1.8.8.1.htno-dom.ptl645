@@ -1,0 +1,186 @@
+# -----------------------------------------------
+# core file size          (blocks, -c) unlimited
+# data seg size           (kbytes, -d) unlimited
+# scheduling priority             (-e) 0
+# file size               (blocks, -f) unlimited
+# pending signals                 (-i) 511579
+# max locked memory       (kbytes, -l) 64
+# max memory size         (kbytes, -m) 65986560
+# open files                      (-n) 16384
+# pipe size            (512 bytes, -p) 8
+# POSIX message queues     (bytes, -q) 819200
+# real-time priority              (-r) 0
+# stack size              (kbytes, -s) unlimited
+# cpu time               (seconds, -t) unlimited
+# max user processes              (-u) 511579
+# virtual memory          (kbytes, -v) unlimited
+# file locks                      (-x) unlimited
+# -----------------------------------------------
+# -----------------------------------------------
+# SLURM_JOB_NODELIST = nid00001
+# SLURM_JOB_NUM_NODES = 1
+# SLURM_JOB_ID = 656552
+# SLURM_JOBID = 656552
+# SLURM_NTASKS = 1 / -n --ntasks
+# SLURM_NTASKS_PER_NODE = 1 / -N --ntasks-per-node
+# SLURM_CPUS_PER_TASK = 8 / -d-c --cpus-per-task
+# OMP_NUM_THREADS = 8 / -d-c 
+# SLURM_NTASKS_PER_CORE = 1 / -j1 --ntasks-per-core
+# -----------------------------------------------
+# -----------------------------------------------
+# SLURM_CPUS_ON_NODE = 8
+# SLURM_LOCALID = 0
+# SLURM_NNODES = 1
+# SLURM_NODEID = 0
+# SLURM_PROCID = 0
+# SLURM_NPROCS = 1
+# SLURM_OVERCOMMIT = 
+# nodeid:0 taskid:0 localid:0
+# 
+# -----------------------------------------------
+Mon May  1 20:34:52 CEST 2017
++ echo CRAY_CUDA_MPS=
+CRAY_CUDA_MPS=
++ echo HUGETLB_DEFAULT_PAGE_SIZE=
+HUGETLB_DEFAULT_PAGE_SIZE=
++ echo HUGETLB_MORECORE=
+HUGETLB_MORECORE=
++ /usr/bin/time -p srun --unbuffered --ntasks=1 --ntasks-per-node=1 --cpus-per-task=8 --ntasks-per-core=1 --hint=nomultithread --bcast=/tmp/pgi.x ./pgi.x
+CrayPat/X:  Version 6.4.5 Revision 87dd5b8  01/23/17 15:37:24
+ 
+ Double precision
+ 
+ PROBLEM_SIZE :             3
+   mimax =           257  mjmax =           129  mkmax =           129
+   imax =           256  jmax =           128  kmax =           128
+ 
+ Using OpenMP
+   OMP_NUM_THREADS :             8
+ 
+ Iterations  :             3
+ Time (secs) :    3.2046999999999999E-002
+ Gosa       : 0.169217378263111177E-02 
+ MFLOPS      :     12834.75545292851     
+ 
+ Iterations  :           100
+ Time (secs) :     1.062788000000000     
+ Gosa       : 0.137835972438408137E-02 
+ MFLOPS      :     12900.51600130976     
+ Score based on Pentium III 600MHz :    155.7281023818175     
+
+#################################################################
+#                                                               #
+#            CrayPat-lite Performance Statistics                #
+#                                                               #
+#################################################################
+
+CrayPat/X:  Version 6.4.5 Revision 87dd5b8  01/23/17 15:37:24
+Experiment:                  lite  lite/sample_profile
+Number of PEs (MPI ranks):      1
+Numbers of PEs per Node:        1
+Numbers of Threads per PE:      8
+Number of Cores per Socket:    12
+Execution start time:  Mon May  1 20:34:53 2017
+System name and speed:  nid00001  2601 MHz (approx)
+Intel haswell CPU  Family:  6  Model: 63  Stepping:  2
+
+
+Avg Process Time:          1.25 secs          
+High Memory:              469.8 MBytes  469.8 MBytes per PE
+MFLOPS:           Not supported (see observation below)
+I/O Write Rate:        3.285861 MBytes/sec        
+Avg CPU Energy:             154 joules    154 joules per node
+Avg CPU Power:           123.41 watts  123.41 watts per node
+
+Table 1:  Profile by Function
+
+  Samp% |  Samp | Imb. |  Imb. |Group
+        |       | Samp | Samp% | Function=[MAX10]
+        |       |      |       |  Thread=HIDE
+       
+ 100.0% | 121.0 |   -- |    -- |Total
+|------------------------------------------------
+|  79.3% |  96.0 |   -- |    -- |USER
+||-----------------------------------------------
+||  76.0% |  92.0 |  2.6 |  3.1% |jacobi_
+||   3.3% |   4.0 |  0.0 |  0.0% |initmt_
+||===============================================
+|  20.7% |  25.0 |   -- |    -- |ETC
+||-----------------------------------------------
+||  14.0% |  17.0 |  3.0 | 20.2% |__c_mcopy8
+||   5.0% |   6.0 |   -- |    -- |exit
+|================================================
+
+Table 2:  Profile by Group, Function, and Line
+
+  Samp% |  Samp | Imb. |  Imb. |Group
+        |       | Samp | Samp% | Function=[MAX10]
+        |       |      |       |  Source
+        |       |      |       |   Line
+        |       |      |       |    Thread=HIDE
+       
+ 100.0% | 121.0 |   -- |    -- |Total
+|---------------------------------------------------------------
+|  79.3% |  96.0 |   -- |    -- |USER
+||--------------------------------------------------------------
+||  76.0% |  92.0 |   -- |    -- |jacobi_
+3|        |       |      |       | F_omp_omp/PGI/./himeno_F_v00.F90
+4|  76.0% |  92.0 |  2.9 |  3.4% |  line.293
+||   3.3% |   4.0 |   -- |    -- |initmt_
+3|        |       |      |       | F_omp_omp/PGI/./himeno_F_v00.F90
+4|   2.5% |   3.0 |  0.9 | 33.3% |  line.214
+||==============================================================
+|  20.7% |  25.0 |   -- |    -- |ETC
+||--------------------------------------------------------------
+||  14.0% |  17.0 |  3.0 | 20.2% |__c_mcopy8
+||   5.0% |   6.0 |   -- |    -- |exit
+|===============================================================
+
+===================  Observations and suggestions  ===================
+
+
+MFLOPS not available on Intel Haswell:
+
+    The document that specifies performance monitoring events for Intel
+    processors does not include events that could be used to compute a
+    count of floating point operations for Haswell processors: Intel 64
+    and IA-32 Architectures Software Developer's Manual, Order Number
+    253665-050US, February 2014.
+
+
+MPI utilization:
+
+    No suggestions were made because each node has only one rank.
+
+=========================  End Observations  =========================
+
+Table 3:  File Output Stats by Filename
+
+    Write |    Write | Write Rate | Writes | Bytes/ |File Name[max10]
+     Time |   MBytes | MBytes/sec |        |   Call |
+         
+ 0.000178 | 0.000587 |   3.285861 |   91.0 |   6.76 |Total
+|--------------------------------------------------------------------
+| 0.000178 | 0.000587 |   3.285861 |   91.0 |   6.76 |stdout
+|====================================================================
+
+Program invocation:  /tmp/pgi.x
+
+For a complete report with expanded tables and notes, run:
+  pat_report /scratch/snx2000tds/piccinal/openacc/pgi.x+11637-1s.ap2
+
+For help identifying callers of particular functions:
+  pat_report -O callers+src /scratch/snx2000tds/piccinal/openacc/pgi.x+11637-1s.ap2
+To see the entire call tree:
+  pat_report -O calltree+src /scratch/snx2000tds/piccinal/openacc/pgi.x+11637-1s.ap2
+
+For interactive, graphical performance analysis, run:
+  app2 /scratch/snx2000tds/piccinal/openacc/pgi.x+11637-1s.ap2
+
+================  End of CrayPat-lite output  ==========================
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+slurmstepd: error: *** STEP 656552.0 ON nid00001 CANCELLED AT 2017-05-01T20:35:56 DUE TO TIME LIMIT ***
+slurmstepd: error: *** JOB 656552 ON nid00001 CANCELLED AT 2017-05-01T20:35:56 DUE TO TIME LIMIT ***
+pat[WARNING][0]: exit process 11637 because of signal 15
+srun: got SIGCONT
+srun: forcing job termination

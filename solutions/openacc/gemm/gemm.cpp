@@ -66,6 +66,7 @@ void dgemm_openacc(size_t M, size_t N, size_t K,
     for (size_t i = 0; i < M; ++i) {
         for (size_t k = 0; k < K; ++k) {
             T prod = T{0};
+            #pragma acc loop reduction(+:prod)
             for (size_t j = 0; j < N; ++j) {
                 prod += A[i*K+k]*B[k*N+j];
             }
@@ -125,7 +126,7 @@ void dgemm_cublas(size_t M, size_t N, size_t K,
         }
 
 #ifdef __PGI
-        // Workaround for PGI
+        // Workaround for PGI 16.9
         #pragma acc update host(C[0:M*N])
 #endif
     }
@@ -224,8 +225,8 @@ int main(int argc, char **argv)
     std::cout << "dgemm naive (serial): " << time_dgemm_naive << " s\n";
 #endif
     std::cout << "dgemm lreorder (serial): " << time_dgemm_lreorder << " s\n";
-    std::cout << "dgemm lreorder (OpenMP): " << time_dgemm_omp << " s\n";
-    std::cout << "dgemm lreorder (OpenACC): " << time_dgemm_openacc << " s\n";
+    std::cout << "dgemm lreorder (multicore): " << time_dgemm_omp << " s\n";
+    std::cout << "dgemm lreorder (gpu): " << time_dgemm_openacc << " s\n";
     std::cout << "dgemm CUBLAS: " << time_dgemm_cublas << " s\n";
     return 0;
 }
