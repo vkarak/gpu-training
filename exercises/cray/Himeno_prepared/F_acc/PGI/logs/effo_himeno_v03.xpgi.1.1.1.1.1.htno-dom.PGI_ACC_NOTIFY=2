@@ -1,0 +1,315 @@
+# -----------------------------------------------
+# core file size          (blocks, -c) unlimited
+# data seg size           (kbytes, -d) unlimited
+# scheduling priority             (-e) 0
+# file size               (blocks, -f) unlimited
+# pending signals                 (-i) 511579
+# max locked memory       (kbytes, -l) 64
+# max memory size         (kbytes, -m) 65986560
+# open files                      (-n) 16384
+# pipe size            (512 bytes, -p) 8
+# POSIX message queues     (bytes, -q) 819200
+# real-time priority              (-r) 0
+# stack size              (kbytes, -s) unlimited
+# cpu time               (seconds, -t) unlimited
+# max user processes              (-u) 511579
+# virtual memory          (kbytes, -v) unlimited
+# file locks                      (-x) unlimited
+# -----------------------------------------------
+# -----------------------------------------------
+# SLURM_JOB_NODELIST = nid00002
+# SLURM_JOB_NUM_NODES = 1
+# SLURM_JOB_ID = 657169
+# SLURM_JOBID = 657169
+# SLURM_NTASKS = 1 / -n --ntasks
+# SLURM_NTASKS_PER_NODE = 1 / -N --ntasks-per-node
+# SLURM_CPUS_PER_TASK = 1 / -d-c --cpus-per-task
+# OMP_NUM_THREADS = 1 / -d-c 
+# SLURM_NTASKS_PER_CORE = 1 / -j1 --ntasks-per-core
+# -----------------------------------------------
+# -----------------------------------------------
+# SLURM_CPUS_ON_NODE = 12
+# SLURM_LOCALID = 0
+# SLURM_NNODES = 1
+# SLURM_NODEID = 0
+# SLURM_PROCID = 0
+# SLURM_NPROCS = 1
+# SLURM_OVERCOMMIT = 
+# nodeid:0 taskid:0 localid:0
+# 
+# -----------------------------------------------
+Tue May  2 16:45:55 CEST 2017
++ echo CRAY_CUDA_MPS=
+CRAY_CUDA_MPS=
++ echo HUGETLB_DEFAULT_PAGE_SIZE=
+HUGETLB_DEFAULT_PAGE_SIZE=
++ echo HUGETLB_MORECORE=
+HUGETLB_MORECORE=
++ /usr/bin/time -p srun --unbuffered --ntasks=1 --ntasks-per-node=1 --cpus-per-task=1 --ntasks-per-core=1 --hint=nomultithread --bcast=/tmp/himeno_v03.xpgi /apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_v03.xpgi
+ 
+ Double precision
+ 
+ PROBLEM_SIZE :             3
+   mimax =           257  mjmax =           129  mkmax =           129
+   imax =           256  jmax =           128  kmax =           128
+ 
+ Using OpenACC
+   NTPB :           128
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+ 
+ Iterations  :             3
+ Time (secs) :    5.5899000000000001E-003
+ Gosa       : 0.169217378263101766E-02 
+ MFLOPS      :     73581.89019481564     
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+upload CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+download CUDA data  file=/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90 function=jacobi line=288 device=0 threadid=1 bytes=8
+ 
+ Iterations  :           100
+ Time (secs) :    0.1432500000000000     
+ Gosa       : 0.137835972438409005E-02 
+ MFLOPS      :     95710.39162303664     
+ Score based on Pentium III 600MHz :    1155.364457062248     
+
+Accelerator Kernel Timing data
+/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90
+  main  NVIDIA  devicenum=0
+    time(us): 0
+    116: data region reached 2 times
+/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90
+  initmt  NVIDIA  devicenum=0
+    time(us): 0
+    208: data region reached 2 times
+    210: compute region reached 1 time
+        210: kernel launched 1 time
+            grid: [129]  block: [128]
+            elapsed time(us): total=1,910 max=1,910 min=1,910 avg=1,910
+    233: compute region reached 1 time
+        233: kernel launched 1 time
+            grid: [128]  block: [128]
+            elapsed time(us): total=1,797 max=1,797 min=1,797 avg=1,797
+/apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_F_v03.F90
+  jacobi  NVIDIA  devicenum=0
+    time(us): 1,177
+    277: data region reached 4 times
+    288: compute region reached 103 times
+        288: data copyin transfers: 103
+             device time(us): total=288 max=14 min=2 avg=2
+        288: kernel launched 103 times
+            grid: [126]  block: [128]
+            elapsed time(us): total=123,837 max=1,223 min=1,188 avg=1,202
+        288: reduction kernel launched 103 times
+            grid: [1]  block: [256]
+            elapsed time(us): total=1,548 max=21 min=13 avg=15
+        288: data copyout transfers: 103
+             device time(us): total=889 max=18 min=8 avg=8
+    317: compute region reached 103 times
+        317: kernel launched 103 times
+            grid: [126]  block: [128]
+            elapsed time(us): total=18,104 max=187 min=172 avg=175
+real 1.86
+user 0.34
+sys 0.16
++ set +x

@@ -1,0 +1,101 @@
+# -----------------------------------------------
+# core file size          (blocks, -c) unlimited
+# data seg size           (kbytes, -d) unlimited
+# scheduling priority             (-e) 0
+# file size               (blocks, -f) unlimited
+# pending signals                 (-i) 511579
+# max locked memory       (kbytes, -l) 64
+# max memory size         (kbytes, -m) 65986560
+# open files                      (-n) 16384
+# pipe size            (512 bytes, -p) 8
+# POSIX message queues     (bytes, -q) 819200
+# real-time priority              (-r) 0
+# stack size              (kbytes, -s) unlimited
+# cpu time               (seconds, -t) unlimited
+# max user processes              (-u) 511579
+# virtual memory          (kbytes, -v) unlimited
+# file locks                      (-x) unlimited
+# -----------------------------------------------
+# -----------------------------------------------
+# SLURM_JOB_NODELIST = nid00033
+# SLURM_JOB_NUM_NODES = 1
+# SLURM_JOB_ID = 657175
+# SLURM_JOBID = 657175
+# SLURM_NTASKS = 1 / -n --ntasks
+# SLURM_NTASKS_PER_NODE = 1 / -N --ntasks-per-node
+# SLURM_CPUS_PER_TASK = 1 / -d-c --cpus-per-task
+# OMP_NUM_THREADS = 1 / -d-c 
+# SLURM_NTASKS_PER_CORE = 1 / -j1 --ntasks-per-core
+# -----------------------------------------------
+# -----------------------------------------------
+# SLURM_CPUS_ON_NODE = 12
+# SLURM_LOCALID = 0
+# SLURM_NNODES = 1
+# SLURM_NODEID = 0
+# SLURM_PROCID = 0
+# SLURM_NPROCS = 1
+# SLURM_OVERCOMMIT = 
+# nodeid:0 taskid:0 localid:0
+# 
+# -----------------------------------------------
+Tue May  2 16:50:57 CEST 2017
++ echo CRAY_CUDA_MPS=
+CRAY_CUDA_MPS=
++ echo HUGETLB_DEFAULT_PAGE_SIZE=
+HUGETLB_DEFAULT_PAGE_SIZE=
++ echo HUGETLB_MORECORE=
+HUGETLB_MORECORE=
++ /usr/bin/time -p srun --unbuffered --ntasks=1 --ntasks-per-node=1 --cpus-per-task=1 --ntasks-per-core=1 --hint=nomultithread --bcast=/tmp/himeno_v02.xpgi nvprof /apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_v02.xpgi
+ 
+ Double precision
+ 
+ PROBLEM_SIZE :             3
+   mimax =           257  mjmax =           129  mkmax =           129
+   imax =           256  jmax =           128  kmax =           128
+ 
+ Using OpenACC
+   NTPB :           128
+==22299== NVPROF is profiling process 22299, command: /apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_v02.xpgi
+ 
+ Iterations  :             3
+ Time (secs) :    0.3276019000000000     
+ Gosa       : 0.169217378263101766E-02 
+ MFLOPS      :     1255.534256669451     
+ 
+ Iterations  :           100
+ Time (secs) :    0.1962520999999999     
+ Gosa       : 0.137835972438409005E-02 
+ MFLOPS      :     69861.74211639012     
+ Score based on Pentium III 600MHz :    843.3334393576788     
+==22299== Profiling application: /apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/PGI/himeno_v02.xpgi
+==22299== Profiling result:
+No kernels were profiled.
+
+==22299== API calls:
+No API activities were profiled.
+
+==22299== OpenACC (excl):
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 45.10%  124.26ms       103  1.2064ms  1.1888ms  1.2289ms  acc_enqueue_download@himeno_F_v02.F90:288
+ 42.57%  117.30ms         2  58.650ms  49.745ms  67.555ms  acc_enter_data@himeno_F_v02.F90:276
+  6.20%  17.091ms       103  165.93us  162.08us  169.13us  acc_wait@himeno_F_v02.F90:317
+  2.15%  5.9181ms         2  2.9591ms  2.9554ms  2.9627ms  acc_exit_data@himeno_F_v02.F90:276
+  2.08%  5.7229ms         2  2.8615ms  2.8543ms  2.8686ms  acc_wait@himeno_F_v02.F90:335
+  0.50%  1.3824ms       103  13.421us  1.7320us  1.1840ms  acc_compute_construct@himeno_F_v02.F90:288
+  0.49%  1.3521ms         2  676.04us  4.9020us  1.3472ms  acc_wait@himeno_F_v02.F90:276
+  0.15%  406.30us       206  1.9720us  1.7320us  19.571us  acc_wait@himeno_F_v02.F90:288
+  0.14%  386.01us        64  6.0310us  3.8340us  25.874us  acc_enqueue_upload@himeno_F_v02.F90:276
+  0.13%  355.95us       103  3.4550us  2.7110us  5.6700us  acc_enqueue_launch@himeno_F_v02.F90:317 (jacobi_317_gpu)
+  0.12%  343.84us         1  343.84us  343.84us  343.84us  acc_device_init@himeno_F_v02.F90:276
+  0.11%  314.33us       103  3.0510us  2.5150us  20.055us  acc_enqueue_launch@himeno_F_v02.F90:288 (jacobi_288_gpu)
+  0.11%  308.05us       103  2.9900us  2.6860us  5.2000us  acc_enqueue_launch@himeno_F_v02.F90:288 (jacobi_288_gpu_red)
+  0.09%  261.25us       103  2.5360us  2.1760us  9.3940us  acc_enqueue_upload@himeno_F_v02.F90:288
+  0.04%  103.56us       103  1.0050us     873ns  2.2470us  acc_compute_construct@himeno_F_v02.F90:317
+  0.01%  36.701us         6  6.1160us  4.3200us  9.1840us  acc_enqueue_download@himeno_F_v02.F90:335
+  0.00%       0ns         7       0ns       0ns       0ns  acc_alloc@himeno_F_v02.F90:276
+  0.00%       0ns        14       0ns       0ns       0ns  acc_delete@himeno_F_v02.F90:335
+  0.00%       0ns        14       0ns       0ns       0ns  acc_create@himeno_F_v02.F90:276
+real 2.41
+user 0.25
+sys 0.12
++ set +x

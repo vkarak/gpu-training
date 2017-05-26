@@ -1,0 +1,210 @@
+# -----------------------------------------------
+# core file size          (blocks, -c) unlimited
+# data seg size           (kbytes, -d) unlimited
+# scheduling priority             (-e) 0
+# file size               (blocks, -f) unlimited
+# pending signals                 (-i) 511579
+# max locked memory       (kbytes, -l) 64
+# max memory size         (kbytes, -m) 65986560
+# open files                      (-n) 16384
+# pipe size            (512 bytes, -p) 8
+# POSIX message queues     (bytes, -q) 819200
+# real-time priority              (-r) 0
+# stack size              (kbytes, -s) unlimited
+# cpu time               (seconds, -t) unlimited
+# max user processes              (-u) 511579
+# virtual memory          (kbytes, -v) unlimited
+# file locks                      (-x) unlimited
+# -----------------------------------------------
+# -----------------------------------------------
+# SLURM_JOB_NODELIST = nid00007
+# SLURM_JOB_NUM_NODES = 1
+# SLURM_JOB_ID = 656546
+# SLURM_JOBID = 656546
+# SLURM_NTASKS = 1 / -n --ntasks
+# SLURM_NTASKS_PER_NODE = 1 / -N --ntasks-per-node
+# SLURM_CPUS_PER_TASK = 12 / -d-c --cpus-per-task
+# OMP_NUM_THREADS = 12 / -d-c 
+# SLURM_NTASKS_PER_CORE = 1 / -j1 --ntasks-per-core
+# -----------------------------------------------
+# -----------------------------------------------
+# SLURM_CPUS_ON_NODE = 12
+# SLURM_LOCALID = 0
+# SLURM_NNODES = 1
+# SLURM_NODEID = 0
+# SLURM_PROCID = 0
+# SLURM_NPROCS = 1
+# SLURM_OVERCOMMIT = 
+# nodeid:0 taskid:0 localid:0
+# 
+# -----------------------------------------------
+Mon May  1 20:31:32 CEST 2017
++ echo CRAY_CUDA_MPS=
+CRAY_CUDA_MPS=
++ echo HUGETLB_DEFAULT_PAGE_SIZE=
+HUGETLB_DEFAULT_PAGE_SIZE=
++ echo HUGETLB_MORECORE=
+HUGETLB_MORECORE=
++ /usr/bin/time -p srun --unbuffered --ntasks=1 --ntasks-per-node=1 --cpus-per-task=12 --ntasks-per-core=1 --hint=nomultithread --bcast=/tmp/cray.x ./cray.x
+[CCE OMP: host=nid00007 pid=4929 tid=4929 id=0] thread 0 affinity:  0-11
+CrayPat/X:  Version 6.4.5 Revision 87dd5b8  01/23/17 15:37:24
+[CCE OMP: host=nid00007 pid=4929 tid=4959 id=0] thread 7 affinity:  0-11
+[CCE OMP: host=nid00007 pid=4929 tid=4960 id=0] thread 8 affinity:  0-11
+[CCE OMP: host=nid00007 pid=4929 tid=4955 id=0] thread 3 affinity:  0-11
+[CCE OMP: host=nid00007 pid=4929 tid=4963 id=0] thread 11 affinity:  0-11
+[CCE OMP: host=nid00007 pid=4929 tid=4957 id=0] thread 5 affinity:  0-11
+[CCE OMP: host=nid00007 pid=4929 tid=4953 id=0] thread 1 affinity:  0-11
+[CCE OMP: host=nid00007 pid=4929 tid=4958 id=0] thread 6 affinity:  0-11
+[CCE OMP: host=nid00007 pid=4929 tid=4954 id=0] thread 2 affinity:  0-11
+[CCE OMP: host=nid00007 pid=4929 tid=4962 id=0] thread 10 affinity:  0-11
+[CCE OMP: host=nid00007 pid=4929 tid=4961 id=0] thread 9 affinity:  0-11
+[CCE OMP: host=nid00007 pid=4929 tid=4956 id=0] thread 4 affinity:  0-11
+ 
+ Double precision
+ 
+ PROBLEM_SIZE :  3
+   mimax =  257  mjmax =  129  mkmax =  129
+   imax =  256  jmax =  128  kmax =  128
+ 
+ Using OpenMP
+   OMP_NUM_THREADS :  12
+ 
+ Iterations  :  3
+ Time (secs) :  3.57939834939315915E-2
+ Gosa       : 0.169217378263143725E-02 
+ MFLOPS      :  11491.188402367488
+ 
+ Iterations  :  100
+ Time (secs) :  1.1024059015326202
+ Gosa       : 0.137835972438407747E-02 
+ MFLOPS      :  12436.901490584323
+ Score based on Pentium III 600MHz : 150.131596940902
+
+#################################################################
+#                                                               #
+#            CrayPat-lite Performance Statistics                #
+#                                                               #
+#################################################################
+
+CrayPat/X:  Version 6.4.5 Revision 87dd5b8  01/23/17 15:37:24
+Experiment:                  lite  lite/sample_profile
+Number of PEs (MPI ranks):      1
+Numbers of PEs per Node:        1
+Numbers of Threads per PE:     12
+Number of Cores per Socket:    12
+Execution start time:  Mon May  1 20:31:32 2017
+System name and speed:  nid00007  2601 MHz (approx)
+Intel haswell CPU  Family:  6  Model: 63  Stepping:  2
+
+
+Avg Process Time:          1.28 secs          
+High Memory:              625.8 MBytes  625.8 MBytes per PE
+MFLOPS:           Not supported (see observation below)
+I/O Read Rate:         5.563344 MBytes/sec        
+I/O Write Rate:        4.906224 MBytes/sec        
+Avg CPU Energy:             166 joules    166 joules per node
+Avg CPU Power:           129.86 watts  129.86 watts per node
+
+Table 1:  Profile by Function
+
+  Samp% |  Samp | Imb. |  Imb. |Group
+        |       | Samp | Samp% | Function=[MAX10]
+        |       |      |       |  Thread=HIDE
+       
+ 100.0% | 124.0 |   -- |    -- |Total
+|---------------------------------------------------------------
+|  92.7% | 115.0 |   -- |    -- |USER
+||--------------------------------------------------------------
+||  88.7% | 110.0 |  6.9 |  6.9% |jacobi_clone_73259_2_.LOOP@li.0
+||   2.4% |   3.0 |  1.0 | 27.5% |jacobi_clone_73259_1_.LOOP@li.0
+||==============================================================
+|   4.0% |   5.0 |   -- |    -- |OMP
+||--------------------------------------------------------------
+||   4.0% |   5.0 |   -- |    -- |_cray$mt_start_two_code_parallel
+||==============================================================
+|   3.2% |   4.0 |   -- |    -- |ETC
+||--------------------------------------------------------------
+||   1.6% |   2.0 |   -- |    -- |fullscan_barrier_list]
+|===============================================================
+
+Table 2:  Profile by Group, Function, and Line
+
+  Samp% |  Samp | Imb. |  Imb. |Group
+        |       | Samp | Samp% | Function=[MAX10]
+        |       |      |       |  Source
+        |       |      |       |   Line
+        |       |      |       |    Thread=HIDE
+       
+ 100.0% | 124.0 |   -- |    -- |Total
+|---------------------------------------------------------------
+|  92.7% | 115.0 |   -- |    -- |USER
+||--------------------------------------------------------------
+||  88.7% | 110.0 |  6.9 |  6.9% |jacobi_clone_73259_2_.LOOP@li.0
+||   2.4% |   3.0 |  1.0 | 27.5% |jacobi_clone_73259_1_.LOOP@li.0
+||==============================================================
+|   4.0% |   5.0 |   -- |    -- |OMP
+||--------------------------------------------------------------
+||   4.0% |   5.0 |   -- |    -- |_cray$mt_start_two_code_parallel
+||==============================================================
+|   3.2% |   4.0 |   -- |    -- |ETC
+||--------------------------------------------------------------
+||   1.6% |   2.0 |   -- |    -- |fullscan_barrier_list]
+|===============================================================
+
+===================  Observations and suggestions  ===================
+
+
+MFLOPS not available on Intel Haswell:
+
+    The document that specifies performance monitoring events for Intel
+    processors does not include events that could be used to compute a
+    count of floating point operations for Haswell processors: Intel 64
+    and IA-32 Architectures Software Developer's Manual, Order Number
+    253665-050US, February 2014.
+
+
+MPI utilization:
+
+    No suggestions were made because each node has only one rank.
+
+=========================  End Observations  =========================
+
+Table 3:  File Input Stats by Filename
+
+     Read |     Read |  Read Rate | Reads | Bytes/ |File Name[max10]
+     Time |   MBytes | MBytes/sec |       |   Call |
+         
+ 0.000029 | 0.000163 |   5.563344 |   8.0 |  21.38 |Total
+|-------------------------------------------------------------------
+| 0.000029 | 0.000163 |   5.563344 |   8.0 |  21.38 |/proc/cpuinfo
+|===================================================================
+
+Table 4:  File Output Stats by Filename
+
+    Write |    Write | Write Rate | Writes | Bytes/ |File Name[max10]
+     Time |   MBytes | MBytes/sec |        |   Call |
+         
+ 0.000247 | 0.001213 |   4.906224 |   31.0 |  41.03 |Total
+|--------------------------------------------------------------------
+| 0.000234 | 0.000768 |   3.277791 |   11.0 |  73.18 |stderr
+| 0.000013 | 0.000445 |  34.161686 |   20.0 |  23.35 |stdout
+|====================================================================
+
+Program invocation:  /tmp/cray.x
+
+For a complete report with expanded tables and notes, run:
+  pat_report /scratch/snx2000tds/piccinal/openacc/cray.x+4929-7s.ap2
+
+For help identifying callers of particular functions:
+  pat_report -O callers+src /scratch/snx2000tds/piccinal/openacc/cray.x+4929-7s.ap2
+To see the entire call tree:
+  pat_report -O calltree+src /scratch/snx2000tds/piccinal/openacc/cray.x+4929-7s.ap2
+
+For interactive, graphical performance analysis, run:
+  app2 /scratch/snx2000tds/piccinal/openacc/cray.x+4929-7s.ap2
+
+================  End of CrayPat-lite output  ==========================
+real 5.16
+user 1.30
+sys 0.20
++ set +x

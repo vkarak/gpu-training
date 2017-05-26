@@ -1,0 +1,106 @@
+unset COMPUTE_PROFILE
+export PMI_NO_FORK=1
+# -----------------------------------------------
+# core file size          (blocks, -c) unlimited
+# data seg size           (kbytes, -d) unlimited
+# scheduling priority             (-e) 0
+# file size               (blocks, -f) unlimited
+# pending signals                 (-i) 511579
+# max locked memory       (kbytes, -l) 64
+# max memory size         (kbytes, -m) 65986560
+# open files                      (-n) 16384
+# pipe size            (512 bytes, -p) 8
+# POSIX message queues     (bytes, -q) 819200
+# real-time priority              (-r) 0
+# stack size              (kbytes, -s) unlimited
+# cpu time               (seconds, -t) unlimited
+# max user processes              (-u) 511579
+# virtual memory          (kbytes, -v) unlimited
+# file locks                      (-x) unlimited
+# -----------------------------------------------
+# -----------------------------------------------
+# SLURM_JOB_NODELIST = nid00001
+# SLURM_JOB_NUM_NODES = 1
+# SLURM_JOB_ID = 656590
+# SLURM_JOBID = 656590
+# SLURM_NTASKS = 1 / -n --ntasks
+# SLURM_NTASKS_PER_NODE = 1 / -N --ntasks-per-node
+# SLURM_CPUS_PER_TASK = 1 / -d-c --cpus-per-task
+# OMP_NUM_THREADS = 1 / -d-c 
+# SLURM_NTASKS_PER_CORE = 1 / -j1 --ntasks-per-core
+# -----------------------------------------------
+# -----------------------------------------------
+# SLURM_CPUS_ON_NODE = 12
+# SLURM_LOCALID = 0
+# SLURM_NNODES = 1
+# SLURM_NODEID = 0
+# SLURM_PROCID = 0
+# SLURM_NPROCS = 1
+# SLURM_OVERCOMMIT = 
+# nodeid:0 taskid:0 localid:0
+# 
+# -----------------------------------------------
+Mon May  1 22:18:14 CEST 2017
++ echo CRAY_CUDA_MPS=
+CRAY_CUDA_MPS=
++ echo HUGETLB_DEFAULT_PAGE_SIZE=
+HUGETLB_DEFAULT_PAGE_SIZE=
++ echo HUGETLB_MORECORE=
+HUGETLB_MORECORE=
++ /usr/bin/time -p srun --unbuffered --ntasks=1 --ntasks-per-node=1 --cpus-per-task=1 --ntasks-per-core=1 --hint=nomultithread --bcast=/tmp/himeno_v01a.xcray nvprof ./himeno_v01a.xcray
+[CCE OMP: host=nid00001 pid=28239 tid=28239 id=0] thread 0 affinity:  0
+==28239== NVPROF is profiling process 28239, command: ./himeno_v01a.xcray
+ 
+ Double precision
+ 
+ PROBLEM_SIZE :  3
+   mimax =  257  mjmax =  129  mkmax =  129
+   imax =  256  jmax =  128  kmax =  128
+ 
+ Using OpenMP
+   OMP_NUM_THREADS :  1
+ 
+ Iterations  :  3
+ Time (secs) :  0.4558029742911458
+ Gosa       : 0.169217378263124556E-02 
+ MFLOPS      :  902.39737605852201
+ 
+ Iterations  :  100
+ Time (secs) :  5.364115214208141
+ Gosa       : 0.137835972438390725E-02 
+ MFLOPS      :  2555.9692610040197
+ Score based on Pentium III 600MHz : 30.854288520087149
+==28239== Profiling application: ./himeno_v01a.xcray
+==28239== Profiling result:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 91.84%  4.53917s       619  7.3331ms  1.2160us  14.385ms  [CUDA memcpy HtoD]
+  5.71%  282.30ms       206  1.3704ms  1.3120us  12.351ms  [CUDA memcpy DtoH]
+  2.38%  117.40ms       100  1.1740ms  1.1631ms  1.1941ms  jacobi_clone_78447_2_$ck_L178_7
+  0.07%  3.5204ms         3  1.1735ms  1.1704ms  1.1760ms  jacobi_clone_78447_1_$ck_L157_3
+
+==28239== API calls:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 86.78%  4.59842s       619  7.4288ms  13.763us  14.453ms  cuMemcpyHtoD
+  5.52%  292.50ms       206  1.4199ms  13.957us  12.945ms  cuMemcpyDtoH
+  5.18%  274.31ms         1  274.31ms  274.31ms  274.31ms  cuCtxCreate
+  2.36%  124.84ms       103  1.2121ms  1.1646ms  1.2329ms  cuStreamSynchronize
+  0.10%  5.1103ms        10  511.03us  4.6550us  728.98us  cuMemAlloc
+  0.05%  2.7309ms       103  26.513us  23.516us  32.517us  cuLaunchKernel
+  0.01%  643.97us         1  643.97us  643.97us  643.97us  cuMemHostAlloc
+  0.00%  244.57us         1  244.57us  244.57us  244.57us  cuModuleLoadData
+  0.00%  25.897us         1  25.897us  25.897us  25.897us  cuStreamCreate
+  0.00%  18.295us        34     538ns     239ns  2.2890us  cuEventCreate
+  0.00%  2.6880us         3     896ns     205ns  2.0000us  cuDeviceGet
+  0.00%  2.3900us         2  1.1950us     578ns  1.8120us  cuModuleGetFunction
+  0.00%  1.9460us         7     278ns     134ns     527ns  cuDeviceGetAttribute
+  0.00%  1.5070us         3     502ns     145ns  1.0710us  cuDeviceGetCount
+  0.00%  1.5020us         4     375ns     160ns     702ns  cuFuncGetAttribute
+  0.00%  1.0320us         1  1.0320us  1.0320us  1.0320us  cuMemHostGetDevicePointer
+  0.00%     765ns         2     382ns     307ns     458ns  cuFuncSetCacheConfig
+  0.00%     568ns         1     568ns     568ns     568ns  cuModuleGetGlobal
+  0.00%     437ns         1     437ns     437ns     437ns  cuCtxSetCurrent
+  0.00%     234ns         1     234ns     234ns     234ns  cuCtxGetCurrent
+real 10.14
+user 0.28
+sys 0.10
++ set +x

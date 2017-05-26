@@ -1,0 +1,106 @@
+# -----------------------------------------------
+# core file size          (blocks, -c) unlimited
+# data seg size           (kbytes, -d) unlimited
+# scheduling priority             (-e) 0
+# file size               (blocks, -f) unlimited
+# pending signals                 (-i) 511579
+# max locked memory       (kbytes, -l) 64
+# max memory size         (kbytes, -m) 65986560
+# open files                      (-n) 16384
+# pipe size            (512 bytes, -p) 8
+# POSIX message queues     (bytes, -q) 819200
+# real-time priority              (-r) 0
+# stack size              (kbytes, -s) unlimited
+# cpu time               (seconds, -t) unlimited
+# max user processes              (-u) 511579
+# virtual memory          (kbytes, -v) unlimited
+# file locks                      (-x) unlimited
+# -----------------------------------------------
+# -----------------------------------------------
+# SLURM_JOB_NODELIST = nid00004
+# SLURM_JOB_NUM_NODES = 1
+# SLURM_JOB_ID = 657149
+# SLURM_JOBID = 657149
+# SLURM_NTASKS = 1 / -n --ntasks
+# SLURM_NTASKS_PER_NODE = 1 / -N --ntasks-per-node
+# SLURM_CPUS_PER_TASK = 1 / -d-c --cpus-per-task
+# OMP_NUM_THREADS = 1 / -d-c 
+# SLURM_NTASKS_PER_CORE = 1 / -j1 --ntasks-per-core
+# -----------------------------------------------
+# -----------------------------------------------
+# SLURM_CPUS_ON_NODE = 12
+# SLURM_LOCALID = 0
+# SLURM_NNODES = 1
+# SLURM_NODEID = 0
+# SLURM_PROCID = 0
+# SLURM_NPROCS = 1
+# SLURM_OVERCOMMIT = 
+# nodeid:0 taskid:0 localid:0
+# 
+# -----------------------------------------------
+Tue May  2 16:28:53 CEST 2017
++ echo CRAY_CUDA_MPS=
+CRAY_CUDA_MPS=
++ echo HUGETLB_DEFAULT_PAGE_SIZE=
+HUGETLB_DEFAULT_PAGE_SIZE=
++ echo HUGETLB_MORECORE=
+HUGETLB_MORECORE=
++ /usr/bin/time -p srun --unbuffered --ntasks=1 --ntasks-per-node=1 --cpus-per-task=1 --ntasks-per-core=1 --hint=nomultithread --bcast=/tmp/himeno_v02.xcce nvprof /apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/CRAY/himeno_v02.xcce
+[CCE OMP: host=nid00004 pid=30005 tid=30005 id=0] thread 0 affinity:  0
+ 
+ Double precision
+ 
+ PROBLEM_SIZE :  3
+   mimax =  257  mjmax =  129  mkmax =  129
+   imax =  256  jmax =  128  kmax =  128
+ 
+ Using OpenACC
+   NTPB :  128
+==30005== NVPROF is profiling process 30005, command: /apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/CRAY/himeno_v02.xcce
+ 
+ Iterations  :  3
+ Time (secs) :  0.34121515066362917
+ Gosa       : 0.169217378263124513E-02 
+ MFLOPS      :  1205.4429798912295
+ 
+ Iterations  :  100
+ Time (secs) :  0.18780273816082627
+ Gosa       : 0.137835972438390703E-02 
+ MFLOPS      :  73004.865287208435
+ Score based on Pentium III 600MHz : 881.27553461140064
+==30005== Profiling application: /apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/CRAY/himeno_v02.xcce
+==30005== Profiling result:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 49.23%  115.16ms       100  1.1516ms  1.1393ms  1.1687ms  main_$ck_L178_3
+ 37.52%  87.774ms       116  756.67us     832ns  13.657ms  [CUDA memcpy HtoD]
+  9.15%  21.410ms       100  214.10us  208.83us  228.38us  main_$ck_L178_4
+  2.30%  5.3852ms       105  51.287us     575ns  2.6873ms  [CUDA memcpy DtoH]
+  1.50%  3.5033ms         3  1.1678ms  1.1589ms  1.1793ms  main_$ck_L157_1
+  0.29%  679.61us         3  226.54us  226.01us  227.29us  main_$ck_L157_2
+
+==30005== API calls:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 51.10%  255.90ms         1  255.90ms  255.90ms  255.90ms  cuCtxCreate
+ 23.89%  119.64ms       105  1.1395ms  215.49us  1.1852ms  cuStreamSynchronize
+ 22.15%  110.94ms       116  956.35us  5.2140us  13.716ms  cuMemcpyHtoD
+  1.41%  7.0568ms       105  67.207us  13.448us  2.7738ms  cuMemcpyDtoH
+  1.01%  5.0345ms        10  503.45us  4.3240us  698.92us  cuMemAlloc
+  0.24%  1.2255ms       206  5.9490us  5.1500us  32.184us  cuLaunchKernel
+  0.14%  688.76us         1  688.76us  688.76us  688.76us  cuMemHostAlloc
+  0.06%  277.26us         1  277.26us  277.26us  277.26us  cuModuleLoadData
+  0.00%  19.326us         1  19.326us  19.326us  19.326us  cuStreamCreate
+  0.00%  16.256us        34     478ns     234ns  2.0620us  cuEventCreate
+  0.00%  3.6000us         4     900ns     534ns  1.7510us  cuModuleGetFunction
+  0.00%  2.4430us         8     305ns     153ns     661ns  cuFuncGetAttribute
+  0.00%  1.8430us         3     614ns     154ns  1.3670us  cuDeviceGetCount
+  0.00%  1.3370us         4     334ns     177ns     511ns  cuFuncSetCacheConfig
+  0.00%  1.1170us         7     159ns     124ns     227ns  cuDeviceGetAttribute
+  0.00%  1.1090us         1  1.1090us  1.1090us  1.1090us  cuMemHostGetDevicePointer
+  0.00%     995ns         3     331ns     153ns     442ns  cuDeviceGet
+  0.00%     610ns         1     610ns     610ns     610ns  cuModuleGetGlobal
+  0.00%     391ns         1     391ns     391ns     391ns  cuCtxSetCurrent
+  0.00%     239ns         1     239ns     239ns     239ns  cuCtxGetCurrent
+real 2.44
+user 0.22
+sys 0.14
++ set +x

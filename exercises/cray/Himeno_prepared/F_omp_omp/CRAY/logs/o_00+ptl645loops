@@ -1,0 +1,77 @@
+CrayPat/X:  Version 6.4.5 Revision 87dd5b8  01/23/17 15:37:24
+PGO data version:  L.14.1:B.3.1
+ 
+ Double precision
+ 
+ PROBLEM_SIZE :  3
+   mimax =  257  mjmax =  129  mkmax =  129
+   imax =  256  jmax =  128  kmax =  128
+ 
+ Iterations  :  3
+ Time (secs) :  0.11187833023723215
+ Gosa       : 0.169217378263141578E-02 
+ MFLOPS      :  3676.4528673946702
+ 
+ Iterations  :  100
+ Time (secs) :  3.4568313480122015
+ Gosa       : 0.137835972438427479E-02 
+ MFLOPS      :  3966.2084202875626
+ Score based on Pentium III 600MHz : 47.877938439009689
+
+#################################################################
+#                                                               #
+#            CrayPat-lite Performance Statistics                #
+#                                                               #
+#################################################################
+
+CrayPat/X:  Version 6.4.5 Revision 87dd5b8  01/23/17 15:37:24
+Experiment:                  lite  lite/loop_profile
+Number of PEs (MPI ranks):      1
+Numbers of PEs per Node:        1
+Numbers of Threads per PE:      1
+Number of Cores per Socket:    12
+Execution start time:  Mon May  1 19:02:41 2017
+System name and speed:  dom101  2601 MHz (approx)
+Intel haswell CPU  Family:  6  Model: 63  Stepping:  2
+
+
+Avg Process Time:  3.76 secs         
+High Memory:      494.5 MBytes 494.5 MBytes per PE
+
+Table 1:  Inclusive and Exclusive Time in Loops (from -hprofile_generate)
+
+  Loop |     Loop |     Time |  Loop Hit |  Loop |  Loop |  Loop |Function=/.LOOP[.]
+  Incl |     Incl |    (Loop |           | Trips | Trips | Trips |
+ Time% |     Time |    Adj.) |           |   Avg |   Min |   Max |
+|-----------------------------------------------------------------------------
+| 95.9% | 3.570075 | 0.000025 |         2 |  51.5 |     3 |   100 |jacobi_.LOOP.1.li.280
+| 82.6% | 3.072982 | 0.000469 |       103 | 126.0 |   126 |   126 |jacobi_.LOOP.2.li.291
+| 82.6% | 3.072514 | 0.054281 |    12,978 | 126.0 |   126 |   126 |jacobi_.LOOP.3.li.292
+| 81.1% | 3.018233 | 3.018233 | 1,635,228 | 254.0 |   254 |   254 |jacobi_.LOOP.4.li.293
+| 13.4% | 0.497067 | 0.000143 |       103 | 126.0 |   126 |   126 |jacobi_.LOOP.5.li.319
+| 13.4% | 0.496924 | 0.174596 |    12,978 | 126.0 |   126 |   126 |jacobi_.LOOP.6.li.320
+|  8.7% | 0.322328 | 0.322328 | 1,635,228 | 254.0 |   254 |   254 |jacobi_.LOOP.7.li.321
+|  3.1% | 0.114046 | 0.000002 |         1 | 129.0 |   129 |   129 |initmt_.LOOP.1.li.212
+|  3.1% | 0.114045 | 0.000194 |       129 | 129.0 |   129 |   129 |initmt_.LOOP.2.li.213
+|  3.1% | 0.113851 | 0.113851 |    16,641 | 257.0 |   257 |   257 |initmt_.LOOP.3.li.214
+|  1.0% | 0.036476 | 0.000002 |         1 | 128.0 |   128 |   128 |initmt_.LOOP.4.li.235
+|  1.0% | 0.036474 | 0.001174 |       128 | 128.0 |   128 |   128 |initmt_.LOOP.5.li.236
+|=============================================================================
+
+Program invocation:  /scratch/snx2000tds/piccinal/openacc/./cray.x
+
+For a complete report with expanded tables and notes, run:
+  pat_report /scratch/snx2000tds/piccinal/openacc/cray.x+4481-1t.ap2
+
+For help identifying callers of particular functions:
+  pat_report -O callers+src /scratch/snx2000tds/piccinal/openacc/cray.x+4481-1t.ap2
+To see the entire call tree:
+  pat_report -O calltree+src /scratch/snx2000tds/piccinal/openacc/cray.x+4481-1t.ap2
+
+For interactive, graphical performance analysis, run:
+  app2 /scratch/snx2000tds/piccinal/openacc/cray.x+4481-1t.ap2
+
+================  End of CrayPat-lite output  ==========================
+real 8.42
+user 2.49
+sys 0.30

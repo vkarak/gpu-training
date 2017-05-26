@@ -1,0 +1,139 @@
+CrayPat/X:  Version 6.4.5 Revision 87dd5b8  01/23/17 15:37:24
+ 
+ Double precision
+ 
+ PROBLEM_SIZE :  3
+   mimax =  257  mjmax =  129  mkmax =  129
+   imax =  256  jmax =  128  kmax =  128
+ 
+ Iterations  :  3
+ Time (secs) :  0.11800047138240188
+ Gosa       : 0.169217378263142337E-02 
+ MFLOPS      :  3485.7098720144768
+ 
+ Iterations  :  100
+ Time (secs) :  3.5373937246622518
+ Gosa       : 0.137835972438428217E-02 
+ MFLOPS      :  3875.8800029558683
+ Score based on Pentium III 600MHz : 46.787542285802367
+
+#################################################################
+#                                                               #
+#            CrayPat-lite Performance Statistics                #
+#                                                               #
+#################################################################
+
+CrayPat/X:  Version 6.4.5 Revision 87dd5b8  01/23/17 15:37:24
+Experiment:                  lite  lite/sample_profile
+Number of PEs (MPI ranks):      1
+Numbers of PEs per Node:        1
+Numbers of Threads per PE:      1
+Number of Cores per Socket:    12
+Execution start time:  Mon May  1 19:08:25 2017
+System name and speed:  dom101  2601 MHz (approx)
+Intel haswell CPU  Family:  6  Model: 63  Stepping:  2
+
+
+Avg Process Time:          3.86 secs         
+High Memory:              495.6 MBytes 495.6 MBytes per PE
+MFLOPS:           Not supported (see observation below)
+I/O Read Rate:         4.925052 MBytes/sec       
+I/O Write Rate:       55.700410 MBytes/sec       
+
+Table 1:  Profile by Function
+
+  Samp% |  Samp | Imb. |  Imb. |Group
+        |       | Samp | Samp% | Function=[MAX10]
+       
+ 100.0% | 382.0 |   -- |    -- |Total
+|------------------------------------------------
+|  99.0% | 378.0 |   -- |    -- |USER
+||-----------------------------------------------
+||  95.8% | 366.0 |   -- |    -- |main_
+||   3.1% |  12.0 |   -- |    -- |initmt_
+||===============================================
+|   1.0% |   4.0 |   -- |    -- |ETC
+||-----------------------------------------------
+||   1.0% |   4.0 |   -- |    -- |__cray_dset_HSW
+|================================================
+
+Table 2:  Profile by Group, Function, and Line
+
+  Samp% |  Samp | Imb. |  Imb. |Group
+        |       | Samp | Samp% | Function=[MAX10]
+        |       |      |       |  Source
+        |       |      |       |   Line
+       
+ 100.0% | 382.0 |   -- |    -- |Total
+|-----------------------------------------------------------------------------
+|  99.0% | 378.0 |   -- |    -- |USER
+||----------------------------------------------------------------------------
+||  95.8% | 366.0 |   -- |    -- |main_
+3|        |       |      |       | Himeno_prepared/F_omp_omp/CRAY/himeno_F_v00.F90
+||||--------------------------------------------------------------------------
+4|||   3.1% |  12.0 |   -- |    -- |line.157
+4|||  92.7% | 354.0 |   -- |    -- |line.178
+||||==========================================================================
+||   3.1% |  12.0 |   -- |    -- |initmt_
+3|        |       |      |       | Himeno_prepared/F_omp_omp/CRAY/himeno_F_v00.F90
+||============================================================================
+|   1.0% |   4.0 |   -- |    -- |ETC
+||----------------------------------------------------------------------------
+||   1.0% |   4.0 |   -- |    -- |__cray_dset_HSW
+|=============================================================================
+
+===================  Observations and suggestions  ===================
+
+
+MFLOPS not available on Intel Haswell:
+
+    The document that specifies performance monitoring events for Intel
+    processors does not include events that could be used to compute a
+    count of floating point operations for Haswell processors: Intel 64
+    and IA-32 Architectures Software Developer's Manual, Order Number
+    253665-050US, February 2014.
+
+
+MPI utilization:
+
+    No suggestions were made because each node has only one rank.
+
+=========================  End Observations  =========================
+
+Table 3:  File Input Stats by Filename
+
+     Read |     Read |  Read Rate | Reads | Bytes/ |File Name[max10]
+     Time |   MBytes | MBytes/sec |       |   Call |
+         
+ 0.000033 | 0.000163 |   4.925052 |   8.0 |  21.38 |Total
+|-------------------------------------------------------------------
+| 0.000033 | 0.000163 |   4.925052 |   8.0 |  21.38 |/proc/cpuinfo
+|===================================================================
+
+Table 4:  File Output Stats by Filename
+
+    Write |    Write | Write Rate | Writes | Bytes/ |File Name[max10]
+     Time |   MBytes | MBytes/sec |        |   Call |
+         
+ 0.000007 | 0.000408 |  55.700410 |   17.0 |  25.18 |Total
+|--------------------------------------------------------------------
+| 0.000007 | 0.000408 |  55.700410 |   17.0 |  25.18 |stdout
+|====================================================================
+
+Program invocation:  /scratch/snx2000tds/piccinal/openacc/./cray.x
+
+For a complete report with expanded tables and notes, run:
+  pat_report /scratch/snx2000tds/piccinal/openacc/cray.x+5798-1s.ap2
+
+For help identifying callers of particular functions:
+  pat_report -O callers+src /scratch/snx2000tds/piccinal/openacc/cray.x+5798-1s.ap2
+To see the entire call tree:
+  pat_report -O calltree+src /scratch/snx2000tds/piccinal/openacc/cray.x+5798-1s.ap2
+
+For interactive, graphical performance analysis, run:
+  app2 /scratch/snx2000tds/piccinal/openacc/cray.x+5798-1s.ap2
+
+================  End of CrayPat-lite output  ==========================
+real 9.45
+user 2.76
+sys 0.34

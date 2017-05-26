@@ -1,0 +1,128 @@
+CrayPat/X:  Version 6.4.5 Revision 87dd5b8  01/23/17 15:37:24
+ 
+ Double precision
+ 
+ PROBLEM_SIZE :             3
+   mimax =           257  mjmax =           129  mkmax =           129
+   imax =           256  jmax =           128  kmax =           128
+ 
+ Iterations  :             3
+ Time (secs) :    0.1109180000000000     
+ Gosa       : 0.169217378263085655E-02 
+ MFLOPS      :     3708.283669016751     
+ 
+ Iterations  :           100
+ Time (secs) :     3.386873000000000     
+ Gosa       : 0.137835972438430212E-02 
+ MFLOPS      :     4048.133366677759     
+ Score based on Pentium III 600MHz :    48.86689240315980     
+
+#################################################################
+#                                                               #
+#            CrayPat-lite Performance Statistics                #
+#                                                               #
+#################################################################
+
+CrayPat/X:  Version 6.4.5 Revision 87dd5b8  01/23/17 15:37:24
+Experiment:                  lite  lite/sample_profile
+Number of PEs (MPI ranks):      1
+Numbers of PEs per Node:        1
+Numbers of Threads per PE:      1
+Number of Cores per Socket:    12
+Execution start time:  Mon May  1 19:06:40 2017
+System name and speed:  dom101  2601 MHz (approx)
+Intel haswell CPU  Family:  6  Model: 63  Stepping:  2
+
+
+Avg Process Time:          3.74 secs         
+High Memory:              467.9 MBytes 467.9 MBytes per PE
+MFLOPS:           Not supported (see observation below)
+I/O Write Rate:       26.233835 MBytes/sec       
+
+Table 1:  Profile by Function
+
+  Samp% |  Samp | Imb. |  Imb. |Group
+        |       | Samp | Samp% | Function=[MAX10]
+       
+ 100.0% | 370.0 |   -- |    -- |Total
+|------------------------------------------------
+|  87.6% | 324.0 |   -- |    -- |USER
+||-----------------------------------------------
+||  82.2% | 304.0 |   -- |    -- |jacobi_
+||   5.4% |  20.0 |   -- |    -- |initmt_
+||===============================================
+|  12.4% |  46.0 |   -- |    -- |ETC
+||-----------------------------------------------
+||  12.4% |  46.0 |   -- |    -- |__c_mcopy8
+|================================================
+
+Table 2:  Profile by Group, Function, and Line
+
+  Samp% |  Samp | Imb. |  Imb. |Group
+        |       | Samp | Samp% | Function=[MAX10]
+        |       |      |       |  Source
+        |       |      |       |   Line
+       
+ 100.0% | 370.0 |   -- |    -- |Total
+|---------------------------------------------------------------
+|  87.6% | 324.0 |   -- |    -- |USER
+||--------------------------------------------------------------
+||  82.2% | 304.0 |   -- |    -- |jacobi_
+3|        |       |      |       | F_omp_omp/PGI/./himeno_F_v00.F90
+4|  81.6% | 302.0 |   -- |    -- |  line.293
+||   5.4% |  20.0 |   -- |    -- |initmt_
+3|        |       |      |       | F_omp_omp/PGI/./himeno_F_v00.F90
+||||------------------------------------------------------------
+4|||   3.8% |  14.0 |   -- |    -- |line.214
+4|||   1.6% |   6.0 |   -- |    -- |line.237
+||==============================================================
+|  12.4% |  46.0 |   -- |    -- |ETC
+||--------------------------------------------------------------
+||  12.4% |  46.0 |   -- |    -- |__c_mcopy8
+|===============================================================
+
+===================  Observations and suggestions  ===================
+
+
+MFLOPS not available on Intel Haswell:
+
+    The document that specifies performance monitoring events for Intel
+    processors does not include events that could be used to compute a
+    count of floating point operations for Haswell processors: Intel 64
+    and IA-32 Architectures Software Developer's Manual, Order Number
+    253665-050US, February 2014.
+
+
+MPI utilization:
+
+    No suggestions were made because each node has only one rank.
+
+=========================  End Observations  =========================
+
+Table 3:  File Output Stats by Filename
+
+    Write |    Write | Write Rate | Writes | Bytes/ |File Name[max10]
+     Time |   MBytes | MBytes/sec |        |   Call |
+         
+ 0.000021 | 0.000538 |  26.233835 |   81.0 |   6.96 |Total
+|--------------------------------------------------------------------
+| 0.000021 | 0.000538 |  26.233835 |   81.0 |   6.96 |stdout
+|====================================================================
+
+Program invocation:  /scratch/snx2000tds/piccinal/openacc/./pgi.x
+
+For a complete report with expanded tables and notes, run:
+  pat_report /scratch/snx2000tds/piccinal/openacc/pgi.x+5364-1s.ap2
+
+For help identifying callers of particular functions:
+  pat_report -O callers+src /scratch/snx2000tds/piccinal/openacc/pgi.x+5364-1s.ap2
+To see the entire call tree:
+  pat_report -O calltree+src /scratch/snx2000tds/piccinal/openacc/pgi.x+5364-1s.ap2
+
+For interactive, graphical performance analysis, run:
+  app2 /scratch/snx2000tds/piccinal/openacc/pgi.x+5364-1s.ap2
+
+================  End of CrayPat-lite output  ==========================
+real 7.45
+user 0.65
+sys 0.21

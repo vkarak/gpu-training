@@ -1,0 +1,329 @@
+CrayPat/X:  Version 6.4.5 Revision 87dd5b8  01/23/17 15:37:24
+
+Number of PEs (MPI ranks):    1
+                           
+Numbers of PEs per Node:      1
+                           
+Numbers of Threads per PE:    2
+                           
+Number of Cores per Socket:  12
+
+Execution start time:  Wed May  3 16:31:29 2017
+
+System name and speed:  nid00038  2601 MHz (approx)
+
+Intel haswell CPU  Family:  6  Model: 63  Stepping:  2
+
+
+Current path to data file:
+  /scratch/snx2000tds/piccinal/openacc/02/himeno_v02.xcray+ptl645cuda+25259-38t.ap2  (RTS)
+
+
+Notes for table 1:
+
+  Table option:
+    -O profile
+  Options implied by table option:
+    -d ti%@0.95,ti,imb_ti,imb_ti%,tr -b gr,fu,th=HIDE
+
+  Options for related tables:
+    -O profile_pe.th           -O profile_th_pe       
+    -O profile+src             -O profile_max         
+    -O load_balance            -O callers             
+    -O callers+src             -O calltree            
+    -O calltree+src        
+
+  The Total value for Time, Calls is the sum of the Group values.
+  The Group value for Time, Calls is the sum of the Function values.
+  The Function value for Time, Calls is the value for the main thread only.
+    (If the main thread is atypical, try the option -s aggr_th=sum.)
+    (To specify different aggregations, see: pat_help report options s1)
+
+  This table shows only lines with Time% > 0.95.
+    (To set thresholds to zero, specify:  -T)
+
+  Imbalance percentages are relative to a set of threads or PEs.
+  Other percentages at each level are of the Total for the program.
+    (For percentages relative to next level up, specify:
+      -s percent=r[elative])
+
+Table 1:  Profile by Function Group and Function
+
+  Time% |     Time | Imb. |  Imb. |   Calls |Group
+        |          | Time | Time% |         | Function
+        |          |      |       |         |  Thread=HIDE
+       
+ 100.0% | 0.947854 |   -- |    -- | 5,118.0 |Total
+|--------------------------------------------------------------------------
+|  81.2% | 0.769382 |   -- |    -- | 4,388.0 |ETC
+||-------------------------------------------------------------------------
+||  27.5% | 0.261081 |   -- |    -- |    11.0 |__cray_acc_hw_init
+||  27.1% | 0.257303 |   -- |    -- |     1.0 |_END
+||  12.7% | 0.120815 |   -- |    -- |   105.0 |__cray_acc_hw_wait
+||  11.8% | 0.112154 |   -- |    -- |   116.0 |__cray_acc_hw_copy_host_to_acc
+||=========================================================================
+|  18.8% | 0.178472 |   -- |    -- |   730.0 |USER
+||-------------------------------------------------------------------------
+||  18.6% | 0.176622 |   -- |    -- |     1.0 |main_
+|==========================================================================
+
+Notes for table 2:
+
+  Table option:
+    -O profile_max
+  Options implied by table option:
+    -d ti%@0.95,ti,imb_ti,imb_ti% -b fu,th=HIDE -s aggr_fu=max -s
+    aggr_pe=max -s aggr_th=max -s total=HIDE
+
+  Options for related tables:
+    -O profile_pe_th           -O profile_pe.th       
+    -O profile_th_pe           -O profile+src         
+    -O load_balance            -O callers             
+    -O callers+src             -O calltree            
+    -O calltree+src        
+
+  The Function value for Time is the max of the Thread values.
+    (To specify different aggregations, see: pat_help report options s1)
+
+  This table shows only lines with Time% > 0.95.
+    (To set thresholds to zero, specify:  -T)
+
+  Imbalance percentages are relative to a set of threads or PEs.
+  Other percentages at each level are of the Total for the program.
+    (For percentages relative to next level up, specify:
+      -s percent=r[elative])
+
+Table 2:  Profile of maximum function times
+
+  Time% |     Time | Imb. |  Imb. |Function
+        |          | Time | Time% | Thread=HIDE
+|----------------------------------------------------------------
+| 100.0% | 0.261081 |   -- |    -- |__cray_acc_hw_init
+|  98.6% | 0.257303 |   -- |    -- |_END
+|  67.7% | 0.176622 |   -- |    -- |main_
+|  46.3% | 0.120815 |   -- |    -- |__cray_acc_hw_wait
+|  43.0% | 0.112154 |   -- |    -- |__cray_acc_hw_copy_host_to_acc
+|   2.6% | 0.006695 |   -- |    -- |__cray_acc_hw_copy_acc_to_host
+|   2.0% | 0.005167 |   -- |    -- |__cray_acc_hw_alloc
+|   1.1% | 0.002761 |   -- |    -- |end_acc_timert.3]
+|================================================================
+
+===================  Observations and suggestions  ===================
+
+
+Number of accelerators used:  1 of 1
+
+=========================  End Observations  =========================
+
+Notes for table 3:
+
+  Table option:
+    -O load_imbalance_thread
+  Options implied by table option:
+    -d max_ti,imb_ti,imb_ti% -b th
+
+
+  Imbalance percentages are relative to a set of threads or PEs.
+
+Table 3:  Load Imbalance by Thread
+
+     Max. | Imb. |  Imb. |Thread
+     Time | Time | Time% |
+         
+ 0.947886 |   -- |    -- |Total
+|---------------------------------
+| 0.947886 |   -- |    -- |thread.0
+|=================================
+
+Notes for table 4:
+
+  Table option:
+    -O accelerator
+  Options implied by table option:
+    -d ht%@0.95,ht,at,TA,FA,aT -b ct,th=HIDE -s ai=SHOW
+
+  Options for related tables:
+    -O acc_fu                  -O acc_kern_stats      
+    -O acc_show_by_ct          -O acc_time            
+    -O acc_time_fu         
+
+  The Total value for each data item is the sum of the Calltree values.
+  The Calltree value for each data item is the value for the main thread only.
+    (If the main thread is atypical, try the option -s aggr_th=sum.)
+    (To specify different aggregations, see: pat_help report options s1)
+
+  This table shows only lines with Host Time% > 0.95.
+    (To set thresholds to zero, specify:  -T)
+
+  Percentages at each level are of the Total for the program.
+    (For percentages relative to next level up, specify:
+      -s percent=r[elative])
+
+Table 4:  Time and Bytes Transferred for Accelerator Regions
+
+   Host | Host |  Acc | Acc Copy | Acc Copy | Events |Calltree
+  Time% | Time | Time |       In |      Out |        | Thread=HIDE
+        |      |      | (MBytes) | (MBytes) |        |
+       
+ 100.0% | 0.00 | 0.24 |   848.35 |    65.26 |    729 |Total
+|-----------------------------------------------------------------------------
+| 100.0% | 0.00 | 0.24 |   848.35 |    65.26 |    729 |main_
+||----------------------------------------------------------------------------
+||  73.5% | 0.00 | 0.19 |   424.18 |    32.63 |    704 |main_.ACC_DATA_REGION@li.178
+|||---------------------------------------------------------------------------
+3||  65.9% | 0.00 | 0.14 |     0.00 |     0.00 |    700 |main_.ACC_REGION@li.178
+||||--------------------------------------------------------------------------
+4|||  27.6% | 0.00 | 0.00 |     0.00 |     0.00 |    200 |main_.ACC_COPY@li.178
+4|||  15.2% | 0.00 | 0.14 |       -- |       -- |    200 |main_.ACC_ASYNC_KERNEL@li.178
+4|||  13.2% | 0.00 |   -- |       -- |       -- |    200 |main_.ACC_REGION@li.178(exclusive)
+4|||   9.9% | 0.00 |   -- |       -- |       -- |    100 |main_.ACC_SYNC_WAIT@li.178
+||||==========================================================================
+3||   4.2% | 0.00 |   -- |       -- |       -- |      1 |main_.ACC_DATA_REGION@li.178(exclusive)
+3||   3.3% | 0.00 | 0.05 |   424.18 |    32.63 |      2 |main_.ACC_COPY@li.178
+|||===========================================================================
+||  26.5% | 0.00 | 0.05 |   424.18 |    32.63 |     25 |main_.ACC_DATA_REGION@li.157
+|||---------------------------------------------------------------------------
+3||  17.9% | 0.00 | 0.05 |   424.18 |    32.63 |      2 |main_.ACC_COPY@li.157
+3||   8.1% | 0.00 | 0.00 |     0.00 |     0.00 |     21 |main_.ACC_REGION@li.157
+||||--------------------------------------------------------------------------
+4|||   3.7% | 0.00 | 0.00 |       -- |       -- |      6 |main_.ACC_ASYNC_KERNEL@li.157
+4|||   2.6% | 0.00 | 0.00 |     0.00 |     0.00 |      6 |main_.ACC_COPY@li.157
+4|||   1.3% | 0.00 |   -- |       -- |       -- |      3 |main_.ACC_SYNC_WAIT@li.157
+|=============================================================================
+
+Notes for table 5:
+
+  Table option:
+    -O program_time
+  Options implied by table option:
+    -d pt,hm -b th
+
+  The Total value for Process HiMem (MBytes), Process Time is the value for the main thread only.
+    (If the main thread is atypical, try the option -s aggr_th=sum.)
+    (To specify different aggregations, see: pat_help report options s1)
+
+  The value shown for Process HiMem is calculated from information in
+  the /proc/self/numa_maps files captured near the end of the program. 
+  It is the total size of all pages, including huge pages, that were
+  actually mapped into physical memory from both private and shared
+  memory segments.
+
+
+Table 5:  Wall Clock Time, Memory High Water Mark
+
+  Process |  Process |Thread
+     Time |    HiMem |
+          | (MBytes) |
+         
+ 0.986191 |    523.3 |Total
+|-----------------------------
+| 0.986191 |    523.3 |thread.0
+|=============================
+
+========================  Additional details  ========================
+
+Experiment:  trace
+
+Original path to data file:
+  /scratch/snx2000tds/piccinal/openacc/himeno_v02.xcray+ptl645cuda+25259-38t.xf  (RTS)
+
+Original program:
+  /apps/common/UES/sandbox/jgp/openacc-training.gitjg/exercises/cray/Himeno_prepared/F_acc/CRAY/himeno_v02.x+orig
+
+Instrumented with:
+  pat_build -f -O lite/gpu -Drtenv=PAT_RT_REPORT_METHOD=pe0 \
+    himeno_v02.x+orig himeno_v02.x
+
+  Option file "lite/gpu" contained:
+    -w -gcuda
+    -Dreport=y
+    -Drtenv=PAT_RT_REPORT_METHOD=pe0
+    -Drtenv=PAT_RT_REPORT_CMD=pat_report,-O,lite/gpu_rpt,-s,summoner=rtl
+
+Instrumented program:  /tmp/himeno_v02.xcray+ptl645cuda
+
+Program invocation:  /tmp/himeno_v02.xcray+ptl645cuda
+
+Exit Status:  0 for 1 PE
+
+Thread start functions and creator functions:
+     1 thread:  main
+     1 thread:  cudbgApiDetach <- cudbgApiDetach
+
+Memory pagesize:  4 KiB
+
+Memory hugepagesize:  Not Available
+
+Accelerator Model: Nvidia P100-PCIE-16GB Memory: 16.00
+
+Accelerator Driver Version: 375.39.0
+
+Programming environment:  CRAY
+
+Runtime environment variables:
+  ATP_HOME=/opt/cray/pe/atp/2.0.4
+  ATP_IGNORE_SIGTERM=1
+  ATP_MRNET_COMM_PATH=/opt/cray/pe/atp/2.0.4/libexec/atp_mrnet_commnode_wrapper
+  ATP_POST_LINK_OPTS=-Wl,-L/opt/cray/pe/atp/2.0.4/libApp/ 
+  CRAYPE_VERSION=2.5.8
+  CRAY_BINUTILS_VERSION=/opt/cray/pe/cce/8.5.5
+  CRAY_CC_VERSION=8.5.5
+  CRAY_CUDATOOLKIT_VERSION=8.0.61_2.2.9_g6592059-2.1
+  CRAY_FTN_VERSION=8.5.5
+  CRAY_LIBSCI_ACC_VERSION=16.11.1
+  CRAY_LIBSCI_VERSION=16.11.1
+  DVS_VERSION=0.9.0
+  EBVERSIONCURL=7.47.0
+  EBVERSIONDDT=7.0.2
+  EBVERSIONEXPAT=2.1.0
+  EBVERSIONGIT=2.11.0
+  EBVERSIONGNUPLOT=5.0.6
+  EBVERSIONHWLOC=1.11.5
+  EBVERSIONLIKWID=4.1.2
+  EBVERSIONNUMACTL=2.0.11
+  EBVERSIONPERL=5.22.1
+  EBVERSIONVIM=8.0
+  LIBSCI_ACC_VERSION=16.11.1
+  LIBSCI_VERSION=16.11.1
+  MODULE_VERSION=3.2.10.5
+  MODULE_VERSION_STACK=3.2.10.5
+  MPICH_ABORT_ON_ERROR=1
+  MPICH_DIR=/opt/cray/pe/mpt/7.5.0/gni/mpich-cray/8.4
+  MPICH_VERSION_DISPLAY=1
+  OMP_NUM_THREADS=1
+  PATH=/apps/dom/system/bin:/apps/common/system/bin:/opt/cray/pe/perftools/6.4.5/bin:/opt/cray/pe/papi/5.5.0.2/bin:/opt/nvidia/cudatoolkit8.0/8.0.61_2.2.9_g6592059-2.1/bin:/opt/nvidia/cudatoolkit8.0/8.0.61_2.2.9_g6592059-2.1/libnvvp:/users/piccinal/easybuild/ela/software/gnuplot/5.0.6/bin:/apps/common/UES/jenkins/SLES12/easybuild/software/likwid/4.1.2/sbin:/apps/common/UES/jenkins/SLES12/easybuild/software/likwid/4.1.2/bin:/apps/common/UES/jenkins/SLES12/easybuild/software/hwloc/1.11.5/sbin:/apps/common/UES/jenkins/SLES12/easybuild/software/hwloc/1.11.5/bin:/apps/common/UES/jenkins/SLES12/easybuild/software/numactl/2.0.11/bin:/apps/common/UES/jenkins/SLES12/easybuild/software/Vim/8.0/bin:/apps/common/UES/jenkins/SLES12/easybuild/software/git/2.11.0/bin:/apps/common/UES/jenkins/SLES12/easybuild/software/Perl/5.22.1-bare/bin:/apps/common/UES/jenkins/SLES12/easybuild/software/expat/2.1.0/bin:/apps/common/UES/jenkins/SLES12/easybuild/software/cURL/7.47.0/bin:/apps/daint/UES/xalt/0.7.6/bin:/apps/common/UES/SLES12/ddt/7.0.2/libexec:/apps/common/UES/SLES12/ddt/7.0.2/bin:/apps/dom/system/bin:/apps/common/system/bin:/opt/cray/pe/mpt/7.5.0/gni/bin:/opt/cray/rca/2.0.10_g66b76b7-2.51/bin:/opt/cray/job/2.0.2_g98a4850-2.43/bin:/opt/cray/pe/pmi/5.0.10-1.0000.11050.0.0.ari/bin:/opt/cray/pe/craype/2.5.8/bin:/opt/cray/pe/cce/8.5.5/cray-binutils/x86_64-pc-linux-gnu/bin:/opt/cray/pe/cce/8.5.5/craylibs/x86-64/bin:/opt/cray/pe/cce/8.5.5/cftn/bin:/opt/cray/pe/cce/8.5.5/CC/bin:/opt/cray/elogin/eswrap/2.0.11-2.2/bin:/opt/slurm/default/bin:/opt/cray/cge/2.5.1222_r9efe201_fe2.5.3_2017032306/bin:/opt/cray/pe/modules/3.2.10.5/bin:/usr/local/bin:/usr/bin:/bin:/usr/bin/X11:/usr/lib/mit/bin:/usr/lib/mit/sbin:/opt/cray/pe/bin:/opt/cray/nvidia/default/bin
+  PAT_BUILD_PAPI_BASEDIR=/opt/cray/pe/papi/5.5.0.2
+  PAT_REPORT_PRUNE_NAME=_cray$mt_start_,__cray_hwpc_,f_cray_hwpc_,cstart,__pat_,pat_region_,PAT_,OMP.slave_loop,slave_entry,_new_slave_entry,THREAD_POOL_join,__libc_start_main,_start,__start,start_thread,__wrap_,UPC_ADIO_,_upc_,upc_,__caf_,__pgas_,syscall
+  PAT_RT_REPORT_CMD=pat_report,-O,lite/gpu_rpt,-s,summoner=rtl
+  PAT_RT_REPORT_METHOD=pe0
+  PERFTOOLS_VERSION=6.4.5
+  PMI_CONTROL_PORT=21965
+  PMI_CRAY_NO_SMP_ORDER=0
+  PMI_GNI_COOKIE=3905748992:3905814528
+  PMI_GNI_DEV_ID=0:0
+  PMI_GNI_LOC_ADDR=38:38
+  PMI_GNI_PTAG=116:117
+  PMI_NO_FORK=1
+
+Report time environment variables:
+    CRAYPAT_ROOT=/opt/cray/pe/perftools/6.4.5
+    PAT_REPORT_PRUNE_NAME=_cray$mt_start_,__cray_hwpc_,f_cray_hwpc_,cstart,__pat_,pat_region_,PAT_,OMP.slave_loop,slave_entry,_new_slave_entry,THREAD_POOL_join,__libc_start_main,_start,__start,start_thread,__wrap_,UPC_ADIO_,_upc_,upc_,__caf_,__pgas_,syscall
+
+Number of MPI control variables collected:  96
+
+  (To see the list, specify: -s mpi_cvar=show)
+
+Report command line options:  <none>
+
+Operating system:
+  Linux 3.12.60-52.49.1_2.0-cray_ari_c #1 SMP Mon Nov 21 15:40:26 UTC 2016
+
+Estimated minimum instrumentation overhead per call of a traced function,
+  which was subtracted from the data shown in this report
+  (for raw data, use the option:  -s overhead=include):
+    Time  0.119  microsecs
+
+Number of traced functions:  400
+
+  (To see the list, specify:  -s traced_functions=show)
+
