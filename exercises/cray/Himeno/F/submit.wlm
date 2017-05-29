@@ -1,11 +1,10 @@
 #!/bin/bash
-#SBATCH --namer= himeno_v00
+#SBATCH --name=himeno_v00
 #SBATCH --ntasks=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --time=00:03:00
-#SBATCH --output=himeno_v00.log
+#SBATCH --output=himeno_v00_%j.log
 #SBATCH --constraint=gpu
-##SBATCH --reservation=...
 
 cat $0
 
