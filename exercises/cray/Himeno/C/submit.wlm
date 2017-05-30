@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --name=himeno_v00
+#SBATCH --job-name=himeno_v00
 #SBATCH --ntasks=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --time=00:03:00
