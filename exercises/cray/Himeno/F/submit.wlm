@@ -5,6 +5,8 @@
 #SBATCH --time=00:03:00
 #SBATCH --output=himeno_v00_%j.log
 #SBATCH --constraint=gpu
+#SBATCH --reservation=open
+#SBATCH --account=courses
 
 cat $0
 
