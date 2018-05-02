@@ -49,6 +49,7 @@ class DiffusionExample(OpenACCBaseTest):
 
         self.sanity_patterns = sn.assert_found('writing to output',
                                                self.stdout)
+        self.keep_files = ['output.bin', 'output.bov']
 
 
 class GemmExample(OpenACCBaseTest):

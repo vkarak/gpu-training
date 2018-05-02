@@ -60,7 +60,7 @@ contains
     open(20, file='output.bov')
     write(20, '(a)') 'TIME: 0.0'
     write(20, '(a)') 'DATA_FILE: output.bin'
-    write(20, '(a i0 a i0 a)') 'DATA_SIZE: ', nx, ', ', ny, ', 1'
+    write(20, '(a i0 a i0 a)') 'DATA_SIZE: ', nx, ' ', ny, ' 1'
     write(20, '(a)') 'DATA_FORMAT: DOUBLE'
     write(20, '(a)') 'VARIABLE: phi'
     write(20, '(a)') 'DATA_ENDIAN: LITTLE'
