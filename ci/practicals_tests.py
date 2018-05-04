@@ -38,8 +38,6 @@ class DiffusionExample(OpenACCBaseTest):
         self.executable = ('./diffusion/diffusion2d.%s' %
                            version.replace('+', '.'))
         if 'mpi' in version:
-            # PGI 17.X, 18.X do not like mixing CUDA and OpenACC!
-            self.valid_prog_environs = ['PrgEnv-cray']
             self.num_tasks = 2
             self.num_tasks_per_node = 1
             self.variables = {
@@ -82,6 +80,28 @@ class DotExample(OpenACCBaseTest):
         self.sanity_patterns = sn.assert_found('success', self.stdout)
 
 
+@sn.sanity_function
+def dset(iterable):
+    return set(iterable)
+
+
+class ImagePipelineExample(OpenACCBaseTest):
+    def __init__(self, **kwargs):
+        super().__init__('image_pipeline_example', **kwargs)
+        self.sourcepath = 'image-pipeline/'
+        self.valid_prog_environs = ['PrgEnv-pgi']
+
+        # We need to reload the PGI compiler here, cos OpenCV loads PrgEnv-gnu
+        self.modules = ['craype-accel-nvidia60', 'OpenCV', 'pgi']
+        self.executable = './image-pipeline/filter.x'
+        self.executable_opts = ['image-pipeline/california-1751455_1280.jpg',
+                                'image-pipeline/output.jpg']
+        self.sanity_patterns = sn.assert_eq(
+            {'original', 'blocked', 'update', 'pipelined', 'multi'},
+            dset(sn.extractall('Time \((\S+)\):.*', self.stdout, 1)))
+
+
+
 def _get_checks(**kwargs):
     return [AXPYExample(**kwargs),
             AXPYExample('fortran', **kwargs),
@@ -96,4 +116,5 @@ def _get_checks(**kwargs):
             DiffusionExample('openacc+fort+mpi', **kwargs),
             DotExample('openacc', **kwargs),
             DotExample('openacc+fort', **kwargs),
-            GemmExample(**kwargs)]
+            GemmExample(**kwargs),
+            ImagePipelineExample(**kwargs)]

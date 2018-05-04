@@ -26,9 +26,9 @@ ifeq ($(PE_ENV), PGI)
 	CXX = pgc++
 	FC  = pgf90
 	override CPPFLAGS += -I$(CRAY_CUDATOOLKIT_DIR)/include
-	CXXFLAGS = -DPGI -std=c++11 -O3 -acc -Minfo=accel -ta=tesla:cc60
-	FCFLAGS  = -O3 -acc -Minfo=accel -ta=tesla:cuda8.0
-	LDFLAGS += -L$(CRAY_CUDATOOLKIT_DIR)/lib64 -lcudart
+	CXXFLAGS = -DPGI -std=c++11 -O3 -acc -Minfo=accel -ta=tesla:cc60 -Mcuda -Mnorpath
+	FCFLAGS  = -O3 -acc -Minfo=accel -ta=tesla:cc60 -Mcuda -Mnorpath
+	LDFLAGS += -L$(CRAY_CUDATOOLKIT_DIR)/lib64 -lcudart -Mcuda -Mnorpath
 endif
 
 ifeq ($(PE_ENV), GNU)
