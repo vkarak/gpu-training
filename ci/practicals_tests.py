@@ -1,6 +1,7 @@
 import os
 
 import reframe.utility.sanity as sn
+from reframe.core.modules import get_modules_system
 from reframe.core.pipeline import RegressionTest
 
 
@@ -12,6 +13,17 @@ class OpenACCBaseTest(RegressionTest):
         self.sourcesdir = os.path.join(self.prefix, '../solutions')
         self.modules = ['craype-accel-nvidia60']
         self.maintainers = ['karakasis<at>cscs.ch']
+
+    # Remove underscore to test with PGI 18.4 (but use -p PrgEnv-pgi only!)
+    def _setup(self, partition, environ, **job_opts):
+        if environ.name == 'PrgEnv-pgi':
+            get_modules_system().searchpath_add(
+                '/apps/common/UES/pgi/18.4/modulefiles')
+            self.modules += ['pgi/18.4']
+            self.variables.update({'PGI_VERS_STR': '18.4.0'})
+            self.pre_run = ['module use /apps/common/UES/pgi/18.4/modulefiles']
+
+        super().setup(partition, environ, **job_opts)
 
     def compile(self):
         self.current_environ.propagate = False
@@ -101,6 +113,16 @@ class ImagePipelineExample(OpenACCBaseTest):
             dset(sn.extractall('Time \((\S+)\):.*', self.stdout, 1)))
 
 
+class DeepcopyExample(OpenACCBaseTest):
+    def __init__(self, version, **kwargs):
+        super().__init__('deepcopy_%s_example' % version.replace('+', '_'),
+                         **kwargs)
+        self.sourcepath = 'deepcopy/'
+        self.valid_prog_environs = ['PrgEnv-pgi']
+        self.modules = ['craype-accel-nvidia60']
+        self.executable = './deepcopy/deepcopy.%s' % version.replace('+', '.')
+        self.sanity_patterns = sn.assert_found('3', self.stdout)
+
 
 def _get_checks(**kwargs):
     return [AXPYExample(**kwargs),
@@ -108,6 +130,8 @@ def _get_checks(**kwargs):
             DiffusionExample('omp', **kwargs),
             BlurExample('openacc', **kwargs),
             BlurExample('openacc+fort', **kwargs),
+            DeepcopyExample('openacc', **kwargs),
+            DeepcopyExample('openacc+fort', **kwargs),
             DiffusionExample('openacc', **kwargs),
             DiffusionExample('openacc+cuda', **kwargs),
             DiffusionExample('openacc+cuda+mpi', **kwargs),
