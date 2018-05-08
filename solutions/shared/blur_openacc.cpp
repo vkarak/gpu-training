@@ -73,22 +73,19 @@ void blur_twice_gpu_nocopies(double *in , double *out , int n, int nsteps)
     #pragma acc data copyin(in[0:n]) copy(out[0:n]) create(buffer[0:n])
     {
         for (auto istep = 0; istep < nsteps; ++istep) {
-            #pragma acc kernels
-            {
-                #pragma acc loop
-                for (auto i = 1; i < n-1; ++i) {
-                    buffer[i] = blur(i, in);
-                }
+            #pragma acc parallel loop
+            for (auto i = 1; i < n-1; ++i) {
+                buffer[i] = blur(i, in);
+            }
 
-                #pragma acc loop
-                for (auto i = 2; i < n-2; ++i) {
-                    out[i] = blur(i, buffer);
-                }
+            #pragma acc parallel loop
+            for (auto i = 2; i < n-2; ++i) {
+                out[i] = blur(i, buffer);
+            }
 
-                #pragma acc loop
-                for (auto i = 0; i < n; ++i) {
-                    in[i] = out[i];
-                }
+            #pragma acc parallel loop independent
+            for (auto i = 0; i < n; ++i) {
+                in[i] = out[i];
             }
         }
     }

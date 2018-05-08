@@ -21,8 +21,8 @@ endif
 ifeq ($(PE_ENV), PGI)
 	CXX = pgc++
 	FC  = pgf90
-	CXXFLAGS = -DPGI -std=c++11 -O3 -acc -Minfo=accel -ta=tesla:cc60
-	FCFLAGS  = -O3 -acc -Minfo=accel -ta=tesla:cc60
+	CXXFLAGS = -DPGI -std=c++11 -O3 -acc -Minfo=accel -ta=tesla:cc60,pinned
+	FCFLAGS  = -O3 -acc -Minfo=accel -ta=tesla:cc60,pinned
 	LDFLAGS += -L$(CRAY_CUDATOOLKIT_DIR)/lib64 -lcudart
 endif
 

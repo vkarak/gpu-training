@@ -9,8 +9,8 @@ void diffusion_gpu(const double *x0, double *x1, int nx, int ny, double dt)
     auto width = nx+2;
 
 #ifdef OPENACC_DATA
-    #pragma acc parallel loop present(x0[0:nx*ny], x1[0:nx*ny]) \
-        collapse(2) private(i,j)
+    #pragma acc parallel loop collapse(2) private(i,j) \
+        present(x0[0:nx*ny], x1[0:nx*ny])
 #else
     #pragma acc parallel loop deviceptr(x0,x1) collapse(2) private(i,j)
 #endif
