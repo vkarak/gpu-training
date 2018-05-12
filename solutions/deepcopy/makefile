@@ -2,8 +2,8 @@
 
 
 FC = pgfortran
-FCFLAGS = -g -O3 -acc -Minfo=accel -ta=tesla:cc60 -Mcuda
-CXXFLAGS = -g -O3 -std=c++11 -acc -Minfo=accel -ta=tesla:cc60 -Mcuda
+FCFLAGS = -g -O3 -acc -Minfo=accel -ta=tesla:cc60,pinned -Mcuda
+CXXFLAGS = -g -O3 -std=c++11 -acc -Minfo=accel -ta=tesla:cc60,pinned -Mcuda
 CXX = pgc++
 LDLFAGS =
 
