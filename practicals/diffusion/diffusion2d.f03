@@ -11,7 +11,7 @@ contains
 
     width = nx + 2
 
-    ! TODO: Offload the following two loops on GPU
+    ! TODO: offload this loop to the GPU
     do j = 2, ny+1
        do i = 2, nx+1
           pos = i + (j-1)*width;
@@ -27,7 +27,7 @@ contains
     real(kind(0d0)), intent(in)  :: src(n)
     integer :: i
 
-    ! TODO: Offload the copying on GPU
+    ! TODO: offload this loop to the GPU
     do i = 1, n
        dst(i) = src(i)
     enddo
@@ -40,7 +40,7 @@ contains
     real(kind(0d0)), intent(out) :: arr(n)
     integer :: i
 
-    ! TODO: Fill data in GPU
+    ! TODO: offload this loop to the GPU
     do i = 1, n
        arr(i) = val
     enddo
@@ -60,7 +60,7 @@ contains
     open(20, file='output.bov')
     write(20, '(a)') 'TIME: 0.0'
     write(20, '(a)') 'DATA_FILE: output.bin'
-    write(20, '(a i0 a i0 a)') 'DATA_SIZE: ', nx, ', ', ny, ', 1'
+    write(20, '(a i0 a i0 a)') 'DATA_SIZE: ', nx, ' ', ny, ' 1'
     write(20, '(a)') 'DATA_FORMAT: DOUBLE'
     write(20, '(a)') 'VARIABLE: phi'
     write(20, '(a)') 'DATA_ENDIAN: LITTLE'

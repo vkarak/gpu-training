@@ -1,5 +1,7 @@
 #include <iostream>
+#include <cstdlib>
 #include <mpi.h>
+#include <openacc.h>
 
 #include "diffusion2d.hpp"
 #include "util.h"
@@ -56,7 +58,8 @@ int main(int argc, char** argv) {
     double *x0     = malloc_host_pinned<double>(buffer_size);
     double *x1     = malloc_host_pinned<double>(buffer_size);
 #else
-    double *x_host = malloc_host_pinned<double>(buffer_size);
+    double *x_host = (double *) malloc(buffer_size*sizeof(double));
+    // double *x_host = malloc_host_pinned<double>(buffer_size);
     double *x0     = malloc_device<double>(buffer_size);
     double *x1     = malloc_device<double>(buffer_size);
 #endif
@@ -64,7 +67,7 @@ int main(int argc, char** argv) {
     double start_diffusion, time_diffusion;
 
 #ifdef OPENACC_DATA
-    // TODO: Create/move data to the GPU
+    // TODO: move data to the GPU
 #endif
     {
         // set initial conditions of 0 everywhere
@@ -86,7 +89,7 @@ int main(int argc, char** argv) {
         auto north = mpi_rank + 1;
 
         // time stepping loop
-        // TODO: Wait for previous operations before starting the timer
+        #pragma acc wait
         start_diffusion = get_time();
         for(auto step=0; step<nsteps; ++step) {
             MPI_Request requests[4];
@@ -94,8 +97,9 @@ int main(int argc, char** argv) {
             auto num_requests = 0;
 
 #ifdef OPENACC_DATA
-            // TODO: data is managed by OpenACC; you need to pass the device
-            // pointers to the MPI calls to enable the fast data path (RDMA)
+            // TODO: There are two ways to communicate:
+            //   1. Update the host copy first and then communicate
+            //   2. Use the optimised RDMA data path
 #endif
             {
                 if (south >= 0) {
@@ -131,7 +135,7 @@ int main(int argc, char** argv) {
 #endif
         }
 
-        // TODO: Wait for previous operations before starting the timer
+        #pragma acc wait
         time_diffusion = get_time() - start_diffusion;
     } // end of acc data
 
@@ -147,7 +151,7 @@ int main(int argc, char** argv) {
                   << nsteps*(nx-2)*(ny-2)*mpi_size / time_diffusion
                   << " points/second\n\n";
 
-        std::cout << "writing to output.bin/bov" << std::endl;
+        std::cout << "writing to output.bin/bov\n";
         write_to_file(nx, ny, x_res);
     }
 

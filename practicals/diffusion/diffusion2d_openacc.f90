@@ -24,7 +24,7 @@ program main
      stop 'failed to allocate arrays'
   endif
 
-  ! TODO: Create/move necessary data to GPU
+  ! TODO: Move necessary data to the GPU
 
   ! set initial conditions of 0 everywhere
   call fill_gpu(x0, 0d0, buffer_size)
@@ -36,14 +36,14 @@ program main
   call fill_gpu(x0(nx*(ny-1)+1:nx*ny), 1d0, nx);
   call fill_gpu(x1(nx*(ny-1)+1:nx*ny), 1d0, nx);
 
-  ! TODO: Wait for previous operations before starting the timer
+  !$acc wait
   start_diffusion = get_time()
   do i = 1, nsteps
      call diffusion_gpu(x0, x1, nx-2, ny-2, dt)
      call copy_gpu(x0, x1, buffer_size)
   enddo
 
-  ! TODO: Wait for previous operations before starting the timer
+  !$acc wait
   time_diffusion = get_time() - start_diffusion
 
   write(*, '(a f0.6 a e0.6e2 a)') '## ', time_diffusion, 's, ', &

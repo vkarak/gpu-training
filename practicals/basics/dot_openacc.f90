@@ -5,7 +5,10 @@ subroutine dotprod_gpu(n, x, y, res)
   real(kind(0d0)), intent(out) :: res
 
   res = 0
-  ! TODO: implement dot prod with OpenACC
+  ! TODO: offload this loop to the GPU
+  do i = 1,n
+     res = res + x(i)*y(i)
+  enddo
 
 end subroutine dotprod_gpu
 
@@ -27,11 +30,13 @@ program main
   use util
   implicit none
 
-  integer n, err
+  integer n, pow, err
   real(kind(0d0)), dimension(:), allocatable :: x, y
   real(kind(0d0)) :: result, expected
+  real(kind(0d0)) :: time_gpu, time_host
 
-  n = read_arg(1, 4)
+  pow = read_arg(1, 2)
+  n = 2**pow
 
   write(*, '(a i0)') 'dot product of length n = ', n
   allocate(x(n), y(n), stat=err)
@@ -45,14 +50,20 @@ program main
   call random_number(y)
   y(:) = 10*y(:)
 
-  call dotprod_gpu(n, x, y, result)
+  time_host = get_time()
   call dotprod_host(n, x, y, expected)
+  time_host = get_time() - time_host
 
-  if (abs(expected - result) > 2*n*1d-14) then
-     write(*, '(a f0.6 a f0.6)') '============ FAILED: got ', result, &
-          ' expected: ', expected
+  time_gpu = get_time()
+  call dotprod_gpu(n, x, y, result)
+  time_gpu = get_time() - time_gpu
+
+  if (abs(expected - result) > 1.e-6) then
+     write(*, '(a e0.6 a e0.6 a)') 'expected ', expected, ' got, ', result, &
+          ': failure'
   else
-     write(*, '(a)') '============ SUCCESS'
+     write(*, '(a e0.6 a e0.6 a)') 'expected ', expected, ' got, ', result, &
+          ': success'
   endif
 
 end program main

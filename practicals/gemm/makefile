@@ -1,5 +1,8 @@
 .PHONY: all clean
 
+CRAY ?= 1
+PGI  ?= 0
+GCC  ?= 0
 VERBOSE ?= 0
 CPPFLAGS ?= -DNO_NAIVE
 
@@ -19,9 +22,10 @@ endif
 
 ifeq ($(PE_ENV), PGI)
 	CXX = pgc++
+	FC  = pgf90
 	CXXFLAGS = -DPGI -std=c++11 -O3 -mp=allcores -acc -Minfo=accel -ta=tesla:cc60
 	FCFLAGS  = -O3 -mp=allcores -acc -Minfo=accel -ta=tesla:cc60
-	LDFLAGS  += -L$(CRAY_CUDATOOLKIT_DIR)/lib64 -lcudart -lcublas -ta=tesla:cc60
+	LDFLAGS  += -L$(CRAY_CUDATOOLKIT_DIR)/lib64 -lcudart -lcublas
 endif
 
 ifeq ($(PE_ENV), GNU)
@@ -39,8 +43,8 @@ BENCHMARKS=$(OPENACC_BENCHMARKS)
 
 all: $(BENCHMARKS)
 
-util.o: util.f03
-	$(FC) -c $(FCFLAGS) $<
+util.o: ../common/util.f03
+	$(FC) $(CPPFLAGS) -c $(FCFLAGS) $<
 
 gemm.openacc: gemm.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $< -o $@ $(LDFLAGS)

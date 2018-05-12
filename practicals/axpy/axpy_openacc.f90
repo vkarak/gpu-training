@@ -19,7 +19,12 @@ subroutine axpy_gpu(n, alpha, x, y)
   real(kind(0d0)), intent(in) :: x(n)
   real(kind(0d0)), intent(inout) :: y(n)
 
-  ! TODO: Implement the axpy kernel using OpenACC
+  integer i
+
+  ! TODO: offload this loop to the GPU
+  do i = 1,n
+     y(i) = y(i) + alpha*x(i)
+  enddo
 
 end subroutine axpy_gpu
 
@@ -49,7 +54,7 @@ program main
   time_axpy_omp = get_time() - axpy_start
 
   copyin_start = get_time()
-  !$acc data copyin(x) copy(y)
+  ! TODO: Copy the necessary data to the GPU, so as to measute the transfer time
   time_copyin = get_time() - copyin_start
 
   axpy_start = get_time()
@@ -57,7 +62,7 @@ program main
   time_axpy_gpu = get_time() - axpy_start
 
   copyout_start = get_time()
-  !$acc end data
+  ! TODO: Copy the necessary data from the GPU, so as to measute the transfer time
   time_copyout = get_time() - copyout_start
 
   print *, '-------'

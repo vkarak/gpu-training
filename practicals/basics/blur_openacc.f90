@@ -1,5 +1,5 @@
 real(kind(0d0)) function blur(pos, u, n)
-  ! TODO: This must be called from an OpenACC region
+  ! TODO: declare routine accordingly so as to be called from the GPU
   integer, intent(in) :: pos, n
   real(kind(0d0)), intent(in) :: u(n)
 
@@ -16,6 +16,7 @@ subroutine blur_twice_host(nsteps, n, in, out)
   integer istep, i
   real(kind(0d0)), dimension(:), allocatable :: buffer
   real(kind(0d0)), external :: blur
+  ! TODO: declare routine accordingly so as to be called from the GPU
 
   allocate(buffer(n))
 
@@ -29,7 +30,11 @@ subroutine blur_twice_host(nsteps, n, in, out)
      do i = 3,n-2
         out(i) = blur(i, buffer, n)
      enddo
-     call swap(in, out)
+
+     !$omp parallel do
+     do i = 1,n
+        in(i) = out(i)
+     enddo
   enddo
 
   deallocate(buffer)
@@ -45,22 +50,25 @@ subroutine blur_twice_gpu_naive(nsteps, n, in, out)
   integer istep, i
   real(kind(0d0)), dimension(:), allocatable :: buffer
   real(kind(0d0)), external :: blur
-  ! TODO: blur must be called from an OpenACC region
+  ! TODO: declare routine accordingly so as to be called from the GPU
 
   allocate(buffer(n))
 
   do istep = 1,nsteps
-     ! TODO: Offload the following loop to GPU
+     ! TODO: offload this loop to the GPU
      do i = 2,n-1
         buffer(i) = blur(i, in, n)
      enddo
 
-     ! TODO: Offload the following loop to GPU
+     ! TODO: offload this loop to the GPU
      do i = 3,n-2
         out(i) = blur(i, buffer, n)
      enddo
 
-     call swap(in, out)
+     ! TODO: offload this loop to the GPU
+     do i = 1,n
+        in(i) = out(i)
+     enddo
   enddo
 
   deallocate(buffer)
@@ -75,23 +83,23 @@ subroutine blur_twice_gpu_nocopies(nsteps, n, in, out)
   integer istep, i
   real(kind(0d0)), dimension(:), allocatable :: buffer
   real(kind(0d0)), external :: blur
-  ! TODO: blur must be called from an OpenACC region
+  ! TODO: declare routine accordingly so as to be called from the GPU
 
   allocate(buffer(n))
 
-  ! TODO: Move all data to GPU before starting the computation
+  ! TODO: move the data needed by the algorithm to the GPU
   do istep = 1,nsteps
-     ! TODO: Offload this loop to GPU
+     ! TODO: offload this loop to the GPU
      do i = 2,n-1
         buffer(i) = blur(i, in, n)
      enddo
 
-     ! TODO: Offload this loop to GPU
+     ! TODO: offload this loop to the GPU
      do i = 3,n-2
         out(i) = blur(i, buffer, n)
      enddo
 
-     ! TODO: Copy in to out in GPU
+     ! TODO: offload this loop to the GPU (pay attention to the compiler diagnostics!)
      do i = 1,n
         in(i) = out(i)
      enddo
@@ -105,15 +113,16 @@ program main
   implicit none
 
   integer pow, n, nsteps, err, i
-  real(kind(0d0)), dimension(:), allocatable :: x0, x1
-  real(kind(0d0)) :: blur_start, time_blur
+  real(kind(0d0)), dimension(:), allocatable :: x0, x0_orig, x1, x1_orig
+  real(kind(0d0)) :: time_gpu, time_host
+  logical:: validate
   pow    = read_arg(1, 20)
   nsteps = read_arg(2, 100)
   n      = 2**pow + 4
 
   write(*, '(a i0 a f0.6 a)') 'dispersion 1D test of length n = ', n, ' : ', 8.*n/1024**2, 'MB'
 
-  allocate(x0(n), x1(n), stat=err)
+  allocate(x0(n), x1(n), x0_orig(n), x1_orig(n), stat=err)
   if (err /= 0) then
      stop 'failed to allocate arrays'
   endif
@@ -122,21 +131,46 @@ program main
   x0(2)   = 1.0
   x0(n-1) = 1.0
   x0(n)   = 1.0
+  x0_orig(1)   = 1.0
+  x0_orig(2)   = 1.0
+  x0_orig(n-1) = 1.0
+  x0_orig(n)   = 1.0
 
   x1(1)   = x0(1)
   x1(2)   = x0(2)
   x1(n-1) = x0(n-1)
   x1(n)   = x0(n)
+  x1_orig(1)   = x0(1)
+  x1_orig(2)   = x0(2)
+  x1_orig(n-1) = x0(n-1)
+  x1_orig(n)   = x0(n)
 
-  blur_start = get_time()
+  time_host = get_time()
+  call blur_twice_host(nsteps, n, x0_orig, x1_orig)
+  time_host = get_time() - time_host
+
+  time_gpu = get_time()
   call blur_twice_gpu_nocopies(nsteps, n, x0, x1)
-  time_blur = get_time() - blur_start
+  time_gpu = get_time() - time_gpu
 
-  write(*, '(a f0.6 a f0.8 a)') '==== that took ', time_blur, &
-       ' seconds (', time_blur/nsteps, 's/step )'
-  do i = 1, min(20,n)
-     write(*, '(f0.6 a)', advance='no') x1(i), ' '
+  ! Validate kernel
+  validate = .true.
+  do i = 1, n
+     if (abs(x1_orig(i) - x1(i)) > 1.e-6) then
+        write(*, *) 'item ', i, ' differs (expected, found): ', &
+             x1_orig(i), ' != ', x1(i)
+     endif
   enddo
-  write(*,*)
+
+  if (validate) then
+     write(*, '(a)') '==== success ===='
+  else
+     write(*, '(a)') '==== failure ===='
+  endif
+
+  write(*, '(a f0.6 a f0.6 a)') 'Host version took ', time_host, ' s (', &
+       time_host/nsteps, ' s/steps)'
+  write(*, '(a f0.6 a f0.6 a)') 'GPU version took ', time_gpu, ' s (',   &
+       time_gpu/nsteps, ' s/steps)'
 
 end program main

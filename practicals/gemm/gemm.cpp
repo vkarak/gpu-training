@@ -62,7 +62,7 @@ template<typename T>
 void dgemm_openacc(size_t M, size_t N, size_t K,
                    T alpha, const T *A, const T *B, T beta, T *C)
 {
-    // TODO: offload the following loops to gpu
+    // TODO: offload the following loops to the GPU
     for (size_t i = 0; i < M; ++i) {
         for (size_t k = 0; k < K; ++k) {
             T prod = T{0};
@@ -118,9 +118,9 @@ void dgemm_cublas(size_t M, size_t N, size_t K,
 
     auto cublas_gemm = gemm_fn<T>();
 
-    // TODO: Move the data to the device
+    // TODO: copy data to the GPU and call the cuBLAS GEMM
     {
-        // TODO: Get the device pointers
+        // TODO: make sure to pass a GPU pointer
         {
             if (cublas_gemm(handle, CUBLAS_OP_T, CUBLAS_OP_T,
                             M, N, K, &alpha, A, K, B, N, &beta, C, N) !=
@@ -129,11 +129,6 @@ void dgemm_cublas(size_t M, size_t N, size_t K,
                 exit(1);
             }
         }
-
-#if __PGI
-        // Workaround for PGI
-        #pragma acc update host(C[0:M*N])
-#endif
     }
 
     cublasDestroy(handle);
