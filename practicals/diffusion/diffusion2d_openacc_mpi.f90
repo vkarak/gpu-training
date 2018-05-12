@@ -46,7 +46,7 @@ program main
      stop 'failed to allocate arrays'
   endif
 
-  ! TODO: Create/move data to the GPU
+  ! TODO: move necessary data to the GPU
 
   ! set initial conditions of 0 everywhere
   call fill_gpu(x0, 0d0, buffer_size)
@@ -70,12 +70,13 @@ program main
   requests = 0
   statuses = 0
 
-  ! TODO: Wait for previous operations before starting the timer
+  !$acc wait
   start_diffusion = get_time()
   do i = 1, nsteps
      num_requests = 0
-     ! TODO: data is managed by OpenACC; you need to pass the device
-     ! pointers to the MPI calls to enable the fast data path (RDMA)
+     ! TODO: There are two ways to communicate:
+     !   1. Update the host copy first and then communicate
+     !   2. Use the optimised RDMA data path
      if (south >= 0) then
         call mpi_irecv(x0(1:), nx, MPI_DOUBLE, south, 0, MPI_COMM_WORLD, &
              requests(1), err)
@@ -99,7 +100,7 @@ program main
      call copy_gpu(x0, x1, buffer_size)
   enddo
 
-  ! TODO: Wait for previous operations before starting the timer
+  !$acc wait
   time_diffusion = get_time() - start_diffusion
 
   if (mpi_rank == 0) then
@@ -109,9 +110,9 @@ program main
      write(*, *) ''
      write(*, '(a)') 'writing to output.bin/bov'
      write(*, *) ''
-     call write_to_file(nx, ny, x1);
   endif
 
+  call write_to_file(nx, ny, x1);
   call MPI_Finalize(err)
 
 end program main

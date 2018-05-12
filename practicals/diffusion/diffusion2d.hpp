@@ -9,10 +9,9 @@ void diffusion_gpu(const double *x0, double *x1, int nx, int ny, double dt)
     auto width = nx+2;
 
 #ifdef OPENACC_DATA
-    // TODO: Offload the following two loops on GPU
+    // TODO: offload this loop to the GPU
 #else
-    // TODO: Offload the following two loops on GPU, x0 and x1 are allocated by
-    // CUDA
+    // TODO: offload this loop to the GPU, but beware data is allocated by CUDA!
 #endif
     for (j = 1; j < ny+1; ++j) {
         for (i = 1; i < nx+1; ++i) {
@@ -30,9 +29,9 @@ void copy_gpu(T *dst, const T *src, int n)
     int i;
 
 #ifdef OPENACC_DATA
-    // TODO: Offload the copying on GPU
+    // TODO: offload this loop to the GPU
 #else
-    // TODO: Offload the copying on GPU, dst and src are allocated by CUDA
+    // TODO: offload this loop to the GPU, but beware data is allocated by CUDA!
 #endif
     for (i = 0; i < n; ++i) {
         dst[i] = src[i];
@@ -46,9 +45,9 @@ void fill_gpu(T *v, T value, int n)
     int i;
 
 #ifdef OPENACC_DATA
-    // TODO: Fill data in GPU
+    // TODO: offload this loop to the GPU
 #else
-    // TODO: Fill data in GPU, v is allocated by CUDA
+    // TODO: offload this loop to the GPU, but beware data is allocated by CUDA!
 #endif
     for (i = 0; i < n; ++i)
         v[i] = value;

@@ -31,9 +31,9 @@ int main(int argc, char** argv) {
     auto buffer_size = nx*ny;
 
 #ifdef OPENACC_DATA
-    // x0, x1 managed by OpenACC
-    double *x0     = malloc_host_pinned<double>(buffer_size);
-    double *x1     = malloc_host_pinned<double>(buffer_size);
+    // x0, x1 managed by OpenACC's runtime
+    double *x0 = new double[buffer_size];
+    double *x1 = new double[buffer_size];
 #else
     // x0, x1 manually managed with CUDA
     double *x_host = malloc_host_pinned<double>(buffer_size);
@@ -44,7 +44,7 @@ int main(int argc, char** argv) {
     double start_diffusion, time_diffusion;
 
 #ifdef OPENACC_DATA
-    // TODO: Create/move necessary data to GPU
+    // TODO: move necessary data to the GPU
 #endif
     {
         // set initial conditions of 0 everywhere
@@ -58,7 +58,7 @@ int main(int argc, char** argv) {
         fill_gpu(x1+nx*(ny-1), 1., nx);
 
         // time stepping loop
-        // TODO: Wait for previous operations before starting the timer
+        #pragma acc wait
         start_diffusion = get_time();
         for(auto step=0; step<nsteps; ++step) {
             diffusion_gpu(x0, x1, nx-2, ny-2, dt);
@@ -69,7 +69,7 @@ int main(int argc, char** argv) {
 #endif
         }
 
-        // TODO: Wait for previous operations before stoping the timer
+        #pragma acc wait
         time_diffusion = get_time() - start_diffusion;
     } // end of acc data
 

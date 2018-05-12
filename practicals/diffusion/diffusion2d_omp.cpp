@@ -93,7 +93,7 @@ void write_to_file(int nx, int ny, double* data) {
     std::ofstream fid("output.bov");
     fid << "TIME: 0.0\n";
     fid << "DATA_FILE: output.bin\n";
-    fid << "DATA_SIZE: " << nx << ", " << ny << ", 1\n";
+    fid << "DATA_SIZE: " << nx << " " << ny << " 1\n";
     fid << "DATA_FORMAT: DOUBLE\n";
     fid << "VARIABLE: phi\n";
     fid << "DATA_ENDIAN: LITTLE\n";
