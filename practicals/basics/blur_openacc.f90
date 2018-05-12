@@ -150,7 +150,7 @@ program main
   time_host = get_time() - time_host
 
   time_gpu = get_time()
-  call blur_twice_gpu_nocopies(nsteps, n, x0, x1)
+  call blur_twice_gpu_naive(nsteps, n, x0, x1)
   time_gpu = get_time() - time_gpu
 
   ! Validate kernel

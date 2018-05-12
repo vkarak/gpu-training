@@ -123,7 +123,7 @@ int main(int argc, char** argv) {
     auto time_host = get_time() - tstart_host;
 
     auto tstart = get_time();
-    blur_twice_gpu_nocopies(x0, x1, n, nsteps);
+    blur_twice_gpu_naive(x0, x1, n, nsteps);
     auto time = get_time() - tstart;
 
     auto validate = true;
