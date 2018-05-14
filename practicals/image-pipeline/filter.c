@@ -43,7 +43,7 @@ void blur5(unsigned char *restrict imgData, unsigned char *restrict out, long w,
   // of non-zero elements in the filter.
   float scale = 1.0 / 35.0;
 
-// TO DO: parallelize this loop and add data clauses
+// TODO: parallelize this loop and add data clauses
   for ( y = 0; y < h; y++ )
   {
     for ( x = 0; x < w; x++ )
@@ -85,13 +85,13 @@ void blur5_blocked(unsigned char *restrict imgData, unsigned char *restrict out,
   float scale = 1.0 / 35.0;
 
   long blocksize = h/ nblocks;
-// TO DO: create a data region
+// TODO: create a data region
   for ( long blocky = 0; blocky < nblocks; blocky++)
   {
     // For data copies we need to include the ghost zones for the filter
     long starty = blocky * blocksize;
     long endy   = starty + blocksize;
-// TO DO: parallelize this loop
+// TODO: parallelize this loop
     for ( y = starty; y < endy; y++ )
     {
       for ( x = 0; x < w; x++ )
@@ -134,17 +134,17 @@ void blur5_update(unsigned char *restrict imgData, unsigned char *restrict out, 
   float scale = 1.0 / 35.0;
 
   long blocksize = h/ nblocks;
-// TO DO: create a data region
+// TODO: create a data region
   {
   for ( long blocky = 0; blocky < nblocks; blocky++)
   {
     // For data copies we need to include the ghost zones for the filter
     long starty = MAX(0,blocky * blocksize - filtersize/2);
     long endy   = MIN(h,starty + blocksize + filtersize/2);
-// TO DO: move data
+// TODO: move data
     starty = blocky * blocksize;
     endy = starty + blocksize;
-// TO DO: parallelize this loop
+// TODO: parallelize this loop
     for ( y = starty; y < endy; y++ )
     {
       for ( x = 0; x < w; x++ )
@@ -168,7 +168,7 @@ void blur5_update(unsigned char *restrict imgData, unsigned char *restrict out, 
         out[y * step + x * ch + 2 ] = 255 - (scale * red);
       }
     }
-// TO DO: move data 
+// TODO: move data 
   }
   }
 }
@@ -189,17 +189,17 @@ void blur5_pipelined(unsigned char *restrict imgData, unsigned char *restrict ou
   float scale = 1.0 / 35.0;
 
   long blocksize = h/ nblocks;
-// TO DO: create a data region
+// TODO: create a data region
   {
   for ( long blocky = 0; blocky < nblocks; blocky++)
   {
     // For data copies we need to include the ghost zones for the filter
     long starty = MAX(0,blocky * blocksize - filtersize/2);
     long endy   = MIN(h,starty + blocksize + filtersize/2);
-// TO DO: move data
+// TODO: move data
     starty = blocky * blocksize;
     endy = starty + blocksize;
-// TO DO: parallelize this loop
+// TODO: parallelize this loop
     for ( y = starty; y < endy; y++ )
     {
       for ( x = 0; x < w; x++ )
@@ -223,9 +223,9 @@ void blur5_pipelined(unsigned char *restrict imgData, unsigned char *restrict ou
         out[y * step + x * ch + 2 ] = 255 - (scale * red);
       }
     }
-// TO DO: move data
+// TODO: move data
   }
-// TO DO: create synchronization point
+// TODO: create synchronization point
   }
 }
 #include <openacc.h>
@@ -251,7 +251,7 @@ void blur5_pipelined_multi(unsigned char *restrict imgData, unsigned char *restr
     int myid = omp_get_thread_num();
     acc_set_device_num(myid,acc_device_nvidia);
     int queue = 1;
-// TO DO: create a data region
+// TODO: create a data region
   {
 #pragma omp for schedule(static)
   for ( long blocky = 0; blocky < nblocks; blocky++)
@@ -259,10 +259,10 @@ void blur5_pipelined_multi(unsigned char *restrict imgData, unsigned char *restr
     // For data copies we need to include the ghost zones for the filter
     long starty = MAX(0,blocky * blocksize - filtersize/2);
     long endy   = MIN(h,starty + blocksize + filtersize/2);
-// TO DO: move data
+// TODO: move data
     starty = blocky * blocksize;
     endy = starty + blocksize;
-// TO DO: parallelize this loop
+// TODO: parallelize this loop
     for ( long y = starty; y < endy; y++ )
     {
       for ( long x = 0; x < w; x++ )
@@ -286,10 +286,10 @@ void blur5_pipelined_multi(unsigned char *restrict imgData, unsigned char *restr
         out[y * step + x * ch + 2 ] = 255 - (scale * red);
       }
     }
-// TO DO: move data
+// TODO: move data
     queue = (queue%3)+1;
   }
-// TO DO: create synchronization point
+// TODO: create synchronization point
   }
   }
 }

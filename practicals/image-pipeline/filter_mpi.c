@@ -48,7 +48,7 @@ void blur5(unsigned restrict char *imgData, unsigned restrict char *out, long w,
   long endy   = MIN(h, starty + block_size - 1);
   printf("DEBUG[%d] start: %d end: %d\n", rank, starty, endy);
    
-// TO DO: parallelize this loop and add data clauses
+// TODO: parallelize this loop and add data clauses
   for ( y = starty; y < starty; y++ )
   {
     for ( x = 0; x < w; x++ )
@@ -90,13 +90,13 @@ void blur5_blocked(unsigned restrict char *imgData, unsigned restrict char *out,
   float scale = 1.0 / 35.0;
    
   long blocksize = h/ nblocks;
-// TO DO: create a data region
+// TODO: create a data region
   for ( long blocky = 0; blocky < nblocks; blocky++)
   {
     // For data copies we need to include the ghost zones for the filter
     long starty = blocky * blocksize;
     long endy   = starty + blocksize;
-// TO DO: parallelize this loop
+// TODO: parallelize this loop
     for ( y = starty; y < endy; y++ )
     {
       for ( x = 0; x < w; x++ )
@@ -144,9 +144,9 @@ void blur5_update(unsigned restrict char *imgData, unsigned restrict char *out, 
   long dendy   = MIN(h,dstarty + blocksize + filtersize/2);
   long starty = rank * blocksize;
   long endy = MIN(h,starty + blocksize);
-// TO DO: create a data region
+// TODO: create a data region
   {
-// TO DO: parallelize this loop
+// TODO: parallelize this loop
     for ( y = starty; y < endy; y++ )
     {
       for ( x = 0; x < w; x++ )
@@ -190,17 +190,17 @@ void blur5_pipelined(unsigned restrict char *imgData, unsigned restrict char *ou
    
   long blocksize = h/ nblocks;
 
-// TO DO: create a data region
+// TODO: create a data region
   {
   for ( long blocky = 0; blocky < nblocks; blocky++)
   {
     // For data copies we need to include the ghost zones for the filter
     long starty = MAX(0,blocky * blocksize - filtersize/2);
     long endy   = MIN(h,starty + blocksize + filtersize/2);
-// TO DO: move data
+// TODO: move data
     starty = blocky * blocksize + filtersize/2;
     endy = starty + blocksize;
-// TO DO: parallelize this loop
+// TODO: parallelize this loop
     for ( y = starty; y < endy; y++ )
     {
       for ( x = 0; x < w; x++ )
@@ -224,9 +224,9 @@ void blur5_pipelined(unsigned restrict char *imgData, unsigned restrict char *ou
         out[(y-filtersize/2) * step + x * ch + 2 ] = 255 - (scale * red);
       }
     }
-// TO DO: move data
+// TODO: move data
   }
-// TO DO: create synchronization point
+// TODO: create synchronization point
   }
 }
 #include <openacc.h>
@@ -253,7 +253,7 @@ void blur5_pipelined_multi(unsigned restrict char *imgData, unsigned restrict ch
     int myid = omp_get_thread_num();
     acc_set_device_num(myid,acc_device_nvidia);
     int queue = 1;
-// TO DO: create a data region
+// TODO: create a data region
   {
 #pragma omp for schedule(static)
   for ( long blocky = 0; blocky < nblocks; blocky++)
@@ -261,10 +261,10 @@ void blur5_pipelined_multi(unsigned restrict char *imgData, unsigned restrict ch
     // For data copies we need to include the ghost zones for the filter
     long starty = MAX(0,blocky * blocksize - filtersize/2);
     long endy   = MIN(h,starty + blocksize + filtersize/2);
-// TO DO: move data
+// TODO: move data
     starty = blocky * blocksize;
     endy = starty + blocksize;
-// TO DO: parallelize this loop
+// TODO: parallelize this loop
     for ( long y = starty; y < endy; y++ )
     {
       for ( long x = 0; x < w; x++ )
@@ -288,10 +288,10 @@ void blur5_pipelined_multi(unsigned restrict char *imgData, unsigned restrict ch
         out[y * step + x * ch + 2 ] = 255 - (scale * red);
       }
     }
-// TO DO: move data
+// TODO: move data
     queue = (queue%3)+1;
   }
-// TO DO: create synchronization point
+// TODO: create synchronization point
   }
   }
 }
