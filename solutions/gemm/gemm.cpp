@@ -5,6 +5,7 @@
 
 #include "util.h"
 #include <openacc.h>
+#include <omp.h>
 
 
 // Conventions: A -> MxK, B -> KxN, C -> MxN, all row major
@@ -29,52 +30,94 @@ template<typename T>
 void dgemm_lreorder(size_t M, size_t N, size_t K,
                     T alpha, const T *A, const T *B, T beta, T *C)
 {
+    T *prod = new T[N];
     for (size_t i = 0; i < M; ++i) {
-        for (size_t k = 0; k < K; ++k) {
-            T prod = T{0};
-            for (size_t j = 0; j < N; ++j) {
-                prod += A[i*K+k]*B[k*N+j];
-            }
+        for (size_t j = 0; j < N; ++j) {
+            // zero out the temporary products
+            prod[j] = 0;
+        }
 
-            C[i*N+k] = alpha*prod + beta*C[i*N+k];
+        for (size_t k = 0; k < K; ++k) {
+            for (size_t j = 0; j < N; ++j) {
+                prod[j] += A[i*K+k]*B[k*N+j];
+            }
+        }
+
+        for (size_t j = 0; j < N; ++j) {
+            C[i*N+j] = alpha*prod[j] + beta*C[i*N+j];
         }
     }
+
+    delete[] prod;
 }
 
 template<typename T>
 void dgemm_omp(size_t M, size_t N, size_t K,
                T alpha, const T *A, const T *B, T beta, T *C)
 {
-    #pragma omp parallel for collapse(2) firstprivate(alpha, beta)
-    for (size_t i = 0; i < M; ++i) {
-        for (size_t k = 0; k < K; ++k) {
-            T prod = T{0};
-            for (size_t j = 0; j < N; ++j) {
-                prod += A[i*K+k]*B[k*N+j];
-            }
+    T *D = new T[M*N];
 
-            C[i*N+k] = alpha*prod + beta*C[i*N+k];
+    #pragma omp parallel for collapse(2)
+    for (size_t i = 0; i < M; ++i) {
+        for (size_t j = 0; j < N; ++j) {
+            D[i*N+j] = 0;
         }
     }
+
+    #pragma omp parallel for
+    for (size_t i = 0; i < M; ++i) {
+        for (size_t k = 0; k < K; ++k) {
+            for (size_t j = 0; j < N; ++j) {
+                D[i*N+j] += A[i*K+k]*B[k*N+j];
+            }
+        }
+    }
+
+    #pragma omp parallel for collapse(2) firstprivate(alpha, beta)
+    for (size_t i = 0; i < M; ++i) {
+        for (size_t j = 0; j < N; ++j) {
+            C[i*N+j] = alpha*D[i*N+j] + beta*C[i*N+j];
+        }
+    }
+
+    delete[] D;
 }
 
 template<typename T>
 void dgemm_openacc(size_t M, size_t N, size_t K,
                    T alpha, const T *A, const T *B, T beta, T *C)
 {
-    #pragma acc parallel loop collapse(2) firstprivate(alpha, beta) \
-        copyin(A[0:M*K], B[0:K*N]) copy(C[0:M*N])
-    for (size_t i = 0; i < M; ++i) {
-        for (size_t k = 0; k < K; ++k) {
-            T prod = T{0};
-            #pragma acc loop reduction(+:prod)
-            for (size_t j = 0; j < N; ++j) {
-                prod += A[i*K+k]*B[k*N+j];
-            }
+    T *D = new T[M*N];
 
-            C[i*N+k] = alpha*prod + beta*C[i*N+k];
+    #pragma acc data create(D[0:M*N]) copyin(A[0:M*K], B[0:K*N]) copy(C[0:M*N])
+    {
+
+        #pragma acc parallel loop collapse(2)
+        for (size_t i = 0; i < M; ++i) {
+            for (size_t j = 0; j < N; ++j) {
+                D[i*N+j] = 0;
+            }
+        }
+
+        #pragma acc parallel loop gang worker
+        for (size_t i = 0; i < M; ++i) {
+            for (size_t k = 0; k < K; ++k) {
+                #pragma acc loop vector
+                for (size_t j = 0; j < N; ++j) {
+                    D[i*N+j] += A[i*K+k]*B[k*N+j];
+                }
+            }
+        }
+
+        #pragma acc parallel loop collapse(2) firstprivate(alpha, beta)
+        for (size_t i = 0; i < M; ++i) {
+            for (size_t j = 0; j < N; ++j) {
+                C[i*N+j] = alpha*D[i*N+j] + beta*C[i*N+j];
+            }
         }
     }
+
+    delete[] D;
 }
 
 template<typename T>
@@ -124,8 +167,8 @@ void dgemm_cublas(size_t M, size_t N, size_t K,
     {
         #pragma acc host_data use_device(A, B, C)
         {
-            if (cublas_gemm(handle, CUBLAS_OP_T, CUBLAS_OP_T,
-                            M, N, K, &alpha, A, K, B, N, &beta, C, N) !=
+            if (cublas_gemm(handle, CUBLAS_OP_N, CUBLAS_OP_N,
+                            M, N, K, &alpha, B, K, A, N, &beta, C, N) !=
                 CUBLAS_STATUS_SUCCESS) {
                 std::cerr << "CUBLAS GEMM failed\n";
                 exit(1);
@@ -151,7 +194,8 @@ void check_result(size_t M, size_t N, const T *A, const T *B,
         for (size_t j = 0; j < N; ++j) {
             if (std::fabs(A[i*N+j] - B[i*N+j]) > 1e-15) {
                 std::cout << "failed\n";
-                std::cout << A[i*N+j] << " != " << B[i*N+j] << "\n";
+                std::cout << "(expected[" << i << "," << j << "] = " << A[i*N+j] << ") != "
+                          << "(found[" << i << "," << j << "] = " << B[i*N+j] << ")\n";
                 return;
             }
         }
@@ -195,19 +239,29 @@ int main(int argc, char **argv)
               << (3*n*n + 2*n)*sizeof(value_type)*1.e-6 << " MB)\n";
 
     auto a = malloc_host<value_type>(n*n, 1.);
-    auto b = malloc_host<value_type>(n*n, 1.);
+    auto b = malloc_host<value_type>(n*n, 2.);
+
+    for (size_t i = 0; i < n; ++i) {
+        for (size_t j = 0; j < n; ++j) {
+            a[i*n + j] = i + j;
+        }
+    }
+
 
     // Compute a reference result
-    auto ref = run_benchmark(n, n, n, a, b, dgemm_lreorder<value_type>,
-                             "loop reordering");
+    auto ref = run_benchmark(n, n, n, a, b, dgemm_naive<value_type>,
+                             "naive");
     auto cref = std::move(ref.first);
-    auto time_dgemm_lreorder = ref.second;
+    //auto time_dgemm_lreorder = ref.second;
 
     // Run the naive kernel
 #if !defined(NO_NAIVE)
     auto time_dgemm_naive = run_benchmark(
         n, n, n, a, b, dgemm_naive<value_type>, "naive", cref.get()).second;
 #endif
+
+    auto time_dgemm_lreorder = run_benchmark(
+        n, n, n, a, b, dgemm_lreorder<value_type>, "lreorder", cref.get()).second;
 
     // Run the OpenMP kernel
     auto time_dgemm_omp = run_benchmark(
