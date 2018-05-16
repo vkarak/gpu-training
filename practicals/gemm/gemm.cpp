@@ -163,9 +163,9 @@ void dgemm_cublas(size_t M, size_t N, size_t K,
 
     auto cublas_gemm = gemm_fn<T>();
 
-    // TODO: Copy the arrays to the GPu
+    // TODO: Copy the arrays to the GPU
     {
-        // TODO: Make use to pass a GPU pointer to cuBLASS
+        // TODO: Pass a GPU pointer to cuBLASS
         {
             if (cublas_gemm(handle, CUBLAS_OP_N, CUBLAS_OP_N,
                             M, N, K, &alpha, B, K, A, N, &beta, C, N) !=
