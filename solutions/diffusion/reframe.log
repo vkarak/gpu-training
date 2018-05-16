@@ -1,0 +1,61 @@
+[2018-04-26T15:59:20] debug: reframe: executing OS command: cat /etc/xthostname
+[2018-04-26T15:59:20] debug: reframe: executing OS command: modulecmd -V
+[2018-04-26T15:59:20] debug: reframe: executing OS command: modulecmd python
+[2018-04-26T15:59:20] info: reframe: reframe: path `ci/practicals_tests.py' does not exist. Skipping...
+
+[2018-04-26T15:59:20] debug: reframe: configuration
+    account=None
+    checkpath=['ci/practicals_tests.py']
+    colorize=True
+    cpu_only=False
+    exclude_names=[]
+    exclude_nodes=None
+    exec_policy=async
+    force_local=False
+    gpu_only=False
+    job_options=[]
+    keep_stage_files=False
+    list=False
+    logdir=None
+    mode=None
+    module_map_file=None
+    module_mappings=[]
+    names=['diffusion_openacc_fort_mpi_example']
+    nodelist=None
+    output=None
+    partition=None
+    prefix=/scratch/snx1600tds/karakasv/openacc-course-tests/
+    prgenv=[]
+    recursive=False
+    reservation=None
+    run=True
+    save_log_files=False
+    skip_performance_check=False
+    skip_prgenv_check=False
+    skip_sanity_check=False
+    skip_system_check=False
+    stage=None
+    strict=False
+    system=None
+    tags=[]
+    timestamp=None
+    user_modules=[]
+[2018-04-26T15:59:20] info: reframe: Command line: /apps/common/UES/jenkins/SLES12/easybuild/software/reframe/2.11/bin/reframe --prefix=/scratch/snx1600tds/karakasv/openacc-course-tests/ -c ci/practicals_tests.py --exec-policy=async -r -n diffusion_openacc_fort_mpi_example
+[2018-04-26T15:59:20] info: reframe: Reframe version: 2.11
+[2018-04-26T15:59:20] info: reframe: Launched by user: karakasv
+[2018-04-26T15:59:20] info: reframe: Launched on host: dom101
+[2018-04-26T15:59:20] info: reframe: Reframe paths
+[2018-04-26T15:59:20] info: reframe: =============
+[2018-04-26T15:59:20] info: reframe:     Check prefix      : 
+[2018-04-26T15:59:20] info: reframe:     Check search path : ''
+[2018-04-26T15:59:20] info: reframe:     Stage dir prefix  : /scratch/snx1600tds/karakasv/openacc-course-tests/stage/
+[2018-04-26T15:59:20] info: reframe:     Output dir prefix : /scratch/snx1600tds/karakasv/openacc-course-tests/output/
+[2018-04-26T15:59:20] info: reframe:     Logging dir       : /scratch/snx1600tds/karakasv/openacc-course-tests/logs
+[2018-04-26T15:59:20] debug: reframe: executing OS command: modulecmd python unload reframe
+[2018-04-26T15:59:20] info: reframe: [==========] Running 0 check(s)
+[2018-04-26T15:59:20] info: reframe: [==========] Started on Thu Apr 26 15:59:20 2018 
+[2018-04-26T15:59:20] info: reframe: 
+[2018-04-26T15:59:20] info: reframe: [----------] waiting for spawned checks to finish
+[2018-04-26T15:59:20] info: reframe: [----------] all spawned checks have finished
+[2018-04-26T15:59:20] info: reframe: [ [32m PASSED [0m ] Ran 0 test case(s) from 0 check(s) (0 failure(s))
+[2018-04-26T15:59:20] info: reframe: [==========] Finished on Thu Apr 26 15:59:20 2018 
