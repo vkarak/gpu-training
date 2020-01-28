@@ -89,27 +89,27 @@ void dgemm_openacc(size_t M, size_t N, size_t K,
 {
     T *D = new T[M*N];
 
-    // TODO: Move data to the GPU and create the appropriate buffers
+    #pragma acc data create(D[0:M*N]) copyin(A[0:M*K], B[0:K*N]) copy(C[0:M*N])
     {
 
-        // TODO: Offload this loop to the GPU
+        #pragma acc parallel loop collapse(2)
         for (size_t i = 0; i < M; ++i) {
             for (size_t j = 0; j < N; ++j) {
                 D[i*N+j] = 0;
             }
         }
 
-        // TODO: Offload this loop to the GPU; pay attention to the correct
-        // parallelization
+        #pragma acc parallel loop gang worker
         for (size_t i = 0; i < M; ++i) {
             for (size_t k = 0; k < K; ++k) {
+                #pragma acc loop vector
                 for (size_t j = 0; j < N; ++j) {
                     D[i*N+j] += A[i*K+k]*B[k*N+j];
                 }
             }
         }
 
-        // TODO: Offload this loop to the GPU
+        #pragma acc parallel loop collapse(2) firstprivate(alpha, beta)
         for (size_t i = 0; i < M; ++i) {
             for (size_t j = 0; j < N; ++j) {
                 C[i*N+j] = alpha*D[i*N+j] + beta*C[i*N+j];
@@ -163,9 +163,9 @@ void dgemm_cublas(size_t M, size_t N, size_t K,
 
     auto cublas_gemm = gemm_fn<T>();
 
-    // TODO: Copy the arrays to the GPU
+    #pragma acc data copyin(A[0:M*K], B[0:K*N]) copy(C[0:M*N])
     {
-        // TODO: Pass a GPU pointer to cuBLASS
+        #pragma acc host_data use_device(A, B, C)
         {
             if (cublas_gemm(handle, CUBLAS_OP_N, CUBLAS_OP_N,
                             M, N, K, &alpha, B, K, A, N, &beta, C, N) !=
