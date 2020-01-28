@@ -69,26 +69,26 @@ void blur_twice_gpu_naive(double *in , double *out , int n, int nsteps)
 void blur_twice_gpu_nocopies(double *in , double *out , int n, int nsteps)
 {
     double *buffer = malloc_host<double>(n);
+    double *in_bk = in;
 
-    #pragma acc data copyin(in[0:n]) copy(out[0:n]) create(buffer[0:n])
-    {
-        for (auto istep = 0; istep < nsteps; ++istep) {
-            #pragma acc parallel loop
-            for (auto i = 1; i < n-1; ++i) {
-                buffer[i] = blur(i, in);
-            }
+    #pragma acc enter data copyin(in_bk[0:n]), create(out[0:n], buffer[0:n])
+    #pragma acc update device(out[0], out[n])
 
-            #pragma acc parallel loop
-            for (auto i = 2; i < n-2; ++i) {
-                out[i] = blur(i, buffer);
-            }
-
-            #pragma acc parallel loop independent
-            for (auto i = 0; i < n; ++i) {
-                in[i] = out[i];
-            }
+    for (auto istep = 0; istep < nsteps; ++istep) {
+        #pragma acc parallel loop present(in, buffer)
+        for (auto i = 1; i < n-1; ++i) {
+            buffer[i] = blur(i, in);
         }
+
+        #pragma acc parallel loop present(out, buffer)
+        for (auto i = 2; i < n-2; ++i) {
+            out[i] = blur(i, buffer);
+        }
+
+        in = out;
     }
+
+    #pragma acc exit data copyout(out[0:n]), delete(in_bk, buffer)
 
     free(buffer);
 }
